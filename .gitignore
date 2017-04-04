@@ -1,0 +1,12 @@
+#Egret Wing
+.wing
+typings
+
+# OS temps
+.DS_Store
+
+# Logs
+*.log
+
+#compile file
+jsconfig.json
