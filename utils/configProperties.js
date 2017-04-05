@@ -5,8 +5,11 @@
   var examUrl = "";
   var scheduleUrl = "";
   var skillInfoUrl = "";
+  var bindUserIdWithWeChatIdUrl = "";
+
   var toastFailImg = "../images/fail.png"
-  
+
+
   module.exports = {
       authorization: authorization,
       academicUrl: academicUrl,
@@ -15,5 +18,8 @@
       examUrl: examUrl,
       scheduleUrl: scheduleUrl,
       skillInfoUrl: skillInfoUrl,
+
+      bindUserIdWithWeChatIdUrl: bindUserIdWithWeChatIdUrl,
+
       toastFailImg: toastFailImg
   }

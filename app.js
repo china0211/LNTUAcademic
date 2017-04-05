@@ -28,14 +28,32 @@ App({
     },
     globalData: {
         userInfo: null,
+        weChatId: '',
         userId: '',
         authorization: properties.authorization,
         academicUrl: properties.academicUrl,
-        loginUrl:properties.loginUrl,
+        loginUrl: properties.loginUrl,
         studentInfoUrl: properties.studentInfoUrl,
         examUrl: properties.examUrl,
         scheduleUrl: properties.scheduleUrl,
         skillInfoUrl: properties.skillInfoUrl,
+        bindUserIdWithWeChatIdUrl: properties.bindUserIdWithWeChatIdUrl,
         toastFailImg: properties.toastFailImg
     },
+    //提示信息(信息内容，是否成功提示)
+    showToast: function(msg, isSuccessed) {
+        var that = this;
+        if (isSuccessed) {
+            wx.showToast({
+                title: msg,
+                duration: 1500
+            });
+        } else {
+            wx.showToast({
+                title: msg,
+                image: that.globalData.toastFailImg,
+                duration: 1500
+            });
+        }
+    }
 })

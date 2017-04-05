@@ -1,5 +1,16 @@
-<view class="container">
-  <view class="textContainer">
-    <text class="textStyle">{{text}}</text>
+<view class="page">
+  <view class="schoolLogo">
+    <image class="schoolLogo-avatar" src="../images/school_logo.png" background-size="cover"></image>
+  </view>
+  <view class="section accountInterval">
+    <view>
+      <input type="number" maxlength="10" placeholder="学号" bindinput="inputUserId"/>
+    </view>
+    <view class="accountInterval">
+      <input type="password" maxlength="6" placeholder="密码" bindinput="inputPassword"/>
+    </view>
+  </view>
+  <view class="button-wrapper">
+    <button type="primary" loading="{{loading}}" disabled="{{disabled}}" bindtap="login" class="customButton">登录</button>
   </view>
 </view>
