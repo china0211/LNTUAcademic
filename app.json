@@ -1,13 +1,34 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/login/login",
-        "pages/logs/logs"
+        "pages/more/login/login"
     ],
     "window": {
-        "backgroundTextStyle": "light",
+        "backgroundTextStyle": "dark",
         "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "WeChat",
-        "navigationBarTextStyle": "black"
+        "navigationBarTitleText": "辽宁工程技术大学教务在线",
+        "navigationBarTextStyle": "black",
+        "enablePullDownRefresh": true
+    },
+    "tabBar": {
+        "color": "#7f848a",
+        "selectedColor": "#7acfa6",
+        "backgroundColor": "#f7f6fb",
+        "list": [{
+            "pagePath": "pages/index/index",
+            "text": "功能",
+            "iconPath": "/images/main/module.png",
+            "selectedIconPath": "/images/main/module.png"
+        }, {
+            "pagePath": "pages/more/login/login",
+            "text": "我",
+            "iconPath": "/images/main/mine.png",
+            "selectedIconPath": "/images/main/mine.png"
+        }]
+    },
+    "networkTimeout": {
+        "request": 20000,
+        "uploadFile": 30000,
+        "downloadFile": 30000
     }
 }
