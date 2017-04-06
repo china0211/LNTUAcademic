@@ -1,7 +1,10 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/more/login/login"
+        "pages/more/login/login",
+        "pages/more/me/me",
+        "pages/more/about/about",
+        "pages/more/feedback/feedback"
     ],
     "window": {
         "backgroundTextStyle": "dark",
@@ -20,7 +23,7 @@
             "iconPath": "/images/main/module.png",
             "selectedIconPath": "/images/main/module.png"
         }, {
-            "pagePath": "pages/more/login/login",
+            "pagePath": "pages/more/me/me",
             "text": "我",
             "iconPath": "/images/main/mine.png",
             "selectedIconPath": "/images/main/mine.png"
