@@ -1,7 +1,7 @@
 var app = getApp()
 Page({
     data: {
-        userId: '',
+        stuId: '',
         userInfo: '',
         password: '',
         disabled: false,
@@ -35,9 +35,9 @@ Page({
         })
     },
 
-    inputUserId: function(e) {
+    inputstuId: function(e) {
         this.setData({
-            userId: e.detail.value
+            stuId: e.detail.value
         })
     },
     inputPassword: function(e) {
@@ -54,7 +54,7 @@ Page({
             wx.request({
                 url: app.globalData.loginUrl,
                 data: {
-                    userId: that.data.userId,
+                    stuId: that.data.stuId,
                     password: that.data.password
                 },
                 method: 'GET',
@@ -63,14 +63,16 @@ Page({
                 },
                 success: function(res) {
                     if (res.data.message == "请求成功") {
-                        //将userId设置为全局属性
-                        app.globalData.userId = that.data.userId
-                        that.bindUserIdWithWeChatId();
+                        //将stuId设置为全局属性
+                        app.globalData.stuId = that.data.stuId
+
+                        that.bindStuIdWithWeChatId();
                         //将数据保存到本地，方便下次使用读取
                         wx.setStorage({
-                            key: "userId",
-                            data: that.data.userId
+                            key: "stuId",
+                            data: that.data.stuId
                         })
+                        app.globalData.isBind = true
                     } else {
                         app.showToast("登录失败，学号或密码错误", false);
                     }
@@ -86,7 +88,7 @@ Page({
     },
 
     //绑定微信账号
-    bindUserIdWithWeChatId: function() {
+    bindStuIdWithWeChatId: function() {
         var that = this;
         var msg = "";
         var isSuccessed = false;
@@ -96,9 +98,9 @@ Page({
             success: function(res) {
                 if (res.confirm) {
                     wx.request({
-                        url: app.globalData.bindUserIdWithWeChatIdUrl,
+                        url: app.globalData.bindStuIdWithWeChatIdUrl,
                         data: {
-                            userId: app.globalData.userId,
+                            stuId: app.globalData.stuId,
                             weChatId: app.globalData.weChatId
                         },
                         method: 'POST',
@@ -140,8 +142,8 @@ Page({
     //校验输入信息
     validateInput: function() {
         var that = this;
-        if (that.data.userId != "" && that.data.password != "") {
-            if (that.data.userId.length == 10) {
+        if (that.data.stuId != "" && that.data.password != "") {
+            if (that.data.stuId.length == 10) {
                 if (that.data.password.length == 6) {
                     return true;
                 } else {

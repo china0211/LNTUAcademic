@@ -1,1 +1,41 @@
-/* pages/more/me/me.wxss */
+.user-info-box {
+    margin: 30rpx 0rpx 50rpx 0rpx;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+.info-hd {
+    display: flex;
+    align-items: center;
+    padding: 5rpx 5rpx 5rpx 5rpx;
+}
+
+.user-avatar {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 5px;
+    padding-left: 10rpx;
+}
+
+.user-title {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-left: 25rpx;
+}
+
+.user-name {
+    font-size: 16pt;
+    line-height: 160%;
+    letter-spacing: 1px;
+}
+
+.stu-id {
+    font-size: 11pt;
+    color: #8b8b8b;
+}
+
+.blank-bg {
+    background-color: #fff;
+    
+}

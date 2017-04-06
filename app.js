@@ -30,6 +30,7 @@ App({
         userInfo: null,
         weChatId: '',
         userId: '',
+        stuId: '',
         authorization: properties.authorization,
         academicUrl: properties.academicUrl,
         loginUrl: properties.loginUrl,
@@ -38,6 +39,9 @@ App({
         scheduleUrl: properties.scheduleUrl,
         skillInfoUrl: properties.skillInfoUrl,
         bindUserIdWithWeChatIdUrl: properties.bindUserIdWithWeChatIdUrl,
+
+        isBind: false,
+
         toastFailImg: properties.toastFailImg
     },
     //提示信息(信息内容，是否成功提示)

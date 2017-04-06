@@ -1,2 +1,19 @@
-<!--pages/more/me/me.wxml-->
-<text>pages/more/me/me.wxml</text>
+<view class="page">
+    <view class="user-info-box">
+        <view class="info-hd">
+            <image class="user-avatar" src="{{avatarUrl}}"></image>
+            <view class="user-title">
+                <text class="user-name">{{nickname}}</text>
+                <text class="stu-id">{{stuId}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="">
+        <view class="section">
+            <text>反馈</text>
+        </view>
+        <view class="section">
+            <text>关于</text>
+        </view>
+    </view>
+</view>
