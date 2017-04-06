@@ -7,7 +7,7 @@
   var skillInfoUrl = "";
   var bindUserIdWithWeChatIdUrl = "";
 
-  var toastFailImg = "../images/fail.png"
+  var toastFailImg = "/images/global/fail.png"
 
 
   module.exports = {

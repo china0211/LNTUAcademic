@@ -9,10 +9,6 @@ Page({
     },
     onLoad: function(options) {
         var that = this
-        wx.setNavigationBarTitle({
-            title: '登录'
-        })
-
         app.getUserInfo(function(userInfo) {
             that.setData({
                 userInfo: userInfo
@@ -134,10 +130,10 @@ Page({
     //跳转到首页
     navigateToIndexPage: function(msg, isSuccessed) {
         wx.redirectTo({
-          url: '../index/index',
-          complete: function() {
-            app.showToast(msg, isSuccessed);//跳转成功之后显示提示
-          }
+            url: '../index/index',
+            complete: function() {
+                app.showToast(msg, isSuccessed); //跳转成功之后显示提示
+            }
         })
     },
 
