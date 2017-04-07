@@ -5,7 +5,7 @@
   var examUrl = "";
   var scheduleUrl = "";
   var skillInfoUrl = "";
-  var bindUserIdWithWeChatIdUrl = "";
+  var bindStuIdWithWeChatIdUrl = "";
 
   var toastFailImg = "/images/global/fail.png"
 
@@ -19,7 +19,7 @@
       scheduleUrl: scheduleUrl,
       skillInfoUrl: skillInfoUrl,
 
-      bindUserIdWithWeChatIdUrl: bindUserIdWithWeChatIdUrl,
+      bindStuIdWithWeChatIdUrl: bindStuIdWithWeChatIdUrl,
 
       toastFailImg: toastFailImg
   }

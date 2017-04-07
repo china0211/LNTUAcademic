@@ -1,4 +1,5 @@
 var app = getApp()
+var user = app.globalData.user;
 Page({
     data: {
         stuId: '',
@@ -35,7 +36,7 @@ Page({
         })
     },
 
-    inputstuId: function(e) {
+    inputStuId: function(e) {
         this.setData({
             stuId: e.detail.value
         })
@@ -54,7 +55,7 @@ Page({
             wx.request({
                 url: app.globalData.loginUrl,
                 data: {
-                    stuId: that.data.stuId,
+                    userId: that.data.stuId,
                     password: that.data.password
                 },
                 method: 'GET',
@@ -67,11 +68,13 @@ Page({
                         app.globalData.stuId = that.data.stuId
 
                         that.bindStuIdWithWeChatId();
+                        that.queryAllInfo();
                         //将数据保存到本地，方便下次使用读取
                         wx.setStorage({
                             key: "stuId",
                             data: that.data.stuId
                         })
+
                         app.globalData.isBind = true
                     } else {
                         app.showToast("登录失败，学号或密码错误", false);
@@ -129,12 +132,42 @@ Page({
         })
     },
 
+    // 查询
+    queryAllInfo: function() {
+        var that = this;
+        wx.request({
+            url: app.globalData.studentInfoUrl,
+            method: 'GET',
+            header: {
+                Authorization: app.globalData.authorization,
+                username: app.globalData.stuId
+            },
+            success: function(res) {
+                if (res.data.message == "请求成功") {
+                    app.globalData.stuDetail = res.data.info.baseInfo
+                    wx.setStorage({
+                        key: 'stuDetail',
+                        data: res.data.info.baseInfo,
+                        fail: function(res) {
+                            app.showToast("获取用户信息失败", false)
+                        }
+                    })
+                }
+            },
+            fail: function(res) {
+                app.showToast("获取用户信息失败", false)
+            }
+        })
+    },
+
     //跳转到首页
     navigateToIndexPage: function(msg, isSuccessed) {
-        wx.redirectTo({
-            url: '../index/index',
-            complete: function() {
-                app.showToast(msg, isSuccessed); //跳转成功之后显示提示
+        wx.navigateBack({
+            delta: 1,
+            complete: function(res) {
+                setTimeout(function() {
+                    app.showToast(msg, isSuccessed); //跳转成功之后显示提示
+                }, 500)
             }
         })
     },
@@ -155,7 +188,7 @@ Page({
                 return false;
             }
         } else {
-            app.showToast("请输入学号和密码", false);
+            app.showToast("请输入学号密码", false);
             return false;
         }
     }

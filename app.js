@@ -28,9 +28,9 @@ App({
     },
     globalData: {
         userInfo: null,
-        weChatId: '',
-        userId: '',
         stuId: '',
+        weChatId:'',
+        stuDetail: null,
         authorization: properties.authorization,
         academicUrl: properties.academicUrl,
         loginUrl: properties.loginUrl,
@@ -38,7 +38,7 @@ App({
         examUrl: properties.examUrl,
         scheduleUrl: properties.scheduleUrl,
         skillInfoUrl: properties.skillInfoUrl,
-        bindUserIdWithWeChatIdUrl: properties.bindUserIdWithWeChatIdUrl,
+        bindStuIdWithWeChatIdUrl: properties.bindStuIdWithWeChatIdUrl,
 
         isBind: false,
 
