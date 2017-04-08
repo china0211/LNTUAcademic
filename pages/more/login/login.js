@@ -111,9 +111,11 @@ Page({
                             Authorization: app.globalData.authorization,
                         },
                         success: function(response) {
-                            if (response.data == "success") {
+                            if (response.data == "请求成功") {
                                 msg = "绑定成功";
                                 isSuccessed = true;
+                                app.globalData.isBind = true
+
                             } else {
                                 msg = "绑定失败，请稍后重试";
                             }

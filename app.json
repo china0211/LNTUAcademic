@@ -1,8 +1,10 @@
 {
     "pages": [
         "pages/index/index",
+        "pages/module/stuInfoDetail/stuInfoDetail",
         "pages/more/login/login",
         "pages/more/me/me",
+        "pages/more/account/account",
         "pages/more/about/about",
         "pages/more/feedback/feedback"
     ],
