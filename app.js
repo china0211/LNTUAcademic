@@ -2,11 +2,7 @@
 var properties = require("/utils/configProperties.js")
 App({
     onLaunch: function() {
-        //调用API从本地缓存中获取数据
-        var logs = wx.getStorageSync('logs') || []
-        logs.unshift(Date.now())
-        wx.setStorageSync('logs', logs)
-        console.log(wx.getSystemInfoSync())
+
     },
     getUserInfo: function(cb) {
         var that = this;
@@ -29,7 +25,7 @@ App({
     globalData: {
         userInfo: null,
         stuId: '',
-        weChatId:'',
+        weChatId: '',
         stuDetail: null,
         authorization: properties.authorization,
         academicUrl: properties.academicUrl,
@@ -39,7 +35,7 @@ App({
         scheduleUrl: properties.scheduleUrl,
         skillInfoUrl: properties.skillInfoUrl,
         bindStuIdWithWeChatIdUrl: properties.bindStuIdWithWeChatIdUrl,
-
+        getLogsUrl: properties.getLogsUrl,
         isBind: false,
 
         toastFailImg: properties.toastFailImg

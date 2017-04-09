@@ -1,6 +1,6 @@
 {
-    "navigationBarBackgroundColor": "#fff",
-    "backgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#409594",
+    "backgroundColor": "#fbf9fe",
     "navigationBarTitleText": "关于",
     "enablePullDownRefresh": false,
     "disableScroll": false
