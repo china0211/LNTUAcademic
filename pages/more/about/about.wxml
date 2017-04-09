@@ -26,14 +26,14 @@
       <text class="desc-content">由何惠民开发，感谢梁鲲同学提供的API</text>
     </view>
     <view class="log-list"wx:else>
-      <view class="describe"  wx:for="{{logs}}" wx:for-item="log">
+      <view class="describe"  wx:for="{{logs}}" wx:for-item="log" wx:key="describe">
         <view class="desc-title">
           <text class="desc-v">V{{log.version}} {{log.versionType}}</text>
           <text class="desc-time">{{log.releaseTime}}</text>
         </view>
-        <view wx:for="{{log.content}}" wx:for-item="content">
+        <view wx:for="{{log.content}}" wx:for-item="content"  wx:key="content">
           <text class="desc-content">{{content.contentTitle}}</text>
-          <view class="desc-list" wx:for="{{content.contentDetail}}"  wx:for-item="detail">
+          <view class="desc-list" wx:for="{{content.contentDetail}}"  wx:for-item="detail"  wx:key="content_detail">
             <text class="desc-list-item">{{detail}}</text>
           </view>
         </view>
