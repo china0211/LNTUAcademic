@@ -1,28 +1,28 @@
 <view class="page">
 
   <!-- 有学籍信息时显示学籍信息 -->
-  <view class="user-info-box" bindtap="navigateToAccountPage" wx:if="{{isBind}}">
-    <view class="info-hd">
-      <image class="user-avatar" src="{{userInfo.avatarUrl}}"></image>
-      <view class="user-title">
-        <text class="user-name">{{stuDetail.data.name}}</text>
-        <text class="stu-id">{{stuDetail.data.userId}}</text>
+  <view class="user-info-view" bindtap="navigateToAccountPage" wx:if="{{isBind}}">
+    <view class="user-info-content">
+      <image class="user-info-avatar" src="{{userInfo.avatarUrl}}"></image>
+      <view class="user-info-title ">
+        <text class="user-info-name">{{stuDetail.data.name}}</text>
+        <text class="user-info-stu">{{stuDetail.data.userId}}</text>
       </view>
-      <view class="user-title">
-        <text class="stu-id">{{stuDetail.data.college}}</text>
-        <text class="stu-id">{{stuDetail.data.major}}</text>
-        <text class="stu-id">{{stuDetail.data.classInfo}}班</text>
+      <view class="user-info-title">
+        <text class="user-info-stu">{{stuDetail.data.college}}</text>
+        <text class="user-info-stu">{{stuDetail.data.major}}</text>
+        <text class="user-info-stu">{{stuDetail.data.classInfo}}班</text>
       </view>
     </view>
   </view>
 
   <!-- 没有学籍信息时显示微信账号信息 -->
-  <view class="user-info-box" bindtap="navigateToAccountPage" wx:if="!{{isBind}}">
-    <view class="info-hd">
-      <image class="user-avatar" src="{{userInfo.avatarUrl}}"></image>
-      <view class="user-title">
-        <text class="user-name">{{userInfo.nickName}}</text>
-        <text class="stu-id">{{stuDetail.data.userId}}</text>
+  <view class="user-info-view" bindtap="navigateToAccountPage" wx:if="!{{isBind}}">
+    <view class="user-info-content">
+      <image class="user-info-avatar" src="{{userInfo.avatarUrl}}"></image>
+      <view class="user-info-title ">
+        <text class="user-info-name">{{userInfo.nickName}}</text>
+        <text class="user-info-stu">{{stuDetail.data.userId}}</text>
       </view>
       <view class="wechat-account-bind-view">
         <text class="wechat-account-bind-text">前往绑定</text>

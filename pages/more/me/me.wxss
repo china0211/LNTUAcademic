@@ -1,37 +1,37 @@
-.user-info-box {
+.user-info-view {
     margin: 30rpx 0rpx 50rpx 0rpx;
     flex-direction: column;
     background-color: #fff;
     height: 140rpx;
 }
 
-.info-hd {
+.user-info-content {
     display: flex;
     align-items: center;
     padding: 20rpx 5rpx 5rpx 15rpx;
 }
 
-.user-avatar {
+.user-info-avatar {
     width: 100rpx;
     height: 100rpx;
     border-radius: 0%;
     padding-left: 10rpx;
 }
 
-.user-title {
+.user-info-title {
     flex: 1;
     display: flex;
     flex-direction: column;
     padding-left: 25rpx;
 }
 
-.user-name {
+.user-info-name {
     font-size: 16pt;
     line-height: 160%;
     letter-spacing: 1px;
 }
 
-.stu-id {
+.user-info-stu {
     font-size: 11pt;
     color: #8b8b8b;
 }
@@ -65,24 +65,23 @@
 .blank-content {
     display: flex;
     align-items: center;
-    padding: 10rpx 0rpx 5rpx 15rpx;
+    padding: 20rpx 0rpx 5rpx 15rpx;
 }
 
 .blank-content-icon {
-    width: 60rpx;
-    height: 60rpx;
-    border-radius: 0%;
-    padding-left: 5%;
+    width: 50rpx;
+    height: 50rpx;
+    position: absolute;
+    left: 10rpx;
 }
 
 .blank-content-text {
-    margin-left: 20rpx;
+    margin-left: 50rpx;
 }
 
 .blank-content-detail {
-    width: 60rpx;
-    height: 60rpx;
-    border-radius: 0%;
-    margin-left: 65%;
-    padding-right: 10rpx;
+    width: 50rpx;
+    height: 50rpx;
+    position: absolute;
+    right: 1rpx;
 }
