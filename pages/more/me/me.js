@@ -4,22 +4,22 @@ Page({
         stuDetail: null,
         userInfo: null,
         isReadStorage: true,
-        isBind:false
+        isBind: false
     },
-    onLoad: function (options) {
+    onLoad: function(options) {
         var that = this
 
         //读取本地保存的用户信息
         wx.getStorage({
             key: 'stuDetail',
-            success: function (res) {
+            success: function(res) {
                 that.setData({
                     stuDetail: res,
                     userInfo: app.globalData.userInfo,
-                    isBind:app.globalData.isBind
+                    isBind: app.globalData.isBind
                 })
             },
-            fail: function (res) {
+            fail: function(res) {
                 that.setData({
                     isReadStorage: false
                 })
@@ -28,38 +28,26 @@ Page({
             },
         })
     },
-    onReady: function () {
-        // 页面渲染完成
-    },
-    onShow: function () {
-        // 页面显示
-    },
-    onHide: function () {
-        // 页面隐藏
-    },
-    onUnload: function () {
-        // 页面关闭
-    },
     navigateToLoginPage() {
-        setTimeout(function () {
+        setTimeout(function() {
             wx.navigateTo({
-                url: '../login/login'
+                url: '/pages/more/login/login'
             })
         }, 1500)
     },
-    navigateToAccountPage: function () {
+    navigateToAccountPage: function() {
         wx.navigateTo({
-            url: '../account/account'
+            url: '/pages/more/account/account'
         })
     },
-    navigateToFeedbackPage: function () {
+    navigateToFeedbackPage: function() {
         wx.navigateTo({
-            url: '../feedback/feedback'
+            url: '/pages/more/feedback/feedback'
         })
     },
-    navigateToAboutPage: function () {
+    navigateToAboutPage: function() {
         wx.navigateTo({
-            url: '../about/about'
+            url: '/pages/more/about/about'
         })
     }
 })

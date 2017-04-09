@@ -26,7 +26,7 @@
       </view>
       <view class="wechat-account-bind-view">
         <text class="wechat-account-bind-text">前往绑定</text>
-        <image class="wechat-account-bind-img" src="../../../images/global/detail.png"></image>
+        <image class="wechat-account-bind-img" src="/images/global/detail.png"></image>
       </view>
     </view>
   </view>
@@ -34,22 +34,22 @@
   <!-- 反馈 -->
   <view class="blank-view" bindtap="navigateToFeedbackPage">
     <view class="blank-content">
-      <image class="blank-content-icon" src="../../../images/global/feedback.png"></image>
+      <image class="blank-content-icon" src="/images/global/feedback.png"></image>
       <view>
         <text class="blank-content-text">反馈</text>
       </view>
-      <image class="blank-content-detail" src="../../../images/global/detail.png"></image>
+      <image class="blank-content-detail" src="/images/global/detail.png"></image>
     </view>
   </view>
 
   <!-- 关于 -->
   <view class="blank-view" bindtap="navigateToAboutPage">
     <view class="blank-content">
-      <image class="blank-content-icon" src="../../../images/global/about.png"></image>
+      <image class="blank-content-icon" src="/images/global/about.png"></image>
       <view>
         <text class="blank-content-text">关于</text>
       </view>
-      <image class="blank-content-detail" src="../../../images/global/detail.png"></image>
+      <image class="blank-content-detail" src="/images/global/detail.png"></image>
     </view>
   </view>
 </view>
