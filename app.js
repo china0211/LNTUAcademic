@@ -36,6 +36,7 @@ App({
         skillInfoUrl: properties.skillInfoUrl,
         bindStuIdWithWeChatIdUrl: properties.bindStuIdWithWeChatIdUrl,
         getLogsUrl: properties.getLogsUrl,
+        feedbackUrl: properties.feedbackUrl,
         isBind: false,
 
         toastFailImg: properties.toastFailImg

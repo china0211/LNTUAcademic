@@ -1,9 +1,18 @@
+.feedback-title {
+    margin-top: 5%;
+}
+
 textarea {
     width: 100%;
-    padding: 0rpx 5rpx 0rpx 5rpx;
 }
 
 .textarea-view {
-    /*padding: 0 25rpx;*/
+    padding: 0 30rpx 0rpx;
+    align-self: center;
+    align-items: center;
     background-color: #fff;
+}
+
+.button-wrapper {
+    width: 95%;
 }

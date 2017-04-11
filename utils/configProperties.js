@@ -7,6 +7,7 @@
   var skillInfoUrl = "";
   var bindStuIdWithWeChatIdUrl = "";
   var getLogsUrl = "";
+  var feedbackUrl = "";
   var toastFailImg = "/images/global/fail.png"
 
 
@@ -19,6 +20,7 @@
       scheduleUrl: scheduleUrl,
       skillInfoUrl: skillInfoUrl,
       getLogsUrl: getLogsUrl,
+      feedbackUrl: feedbackUrl,
       bindStuIdWithWeChatIdUrl: bindStuIdWithWeChatIdUrl,
 
       toastFailImg: toastFailImg

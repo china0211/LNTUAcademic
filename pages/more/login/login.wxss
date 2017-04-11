@@ -22,6 +22,6 @@
     margin-top: 10px;
 }
 
-.customButton {
+.custom-button {
     width: 95%;
 }

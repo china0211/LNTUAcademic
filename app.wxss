@@ -230,7 +230,7 @@ radio {
 }
 
 .section {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .section_gap {
@@ -282,4 +282,8 @@ radio {
     height: 50rpx;
     position: absolute;
     right: 1rpx;
+}
+
+.custom-button {
+    width: 95%;
 }
