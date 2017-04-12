@@ -1,14 +1,14 @@
 <view class="page">
   <view class="section feedback-title">
-    <input bindinput="inputFeedbackTitle" placeholder="请输入反馈标题"  />
+    <input bindinput="inputFeedbackTitle" confirm-type="next" confirm-hold="true" focus="true" maxlength="50" placeholder="请输入反馈标题" />
   </view>
   <view class="section">
     <view class="textarea-view">
-      <textarea bindinput="inputFeedbackContent" maxlength="-1" placeholder="请输入反馈信息"  />
+      <textarea bindinput="inputFeedbackContent" confirm-type="next" confirm-hold="true" focus="true" maxlength="-1" placeholder="请输入反馈详细信息(错误页面、重现步骤)" />
     </view>
   </view>
   <view class="section">
-    <input bindinput="inputCotactInfomation" placeholder="您的联系方式（可选）"  />
+    <input bindinput="inputCotactInfomation" placeholder="您的联系方式（可选）" maxlength="50" />
   </view>
   <view>
     <button type="primary" loading="{{loading}}" disabled="{{disabled}}" bindtap="sendFeddback" class="custom-button">提交反馈信息</button>

@@ -13,7 +13,7 @@
       </view>
       <view bindtap="toggleLog">
         <text class="version-log-link update-log" wx:if="{{!showLog}}">更新日志</text>
-        <text class="version-log-link"wx:else>简介</text>
+        <text class="version-log-link" wx:else>简介</text>
       </view>
     </view>
     <view class="describe" wx:if="{{!showLog}}">
@@ -25,15 +25,15 @@
       <text class="desc-content">辽宁工程技术大学·教务在线 微信小程序</text>
       <text class="desc-content">由何惠民开发，感谢梁鲲同学提供的API</text>
     </view>
-    <view class="log-list"wx:else>
-      <view class="describe"  wx:for="{{logs}}" wx:for-item="log" wx:key="describe">
+    <view class="log-list" wx:else>
+      <view class="describe" wx:for="{{logs}}" wx:for-item="log" wx:key="describe">
         <view class="desc-title">
           <text class="desc-v">V{{log.version}} {{log.versionType}}</text>
           <text class="desc-time">{{log.releaseTime}}</text>
         </view>
-        <view wx:for="{{log.content}}" wx:for-item="content"  wx:key="content">
+        <view wx:for="{{log.content}}" wx:for-item="content" wx:key="content">
           <text class="desc-content">{{content.contentTitle}}</text>
-          <view class="desc-list" wx:for="{{content.contentDetail}}"  wx:for-item="detail"  wx:key="content_detail">
+          <view class="desc-list" wx:for="{{content.contentDetail}}" wx:for-item="detail" wx:key="content_detail">
             <text class="desc-list-item">{{detail}}</text>
           </view>
         </view>
