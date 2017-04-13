@@ -250,40 +250,7 @@ radio {
 
 .section__ctn {}
 
-
-/*列表项*/
-
-.blank-view {
-    margin: 30rpx 0rpx 0rpx 0rpx;
-    flex-direction: row;
-    height: 80rpx;
-    background-color: #fff;
-}
-
-.blank-content {
-    display: flex;
-    align-items: center;
-    padding: 20rpx 0rpx 5rpx 15rpx;
-}
-
-.blank-content-icon {
-    width: 50rpx;
-    height: 50rpx;
-    position: absolute;
-    left: 10rpx;
-}
-
-.blank-content-text {
-    margin-left: 50rpx;
-}
-
-.blank-content-detail {
-    width: 50rpx;
-    height: 50rpx;
-    position: absolute;
-    right: 1rpx;
-}
-
 .custom-button {
     width: 95%;
+    margin-top: 20rpx;
 }

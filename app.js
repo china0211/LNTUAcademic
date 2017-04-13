@@ -37,6 +37,7 @@ App({
         bindStuIdWithWeChatIdUrl: properties.bindStuIdWithWeChatIdUrl,
         getLogsUrl: properties.getLogsUrl,
         feedbackUrl: properties.feedbackUrl,
+        queryBindStatusUrl: properties.queryBindStatusUrl,
         isBind: false,
 
         toastFailImg: properties.toastFailImg

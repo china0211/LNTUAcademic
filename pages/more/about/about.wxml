@@ -41,8 +41,8 @@
     </view>
   </view>
   <view class="footer">
-    <text>辽宁工程技术大学 · CSDN高校俱乐部</text>
     <text>Power By 何惠民</text>
+    <text>辽宁工程技术大学 · CSDN高校俱乐部</text>
     <text>Copyright @ {{year}} All Rights Reserved</text>
   </view>
 </view>
