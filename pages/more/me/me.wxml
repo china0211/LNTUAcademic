@@ -17,7 +17,7 @@
   </view>
 
   <!-- 没有学籍信息时显示微信账号信息 -->
-  <view class="user-info-view" bindtap="navigateToAccountPage" wx:else>
+  <view class="user-info-view" bindtap="bindStuIdWithWeChatId" wx:else>
     <view class="user-info-content">
       <image class="user-info-avatar" src="{{userInfo.avatarUrl}}"></image>
       <view class="user-info-title ">

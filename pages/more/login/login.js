@@ -54,8 +54,8 @@ Page({
                         //将stuId设置为全局属性
                         app.globalData.stuId = that.data.stuId
 
-                        that.bindStuIdWithWeChatId();
                         that.queryAllInfo();
+                        that.bindStuIdWithWeChatId();
                         //将数据保存到本地，方便下次使用读取
                         wx.setStorage({
                             key: "stuId",
@@ -98,7 +98,7 @@ Page({
                             Authorization: app.globalData.authorization,
                         },
                         success: function(response) {
-                            if (response.data == "请求成功") {
+                            if (response.data == "success") {
                                 msg = "绑定成功";
                                 isSuccessed = true;
                                 app.globalData.isBind = true

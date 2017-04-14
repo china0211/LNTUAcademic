@@ -36,7 +36,7 @@
         </view>
     </view>
     <view class="button-group">
-        <button type="default" loading="{{loading}}" disabled="{{disabled}}" bindtap="switchAccount" class="custom-button button-distance">切换账号</button>
+        <button type="default" disabled="{{disabled}}" bindtap="switchAccount" class="custom-button button-distance">切换账号</button>
         <button type="warn" loading="{{loading}}" disabled="{{disabled}}" bindtap="unboundAccount" class="custom-button">解除绑定</button>
     </view>
 </view>
