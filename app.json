@@ -2,6 +2,7 @@
     "pages": [
         "pages/index/index",
         "pages/module/stuInfoDetail/stuInfoDetail",
+        "pages/module/skillScore/skillScore",
         "pages/more/login/login",
         "pages/more/me/me",
         "pages/more/account/account",

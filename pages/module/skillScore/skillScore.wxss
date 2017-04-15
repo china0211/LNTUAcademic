@@ -1,0 +1,43 @@
+.score-view {
+    margin: 30rpx 0rpx 0rpx 0rpx;
+    flex-direction: column;
+    background-color: #fff;
+    height: 150rpx;
+}
+
+.score-content {
+    display: flex;
+    align-items: center;
+    padding: 20rpx 5rpx 15rpx 15rpx;
+}
+
+.score-content-text-view {
+    display: flex;
+    flex-direction: column;
+    padding-left: 25rpx;
+}
+
+.score-content-text-title {
+    font-size: 16pt;
+    line-height: 160%;
+}
+
+.score-content-text-score {
+    font-size: 16pt;
+    line-height: 40%;
+    position: absolute;
+    right: 50rpx;
+}
+
+.score-content-text-date {
+    font-size: 11pt;
+    color: #8b8b8b;
+    margin-left: 50rpx;
+    letter-spacing: 1px;
+}
+
+.blank-content-icon {
+    width: 40rpx;
+    height: 40rpx;
+    margin-top: -35rpx;
+}

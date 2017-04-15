@@ -1,0 +1,14 @@
+<view class="page">
+  <view class="score-view" wx:for="{{skillScores}}" wx:for-item="score" wx:key="skillScore">
+    <view class="score-content">
+      <view class="score-content-text-view">
+        <text class="score-content-text-title">{{score.name}}</text>
+        <text class="score-content-text-date">{{score.date}}</text>
+        <image class="blank-content-icon" src="/images/global/time.png"></image>
+      </view>
+      <view class="score-content-text-view">
+        <text class="score-content-text-score">{{score.score}}</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,7 @@
+{
+    "navigationBarBackgroundColor": "#fff",
+    "backgroundColor": "#fff",
+    "navigationBarTitleText": "等级考试信息",
+    "enablePullDownRefresh": false,
+    "disableScroll": true
+}

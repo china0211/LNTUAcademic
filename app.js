@@ -58,7 +58,7 @@ App({
             });
         }
     },
-    //重定向到首页
+    //重定向到登录页面
     redirectToLoginPage: function() {
         wx.redirectTo({
             url: '/pages/more/login/login'
