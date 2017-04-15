@@ -1,2 +1,271 @@
-<!--pages/module/stuInfoDetail/stuInfoDetail.wxml-->
-<text>pages/module/stuInfoDetail/stuInfoDetail.wxml</text>
+<view class="page">
+    <view class="head-bg-view">
+        <image src="{{stuDetail.data.photoUrl}}" class="head-pic"></image>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">姓名</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.name}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">英文名字</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.englishName}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">性别</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.sex}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">院系</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.college}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">专业</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.major}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">班级</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.classInfo}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">学号</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.userId}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">联系电话</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.contactTel}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">电子邮箱</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.email}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">出生日期</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.dateOfBirth}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">民族</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.nation}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">家庭住址</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.homeAddress}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">邮政编码</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.zipCode}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">国籍</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.nationality}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">籍贯</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.birthplace}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">证件类型</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.idCardType}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">证件号码</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.idCardNum}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">政治面貌</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.politicalAffiliation}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">考区</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.entranceExamArea}}</text>
+            </view>
+        </view>
+    </view>
+        <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">学生来源</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.sourceOfStudent}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">高考总分</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.entranceExamScore}}</text>
+            </view>
+        </view>
+    </view>
+
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">毕业院校</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.graduateSchool}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">外语语种</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.foreignLanguage}}</text>
+            </view>
+        </view>
+    </view>
+        <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">入学准考证号</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.entranceExamNum}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">入学录取证号</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.admissionNum}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">入学方式</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.admissionType}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">入学日期</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.dateOfAdmission}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">学籍表号</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.studentInfoTableNum}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">培养方式</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.educationType}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">毕业日期</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.dateOfGraduation}}</text>
+            </view>
+        </view>
+    </view>
+
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">毕业去向</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.aboutAfterGraduation}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">乘车区间</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.travelRange}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="blank-view">
+        <view class="blank-content">
+            <view>
+                <text class="blank-content-text">备注</text>
+                <text class="blank-content-text-detail">{{stuDetail.data.remarks}}</text>
+            </view>
+        </view>
+    </view>
+</view>

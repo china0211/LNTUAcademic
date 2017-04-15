@@ -90,7 +90,7 @@ Page({
                             if (response.data == "success") {
                                 msg = "已成功解除绑定";
                                 isSuccessed = true;
-                                that.redirectToLoginPage(msg, isSuccessed);
+                                that.redirectToLoginPage();
                             } else {
                                 msg = "解除绑定失败，请稍后重试";
                             }

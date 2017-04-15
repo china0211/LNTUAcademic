@@ -1,1 +1,7 @@
-{}
+{
+    "navigationBarBackgroundColor": "#fff",
+    "backgroundColor": "#fff",
+    "navigationBarTitleText": "学籍信息",
+    "enablePullDownRefresh": false,
+    "disableScroll": true
+}
