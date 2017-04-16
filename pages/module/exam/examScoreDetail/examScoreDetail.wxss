@@ -1,0 +1,21 @@
+.blank-view {
+    margin: 10rpx 0rpx 0rpx 0rpx;
+    flex-direction: column;
+    height: 80rpx;
+    background-color: #fff;
+}
+
+.blank-content {
+    display: flex;
+    align-items: center;
+    padding: 20rpx 0rpx 5rpx 15rpx;
+}
+
+.blank-content-title {
+    margin-left: 10rpx;
+}
+
+.blank-content-detail-text {
+    position: absolute;
+    right: 15rpx;
+}

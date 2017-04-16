@@ -1,0 +1,116 @@
+<view class="page">
+  <scroll-view>
+    <view class="blank-view">
+      <view class="blank-content">
+        <view>
+          <text class="blank-content-title">课程名称</text>
+          <text class="blank-content-detail-text">{{examScoreDetail.courseName}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="blank-view">
+      <view class="blank-content">
+        <view>
+          <text class="blank-content-title">学年学期</text>
+          <text class="blank-content-detail-text">{{examScoreDetail.academicYear}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="blank-view">
+      <view class="blank-content">
+        <view>
+          <text class="blank-content-title">总成绩</text>
+          <text class="blank-content-detail-text">{{examScoreDetail.score}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="blank-view">
+      <view class="blank-content">
+        <view>
+          <text class="blank-content-title">平时成绩</text>
+          <text class="blank-content-detail-text">{{examScoreDetail.scoreH}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="blank-view">
+      <view class="blank-content">
+        <view>
+          <text class="blank-content-title">实践成绩</text>
+          <text class="blank-content-detail-text">{{examScoreDetail.scoreM}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="blank-view">
+      <view class="blank-content">
+        <view>
+          <text class="blank-content-title">期末成绩</text>
+          <text class="blank-content-detail-text">{{examScoreDetail.scoreF}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="blank-view">
+      <view class="blank-content">
+        <view>
+          <text class="blank-content-title">学分</text>
+          <text class="blank-content-detail-text">{{examScoreDetail.credits}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="blank-view">
+      <view class="blank-content">
+        <view>
+          <text class="blank-content-title">考试类型</text>
+          <text class="blank-content-detail-text">{{examScoreDetail.testType}}</text>
+        </view>
+      </view>
+    </view>
+        <view class="blank-view">
+      <view class="blank-content">
+        <view>
+          <text class="blank-content-title">考核方式</text>
+          <text class="blank-content-detail-text">{{examScoreDetail.assessmentType}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="blank-view">
+      <view class="blank-content">
+        <view>
+          <text class="blank-content-title">课程号</text>
+          <text class="blank-content-detail-text">{{examScoreDetail.courseNo}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="blank-view">
+      <view class="blank-content">
+        <view>
+          <text class="blank-content-title">课序号</text>
+          <text class="blank-content-detail-text">{{examScoreDetail.lessonNumber}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="blank-view">
+      <view class="blank-content">
+        <view>
+          <text class="blank-content-title">选课属性</text>
+          <text class="blank-content-detail-text">{{examScoreDetail.classAttribute}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="blank-view">
+      <view class="blank-content">
+        <view>
+          <text class="blank-content-title">是否缓考</text>
+          <text class="blank-content-detail-text">{{examScoreDetail.delayBool}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="blank-view">
+      <view class="blank-content">
+        <view>
+          <text class="blank-content-title">备注</text>
+          <text class="blank-content-detail-text">{{examScoreDetail.note}}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
