@@ -2,7 +2,7 @@ var app = getApp();
 Page({
   data: {
     stuId: null,
-    skillScores: null
+    skillScores: []
   },
   onLoad: function (options) {
     var that = this;
@@ -25,14 +25,17 @@ Page({
               if (res.data.message == "请求成功") {
                 that.setData({
                   skillScores: res.data.info
-                })
+                }),
+                that.formatData(res.data.info)
               }
               else {
-                app.showToast("查询失败，请稍后重试", false)
+                app.showToast("查询失败，请稍后重试", false);
+                that.navigateBack();
               }
             },
             fail: function (res) {
-              app.showToast("请求失败，请稍后重试", false)
+              app.showToast("请求失败，请稍后重试", false);
+              that.navigateBack();
             },
             complete: function (res) {
               wx.hideNavigationBarLoading()
@@ -44,5 +47,20 @@ Page({
         app.redirectToLoginPage();
       }
     })
+  },
+  formatData: function (data) {
+    console.log(data)
+    var that = this
+    var skillScores = that.data.skillScores;
+    console.log(that.data.skillScores)
+    console.log(skillScores)
+    console.log(skillScores.length)
+  },
+  navigateBack: function () {
+    setTimeout(function () {
+      wx.navigateBack({
+        delta: 1
+      })
+    }, 1500)
   }
 })

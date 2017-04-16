@@ -1,7 +1,7 @@
 .score-view {
     margin: 30rpx 0rpx 0rpx 0rpx;
     flex-direction: column;
-    background-color: #fff;
+    background-color:#fff;
     height: 150rpx;
 }
 
@@ -30,7 +30,6 @@
 }
 
 .score-content-text-date {
-    font-size: 11pt;
     color: #8b8b8b;
     margin-left: 50rpx;
     letter-spacing: 1px;
