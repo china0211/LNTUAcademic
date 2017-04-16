@@ -7,7 +7,8 @@
         <image class="blank-content-icon" src="/images/global/time.png"></image>
       </view>
       <view class="score-content-text-view">
-        <text class="score-content-text-score">{{score.score}}</text>
+        <text class="score-content-text-score green" wx:if="{{score.passed}}">{{score.score}}</text>
+        <text class="score-content-text-score red" wx:else>{{score.score}}</text>
       </view>
     </view>
   </view>

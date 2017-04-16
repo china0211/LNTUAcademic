@@ -6,7 +6,8 @@
           <view class="blank-content">
             <view>
               <text class="blank-content-title">{{examScore.courseName}}</text>
-              <text class="blank-content-detail-text">{{examScore.score}}</text>
+              <text class="blank-content-detail-text" wx:if="{{examScore.passed}}">{{examScore.score}}</text>
+              <text class="blank-content-detail-text red" wx:else>{{examScore.score}}</text>
             </view>
             <image class="blank-content-detail-icon" src="/images/global/detail.png"></image>
           </view>
