@@ -16,6 +16,16 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
+function isStuIdValid(stuId){
+  if(stuId != null && stuId != ''){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+
 module.exports = {
-  formatDate: formatDate
+  formatDate: formatDate,
+  isStuIdValid:isStuIdValid
 }
