@@ -34,6 +34,8 @@ App({
         examUrl: properties.examUrl,
         scheduleUrl: properties.scheduleUrl,
         skillInfoUrl: properties.skillInfoUrl,
+        queryAchievementUrl: properties.queryAchievementUrl,
+        queryGradePointUrl: properties.queryGradePointUrl,
         bindStuIdWithWeChatIdUrl: properties.bindStuIdWithWeChatIdUrl,
         getLogsUrl: properties.getLogsUrl,
         feedbackUrl: properties.feedbackUrl,
@@ -57,6 +59,17 @@ App({
                 duration: 1500
             });
         }
+    },
+    //显示加载loadding
+    showLoading: function(title, ifShowMask) {
+        wx.showLoading({
+            title: title,
+            mask: ifShowMask
+        });
+    },
+    //显示加载loadding
+    hideLoading: function(title, ifShowMask) {
+        wx.hideLoading();
     },
     //重定向到登录页面
     redirectToLoginPage: function() {

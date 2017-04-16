@@ -8,8 +8,11 @@
   var bindStuIdWithWeChatIdUrl = "";
   var getLogsUrl = "";
   var feedbackUrl = "";
-  var queryBindStatusUrl = ""
-  var toastFailImg = "/images/global/fail.png"
+  var queryBindStatusUrl = "";
+  var queryAchievementUrl = "";
+  var queryGradePointUrl = "";
+
+  var toastFailImg = "/images/global/fail.png";
 
 
   module.exports = {
@@ -24,6 +27,8 @@
       feedbackUrl: feedbackUrl,
       queryBindStatusUrl: queryBindStatusUrl,
       bindStuIdWithWeChatIdUrl: bindStuIdWithWeChatIdUrl,
+      queryAchievementUrl: queryAchievementUrl,
+      queryGradePointUrl: queryGradePointUrl,
 
       toastFailImg: toastFailImg
   }
