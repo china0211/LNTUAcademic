@@ -1,10 +1,57 @@
-<!--index.wxml-->
-<view class="container">
-  <view  bindtap="bindViewTap" class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+<view class="page">
+  <!-- 功能模块 -->
+  <view class="module-functions-container">
+    <view class="module-functions-row">
+      <navigator url="/pages/module/courses/courses">
+        <view class="module-function-box">
+          <image class="module-function-icon" src="/images/main/module/course.png"></image>
+          <text class="module-function-title">课程查询</text>
+        </view>
+      </navigator>
+      <navigator url="/pages/module/exam/queryExamScore/queryExamScore">
+        <view class="module-function-box">
+          <image class="module-function-icon" src="/images/main/module/examScore.png"></image>
+          <text class="module-function-title">考试成绩</text>
+        </view>
+      </navigator>
+      <navigator url="/pages/module/skillScore/skillScore">
+        <view class="module-function-box">
+          <image class="module-function-icon" src="/images/main/module/skillScore.png"></image>
+          <text class="module-function-title">等级考试</text>
+        </view>
+      </navigator>
+      <navigator url="/pages/module/examPlan/examPlan">
+        <view class="module-function-box">
+          <image class="module-function-icon" src="/images/main/module/examPlan.png"></image>
+          <text class="module-function-title">考试安排</text>
+        </view>
+      </navigator>
+    </view>
+    <view class="module-functions-row">
+      <navigator url="/pages/module/stuInfoDetail/stuInfoDetail">
+        <view class="module-function-box">
+          <image class="module-function-icon" src="/images/main/module/personalInfo.png"></image>
+          <text class="module-function-title">学籍信息</text>
+        </view>
+      </navigator>
+      <navigator url="/pages/module/classroom/classroom">
+        <view class="module-function-box">
+          <image class="module-function-icon" src="/images/main/module/classRoom.png"></image>
+          <text class="module-function-title">教室查询</text>
+        </view>
+      </navigator>
+      <navigator url="/pages/module/announcement/announcement">
+        <view class="module-function-box">
+          <image class="module-function-icon" src="/images/main/module/announcement.png"></image>
+          <text class="module-function-title">教务公告</text>
+        </view>
+      </navigator>
+      <navigator url="/pages/module/others/others">
+        <view class="module-function-box">
+          <image class="module-function-icon" src="/images/main/module/others.png"></image>
+          <text class="module-function-title">其他功能</text>
+        </view>
+      </navigator>
+    </view>
   </view>
 </view>
