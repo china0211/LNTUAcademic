@@ -1,11 +1,16 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/module/stuInfoDetail/stuInfoDetail",
-        "pages/module/skillScore/skillScore",
+        "pages/module/courses/courses",
         "pages/module/exam/queryExamScore/queryExamScore",
         "pages/module/exam/examScore/examScore",
         "pages/module/exam/examScoreDetail/examScoreDetail",
+        "pages/module/skillScore/skillScore",
+        "pages/module/examPlan/examPlan",
+        "pages/module/stuInfoDetail/stuInfoDetail",
+        "pages/module/classroom/classroom",
+        "pages/module/announcement/announcement",
+        "pages/module/others/others",
         "pages/more/login/login",
         "pages/more/me/me",
         "pages/more/account/account",
