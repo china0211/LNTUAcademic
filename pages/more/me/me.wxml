@@ -1,6 +1,6 @@
 <view class="page">
 
-  <!-- 有学籍信息时显示学籍信息 -->
+  <!-- 绑定时显示学籍信息 -->
   <view class="user-info-view" bindtap="navigateToAccountPage" wx:if="{{isBind}}">
     <view class="user-info-content">
       <image class="user-info-avatar" src="{{userInfo.avatarUrl}}"></image>
@@ -16,8 +16,8 @@
     </view>
   </view>
 
-  <!-- 没有学籍信息时显示微信账号信息 -->
-  <view class="user-info-view" bindtap="bindStuIdWithWeChatId" wx:else>
+  <!-- 未绑定时显示微信账号信息 -->
+  <view class="user-info-view" bindtap="navigateToAccountPage" wx:else>
     <view class="user-info-content">
       <image class="user-info-avatar" src="{{userInfo.avatarUrl}}"></image>
       <view class="user-info-title ">

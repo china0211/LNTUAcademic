@@ -101,8 +101,7 @@ Page({
                             if (response.data == "success") {
                                 msg = "绑定成功";
                                 isSuccessed = true;
-                                app.globalData.isBind = true
-
+                                app.saveStorage("isBind",true);
                             } else {
                                 msg = "绑定失败，请稍后重试";
                             }
