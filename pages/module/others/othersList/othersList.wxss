@@ -1,0 +1,87 @@
+.user-info-view {
+    margin: 30rpx 0rpx 50rpx 0rpx;
+    flex-direction: column;
+    background-color: #fff;
+    height: 140rpx;
+}
+
+.user-info-content {
+    display: flex;
+    align-items: center;
+    padding: 20rpx 5rpx 5rpx 15rpx;
+}
+
+.user-info-avatar {
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 0%;
+    padding-left: 10rpx;
+}
+
+.user-info-title {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-left: 25rpx;
+}
+
+.user-info-name {
+    font-size: 16pt;
+    line-height: 160%;
+    letter-spacing: 1px;
+}
+
+.user-info-stu {
+    font-size: 11pt;
+    color: #8b8b8b;
+}
+
+.wechat-account-bind-view {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    margin-left: 30%;
+}
+
+.wechat-account-bind-img {
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 0%;
+}
+
+.wechat-account-bind-text {
+    font-size: 11pt;
+    margin-top: 12rpx;
+    color: #8b8b8b;
+}
+
+.blank-view {
+    margin: 30rpx 0rpx 0rpx 0rpx;
+    flex-direction: row;
+    height: 80rpx;
+    background-color: #fff;
+}
+
+.blank-content {
+    display: flex;
+    align-items: center;
+    padding: 20rpx 0rpx 5rpx 15rpx;
+}
+
+.blank-content-icon {
+    width: 50rpx;
+    height: 50rpx;
+    position: absolute;
+    left: 10rpx;
+}
+
+.blank-content-text {
+    margin-left: 50rpx;
+}
+
+.blank-content-detail {
+    width: 50rpx;
+    height: 50rpx;
+    position: absolute;
+    right: 1rpx;
+}

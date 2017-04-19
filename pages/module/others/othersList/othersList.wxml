@@ -1,0 +1,27 @@
+<view class="page">
+  <!-- 教学计划 -->
+  <navigator url="/pages/module/others/educationPlan/educationPlan">
+    <view class="blank-view">
+      <view class="blank-content">
+        <image class="blank-content-icon" src="/images/global/educationPlan.png"></image>
+        <view>
+          <text class="blank-content-text">教学计划</text>
+        </view>
+        <image class="blank-content-detail" src="/images/global/detail.png"></image>
+      </view>
+    </view>
+  </navigator>
+
+  <!-- 修改密码 -->
+  <navigator url="/pages/module/others/modifyPassword/modifyPassword">
+    <view class="blank-view">
+      <view class="blank-content">
+        <image class="blank-content-icon" src="/images/global/modifyPassword.png"></image>
+        <view>
+          <text class="blank-content-text">修改密码</text>
+        </view>
+        <image class="blank-content-detail" src="/images/global/detail.png"></image>
+      </view>
+    </view>
+  </navigator>
+</view>

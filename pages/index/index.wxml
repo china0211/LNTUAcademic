@@ -46,7 +46,7 @@
           <text class="module-function-title">教务公告</text>
         </view>
       </navigator>
-      <navigator url="/pages/module/others/others">
+      <navigator url="/pages/module/others/othersList/othersList">
         <view class="module-function-box">
           <image class="module-function-icon" src="/images/main/module/others.png"></image>
           <text class="module-function-title">其他功能</text>
