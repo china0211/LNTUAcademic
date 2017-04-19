@@ -38,5 +38,5 @@
 .blank-content-icon {
     width: 40rpx;
     height: 40rpx;
-    margin-top: -35rpx;
+    margin-top: -40rpx;
 }

@@ -22,8 +22,6 @@ Page({
     //查看成绩详情
     viewExamScoreDetail: function (e) {
         app.currentExamScore = e.currentTarget.dataset.examscore;
-        wx.navigateTo({
-            url: '/pages/module/exam/examScoreDetail/examScoreDetail'
-        })
+        app.navigateToPage("/pages/module/exam/examScoreDetail/examScoreDetail")
     }
 })

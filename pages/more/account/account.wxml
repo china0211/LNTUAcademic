@@ -7,7 +7,7 @@
     <view class="blank-content">
       <view>
         <text class="blank-content-text">姓名</text>
-        <text class="blank-content-text-detail">{{stuDetail.data.name}}</text>
+        <text class="blank-content-text-detail">{{stuDetail.name}}</text>
       </view>
     </view>
   </view>
@@ -15,7 +15,7 @@
     <view class="blank-content">
       <view>
         <text class="blank-content-text">学号</text>
-        <text class="blank-content-text-detail">{{stuDetail.data.userId}}</text>
+        <text class="blank-content-text-detail">{{stuDetail.userId}}</text>
       </view>
     </view>
   </view>
@@ -23,7 +23,7 @@
     <view class="blank-content">
       <view>
         <text class="blank-content-text">微信号</text>
-        <text class="blank-content-text-detail">{{weChatId}}</text>
+        <text class="blank-content-text-detail">{{userInfo.nickName}}</text>
       </view>
     </view>
   </view>

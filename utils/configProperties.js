@@ -1,3 +1,5 @@
+  var appid = "";
+  var secret = "";
   var authorization = "";
   var academicUrl = "";
   var loginUrl = "";
@@ -16,6 +18,8 @@
 
 
   module.exports = {
+  	  appid: appid,
+      secret: secret,
       authorization: authorization,
       academicUrl: academicUrl,
       loginUrl: loginUrl,

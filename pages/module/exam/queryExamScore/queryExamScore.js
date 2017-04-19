@@ -17,12 +17,6 @@ Page({
             selectedAcademicYear: that.data.academicYears[e.detail.value]
         })
     },
-    //查看成绩
-    navigateToScorePage: function () {
-        wx.navigateTo({
-            url: '/pages/module/exam/examScore/examScore'
-        })
-    },
     //获取学号
     setStuId: function () {
         var that = this;
@@ -59,7 +53,6 @@ Page({
             academicyear = that.data.selectedAcademicYear;
             app.scorePageTitle = academicyear;
         }
-        console.log(e.currentTarget.dataset.type)
         if (academicyear != null && academicyear != "请选择学年学期") {
             app.showLoading('正在查询', true);
             wx.request({
@@ -78,7 +71,7 @@ Page({
                     console.log(res)
                     if (res.data.msg == "success") {
                         app.examScores = res.data.result;
-                        that.navigateToScorePage();
+                        app.navigateToPage("/pages/module/exam/examScore/examScore")
                     } else {
                         app.showToast("查询失败，请稍后重试", false);
                     }
@@ -91,7 +84,7 @@ Page({
                 }
             })
         } else {
-            app.showToast("请选择学年学期", false);
+            app.showMsgModal("请选择学年学期");
         }
     },
     //查询绩点
@@ -111,9 +104,7 @@ Page({
             success: function (res) {
                 console.log(res)
                 if (res.data.msg == "success") {
-                    wx.showModal({
-                        content: '你当前的学分绩为:' + res.data.result
-                    })
+                    app.showMsgModal('你当前的学分绩为:' + res.data.result)
                 } else {
                     app.showToast("查询失败，请稍后重试", false);
                 }

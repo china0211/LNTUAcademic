@@ -1,55 +1,61 @@
 <view class="page">
 
   <!-- 绑定时显示学籍信息 -->
-  <view class="user-info-view" bindtap="navigateToAccountPage" wx:if="{{isBind}}">
-    <view class="user-info-content">
-      <image class="user-info-avatar" src="{{userInfo.avatarUrl}}"></image>
-      <view class="user-info-title ">
-        <text class="user-info-name">{{stuDetail.data.name}}</text>
-        <text class="user-info-stu">{{stuDetail.data.userId}}</text>
-      </view>
-      <view class="user-info-title">
-        <text class="user-info-stu">{{stuDetail.data.college}}</text>
-        <text class="user-info-stu">{{stuDetail.data.major}}</text>
-        <text class="user-info-stu">{{stuDetail.data.classInfo}}班</text>
+  <navigator url="/pages/more/account/account">
+    <view class="user-info-view" wx:if="{{isBind}}">
+      <view class="user-info-content">
+        <image class="user-info-avatar" src="{{userInfo.avatarUrl}}"></image>
+        <view class="user-info-title ">
+          <text class="user-info-name">{{stuDetail.name}}</text>
+          <text class="user-info-stu">{{stuDetail.userId}}</text>
+        </view>
+        <view class="user-info-title">
+          <text class="user-info-stu">{{stuDetail.college}}</text>
+          <text class="user-info-stu">{{stuDetail.major}}</text>
+          <text class="user-info-stu">{{stuDetail.classInfo}}班</text>
+        </view>
       </view>
     </view>
-  </view>
 
-  <!-- 未绑定时显示微信账号信息 -->
-  <view class="user-info-view" bindtap="navigateToAccountPage" wx:else>
-    <view class="user-info-content">
-      <image class="user-info-avatar" src="{{userInfo.avatarUrl}}"></image>
-      <view class="user-info-title ">
-        <text class="user-info-name">{{userInfo.nickName}}</text>
-        <text class="user-info-stu">{{stuDetail.data.userId}}</text>
-      </view>
-      <view class="wechat-account-bind-view">
-        <text class="wechat-account-bind-text">前往绑定</text>
-        <image class="wechat-account-bind-img" src="/images/global/detail.png"></image>
+    <!-- 未绑定时显示微信账号信息 -->
+    <view class="user-info-view" wx:else>
+      <view class="user-info-content">
+        <image class="user-info-avatar" src="{{userInfo.avatarUrl}}"></image>
+        <view class="user-info-title ">
+          <text class="user-info-name">{{userInfo.nickName}}</text>
+          <text class="user-info-stu">{{stuDetail.userId}}</text>
+        </view>
+        <view class="wechat-account-bind-view">
+          <text class="wechat-account-bind-text">前往绑定</text>
+          <image class="wechat-account-bind-img" src="/images/global/detail.png"></image>
+        </view>
       </view>
     </view>
-  </view>
+  </navigator>
 
   <!-- 反馈 -->
-  <view class="blank-view" bindtap="navigateToFeedbackPage">
-    <view class="blank-content">
-      <image class="blank-content-icon" src="/images/global/feedback.png"></image>
-      <view>
-        <text class="blank-content-text">反馈</text>
+  <navigator url="/pages/more/feedback/feedback">
+    <view class="blank-view">
+      <view class="blank-content">
+        <image class="blank-content-icon" src="/images/global/feedback.png"></image>
+        <view>
+          <text class="blank-content-text">反馈</text>
+        </view>
+        <image class="blank-content-detail" src="/images/global/detail.png"></image>
       </view>
-      <image class="blank-content-detail" src="/images/global/detail.png"></image>
     </view>
-  </view>
+  </navigator>
 
   <!-- 关于 -->
-  <view class="blank-view" bindtap="navigateToAboutPage">
-    <view class="blank-content">
-      <image class="blank-content-icon" src="/images/global/about.png"></image>
-      <view>
-        <text class="blank-content-text">关于</text>
+  <navigator url="/pages/more/about/about">
+    <view class="blank-view">
+      <view class="blank-content">
+        <image class="blank-content-icon" src="/images/global/about.png"></image>
+        <view>
+          <text class="blank-content-text">关于</text>
+        </view>
+        <image class="blank-content-detail" src="/images/global/detail.png"></image>
       </view>
-      <image class="blank-content-detail" src="/images/global/detail.png"></image>
     </view>
-  </view>
+  </navigator>
 </view>

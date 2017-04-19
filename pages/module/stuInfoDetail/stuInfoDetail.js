@@ -9,7 +9,7 @@ Page({
       key: 'stuDetail',
       success: function(res){
         that.setData({
-          stuDetail:res
+          stuDetail:res.data
         })
       },
       fail: function(res) {

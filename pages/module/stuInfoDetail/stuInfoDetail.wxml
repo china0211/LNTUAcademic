@@ -1,12 +1,12 @@
 <view class="page">
     <view class="head-bg-view">
-        <image src="{{stuDetail.data.photoUrl}}" class="head-pic"></image>
+        <image src="{{stuDetail.photoUrl}}" class="head-pic"></image>
     </view>
     <view class="blank-view">
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">姓名</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.name}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.name}}</text>
             </view>
         </view>
     </view>
@@ -14,7 +14,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">英文名字</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.englishName}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.englishName}}</text>
             </view>
         </view>
     </view>
@@ -22,7 +22,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">性别</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.sex}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.sex}}</text>
             </view>
         </view>
     </view>
@@ -30,7 +30,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">院系</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.college}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.college}}</text>
             </view>
         </view>
     </view>
@@ -38,7 +38,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">专业</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.major}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.major}}</text>
             </view>
         </view>
     </view>
@@ -46,7 +46,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">班级</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.classInfo}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.classInfo}}</text>
             </view>
         </view>
     </view>
@@ -54,7 +54,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">学号</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.userId}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.userId}}</text>
             </view>
         </view>
     </view>
@@ -62,7 +62,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">联系电话</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.contactTel}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.contactTel}}</text>
             </view>
         </view>
     </view>
@@ -70,7 +70,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">电子邮箱</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.email}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.email}}</text>
             </view>
         </view>
     </view>
@@ -78,7 +78,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">出生日期</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.dateOfBirth}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.dateOfBirth}}</text>
             </view>
         </view>
     </view>
@@ -86,7 +86,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">民族</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.nation}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.nation}}</text>
             </view>
         </view>
     </view>
@@ -94,7 +94,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">家庭住址</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.homeAddress}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.homeAddress}}</text>
             </view>
         </view>
     </view>
@@ -102,7 +102,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">邮政编码</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.zipCode}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.zipCode}}</text>
             </view>
         </view>
     </view>
@@ -110,7 +110,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">国籍</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.nationality}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.nationality}}</text>
             </view>
         </view>
     </view>
@@ -118,7 +118,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">籍贯</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.birthplace}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.birthplace}}</text>
             </view>
         </view>
     </view>
@@ -126,7 +126,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">证件类型</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.idCardType}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.idCardType}}</text>
             </view>
         </view>
     </view>
@@ -134,7 +134,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">证件号码</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.idCardNum}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.idCardNum}}</text>
             </view>
         </view>
     </view>
@@ -142,7 +142,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">政治面貌</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.politicalAffiliation}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.politicalAffiliation}}</text>
             </view>
         </view>
     </view>
@@ -150,7 +150,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">考区</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.entranceExamArea}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.entranceExamArea}}</text>
             </view>
         </view>
     </view>
@@ -158,7 +158,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">学生来源</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.sourceOfStudent}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.sourceOfStudent}}</text>
             </view>
         </view>
     </view>
@@ -166,7 +166,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">高考总分</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.entranceExamScore}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.entranceExamScore}}</text>
             </view>
         </view>
     </view>
@@ -175,7 +175,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">毕业院校</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.graduateSchool}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.graduateSchool}}</text>
             </view>
         </view>
     </view>
@@ -183,7 +183,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">外语语种</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.foreignLanguage}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.foreignLanguage}}</text>
             </view>
         </view>
     </view>
@@ -191,7 +191,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">入学准考证号</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.entranceExamNum}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.entranceExamNum}}</text>
             </view>
         </view>
     </view>
@@ -199,7 +199,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">入学录取证号</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.admissionNum}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.admissionNum}}</text>
             </view>
         </view>
     </view>
@@ -207,7 +207,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">入学方式</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.admissionType}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.admissionType}}</text>
             </view>
         </view>
     </view>
@@ -215,7 +215,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">入学日期</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.dateOfAdmission}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.dateOfAdmission}}</text>
             </view>
         </view>
     </view>
@@ -223,7 +223,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">学籍表号</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.studentInfoTableNum}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.studentInfoTableNum}}</text>
             </view>
         </view>
     </view>
@@ -231,7 +231,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">培养方式</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.educationType}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.educationType}}</text>
             </view>
         </view>
     </view>
@@ -239,7 +239,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">毕业日期</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.dateOfGraduation}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.dateOfGraduation}}</text>
             </view>
         </view>
     </view>
@@ -248,7 +248,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">毕业去向</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.aboutAfterGraduation}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.aboutAfterGraduation}}</text>
             </view>
         </view>
     </view>
@@ -256,7 +256,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">乘车区间</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.travelRange}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.travelRange}}</text>
             </view>
         </view>
     </view>
@@ -264,7 +264,7 @@
         <view class="blank-content">
             <view>
                 <text class="blank-content-text">备注</text>
-                <text class="blank-content-text-detail">{{stuDetail.data.remarks}}</text>
+                <text class="blank-content-text-detail">{{stuDetail.remarks}}</text>
             </view>
         </view>
     </view>

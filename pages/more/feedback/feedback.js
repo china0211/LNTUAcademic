@@ -17,18 +17,12 @@ Page({
         language: '',
         platform: '',
         sdkVersion: '',
-
+        networkType:'',
         disabled: false,
         loading: false,
     },
     onLoad: function (options) {
         // 页面初始化 options为页面跳转所带来的参数
-    },
-    loadding: function (e) {
-        this.setData({
-            disabled: !this.data.disabled,
-            loading: !this.data.loading
-        })
     },
     inputFeedbackTitle: function (e) {
         this.setData({
@@ -50,7 +44,6 @@ Page({
         var that = this;
         wx.getSystemInfo({
             success: function (res) {
-                console.log(res)
                 that.setData({
                     phoneModel: res.model,
                     pixelRatio: res.pixelRatio,
@@ -65,6 +58,13 @@ Page({
                     sdkVersion: res.SDKVersion,
                 })
             }
+        }),
+        wx.getNetworkType({
+          success: function(res) {
+            that.setData({
+                networkType : res.networkType
+            })
+          }
         })
     },
     //校验数据
@@ -85,7 +85,7 @@ Page({
         if (that.validateData()) {
             var msg = "";
             var feedbackResult = false;
-            that.loadding();
+            app.showLoading();
             that.getSystemInfo();
             wx.request({
                 url: app.globalData.feedbackUrl,
@@ -109,6 +109,8 @@ Page({
                     system: that.data.system,
                     platform: that.data.platform,
                     sdkVersion: that.data.sdkVersion,
+                    //网络信息
+                    networkType: that.data.networkType
                 },
                 method: 'POST',
                 // header: {}, // 设置请求的 header
@@ -125,13 +127,9 @@ Page({
                     msg = "请求失败，请稍后重试";
                 },
                 complete: function (res) {
+                    app.hideLoading();
                     app.showToast(msg, feedbackResult);
-                    that.loadding();
-                    setTimeout(function () {
-                        wx.navigateBack({
-                            delta: 1
-                        })
-                    }, 1500)
+                    app.navigateBack();
                 }
             })
         }

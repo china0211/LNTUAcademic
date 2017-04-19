@@ -38,7 +38,7 @@ Page({
         var that = this;
         var isValid = that.validateInput();
         if (isValid) {
-            that.logging();
+            app.showLoading();
             wx.request({
                 url: app.globalData.loginUrl,
                 data: {
@@ -53,7 +53,6 @@ Page({
                     if (res.data.message == "请求成功") {
                         //将stuId设置为全局属性
                         app.globalData.stuId = that.data.stuId
-
                         that.queryAllInfo();
                         that.bindStuIdWithWeChatId();
                         //将数据保存到本地，方便下次使用读取
@@ -61,7 +60,6 @@ Page({
                             key: "stuId",
                             data: that.data.stuId
                         })
-
                         app.globalData.isBind = true
                     } else {
                         app.showToast("登录失败，学号或密码错误", false);
@@ -71,7 +69,7 @@ Page({
                     app.showToast("请求失败，请稍后重试", false);
                 },
                 complete: function() {
-                    that.logging();
+                    app.hideLoading();
                 }
             })
         }
@@ -93,7 +91,7 @@ Page({
                             stuId: app.globalData.stuId,
                             weChatId: app.globalData.weChatId
                         },
-                        method: 'POST',
+                        method: 'GET',
                         header: {
                             Authorization: app.globalData.authorization,
                         },
@@ -101,6 +99,7 @@ Page({
                             if (response.data == "success") {
                                 msg = "绑定成功";
                                 isSuccessed = true;
+                                app.globalData.isBind = true;
                                 app.saveStorage("isBind",true);
                             } else {
                                 msg = "绑定失败，请稍后重试";
@@ -110,11 +109,12 @@ Page({
                             msg = "请求失败，请稍后重试";
                         },
                         complete: function() {
-                            that.navigateToIndexPage(msg, isSuccessed);
+                            app.showToast(msg, isSuccessed);
+                            app.navigateBack();
                         }
                     })
                 } else {
-                    that.navigateToIndexPage();
+                    app.navigateBack();
                 }
             }
         })
@@ -147,19 +147,6 @@ Page({
             }
         })
     },
-
-    //跳转到首页
-    navigateToIndexPage: function(msg, isSuccessed) {
-        wx.navigateBack({
-            delta: 1,
-            complete: function(res) {
-                setTimeout(function() {
-                    app.showToast(msg, isSuccessed); //跳转成功之后显示提示
-                }, 500)
-            }
-        })
-    },
-
     //校验输入信息
     validateInput: function() {
         var that = this;

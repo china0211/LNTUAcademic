@@ -13,7 +13,6 @@ Page({
             url: app.globalData.getLogsUrl,
             data: {},
             method: 'GET',
-            // header: {}, // 设置请求的 header
             success: function(res) {
                 that.setData({
                     logs: res.data
