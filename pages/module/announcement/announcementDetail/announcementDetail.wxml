@@ -4,8 +4,8 @@
             <view class="weui-article__h1">{{announcementDetail.title}}</view>
             <view class="weui-article__section">
                 <view class="weui-article__section">
-                    <view class="weui-article__p announcement-content">
-                        {{announcementDetail.content}}
+                    <view class="weui-article__p">
+                        <text class="announcement-content">{{announcementDetail.content}}</text>
                     </view>
                 </view>
                 <view class="article-foot-date">{{announcementDetail.date}}</view>
