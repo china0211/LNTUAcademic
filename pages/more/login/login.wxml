@@ -1,16 +1,31 @@
 <view class="page">
+  
+
+  <view class="page__bd">
   <view class="schoolLogo">
     <image class="schoolLogo-avatar" src="/images/global/school_logo.png" background-size="cover"></image>
   </view>
-  <view class="section accountInterval">
-    <view>
-      <input type="number" maxlength="10" placeholder="学号" bindinput="inputStuId"/>
+    <view class="weui-cells">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">学号</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="number" maxlength="10" bindinput="inputStuId" placeholder="请输入学号"  />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">密码</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="password" maxlength="6" placeholder="密码" bindinput="inputPassword"
+                 placeholder="请输入密码"  />
+        </view>
+      </view>
     </view>
-    <view class="accountInterval">
-      <input type="password" maxlength="6" placeholder="密码" bindinput="inputPassword"/>
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="login">登录</button>
     </view>
-  </view>
-  <view>
-    <button type="primary" loading="{{loading}}" disabled="{{disabled}}" bindtap="login" class="custom-button">登录</button>
   </view>
 </view>

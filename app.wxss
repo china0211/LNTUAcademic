@@ -186,11 +186,6 @@ page {
     text-align: center;
 }
 
-.page input {
-    padding: 10px 15px;
-    background-color: #fff;
-}
-
 checkbox,
 radio {
     margin-right: 5px;
