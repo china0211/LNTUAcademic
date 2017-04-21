@@ -1,0 +1,12 @@
+@import "/pages/common/lib/weui.wxss";
+.article-foot-date {
+    font-size: 14px;
+    position: absolute;
+    right: 50rpx;
+    color: darkgray
+}
+
+.announcement-content {
+    word-break: break-all;
+    text-align: justify;
+}

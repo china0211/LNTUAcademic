@@ -1,7 +1,7 @@
 <view class="page">
   <view class="head-bg-view">
-    <image src="/images/global/head1.jpg" class="head-left"></image>
-    <image src="/images/global/head2.jpg" class="head-right"></image>
+    <image src="{{userInfo.avatarUrl}}" class="head-left"></image>
+    <image src="/images/global/school_logo.png" class="head-right"></image>
   </view>
   <view class="blank-view">
     <view class="blank-content">

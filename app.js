@@ -44,6 +44,7 @@ App({
         getLogsUrl: properties.getLogsUrl,
         feedbackUrl: properties.feedbackUrl,
         queryBindStatusUrl: properties.queryBindStatusUrl,
+        getAnnouncementUrl: properties.getAnnouncementUrl,
         isBind: false,
 
         toastFailImg: properties.toastFailImg

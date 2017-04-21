@@ -40,7 +40,7 @@
           <text class="module-function-title">教室查询</text>
         </view>
       </navigator>
-      <navigator url="/pages/module/announcement/announcement">
+      <navigator url="/pages/module/announcement/announcementList/announcementList">
         <view class="module-function-box">
           <image class="module-function-icon" src="/images/main/module/announcement.png"></image>
           <text class="module-function-title">教务公告</text>

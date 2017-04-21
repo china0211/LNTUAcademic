@@ -1,0 +1,4 @@
+@import "/pages/common/lib/weui.wxss";
+.panner-container {
+    margin-top: 20rpx;
+}

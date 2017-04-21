@@ -1,0 +1,15 @@
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-article">
+            <view class="weui-article__h1">{{announcementDetail.title}}</view>
+            <view class="weui-article__section">
+                <view class="weui-article__section">
+                    <view class="weui-article__p announcement-content">
+                        {{announcementDetail.content}}
+                    </view>
+                </view>
+                <view class="article-foot-date">{{announcementDetail.date}}</view>
+            </view>
+        </view>
+    </view>
+</view>

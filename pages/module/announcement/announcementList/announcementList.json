@@ -1,0 +1,7 @@
+{
+    "navigationBarBackgroundColor": "#fff",
+    "backgroundColor": "#fff",
+    "navigationBarTitleText": "教务公告",
+    "enablePullDownRefresh": true,
+    "disableScroll": false
+}
