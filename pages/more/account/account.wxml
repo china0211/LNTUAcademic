@@ -3,41 +3,27 @@
     <image src="{{userInfo.avatarUrl}}" class="head-left"></image>
     <image src="/images/global/school_logo.png" class="head-right"></image>
   </view>
-  <view class="blank-view">
-    <view class="blank-content">
-      <view>
-        <text class="blank-content-text">姓名</text>
-        <text class="blank-content-text-detail">{{stuDetail.name}}</text>
-      </view>
+  <view class="weui-cells">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">姓名</view>
+      <view class="weui-cell__ft">{{stuDetail.name}}</view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">学号</view>
+      <view class="weui-cell__ft">{{stuDetail.userId}}</view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">微信号</view>
+      <view class="weui-cell__ft">{{userInfo.nickName}}</view>
+    </view>
+    <view class="weui-cell" wx:if="{{isBind}}">
+      <view class="weui-cell__bd">绑定时间</view>
+      <view class="weui-cell__ft">{{bindingTime}}</view>
     </view>
   </view>
-  <view class="blank-view">
-    <view class="blank-content">
-      <view>
-        <text class="blank-content-text">学号</text>
-        <text class="blank-content-text-detail">{{stuDetail.userId}}</text>
-      </view>
-    </view>
-  </view>
-  <view class="blank-view">
-    <view class="blank-content">
-      <view>
-        <text class="blank-content-text">微信号</text>
-        <text class="blank-content-text-detail">{{userInfo.nickName}}</text>
-      </view>
-    </view>
-  </view>
-  <view class="blank-view" wx:if="{{isBind}}">
-    <view class="blank-content">
-      <view>
-        <text class="blank-content-text">绑定时间</text>
-        <text class="blank-content-text-detail">{{bindingTime}}</text>
-      </view>
-    </view>
-  </view>
-  <view class="button-group">
-    <button  wx:if="{{!isBind}}" type="primary" disabled="{{disabled}}" bindtap="bindStuIdWithWeChatId" class="custom-button button-distance">立即绑定</button>
-    <button type="default" disabled="{{disabled}}" bindtap="switchAccount" class="custom-button button-distance">切换账号</button>
-    <button type="warn" loading="{{loading}}" disabled="{{disabled}}" bindtap="unboundAccount" class="custom-button" wx:if="{{isBind}}">解除绑定</button>
+  <view class="weui-btn-area">
+    <button type="primary" disabled="{{disabled}}" bindtap="bindStuIdWithWeChatId" class="weui-btn" wx:if="{{!isBind}}">立即绑定</button>
+    <button type="default" disabled="{{disabled}}" bindtap="switchAccount" class="weui-btn">切换账号</button>
+    <button type="warn" disabled="{{disabled}}" bindtap="unboundAccount" class="weui-btn" wx:if="{{isBind}}">解除绑定</button>
   </view>
 </view>
