@@ -45,6 +45,7 @@ App({
         feedbackUrl: properties.feedbackUrl,
         queryBindStatusUrl: properties.queryBindStatusUrl,
         getAnnouncementUrl: properties.getAnnouncementUrl,
+        modifyPasswordUrl:properties.modifyPasswordUrl,
         isBind: false,
 
         toastFailImg: properties.toastFailImg

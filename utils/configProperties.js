@@ -13,7 +13,7 @@
   var queryBindStatusUrl = "";
   var queryAchievementUrl = "";
   var queryGradePointUrl = "";
-
+  var modifyPasswordUrl = ""
   var toastFailImg = "/images/global/fail.png";
 
 
@@ -33,6 +33,6 @@
       bindStuIdWithWeChatIdUrl: bindStuIdWithWeChatIdUrl,
       queryAchievementUrl: queryAchievementUrl,
       queryGradePointUrl: queryGradePointUrl,
-
+ 	  modifyPasswordUrl:modifyPasswordUrl,
       toastFailImg: toastFailImg
   }
