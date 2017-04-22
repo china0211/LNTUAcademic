@@ -1,4 +1,4 @@
-<view class="container">
+<view class="page">
   <view class="header">
     <view class="black-cover"></view>
     <image class="banner" src="/images/main/about/banner-bg.jpg"></image>
@@ -13,7 +13,7 @@
       </view>
       <view bindtap="toggleLog">
         <text class="version-log-link update-log" wx:if="{{!showLog}}">更新日志</text>
-        <text class="version-log-link" wx:else>简介</text>
+        <text class="version-log-link"wx:else>简介</text>
       </view>
     </view>
     <view class="describe" wx:if="{{!showLog}}">
@@ -23,9 +23,18 @@
         <text class="desc-list-item">移动APP：https://www.lgdjwc.com/</text>
       </view>
       <text class="desc-content">辽宁工程技术大学·教务在线 微信小程序</text>
-      <text class="desc-content">由何惠民开发，感谢梁鲲同学提供的API</text>
+      <text class="desc-content">以最直接的形式提供教务在线功能，贴合微信小程序触手可及、用完即走的特点，所有风格遵循微信设计指导；集成了教务在线的常用功能，加入了微信号和学号绑定，尽可能的提高教务在线的易用性</text>
     </view>
-    <view class="log-list" wx:else>
+    <view class="describe" wx:if="{{!showLog}}">
+      <text class="desc-title">应用信息</text>
+      <view class="desc-list">
+        <text class="desc-list-item">教务在线服务端开发：梁鲲 liangkun1994@gmail.com</text>
+        <text class="desc-list-item">微信小程序开发：何惠民 hellowoodes@gmail.com</text>
+        <text class="desc-list-item">微信小程序服务端开发：何惠民</text>
+        <text class="desc-list-item">微信小程序管理：CSDN高校俱乐部 Q群：217367546</text>
+      </view>
+    </view>
+    <view class="log-list"wx:else>
       <view class="describe" wx:for="{{logs}}" wx:for-item="log" wx:key="describe">
         <view class="desc-title">
           <text class="desc-v">V{{log.version}} {{log.versionType}}</text>
@@ -40,9 +49,9 @@
       </view>
     </view>
   </view>
-  <view class="footer">
-    <text>Power By 何惠民</text>
-    <text>辽宁工程技术大学 · CSDN高校俱乐部</text>
-    <text>Copyright @ {{year}} All Rights Reserved</text>
+  <view class="weui-footer footer">
+    <view class="weui-footer__text">Power By 何惠民</view>
+    <view class="weui-footer__text">辽宁工程技术大学 · CSDN高校俱乐部</view>
+    <view class="weui-footer__text">Copyright @ {{year}} All Rights Reserved</view>
   </view>
 </view>

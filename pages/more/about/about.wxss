@@ -158,11 +158,5 @@
 }
 
 .footer {
-    display: flex;
-    flex-direction: column;
-    font-size: 9pt;
-    line-height: 150%;
-    text-align: center;
     padding: 100rpx 0 15rpx;
-    color: #c2c2c2;
 }
