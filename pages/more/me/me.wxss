@@ -2,13 +2,20 @@
     margin: 30rpx 0rpx 50rpx 0rpx;
     flex-direction: column;
     background-color: #fff;
+}
+
+.bind {
+    height: 160rpx;
+}
+
+.not-bind {
     height: 140rpx;
 }
 
 .user-info-content {
     display: flex;
     align-items: center;
-    padding: 20rpx 5rpx 5rpx 15rpx;
+    padding: 20rpx 5rpx 15rpx 15rpx;
 }
 
 .user-info-avatar {
@@ -53,35 +60,4 @@
     font-size: 11pt;
     margin-top: 12rpx;
     color: #8b8b8b;
-}
-
-.blank-view {
-    margin: 30rpx 0rpx 0rpx 0rpx;
-    flex-direction: row;
-    height: 80rpx;
-    background-color: #fff;
-}
-
-.blank-content {
-    display: flex;
-    align-items: center;
-    padding: 20rpx 0rpx 5rpx 15rpx;
-}
-
-.blank-content-icon {
-    width: 50rpx;
-    height: 50rpx;
-    position: absolute;
-    left: 10rpx;
-}
-
-.blank-content-text {
-    margin-left: 50rpx;
-}
-
-.blank-content-detail {
-    width: 50rpx;
-    height: 50rpx;
-    position: absolute;
-    right: 1rpx;
 }

@@ -1,8 +1,7 @@
 <view class="page">
-
   <!-- 绑定时显示学籍信息 -->
   <navigator url="/pages/more/account/account">
-    <view class="user-info-view" wx:if="{{isBind}}">
+    <view class="user-info-view bind" wx:if="{{isBind}}">
       <view class="user-info-content">
         <image class="user-info-avatar" src="{{userInfo.avatarUrl}}"></image>
         <view class="user-info-title ">
@@ -16,9 +15,8 @@
         </view>
       </view>
     </view>
-
     <!-- 未绑定时显示微信账号信息 -->
-    <view class="user-info-view" wx:else>
+    <view class="user-info-view not-bind" wx:else>
       <view class="user-info-content">
         <image class="user-info-avatar" src="{{userInfo.avatarUrl}}"></image>
         <view class="user-info-title ">
@@ -32,30 +30,24 @@
       </view>
     </view>
   </navigator>
-
   <!-- 反馈 -->
-  <navigator url="/pages/more/feedback/feedback">
-    <view class="blank-view">
-      <view class="blank-content">
-        <image class="blank-content-icon" src="/images/global/feedback.png"></image>
-        <view>
-          <text class="blank-content-text">反馈</text>
-        </view>
-        <image class="blank-content-detail" src="/images/global/detail.png"></image>
+  <view class="weui-cells">
+    <navigator url="/pages/more/feedback/feedback" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
+        <image src="/images/global/feedback.png" class="list-icon"></image>
       </view>
-    </view>
-  </navigator>
-
+      <view class="weui-cell__bd">反馈</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+  </view>
   <!-- 关于 -->
-  <navigator url="/pages/more/about/about">
-    <view class="blank-view">
-      <view class="blank-content">
-        <image class="blank-content-icon" src="/images/global/about.png"></image>
-        <view>
-          <text class="blank-content-text">关于</text>
-        </view>
-        <image class="blank-content-detail" src="/images/global/detail.png"></image>
+  <view class="weui-cells">
+    <navigator url="/pages/more/about/about" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
+        <image src="/images/global/about.png" class="list-icon"></image>
       </view>
-    </view>
-  </navigator>
+      <view class="weui-cell__bd">关于</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+  </view>
 </view>
