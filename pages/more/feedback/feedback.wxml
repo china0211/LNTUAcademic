@@ -1,16 +1,34 @@
 <view class="page">
-  <view class="section feedback-title">
-    <input bindinput="inputFeedbackTitle" confirm-type="next" confirm-hold="true" focus="true" maxlength="50" placeholder="请输入反馈标题" />
-  </view>
-  <view class="section">
-    <view class="textarea-view">
-      <textarea bindinput="inputFeedbackContent" confirm-type="next" confirm-hold="true" focus="true" maxlength="-1" placeholder="请输入反馈详细信息(错误页面、重现步骤)" />
+  <view class="weui-cells">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">反馈标题</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" type="text" bindinput="inputFeedbackTitle" placeholder="请简单描述反馈内容"  />
+      </view>
     </view>
   </view>
-  <view class="section">
-    <input bindinput="inputCotactInfomation" placeholder="您的联系方式（可选）" maxlength="50" />
+  <view class="weui-cells">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+        <textarea class="weui-textarea feedback-textarea-height" bindinput="inputFeedbackContent"
+                  placeholder="请输入反馈详细信息（错误页面、重现步骤）" maxlength="500"  confirm-hold="false" />
+        <view class="weui-textarea-counter">{{contentLength}}/500</view>
+      </view>
+    </view>
   </view>
-  <view>
-    <button type="primary" loading="{{loading}}" disabled="{{disabled}}" bindtap="sendFeddback" class="custom-button">提交反馈信息</button>
+  <view class="weui-cells">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">联系方式</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" bindinput="inputCotactInfomation" placeholder="您的联系方式（可选）" maxlength="50"  />
+      </view>
+    </view>
+  </view>
+  <view class="weui-btn-area">
+    <button class="weui-btn" type="primary" bindtap="sendFeddback">提交反馈信息</button>
   </view>
 </view>

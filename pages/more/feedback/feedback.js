@@ -1,6 +1,7 @@
 var app = getApp()
 Page({
     data: {
+        contentLength: 0,
         // 反馈信息
         title: '',
         comments: '',
@@ -17,58 +18,59 @@ Page({
         language: '',
         platform: '',
         sdkVersion: '',
-        networkType:'',
+        networkType: '',
         disabled: false,
         loading: false,
     },
-    onLoad: function (options) {
+    onLoad: function(options) {
         // 页面初始化 options为页面跳转所带来的参数
     },
-    inputFeedbackTitle: function (e) {
+    inputFeedbackTitle: function(e) {
         this.setData({
             title: e.detail.value
         })
     },
-    inputFeedbackContent: function (e) {
+    inputFeedbackContent: function(e) {
         this.setData({
-            comments: e.detail.value
+            comments: e.detail.value,
+            contentLength: e.detail.value.length
         })
     },
-    inputCotactInfomation: function (e) {
+    inputCotactInfomation: function(e) {
         this.setData({
             contactInfomation: e.detail.value
         })
     },
     // 获取手机信息
-    getSystemInfo: function () {
+    getSystemInfo: function() {
         var that = this;
         wx.getSystemInfo({
-            success: function (res) {
-                that.setData({
-                    phoneModel: res.model,
-                    pixelRatio: res.pixelRatio,
-                    screenWidth: res.screenWidth,
-                    screenHeight: res.screenHeight,
-                    windowWidth: res.windowWidth,
-                    windowHeight: res.windowHeight,
-                    wechatVersion: res.version,
-                    language: res.language,
-                    system: res.system,
-                    platform: res.platform,
-                    sdkVersion: res.SDKVersion,
-                })
-            }
-        }),
-        wx.getNetworkType({
-          success: function(res) {
-            that.setData({
-                networkType : res.networkType
+                success: function(res) {
+                    that.setData({
+                        phoneModel: res.model,
+                        pixelRatio: res.pixelRatio,
+                        screenWidth: res.screenWidth,
+                        screenHeight: res.screenHeight,
+                        windowWidth: res.windowWidth,
+                        windowHeight: res.windowHeight,
+                        wechatVersion: res.version,
+                        language: res.language,
+                        system: res.system,
+                        platform: res.platform,
+                        sdkVersion: res.SDKVersion,
+                    })
+                }
+            }),
+            wx.getNetworkType({
+                success: function(res) {
+                    that.setData({
+                        networkType: res.networkType
+                    })
+                }
             })
-          }
-        })
     },
     //校验数据
-    validateData: function () {
+    validateData: function() {
         var result = false;
         if (this.data.title == null || this.data.title.trim() == "") {
             app.showToast("请输入反馈标题", false);
@@ -80,7 +82,7 @@ Page({
         return result;
     },
     // 反馈
-    sendFeddback: function () {
+    sendFeddback: function() {
         var that = this;
         if (that.validateData()) {
             var msg = "";
@@ -114,7 +116,7 @@ Page({
                 },
                 method: 'POST',
                 // header: {}, // 设置请求的 header
-                success: function (res) {
+                success: function(res) {
                     console.log(res);
                     if (res.data == "success") {
                         feedbackResult = true;
@@ -123,10 +125,10 @@ Page({
                         msg = "反馈失败，请稍后重试";
                     }
                 },
-                fail: function (res) {
+                fail: function(res) {
                     msg = "请求失败，请稍后重试";
                 },
-                complete: function (res) {
+                complete: function(res) {
                     app.hideLoading();
                     app.showToast(msg, feedbackResult);
                     app.navigateBack();
