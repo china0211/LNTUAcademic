@@ -2,270 +2,142 @@
     <view class="head-bg-view">
         <image src="{{stuDetail.photoUrl}}" class="head-pic"></image>
     </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">姓名</text>
-                <text class="blank-content-text-detail">{{stuDetail.name}}</text>
-            </view>
+    <view class="weui-cells">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">姓名</view>
+            <view class="weui-cell__ft">{{stuDetail.name}}</view>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">英文名字</text>
-                <text class="blank-content-text-detail">{{stuDetail.englishName}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">姓名</text>
+            <text class="weui-cell__ft">{{stuDetail.name}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">性别</text>
-                <text class="blank-content-text-detail">{{stuDetail.sex}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">英文名字</text>
+            <text class="weui-cell__ft">{{stuDetail.englishName}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">院系</text>
-                <text class="blank-content-text-detail">{{stuDetail.college}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">性别</text>
+            <text class="weui-cell__ft">{{stuDetail.sex}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">专业</text>
-                <text class="blank-content-text-detail">{{stuDetail.major}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">院系</text>
+            <text class="weui-cell__ft">{{stuDetail.college}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">班级</text>
-                <text class="blank-content-text-detail">{{stuDetail.classInfo}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">专业</text>
+            <text class="weui-cell__ft">{{stuDetail.major}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">学号</text>
-                <text class="blank-content-text-detail">{{stuDetail.userId}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">班级</text>
+            <text class="weui-cell__ft">{{stuDetail.classInfo}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">联系电话</text>
-                <text class="blank-content-text-detail">{{stuDetail.contactTel}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">学号</text>
+            <text class="weui-cell__ft">{{stuDetail.userId}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">电子邮箱</text>
-                <text class="blank-content-text-detail">{{stuDetail.email}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">联系电话</text>
+            <text class="weui-cell__ft">{{stuDetail.contactTel}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">出生日期</text>
-                <text class="blank-content-text-detail">{{stuDetail.dateOfBirth}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">电子邮箱</text>
+            <text class="weui-cell__ft">{{stuDetail.email}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">民族</text>
-                <text class="blank-content-text-detail">{{stuDetail.nation}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">出生日期</text>
+            <text class="weui-cell__ft">{{stuDetail.dateOfBirth}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">家庭住址</text>
-                <text class="blank-content-text-detail">{{stuDetail.homeAddress}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">民族</text>
+            <text class="weui-cell__ft">{{stuDetail.nation}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">邮政编码</text>
-                <text class="blank-content-text-detail">{{stuDetail.zipCode}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">家庭住址</text>
+            <text class="weui-cell__ft">{{stuDetail.homeAddress}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">国籍</text>
-                <text class="blank-content-text-detail">{{stuDetail.nationality}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">邮政编码</text>
+            <text class="weui-cell__ft">{{stuDetail.zipCode}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">籍贯</text>
-                <text class="blank-content-text-detail">{{stuDetail.birthplace}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">国籍</text>
+            <text class="weui-cell__ft">{{stuDetail.nationality}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">证件类型</text>
-                <text class="blank-content-text-detail">{{stuDetail.idCardType}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">籍贯</text>
+            <text class="weui-cell__ft">{{stuDetail.birthplace}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">证件号码</text>
-                <text class="blank-content-text-detail">{{stuDetail.idCardNum}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">证件类型</text>
+            <text class="weui-cell__ft">{{stuDetail.idCardType}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">政治面貌</text>
-                <text class="blank-content-text-detail">{{stuDetail.politicalAffiliation}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">证件号码</text>
+            <text class="weui-cell__ft">{{stuDetail.idCardNum}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">考区</text>
-                <text class="blank-content-text-detail">{{stuDetail.entranceExamArea}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">政治面貌</text>
+            <text class="weui-cell__ft">{{stuDetail.politicalAffiliation}}</text>
         </view>
-    </view>
-        <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">学生来源</text>
-                <text class="blank-content-text-detail">{{stuDetail.sourceOfStudent}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">考区</text>
+            <text class="weui-cell__ft">{{stuDetail.entranceExamArea}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">高考总分</text>
-                <text class="blank-content-text-detail">{{stuDetail.entranceExamScore}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">学生来源</text>
+            <text class="weui-cell__ft">{{stuDetail.sourceOfStudent}}</text>
         </view>
-    </view>
-
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">毕业院校</text>
-                <text class="blank-content-text-detail">{{stuDetail.graduateSchool}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">高考总分</text>
+            <text class="weui-cell__ft">{{stuDetail.entranceExamScore}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">外语语种</text>
-                <text class="blank-content-text-detail">{{stuDetail.foreignLanguage}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">毕业院校</text>
+            <text class="weui-cell__ft">{{stuDetail.graduateSchool}}</text>
         </view>
-    </view>
-        <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">入学准考证号</text>
-                <text class="blank-content-text-detail">{{stuDetail.entranceExamNum}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">外语语种</text>
+            <text class="weui-cell__ft">{{stuDetail.foreignLanguage}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">入学录取证号</text>
-                <text class="blank-content-text-detail">{{stuDetail.admissionNum}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">入学准考证号</text>
+            <text class="weui-cell__ft">{{stuDetail.entranceExamNum}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">入学方式</text>
-                <text class="blank-content-text-detail">{{stuDetail.admissionType}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">入学录取证号</text>
+            <text class="weui-cell__ft">{{stuDetail.admissionNum}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">入学日期</text>
-                <text class="blank-content-text-detail">{{stuDetail.dateOfAdmission}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">入学方式</text>
+            <text class="weui-cell__ft">{{stuDetail.admissionType}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">学籍表号</text>
-                <text class="blank-content-text-detail">{{stuDetail.studentInfoTableNum}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">入学日期</text>
+            <text class="weui-cell__ft">{{stuDetail.dateOfAdmission}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">培养方式</text>
-                <text class="blank-content-text-detail">{{stuDetail.educationType}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">学籍表号</text>
+            <text class="weui-cell__ft">{{stuDetail.studentInfoTableNum}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">毕业日期</text>
-                <text class="blank-content-text-detail">{{stuDetail.dateOfGraduation}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">培养方式</text>
+            <text class="weui-cell__ft">{{stuDetail.educationType}}</text>
         </view>
-    </view>
-
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">毕业去向</text>
-                <text class="blank-content-text-detail">{{stuDetail.aboutAfterGraduation}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">毕业日期</text>
+            <text class="weui-cell__ft">{{stuDetail.dateOfGraduation}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">乘车区间</text>
-                <text class="blank-content-text-detail">{{stuDetail.travelRange}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">毕业去向</text>
+            <text class="weui-cell__ft">{{stuDetail.aboutAfterGraduation}}</text>
         </view>
-    </view>
-    <view class="blank-view">
-        <view class="blank-content">
-            <view>
-                <text class="blank-content-text">备注</text>
-                <text class="blank-content-text-detail">{{stuDetail.remarks}}</text>
-            </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">乘车区间</text>
+            <text class="weui-cell__ft">{{stuDetail.travelRange}}</text>
+        </view>
+        <view class="weui-cell">
+            <text class="weui-cell__bd">备注</text>
+            <text class="weui-cell__ft">{{stuDetail.remarks}}</text>
         </view>
     </view>
 </view>

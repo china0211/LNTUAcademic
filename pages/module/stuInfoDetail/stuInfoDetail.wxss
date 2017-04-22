@@ -12,26 +12,3 @@
     margin-top: 20rpx;
     border-radius: 50%;
 }
-
-.blank-view {
-    margin-top: 10rpx;
-    flex-direction: row;
-    height: 80rpx;
-    background-color: #fff;
-}
-
-.blank-content {
-    display: flex;
-    align-items: center;
-    padding: 20rpx 0rpx 5rpx 20rpx;
-}
-
-.blank-content-text-title {
-    position: absolute;
-    left: 20rpx;
-}
-
-.blank-content-text-detail {
-    position: absolute;
-    right: 20rpx;
-}
