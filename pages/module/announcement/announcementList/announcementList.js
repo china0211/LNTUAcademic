@@ -1,9 +1,11 @@
 var app = getApp();
+var mta = require('../../../../common/lib/mta.js');
 Page({
     data: {
         announcements: null
     },
     onLoad: function(options) {
+        mta.Page.init();
         var that = this;
         wx.request({
             url: app.globalData.getAnnouncementUrl,

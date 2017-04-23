@@ -1,4 +1,5 @@
-var app = getApp()
+var app = getApp();
+var mta = require('../../../common/lib/mta.js');
 var user = app.globalData.user;
 Page({
     data: {
@@ -9,6 +10,7 @@ Page({
         loading: false,
     },
     onLoad: function(options) {
+        mta.Page.init();
         var that = this
         app.getUserInfo(function(userInfo) {
             that.setData({

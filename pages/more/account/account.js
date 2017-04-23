@@ -1,5 +1,6 @@
 var app = getApp();
-var util = require('../../../utils/util.js')
+var util = require('../../../utils/util.js');
+var mta = require('../../../common/lib/mta.js');
 Page({
     data: {
         stuDetail: null,
@@ -11,15 +12,16 @@ Page({
         disabled: false,
         loading: false,
     },
-    onLoad: function (options) {
+    onLoad: function(options) {
+        mta.Page.init();
         var that = this;
         that.setData({
-            userInfo: app.globalData.userInfo
-        })
-        //读取本地保存的用户信息
+                userInfo: app.globalData.userInfo
+            })
+            //读取本地保存的用户信息
         wx.getStorage({
             key: 'isBind',
-            success: function (res) {
+            success: function(res) {
                 that.setData({
                     isBind: res.data
                 })
@@ -27,12 +29,12 @@ Page({
         })
         wx.getStorage({
             key: 'stuDetail',
-            success: function (response) {
+            success: function(response) {
                 that.setData({
-                    stuDetail: response.data,
-                    stuId: response.data.userId,
-                })
-                //查询绑定信息
+                        stuDetail: response.data,
+                        stuId: response.data.userId,
+                    })
+                    //查询绑定信息
                 wx.request({
                     url: app.globalData.queryBindStatusUrl,
                     data: {
@@ -40,7 +42,7 @@ Page({
                     },
                     method: 'POST',
                     // header: {},
-                    success: function (res) {
+                    success: function(res) {
                         if (res.data != null) {
                             that.setData({
                                 bindingTime: util.formatDate(new Date(res.data.bindingTime))
@@ -50,33 +52,33 @@ Page({
                             app.navigateBack();
                         }
                     },
-                    fail: function (res) {
+                    fail: function(res) {
                         app.showToast("请求失败，请稍后重试", false);
                         app.navigateBack();
                     },
                 })
             },
-            fail: function (response) {
+            fail: function(response) {
                 app.showToast("用户信息已过期，请重新登录", false)
                 app.redirectToLoginPage()
             },
         })
     },
-    loadding: function (e) {
+    loadding: function(e) {
         this.setData({
             disabled: !this.data.disabled,
             loading: !this.data.loading
         })
     },
     //绑定微信账号
-    bindStuIdWithWeChatId: function () {
+    bindStuIdWithWeChatId: function() {
         var that = this;
         var msg = "";
         var isSuccessed = false;
         wx.showModal({
             title: '绑定微信账号',
             content: '是否将学号和该微信账号绑定，若已有其他绑定关系将会被解除',
-            success: function (res) {
+            success: function(res) {
                 if (res.confirm) {
                     wx.request({
                         url: app.globalData.bindStuIdWithWeChatIdUrl,
@@ -88,7 +90,7 @@ Page({
                         header: {
                             Authorization: app.globalData.authorization,
                         },
-                        success: function (response) {
+                        success: function(response) {
                             if (response.data == "success") {
                                 msg = "绑定成功";
                                 isSuccessed = true;
@@ -97,10 +99,10 @@ Page({
                                 msg = "绑定失败，请稍后重试";
                             }
                         },
-                        fail: function () {
+                        fail: function() {
                             msg = "请求失败，请稍后重试";
                         },
-                        complete: function () {
+                        complete: function() {
                             app.showToast(msg, isSuccessed);
                         }
                     })
@@ -109,14 +111,14 @@ Page({
         })
     },
     //解除绑定
-    unboundAccount: function () {
+    unboundAccount: function() {
         var that = this;
         var msg = "";
         var isSuccessed = false;
         wx.showModal({
             title: '解除绑定',
             content: '是否确定要将该微信账号和学号解除绑定',
-            success: function (res) {
+            success: function(res) {
                 if (res.confirm) {
                     app.clearStorage()
                     that.loadding();
@@ -128,7 +130,7 @@ Page({
                         },
                         method: 'GET',
                         header: {},
-                        success: function (response) {
+                        success: function(response) {
                             if (response.data == "success") {
                                 msg = "已成功解除绑定";
                                 isSuccessed = true;
@@ -137,10 +139,10 @@ Page({
                                 msg = "解除绑定失败，请稍后重试";
                             }
                         },
-                        fail: function () {
+                        fail: function() {
                             msg = "请求失败，请稍后重试";
                         },
-                        complete: function () {
+                        complete: function() {
                             app.showToast(msg, isSuccessed);
                             that.loadding();
                         }
@@ -149,14 +151,14 @@ Page({
             },
         })
     },
-    switchAccount: function () {
+    switchAccount: function() {
         var that = this;
         var msg = "";
         var isSuccessed = false;
         wx.showModal({
             title: '切换账号',
             content: '是否确定要切换账号',
-            success: function (res) {
+            success: function(res) {
                 if (res.confirm) {
                     app.redirectToLoginPage()
                 }

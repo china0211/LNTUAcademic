@@ -10,3 +10,9 @@ typings
 
 #compile file
 jsconfig.json
+.idea/encodings.xml
+.idea/misc.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/LNTUAcademic.iml
+.idea/modules.xml

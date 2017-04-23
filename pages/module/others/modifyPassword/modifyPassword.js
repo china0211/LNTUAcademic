@@ -1,33 +1,34 @@
 var app = getApp();
+var mta = require('../../../../common/lib/mta.js');
 Page({
     data: {
         originalPassword: null,
         newPassword: null,
         confirmPassword: null
     },
-    onLoad: function (options) {
-        
+    onLoad: function(options) {
+        mta.Page.init();
     },
-    onShow: function () {
-       
+    onShow: function() {
+
     },
-    inputOriginalPassword: function (e) {
+    inputOriginalPassword: function(e) {
         this.setData({
             originalPassword: e.detail.value
         })
     },
-    inputNewPassword: function (e) {
+    inputNewPassword: function(e) {
         this.setData({
             newPassword: e.detail.value
         })
     },
-    inputConfirmPassword: function (e) {
+    inputConfirmPassword: function(e) {
         this.setData({
             confirmPassword: e.detail.value
         })
     },
     //校验密码格式
-    isPasswordFormatValid: function (password) {
+    isPasswordFormatValid: function(password) {
         var that = this;
         if (password == null || password == "" || password.length < 1 || password.length > 18) {
             return false;
@@ -36,7 +37,7 @@ Page({
         }
     },
     //校验密码是否为空
-    isPasswordFormatValid: function (password) {
+    isPasswordFormatValid: function(password) {
         var that = this;
         if (password != null && password != "") {
             return true;
@@ -45,7 +46,7 @@ Page({
         }
     },
     //校验密码
-    validatePassword: function () {
+    validatePassword: function() {
         var that = this;
         if (!that.isPasswordFormatValid(that.data.originalPassword)) {
             app.showToast("原密码为空或格式不正确", false);
@@ -66,7 +67,7 @@ Page({
             return true;
         }
     },
-    modifyPassword: function () {
+    modifyPassword: function() {
         var that = this;
         if (that.validatePassword()) {
             wx.request({
@@ -81,7 +82,7 @@ Page({
                     Authorization: app.globalData.authorization,
                     username: app.globalData.stuId
                 },
-                success: function (res) {
+                success: function(res) {
                     if (res.data.result == "success") {
                         app.showToast("修改密码成功", true);
                         app.navigateBack();
@@ -89,7 +90,7 @@ Page({
                         app.showToast("密码错误，请重新确认", false);
                     }
                 },
-                fail: function (res) {
+                fail: function(res) {
                     app.showToast("请求失败，请稍后重试", false);
                     app.navigateBack();
                 }

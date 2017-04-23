@@ -1,14 +1,15 @@
-var app = getApp()
+var app = getApp();
+var mta = require('../../../common/lib/mta.js');
 Page({
     data: {
         stuDetail: null,
         userInfo: null,
         isBind: false
     },
-    onLoad: function (options) {
-
+    onLoad: function(options) {
+        mta.Page.init();
     },
-    onShow: function () {
+    onShow: function() {
         var that = this
         that.setData({
             isBind: app.globalData.isBind,
@@ -17,16 +18,16 @@ Page({
 
         //读取本地保存的用户信息
         wx.getStorage({
-            key: 'stuDetail',
-            success: function (res) {
-                that.setData({
-                    stuDetail: res.data,
-                })
-            }
-        }),
+                key: 'stuDetail',
+                success: function(res) {
+                    that.setData({
+                        stuDetail: res.data,
+                    })
+                }
+            }),
             wx.getStorage({
                 key: 'isBind',
-                success: function (res) {
+                success: function(res) {
                     that.setData({
                         isBind: res.data
                     })

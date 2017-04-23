@@ -1,4 +1,5 @@
-var app = getApp()
+var app = getApp();
+var mta = require('../../../common/lib/mta.js');
 Page({
     data: {
         contentLength: 0,
@@ -23,7 +24,7 @@ Page({
         loading: false,
     },
     onLoad: function(options) {
-        // 页面初始化 options为页面跳转所带来的参数
+        mta.Page.init();
     },
     inputFeedbackTitle: function(e) {
         this.setData({
@@ -117,7 +118,6 @@ Page({
                 method: 'POST',
                 // header: {}, // 设置请求的 header
                 success: function(res) {
-                    console.log(res);
                     if (res.data == "success") {
                         feedbackResult = true;
                         msg = "反馈成功";
@@ -131,7 +131,9 @@ Page({
                 complete: function(res) {
                     app.hideLoading();
                     app.showToast(msg, feedbackResult);
-                    app.navigateBack();
+                    if(!feedbackResult){
+                        app.navigateBack();
+                    }
                 }
             })
         }
