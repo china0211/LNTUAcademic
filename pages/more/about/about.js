@@ -11,6 +11,7 @@ Page({
     onLoad: function(options) {
         mta.Page.init();
         var that = this;
+        app.showLoading();
         wx.request({
             url: app.globalData.getLogsUrl,
             data: {},
@@ -19,6 +20,9 @@ Page({
                 that.setData({
                     logs: res.data
                 })
+            },
+            complete: function(res) {
+                app.hideLoading();
             }
         })
         that.setData({

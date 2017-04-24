@@ -8,9 +8,7 @@ Page({
         weChatId: '',
         userInfo: null,
         bindingTime: '',
-        isBind: null,
-        disabled: false,
-        loading: false,
+        isBind: null
     },
     onLoad: function(options) {
         mta.Page.init();
@@ -64,12 +62,6 @@ Page({
             },
         })
     },
-    loadding: function(e) {
-        this.setData({
-            disabled: !this.data.disabled,
-            loading: !this.data.loading
-        })
-    },
     //绑定微信账号
     bindStuIdWithWeChatId: function() {
         var that = this;
@@ -80,6 +72,7 @@ Page({
             content: '是否将学号和该微信账号绑定，若已有其他绑定关系将会被解除',
             success: function(res) {
                 if (res.confirm) {
+                    app.showLoading();
                     wx.request({
                         url: app.globalData.bindStuIdWithWeChatIdUrl,
                         data: {
@@ -103,6 +96,7 @@ Page({
                             msg = "请求失败，请稍后重试";
                         },
                         complete: function() {
+                            app.hideLoading();
                             app.showToast(msg, isSuccessed);
                         }
                     })
@@ -120,8 +114,8 @@ Page({
             content: '是否确定要将该微信账号和学号解除绑定',
             success: function(res) {
                 if (res.confirm) {
+                    app.showLoading();
                     app.clearStorage()
-                    that.loadding();
                     wx.request({
                         url: app.globalData.removeBoundUrl,
                         data: {
@@ -144,7 +138,7 @@ Page({
                         },
                         complete: function() {
                             app.showToast(msg, isSuccessed);
-                            that.loadding();
+                            app.hideLoading();
                         }
                     })
                 }

@@ -5,9 +5,7 @@ Page({
     data: {
         stuId: '',
         userInfo: '',
-        password: '',
-        disabled: false,
-        loading: false,
+        password: ''
     },
     onLoad: function(options) {
         mta.Page.init();
@@ -18,13 +16,6 @@ Page({
             })
         })
     },
-    logging: function(e) {
-        this.setData({
-            disabled: !this.data.disabled,
-            loading: !this.data.loading
-        })
-    },
-
     inputStuId: function(e) {
         this.setData({
             stuId: e.detail.value
@@ -40,7 +31,7 @@ Page({
         var that = this;
         var isValid = that.validateInput();
         if (isValid) {
-            app.showLoading();
+            app.showLoading("正在登陆");
             wx.request({
                 url: app.globalData.loginUrl,
                 data: {
@@ -87,6 +78,7 @@ Page({
             content: '是否将学号和微信账号绑定，绑定后可以直接通过微信账号登录',
             success: function(res) {
                 if (res.confirm) {
+                    app.showLoading("正在绑定");
                     wx.request({
                         url: app.globalData.bindStuIdWithWeChatIdUrl,
                         data: {
@@ -102,7 +94,7 @@ Page({
                                 msg = "绑定成功";
                                 isSuccessed = true;
                                 app.globalData.isBind = true;
-                                app.saveStorage("isBind",true);
+                                app.saveStorage("isBind", true);
                             } else {
                                 msg = "绑定失败，请稍后重试";
                             }
@@ -111,6 +103,7 @@ Page({
                             msg = "请求失败，请稍后重试";
                         },
                         complete: function() {
+                            app.hideLoading();
                             app.showToast(msg, isSuccessed);
                             app.navigateBack();
                         }
@@ -154,7 +147,7 @@ Page({
         var that = this;
         if (that.data.stuId != "" && that.data.password != "") {
             if (that.data.stuId.length == 10) {
-                if (that.data.password.length == 6) {
+                if (that.data.password.length > 0 && that.data.password.length < 19) {
                     return true;
                 } else {
                     app.showToast("密码格式错误", false);

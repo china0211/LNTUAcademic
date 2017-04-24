@@ -88,7 +88,7 @@ Page({
         if (that.validateData()) {
             var msg = "";
             var feedbackResult = false;
-            app.showLoading();
+            app.showLoading("正在反馈");
             that.getSystemInfo();
             wx.request({
                 url: app.globalData.feedbackUrl,
@@ -131,7 +131,7 @@ Page({
                 complete: function(res) {
                     app.hideLoading();
                     app.showToast(msg, feedbackResult);
-                    if(!feedbackResult){
+                    if (!feedbackResult) {
                         app.navigateBack();
                     }
                 }
