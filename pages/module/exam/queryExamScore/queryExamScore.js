@@ -56,6 +56,8 @@ Page({
             app.scorePageTitle = academicyear;
         }
         if (academicyear != null && academicyear != "请选择学年学期") {
+            var toastMsg = '';
+            var failed = true;
             app.showLoading('正在查询', true);
             wx.request({
                 url: app.globalData.queryAchievementUrl,
@@ -71,17 +73,21 @@ Page({
                 },
                 success: function(res) {
                     if (res.data.msg == "success") {
+                        failed = false;
                         app.examScores = res.data.result;
                         app.navigateToPage("/pages/module/exam/examScore/examScore")
                     } else {
-                        app.showToast("查询失败，请稍后重试", false);
+                        toastMsg = "查询失败，请稍后重试";
                     }
                 },
                 fail: function(res) {
-                    app.showToast("请求失败，请稍后重试", false);
+                    toastMsg = "请求失败，请稍后重试";
                 },
                 complete: function(res) {
-                    app.hideLoading()
+                    app.hideLoading();
+                    if (failed) {
+                        app.showToast(toastMsg, false)
+                    }
                 }
             })
         } else {
@@ -91,6 +97,8 @@ Page({
     //查询绩点
     queryGradePoint: function() {
         var that = this;
+        var toastMsg = '';
+        var failed = true;
         app.showLoading('正在查询', true);
         wx.request({
             url: app.globalData.queryGradePointUrl,
@@ -104,16 +112,20 @@ Page({
             },
             success: function(res) {
                 if (res.data.msg == "success") {
+                    failed = false;
                     app.showMsgModal('你当前的学分绩为:' + res.data.result)
                 } else {
-                    app.showToast("查询失败，请稍后重试", false);
+                    toastMsg = "查询失败，请稍后重试";
                 }
             },
             fail: function(res) {
-                app.showToast("请求失败，请稍后重试", false);
+                toastMsg = "请求失败，请稍后重试";
             },
             complete: function(res) {
-                app.hideLoading()
+                app.hideLoading();
+                if (failed) {
+                    app.showToast(toastMsg, false)
+                }
             }
         })
     }

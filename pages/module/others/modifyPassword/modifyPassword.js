@@ -70,6 +70,9 @@ Page({
     modifyPassword: function() {
         var that = this;
         if (that.validatePassword()) {
+            var toastMsg = '';
+            var failed = true;
+            var navigateBack = false;
             wx.request({
                 url: app.globalData.modifyPasswordUrl,
                 data: {
@@ -84,15 +87,22 @@ Page({
                 },
                 success: function(res) {
                     if (res.data.result == "success") {
-                        app.showToast("修改密码成功", true);
-                        app.navigateBack();
+                        failed = false;
+                        navigateBack = true;
+                        toastMsg = "修改密码成功";
                     } else {
-                        app.showToast("密码错误，请重新确认", false);
+                        toastMsg = "密码错误，请重新确认";
                     }
                 },
                 fail: function(res) {
-                    app.showToast("请求失败，请稍后重试", false);
-                    app.navigateBack();
+                    toastMsg = "请求失败，请稍后重试";
+                },
+                complete: function(res) {
+                    app.hideLoading();
+                    app.showToast(msg, !failed);
+                    if (navigateBack) {
+                        app.navigateBack();
+                    }
                 }
             })
         }

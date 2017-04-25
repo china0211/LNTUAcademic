@@ -30,6 +30,9 @@ Page({
     login: function() {
         var that = this;
         var isValid = that.validateInput();
+        var toastMsg = '';
+        var failed = true;
+        var navigateBack = false;
         if (isValid) {
             app.showLoading("正在登陆");
             wx.request({
@@ -44,6 +47,7 @@ Page({
                 },
                 success: function(res) {
                     if (res.data.message == "请求成功") {
+                        failed = false;
                         //将stuId设置为全局属性
                         app.globalData.stuId = that.data.stuId
                         that.queryAllInfo();
@@ -55,14 +59,18 @@ Page({
                         })
                         app.globalData.isBind = true
                     } else {
-                        app.showToast("登录失败，学号或密码错误", false);
+                        toastMsg = "登录失败，学号或密码错误";
                     }
                 },
                 fail: function() {
-                    app.showToast("请求失败，请稍后重试", false);
+                    toastMsg = "请求失败，请稍后重试";
+
                 },
                 complete: function() {
                     app.hideLoading();
+                    if (failed) {
+                        app.showToast(toastMsg, false);
+                    }
                 }
             })
         }
@@ -71,8 +79,9 @@ Page({
     //绑定微信账号
     bindStuIdWithWeChatId: function() {
         var that = this;
-        var msg = "";
-        var isSuccessed = false;
+        var toastMsg = '';
+        var failed = true;
+        var navigateBack = false;
         wx.showModal({
             title: '绑定微信账号',
             content: '是否将学号和微信账号绑定，绑定后可以直接通过微信账号登录',
@@ -91,20 +100,20 @@ Page({
                         },
                         success: function(response) {
                             if (response.data == "success") {
-                                msg = "绑定成功";
-                                isSuccessed = true;
+                                toastMsg = "绑定成功";
+                                failed = false;
                                 app.globalData.isBind = true;
                                 app.saveStorage("isBind", true);
                             } else {
-                                msg = "绑定失败，请稍后重试";
+                                toastMsg = "绑定失败，请稍后重试";
                             }
                         },
                         fail: function() {
-                            msg = "请求失败，请稍后重试";
+                            toastMsg = "请求失败，请稍后重试";
                         },
                         complete: function() {
                             app.hideLoading();
-                            app.showToast(msg, isSuccessed);
+                            app.showToast(toastMsg, !failed);
                             app.navigateBack();
                         }
                     })
@@ -117,6 +126,8 @@ Page({
 
     // 查询
     queryAllInfo: function() {
+        var toastMsg = '';
+        var failed = true;
         var that = this;
         wx.request({
             url: app.globalData.studentInfoUrl,
@@ -127,18 +138,27 @@ Page({
             },
             success: function(res) {
                 if (res.data.message == "请求成功") {
+                    failed = false;
                     app.globalData.stuDetail = res.data.info.baseInfo
                     wx.setStorage({
                         key: 'stuDetail',
                         data: res.data.info.baseInfo,
                         fail: function(res) {
-                            app.showToast("获取用户信息失败", false)
+                            failed = true;
+                            toastMsg = "保存用户信息失败";
                         }
                     })
+                } else {
+                    toastMsg = "获取用户信息失败,请重新登录";
                 }
             },
             fail: function(res) {
-                app.showToast("获取用户信息失败", false)
+                toastMsg = "获取用户信息失败";
+            },
+            complete: function(res) {
+                if (failed) {
+                    app.showToast(toastMsg, !failed);
+                }
             }
         })
     },
