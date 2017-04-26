@@ -57,6 +57,7 @@ App({
         queryBindStatusUrl: properties.queryBindStatusUrl,
         getAnnouncementUrl: properties.getAnnouncementUrl,
         modifyPasswordUrl: properties.modifyPasswordUrl,
+        queryClassroomUrl: properties.queryClassroomUrl,
         isBind: false,
 
         toastFailImg: properties.toastFailImg

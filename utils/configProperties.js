@@ -13,12 +13,13 @@
   var queryBindStatusUrl = "";
   var queryAchievementUrl = "";
   var queryGradePointUrl = "";
-  var modifyPasswordUrl = ""
+  var modifyPasswordUrl = "";
+  var queryClassroomUrl = "";
   var toastFailImg = "/images/global/fail.png";
 
 
   module.exports = {
-  	  appid: appid,
+      appid: appid,
       secret: secret,
       authorization: authorization,
       academicUrl: academicUrl,
@@ -33,6 +34,7 @@
       bindStuIdWithWeChatIdUrl: bindStuIdWithWeChatIdUrl,
       queryAchievementUrl: queryAchievementUrl,
       queryGradePointUrl: queryGradePointUrl,
- 	  modifyPasswordUrl:modifyPasswordUrl,
+      modifyPasswordUrl: modifyPasswordUrl,
+      queryClassroomUrl: queryClassroomUrl,
       toastFailImg: toastFailImg
   }
