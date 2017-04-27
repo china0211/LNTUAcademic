@@ -1,2 +1,59 @@
-<!--pages/module/examPlan/examPlan.wxml-->
-<text>pages/module/examPlan/examPlan.wxml</text>
+<view class="page">
+    <view class="page__bd" wx:if="true">
+        <view class="list-container">
+            <view class="weui-flex ">
+                <view>
+                    <view class="list-content">
+                        <view class="weui-cell__hd space-left">
+                            <image src="/images/main/module/course.png" class="list-icon"></image>
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-flex__item">
+                    <view class="list-content list-title text-left">软件工程</view>
+                </view>
+                <view>
+                    <view class="list-content list-detail text-center space-right">剩</view>
+                </view>
+            </view>
+            <view class="weui-flex">
+                <view>
+                    <view class="list-content">
+                        <view class="weui-cell__hd space-left">
+                            <image src="/images/global/time_color.png" class="list-icon"></image>
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-flex__item">
+                    <view class="list-content list-detail text-left">2017年5月20日 19:00</view>
+                </view>
+                <view>
+                    <view class="list-content list-title text-center left-day-up space-right">55</view>
+                </view>
+            </view>
+            <view class="weui-flex">
+                <view>
+                    <view class="list-content">
+                        <view class="weui-cell__hd space-left">
+                            <image src="/images/global/location.png" class="list-icon"></image>
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-flex__item">
+                    <view class="list-content list-detail text-left ">尔雅101</view>
+                </view>
+                <view>
+                    <view class="list-content list-detail text-center space-right">天</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="container" wx:else>
+        <view class="icon-box">
+            <icon class="icon-box-img" type="warn" size="93" color="#C9C9C9"></icon>
+        </view>
+        <view>
+            <text class="icon-box-title">未查询到结果</text>
+        </view>
+    </view>
+</view>

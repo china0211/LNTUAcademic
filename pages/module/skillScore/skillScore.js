@@ -42,7 +42,7 @@ Page({
                     },
                     complete: function(res) {
                         app.hideLoading();
-                        app.showToast(msg, !failed);
+                        app.showToast(toastMsg, !failed);
                         if (navigateBack) {
                             app.navigateBack();
                         }

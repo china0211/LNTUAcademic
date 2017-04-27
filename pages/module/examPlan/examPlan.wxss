@@ -1,1 +1,59 @@
-/* pages/module/examPlan/examPlan.wxss */
+.list-container {
+    margin: 20rpx 0 20rpx 0;
+    width: 100%;
+}
+
+.list-content {
+    padding: 0 10px 0 10rpx;
+    background-color: #fff;
+    line-height: 2.7em;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.space-left {
+    margin-left: 20rpx;
+}
+
+.space-right {
+    padding-right: 30rpx;
+}
+
+.list-title {
+    font-size: 15pt;
+    line-height: 220%;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.list-detail {
+    font-size: 11pt;
+    color: darkgray;
+    line-height: 300%;
+}
+
+.list-icon {
+    vertical-align: middle;
+    width: 45rpx;
+    height: 45rpx;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 100rpx 0;
+    box-sizing: border-box;
+}
+
+.icon-box-title {
+    color: #aaa;
+}
