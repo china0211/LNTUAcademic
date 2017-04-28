@@ -35,13 +35,13 @@
         "list": [{
             "pagePath": "pages/index/index",
             "text": "功能",
-            "iconPath": "/images/main/module.png",
-            "selectedIconPath": "/images/main/module.png"
+            "iconPath": "/images/main/module_gray.png",
+            "selectedIconPath": "/images/main/module_color.png"
         }, {
             "pagePath": "pages/more/me/me",
             "text": "我",
-            "iconPath": "/images/main/mine.png",
-            "selectedIconPath": "/images/main/mine.png"
+            "iconPath": "/images/main/mine_gray.png",
+            "selectedIconPath": "/images/main/mine_color.png"
         }]
     },
     "networkTimeout": {

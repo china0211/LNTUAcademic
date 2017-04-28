@@ -1,7 +1,7 @@
   var appid = "";
   var secret = "";
   var authorization = "";
-  var wxGlobalToken = "";
+  var wxGlobalToken = "4878ED34CBFADC5D8E4849E667B1AC62";
   var academicUrl = "";
   var loginUrl = "";
   var studentInfoUrl = "";
@@ -9,7 +9,7 @@
   var scheduleUrl = "";
   var skillInfoUrl = "";
   var bindStuIdWithWeChatIdUrl = "";
-  var getLogsUrl = "";
+  var getLogsUrl = "https://hellowoods.xyz/OE/getlogs";
   var feedbackUrl = "";
   var queryBindStatusUrl = "";
   var queryAchievementUrl = "";
@@ -18,7 +18,7 @@
   var queryClassroomUrl = "";
   var removeBoundUrl = "";
   var getAnnouncementUrl = "";
-  var getTokenUrl = "";
+  var getTokenUrl = "http://localhost:8087/getToken";
   var toastFailImg = "/images/global/fail.png";
 
 
