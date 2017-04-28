@@ -1,6 +1,7 @@
   var appid = "";
   var secret = "";
   var authorization = "";
+  var wxGlobalToken = "";
   var academicUrl = "";
   var loginUrl = "";
   var studentInfoUrl = "";
@@ -15,6 +16,9 @@
   var queryGradePointUrl = "";
   var modifyPasswordUrl = "";
   var queryClassroomUrl = "";
+  var removeBoundUrl = "";
+  var getAnnouncementUrl = "";
+  var getTokenUrl = "";
   var toastFailImg = "/images/global/fail.png";
 
 
@@ -22,6 +26,7 @@
       appid: appid,
       secret: secret,
       authorization: authorization,
+      wxGlobalToken: wxGlobalToken,
       academicUrl: academicUrl,
       loginUrl: loginUrl,
       studentInfoUrl: studentInfoUrl,
@@ -36,5 +41,8 @@
       queryGradePointUrl: queryGradePointUrl,
       modifyPasswordUrl: modifyPasswordUrl,
       queryClassroomUrl: queryClassroomUrl,
+      removeBoundUrl: removeBoundUrl,
+      getAnnouncementUrl: getAnnouncementUrl,
+      getTokenUrl: getTokenUrl,
       toastFailImg: toastFailImg
   }

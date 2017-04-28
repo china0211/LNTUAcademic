@@ -39,7 +39,9 @@ Page({
                         stuId: that.data.stuId
                     },
                     method: 'POST',
-                    // header: {},
+                    header: {
+                        Authorization: app.globalData.wxGlobalToken
+                    },
                     success: function(res) {
                         if (res.data != null) {
                             that.setData({
@@ -81,7 +83,7 @@ Page({
                         },
                         method: 'POST',
                         header: {
-                            Authorization: app.globalData.authorization,
+                            Authorization: app.globalData.wxGlobalToken
                         },
                         success: function(response) {
                             if (response.data == "success") {
@@ -123,7 +125,9 @@ Page({
                             weChatId: app.globalData.weChatId
                         },
                         method: 'GET',
-                        header: {},
+                        header: {
+                            Authorization: app.globalData.wxGlobalToken
+                        },
                         success: function(response) {
                             if (response.data == "success") {
                                 msg = "已成功解除绑定";

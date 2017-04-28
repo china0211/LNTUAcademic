@@ -116,7 +116,9 @@ Page({
                     networkType: that.data.networkType
                 },
                 method: 'POST',
-                // header: {}, // 设置请求的 header
+                header: {
+                    Authorization: app.globalData.wxGlobalToken
+                },
                 success: function(res) {
                     if (res.data == "success") {
                         feedbackResult = true;

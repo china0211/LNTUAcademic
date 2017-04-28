@@ -96,7 +96,7 @@ Page({
                         },
                         method: 'GET',
                         header: {
-                            Authorization: app.globalData.authorization,
+                            Authorization: app.globalData.wxGlobalToken
                         },
                         success: function(response) {
                             if (response.data == "success") {

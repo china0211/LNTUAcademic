@@ -14,7 +14,9 @@ Page({
             url: app.globalData.getAnnouncementUrl,
             data: {},
             method: 'GET',
-            header: {},
+            header: {
+                Authorization: app.globalData.wxGlobalToken
+            },
             success: function(res) {
                 if (res.data.status == "success") {
                     failed = false;

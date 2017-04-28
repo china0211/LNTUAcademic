@@ -15,6 +15,9 @@ Page({
         wx.request({
             url: app.globalData.getLogsUrl,
             data: {},
+            header: {
+                Authorization: app.globalData.wxGlobalToken
+            },
             method: 'GET',
             success: function(res) {
                 that.setData({

@@ -90,7 +90,9 @@ Page({
                         day: that.data.selecetedDay,
                     },
                     method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-                    // header: {}, // 设置请求的 header
+                    header: {
+                        Authorization: app.globalData.wxGlobalToken
+                    },
                     success: function (res) {
                         console.log(res)
                         if (res.data.status == "success") {

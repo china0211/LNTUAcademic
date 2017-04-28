@@ -2,10 +2,11 @@
 var properties = require("/utils/configProperties.js")
 var mta = require('/common/lib/mta.js')
 App({
-    onLaunch: function(options) {
+    onLaunch: function (options) {
         var that = this;
         var code = null;
         that.getOpenId();
+        that.getToken();
         //腾讯MTA分析
         mta.App.init({
             "appID": "500013092",
@@ -17,16 +18,16 @@ App({
         });
         this.mta = mta;
     },
-    getUserInfo: function(cb) {
+    getUserInfo: function (cb) {
         var that = this;
         if (this.globalData.userInfo) {
             typeof cb == "function" && cb(this.globalData.userInfo)
         } else {
             //调用登录接口
             wx.login({
-                success: function() {
+                success: function () {
                     wx.getUserInfo({
-                        success: function(res) {
+                        success: function (res) {
                             typeof cb == "function" && cb(that.globalData.userInfo)
                         }
                     })
@@ -42,6 +43,7 @@ App({
         weChatId: '',
         stuDetail: null,
         authorization: properties.authorization,
+        wxGlobalToken: properties.wxGlobalToken,
         academicUrl: properties.academicUrl,
         loginUrl: properties.loginUrl,
         studentInfoUrl: properties.studentInfoUrl,
@@ -58,46 +60,70 @@ App({
         getAnnouncementUrl: properties.getAnnouncementUrl,
         modifyPasswordUrl: properties.modifyPasswordUrl,
         queryClassroomUrl: properties.queryClassroomUrl,
+        getTokenUrl: properties.getTokenUrl,
         isBind: false,
 
         toastFailImg: properties.toastFailImg
     },
     //获取openid
-    getOpenId: function() {
+    getOpenId: function () {
         var that = this
         wx.login({
-            success: function(res) {
+            success: function (res) {
                 if (res.code) {
                     wx.request({
                         url: 'https://api.weixin.qq.com/sns/jscode2session?appid=' + that.globalData.appid + '&secret=' + that.globalData.secret + '&grant_type=authorization_code&js_code=' + res.code,
                         data: {},
                         method: 'GET',
                         header: {},
-                        success: function(res) {
+                        success: function (res) {
                             that.globalData.weChatId = res.data.openid
                         },
-                        fail: function(res) {
+                        fail: function (res) {
                             that.showToast("获取授权信息失败，请重新打开应用", false)
                         },
-                        complete: function(res) {
+                        complete: function (res) {
                             // complete
                         }
                     })
                 }
                 wx.getUserInfo({
-                    success: function(res) {
+                    success: function (res) {
                         that.globalData.userInfo = res.userInfo
                     }
                 })
             },
-            fail: function(res) {
+            fail: function (res) {
                 that.showToast("获取授权信息失败，请重新打开应用", false)
             },
-            complete: function(res) {}
+            complete: function (res) {
+            }
+        })
+    },
+    // 获取TOKEN
+    getToken: function () {
+        var that = this;
+        wx.request({
+            url: that.globalData.getTokenUrl,
+            data: {},
+            method: 'GET',
+            header: {
+                Authorization: that.globalData.wxGlobalToken
+            },
+            success: function (res) {
+                console.log(res.data.result)
+                that.globalData.wxGlobalToken = res.data.result;
+            },
+            fail: function (res) {
+                that.showToast("获取授权信息失败，请重新打开应用", false)
+            },
+            complete: function (res) {
+                // complete
+            }
         })
     },
     //提示信息(信息内容，是否成功提示)
-    showToast: function(msg, isSuccessed) {
+    showToast: function (msg, isSuccessed) {
         var that = this;
         if (isSuccessed) {
             wx.showToast({
@@ -113,7 +139,7 @@ App({
         }
     },
     //显示加载loadding
-    showLoading: function(title, ifShowMask) {
+    showLoading: function (title, ifShowMask) {
         wx.showLoading({
             title: title || '加载中',
             mask: ifShowMask || true,
@@ -121,14 +147,14 @@ App({
         })
     },
     //显示错误提醒信息
-    showMsgModal: function(msg) {
+    showMsgModal: function (msg) {
         wx.showModal({
             showCancel: false,
             content: msg || "未知错误"
         })
     },
     //隐藏加载loadding
-    hideLoading: function() {
+    hideLoading: function () {
         wx.hideLoading();
     },
     //页面跳转
@@ -144,28 +170,28 @@ App({
         })
     },
     //重定向到登录页面
-    redirectToLoginPage: function() {
+    redirectToLoginPage: function () {
         wx.redirectTo({
             url: '/pages/more/login/login'
         })
     },
     //返回前一个页面
-    navigateBack: function() {
-        setTimeout(function() {
+    navigateBack: function () {
+        setTimeout(function () {
             wx.navigateBack({
                 delta: 1
             })
         }, 1500)
     },
     //保存缓存
-    saveStorage: function(key, value) {
+    saveStorage: function (key, value) {
         wx.setStorage({
             key: key || '',
             data: value || ''
         })
     },
     //清除缓存
-    clearStorage: function() {
+    clearStorage: function () {
         try {
             wx.clearStorageSync()
         } catch (e) {
