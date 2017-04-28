@@ -12,6 +12,7 @@
 
 .text-left {
     text-align: left;
+    margin-top: 3rpx;
 }
 
 .text-center {

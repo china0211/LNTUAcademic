@@ -12,6 +12,11 @@
     color: #aaa;
 }
 
+.badge-space {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
 .container {
     height: 100%;
     display: flex;

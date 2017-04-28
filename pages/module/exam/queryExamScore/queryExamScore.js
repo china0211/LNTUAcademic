@@ -68,7 +68,7 @@ Page({
                 },
                 method: 'GET',
                 header: {
-                    Authorization: app.globalData.authorization,
+                    Authorization: app.globalData.wxGlobalToken,
                     username: that.data.stuId
                 },
                 success: function(res) {

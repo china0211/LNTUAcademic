@@ -22,8 +22,7 @@
         <text class="desc-list-item">教务在线：http://60.18.131.131</text>
         <text class="desc-list-item">移动APP：https://www.lgdjwc.com/</text>
       </view>
-      <text class="desc-content">辽宁工程技术大学·教务在线 微信小程序</text>
-      <text class="desc-content">以最直接的形式提供教务在线功能，贴合微信小程序触手可及、用完即走的特点，所有风格遵循微信设计指导；集成了教务在线的常用功能，加入了微信号和学号绑定，尽可能的提高教务在线的易用性</text>
+      <text class="desc-content">辽宁工程技术大学·教务在线 微信小程序以最直接的形式提供教务在线功能，贴合微信小程序触手可及、用完即走的特点，所有风格遵循微信设计指导；集成了教务在线的常用功能，加入了微信号和学号绑定，尽可能的提高教务在线的易用性</text>
     </view>
     <view class="describe" wx:if="{{!showLog}}">
       <text class="desc-title">应用信息</text>
