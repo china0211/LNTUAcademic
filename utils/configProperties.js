@@ -2,6 +2,7 @@
   var secret = "";
   var wxGlobalToken = "";
   var authorization = "";
+  var getOpenIdUrl = "https://api.weixin.qq.com/sns/jscode2session";
   var academicUrl = "";
   var loginUrl = "";
   var studentInfoUrl = "";
@@ -28,6 +29,7 @@
       secret: secret,
       wxGlobalToken: wxGlobalToken,
       authorization: authorization,
+      getOpenIdUrl: getOpenIdUrl,
       academicUrl: academicUrl,
       loginUrl: loginUrl,
       studentInfoUrl: studentInfoUrl,
