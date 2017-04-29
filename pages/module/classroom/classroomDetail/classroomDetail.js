@@ -1,5 +1,4 @@
 var app = getApp();
-var mta = require('../../../../common/lib/mta.js');
 Page({
   data: {
     classrooms: null
@@ -12,6 +11,6 @@ Page({
     that.setData({
       classrooms: app.currentClassrooms
     }),
-        mta.Page.init();
+        app.mta.Page.init();
   }
 })

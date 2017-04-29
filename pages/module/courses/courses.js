@@ -1,8 +1,9 @@
-var mta = require('../../../common/lib/mta.js');
+var app = getApp();
 Page({
     data: {},
     onLoad: function(options) {
-        mta.Page.init();
+        app.mta.Page.init();
+        app.validateStuId();
     },
     onReady: function() {
         // 页面渲染完成

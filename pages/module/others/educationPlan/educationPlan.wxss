@@ -1,1 +1,7 @@
-/* pages/module/others/educationPlan/educationPlan.wxss */
+.preview_container {
+    background-color: #fff;
+}
+
+.content_margin {
+    margin: 20rpx;
+}

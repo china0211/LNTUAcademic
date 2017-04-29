@@ -1,33 +1,31 @@
 var app = getApp();
-var mta = require('../../../common/lib/mta.js');
-var user = app.globalData.user;
 Page({
     data: {
         stuId: '',
         userInfo: '',
         password: ''
     },
-    onLoad: function(options) {
-        mta.Page.init();
+    onLoad: function (options) {
+        app.mta.Page.init();
         var that = this
-        app.getUserInfo(function(userInfo) {
+        app.getUserInfo(function (userInfo) {
             that.setData({
                 userInfo: userInfo
             })
         })
     },
-    inputStuId: function(e) {
+    inputStuId: function (e) {
         this.setData({
             stuId: e.detail.value
         })
     },
-    inputPassword: function(e) {
+    inputPassword: function (e) {
         this.setData({
             password: e.detail.value
         })
     },
 
-    login: function() {
+    login: function () {
         var that = this;
         var isValid = that.validateInput();
         var toastMsg = '';
@@ -45,28 +43,25 @@ Page({
                 header: {
                     Authorization: app.globalData.authorization
                 },
-                success: function(res) {
+                success: function (res) {
                     if (res.data.message == "请求成功") {
                         failed = false;
                         //将stuId设置为全局属性
                         app.globalData.stuId = that.data.stuId
-                        that.queryAllInfo();
+                        app.queryAllstuInfo();
                         that.bindStuIdWithWeChatId();
                         //将数据保存到本地，方便下次使用读取
-                        wx.setStorage({
-                            key: "stuId",
-                            data: that.data.stuId
-                        })
+                        app.saveStorage("stuId", that.data.stuId);
                         app.globalData.isBind = true
                     } else {
                         toastMsg = "登录失败，学号或密码错误";
                     }
                 },
-                fail: function() {
+                fail: function () {
                     toastMsg = "请求失败，请稍后重试";
 
                 },
-                complete: function() {
+                complete: function () {
                     app.hideLoading();
                     if (failed) {
                         app.showToast(toastMsg, false);
@@ -77,7 +72,7 @@ Page({
     },
 
     //绑定微信账号
-    bindStuIdWithWeChatId: function() {
+    bindStuIdWithWeChatId: function () {
         var that = this;
         var toastMsg = '';
         var failed = true;
@@ -85,7 +80,7 @@ Page({
         wx.showModal({
             title: '绑定微信账号',
             content: '是否将学号和微信账号绑定，绑定后可以直接通过微信账号登录',
-            success: function(res) {
+            success: function (res) {
                 if (res.confirm) {
                     app.showLoading("正在绑定");
                     wx.request({
@@ -98,7 +93,7 @@ Page({
                         header: {
                             Authorization: app.globalData.wxGlobalToken
                         },
-                        success: function(response) {
+                        success: function (response) {
                             if (response.data == "success") {
                                 toastMsg = "绑定成功";
                                 failed = false;
@@ -108,10 +103,10 @@ Page({
                                 toastMsg = "绑定失败，请稍后重试";
                             }
                         },
-                        fail: function() {
+                        fail: function () {
                             toastMsg = "请求失败，请稍后重试";
                         },
-                        complete: function() {
+                        complete: function () {
                             app.hideLoading();
                             app.showToast(toastMsg, !failed);
                             app.navigateBack();
@@ -125,7 +120,7 @@ Page({
     },
 
     // 查询
-    queryAllInfo: function() {
+    queryAllInfo: function () {
         var toastMsg = '';
         var failed = true;
         var that = this;
@@ -136,14 +131,14 @@ Page({
                 Authorization: app.globalData.authorization,
                 username: app.globalData.stuId
             },
-            success: function(res) {
+            success: function (res) {
                 if (res.data.message == "请求成功") {
                     failed = false;
                     app.globalData.stuDetail = res.data.info.baseInfo
                     wx.setStorage({
                         key: 'stuDetail',
                         data: res.data.info.baseInfo,
-                        fail: function(res) {
+                        fail: function (res) {
                             failed = true;
                             toastMsg = "保存用户信息失败";
                         }
@@ -152,10 +147,10 @@ Page({
                     toastMsg = "获取用户信息失败,请重新登录";
                 }
             },
-            fail: function(res) {
+            fail: function (res) {
                 toastMsg = "获取用户信息失败";
             },
-            complete: function(res) {
+            complete: function (res) {
                 if (failed) {
                     app.showToast(toastMsg, !failed);
                 }
@@ -163,7 +158,7 @@ Page({
         })
     },
     //校验输入信息
-    validateInput: function() {
+    validateInput: function () {
         var that = this;
         if (that.data.stuId != "" && that.data.password != "") {
             if (that.data.stuId.length == 10) {

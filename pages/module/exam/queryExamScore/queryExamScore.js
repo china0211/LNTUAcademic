@@ -1,6 +1,5 @@
 var app = getApp();
 var util = require("../../../../utils/util.js");
-var mta = require('../../../../common/lib/mta.js');
 Page({
     data: {
         stuId: null,
@@ -8,7 +7,8 @@ Page({
         selectedAcademicYear: '请选择学年学期'
     },
     onLoad: function(options) {
-        mta.Page.init();
+        app.mta.Page.init();
+        app.validateStuId();
         var that = this;
         that.setStuId()
     },
@@ -107,7 +107,7 @@ Page({
             },
             method: 'GET',
             header: {
-                Authorization: app.globalData.authorization,
+                Authorization: app.globalData.wxGlobalToken,
                 username: that.data.stuId
             },
             success: function(res) {

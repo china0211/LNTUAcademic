@@ -1,5 +1,4 @@
 var app = getApp();
-var mta = require('../../../../common/lib/mta.js');
 Page({
     data: {
         campuses: ["校本部", "校本部（北）", "葫芦岛校区"],
@@ -17,7 +16,7 @@ Page({
         isCampusSelected: false
     },
     onLoad: function (options) {
-        mta.Page.init();
+        app.mta.Page.init();
     },
     chooseCampus: function (e) {
         var that = this;

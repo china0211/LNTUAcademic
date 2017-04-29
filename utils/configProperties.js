@@ -1,7 +1,7 @@
   var appid = "";
   var secret = "";
+  var wxGlobalToken = "";
   var authorization = "";
-  var wxGlobalToken = "4878ED34CBFADC5D8E4849E667B1AC62";
   var academicUrl = "";
   var loginUrl = "";
   var studentInfoUrl = "";
@@ -9,40 +9,43 @@
   var scheduleUrl = "";
   var skillInfoUrl = "";
   var bindStuIdWithWeChatIdUrl = "";
-  var getLogsUrl = "https://hellowoods.xyz/OE/getlogs";
+  var removeBoundUrl = "";
+  var getLogsUrl = "";
   var feedbackUrl = "";
   var queryBindStatusUrl = "";
   var queryAchievementUrl = "";
   var queryGradePointUrl = "";
   var modifyPasswordUrl = "";
   var queryClassroomUrl = "";
-  var removeBoundUrl = "";
-  var getAnnouncementUrl = "";
-  var getTokenUrl = "http://localhost:8087/getToken";
+  var getTokenUrl = "";
+  var queryEducationPlanUrl = "";
+  var getStuIdByWeChatIdUrl = "";
   var toastFailImg = "/images/global/fail.png";
 
 
   module.exports = {
       appid: appid,
       secret: secret,
-      authorization: authorization,
       wxGlobalToken: wxGlobalToken,
+      authorization: authorization,
       academicUrl: academicUrl,
       loginUrl: loginUrl,
       studentInfoUrl: studentInfoUrl,
       examUrl: examUrl,
       scheduleUrl: scheduleUrl,
       skillInfoUrl: skillInfoUrl,
-      getLogsUrl: getLogsUrl,
-      feedbackUrl: feedbackUrl,
-      queryBindStatusUrl: queryBindStatusUrl,
-      bindStuIdWithWeChatIdUrl: bindStuIdWithWeChatIdUrl,
       queryAchievementUrl: queryAchievementUrl,
       queryGradePointUrl: queryGradePointUrl,
-      modifyPasswordUrl: modifyPasswordUrl,
-      queryClassroomUrl: queryClassroomUrl,
-      removeBoundUrl: removeBoundUrl,
       getAnnouncementUrl: getAnnouncementUrl,
+      modifyPasswordUrl: modifyPasswordUrl,
+      bindStuIdWithWeChatIdUrl: bindStuIdWithWeChatIdUrl,
+      removeBoundUrl: removeBoundUrl,
+      getLogsUrl: getLogsUrl,
+      queryBindStatusUrl: queryBindStatusUrl,
+      feedbackUrl: feedbackUrl,
+      queryClassroomUrl: queryClassroomUrl,
       getTokenUrl: getTokenUrl,
+      queryEducationPlanUrl: queryEducationPlanUrl,
+      getStuIdByWeChatIdUrl: getStuIdByWeChatIdUrl,
       toastFailImg: toastFailImg
   }

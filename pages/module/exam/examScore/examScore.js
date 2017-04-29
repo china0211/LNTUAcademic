@@ -1,5 +1,4 @@
 var app = getApp();
-var mta = require('../../../../common/lib/mta.js');
 Page({
     data: {
         hasResult: false,
@@ -7,7 +6,7 @@ Page({
         promptMsg: '未查询到结果'
     },
     onLoad: function(options) {
-        mta.Page.init();
+        app.mta.Page.init();
         var that = this;
         if (app.examScores != "NO_RESULT") {
             that.setData({

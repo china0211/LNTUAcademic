@@ -1,17 +1,15 @@
 var app = getApp();
 var util = require('../../../utils/util.js');
-var mta = require('../../../common/lib/mta.js');
 Page({
     data: {
         stuDetail: null,
         stuId: '',
-        weChatId: '',
         userInfo: null,
         bindingTime: '',
         isBind: null
     },
     onLoad: function(options) {
-        mta.Page.init();
+        app.mta.Page.init();
         var that = this;
         that.setData({
                 userInfo: app.globalData.userInfo
@@ -81,7 +79,7 @@ Page({
                             stuId: app.globalData.stuId,
                             weChatId: app.globalData.weChatId
                         },
-                        method: 'POST',
+                        method: 'GET',
                         header: {
                             Authorization: app.globalData.wxGlobalToken
                         },
@@ -89,7 +87,8 @@ Page({
                             if (response.data == "success") {
                                 msg = "绑定成功";
                                 isSuccessed = true;
-                                app.globalData.isBind = true
+                                app.globalData.isBind = true;
+                                app.saveStorage('isBind',true);
                             } else {
                                 msg = "绑定失败，请稍后重试";
                             }
@@ -100,6 +99,7 @@ Page({
                         complete: function() {
                             app.hideLoading();
                             app.showToast(msg, isSuccessed);
+                            app.navigateBack();
                         }
                     })
                 }
@@ -117,7 +117,9 @@ Page({
             success: function(res) {
                 if (res.confirm) {
                     app.showLoading();
-                    app.clearStorage()
+                    // app.clearStorage()
+                    app.globalData.isBind = false;
+                    app.saveStorage("isBind",false);
                     wx.request({
                         url: app.globalData.removeBoundUrl,
                         data: {
@@ -141,8 +143,9 @@ Page({
                             msg = "请求失败，请稍后重试";
                         },
                         complete: function() {
-                            app.showToast(msg, isSuccessed);
                             app.hideLoading();
+                            app.showToast(msg, isSuccessed);
+                            app.navigateBack();
                         }
                     })
                 }

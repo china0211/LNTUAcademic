@@ -1,5 +1,4 @@
 var app = getApp();
-var mta = require('../../../common/lib/mta.js');
 Page({
     data: {
         contentLength: 0,
@@ -20,11 +19,9 @@ Page({
         platform: '',
         sdkVersion: '',
         networkType: '',
-        disabled: false,
-        loading: false,
     },
     onLoad: function(options) {
-        mta.Page.init();
+        app.mta.Page.init();
     },
     inputFeedbackTitle: function(e) {
         this.setData({
@@ -74,9 +71,9 @@ Page({
     validateData: function() {
         var result = false;
         if (this.data.title == null || this.data.title.trim() == "") {
-            app.showToast("请输入反馈标题", false);
+            app.showMsgModal("请输入反馈标题");
         } else if (this.data.comments == null || this.data.comments.trim() == "") {
-            app.showToast("请输入反馈信息", false);
+            app.showMsgModal("请输入反馈信息");
         } else {
             result = true;
         }
@@ -87,7 +84,7 @@ Page({
         var that = this;
         if (that.validateData()) {
             var msg = "";
-            var feedbackResult = false;
+            var feedbackSuccess = false;
             app.showLoading("正在反馈");
             that.getSystemInfo();
             wx.request({
@@ -121,7 +118,7 @@ Page({
                 },
                 success: function(res) {
                     if (res.data == "success") {
-                        feedbackResult = true;
+                        feedbackSuccess = true;
                         msg = "反馈成功";
                     } else {
                         msg = "反馈失败，请稍后重试";
@@ -132,8 +129,8 @@ Page({
                 },
                 complete: function(res) {
                     app.hideLoading();
-                    app.showToast(msg, feedbackResult);
-                    if (!feedbackResult) {
+                    app.showToast(msg, feedbackSuccess);
+                    if (feedbackSuccess) {
                         app.navigateBack();
                     }
                 }

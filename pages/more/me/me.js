@@ -1,5 +1,4 @@
 var app = getApp();
-var mta = require('../../../common/lib/mta.js');
 Page({
     data: {
         stuDetail: null,
@@ -7,7 +6,7 @@ Page({
         isBind: false
     },
     onLoad: function(options) {
-        mta.Page.init();
+        app.mta.Page.init();
     },
     onShow: function() {
         var that = this

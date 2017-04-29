@@ -1,5 +1,4 @@
 var app = getApp();
-var mta = require('../../../../common/lib/mta.js');
 Page({
     data: {
         originalPassword: null,
@@ -7,7 +6,8 @@ Page({
         confirmPassword: null
     },
     onLoad: function(options) {
-        mta.Page.init();
+        app.mta.Page.init();
+        app.validateStuId();
     },
     onShow: function() {
 
@@ -49,19 +49,19 @@ Page({
     validatePassword: function() {
         var that = this;
         if (!that.isPasswordFormatValid(that.data.originalPassword)) {
-            app.showToast("原密码为空或格式不正确", false);
+            app.showMsgModal("原密码为空或格式不正确");
             return false;
         } else if (!that.isPasswordFormatValid(that.data.newPassword)) {
-            app.showToast("新密码为空或格式不正确", false);
+            app.showMsgModal("新密码为空或格式不正确");
             return false;
         } else if (!that.isPasswordFormatValid(that.data.confirmPassword)) {
-            app.showToast("确认密码为空或格式不正确", false);
+            app.showMsgModal("确认密码为空或格式不正确");
             return false;
         } else if (that.data.newPassword == that.data.originalPassword) {
-            app.showToast("新密码不能和原密码相同", false);
+            app.showMsgModal("新密码不能和原密码相同");
             return false;
         } else if (that.data.newPassword != that.data.confirmPassword) {
-            app.showToast("两次输入新密码不一致", false);
+            app.showMsgModal("两次输入新密码不一致");
             return false;
         } else {
             return true;
@@ -72,6 +72,7 @@ Page({
         if (that.validatePassword()) {
             var toastMsg = '';
             var failed = true;
+            var showToast = true;
             var navigateBack = false;
             wx.request({
                 url: app.globalData.modifyPasswordUrl,
@@ -82,7 +83,7 @@ Page({
                 },
                 method: 'GET',
                 header: {
-                    Authorization: app.globalData.authorization,
+                    Authorization: app.globalData.wxGlobalToken,
                     username: app.globalData.stuId
                 },
                 success: function(res) {
@@ -91,7 +92,8 @@ Page({
                         navigateBack = true;
                         toastMsg = "修改密码成功";
                     } else {
-                        toastMsg = "密码错误，请重新确认";
+                        toastMsg = "原密码错误，请重新确认";
+                        showToast = false;
                     }
                 },
                 fail: function(res) {
@@ -99,7 +101,11 @@ Page({
                 },
                 complete: function(res) {
                     app.hideLoading();
-                    app.showToast(msg, !failed);
+                    if(showToast){
+                        app.showToast(toastMsg, !failed);
+                    }else{
+                        app.showMsgModal(toastMsg);
+                    }
                     if (navigateBack) {
                         app.navigateBack();
                     }

@@ -1,11 +1,11 @@
 var app = getApp();
-var mta = require('../../../common/lib/mta.js');
 Page({
     data: {
         stuDetail: null
     },
     onLoad: function(options) {
-        mta.Page.init();
+        app.mta.Page.init();
+        app.validateStuId();
         var that = this;
         wx.getStorage({
             key: 'stuDetail',
