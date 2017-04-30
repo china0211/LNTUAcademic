@@ -26,7 +26,7 @@
         "navigationBarBackgroundColor": "#fff",
         "navigationBarTitleText": "辽宁工程技术大学教务在线",
         "navigationBarTextStyle": "black",
-        "enablePullDownRefresh": true
+        "enablePullDownRefresh": false
     },
     "tabBar": {
         "color": "#7f848a",
