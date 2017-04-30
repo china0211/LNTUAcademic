@@ -1,44 +1,78 @@
-.score-view {
-    margin: 30rpx 0rpx 0rpx 0rpx;
-    flex-direction: column;
+.list-container {
+    margin: 20rpx 0 20rpx 0;
+    width: 100%;
     background-color: #fff;
-    height: 150rpx;
-}
-
-.score-content {
-    display: flex;
-    align-items: center;
-    padding: 20rpx 5rpx 15rpx 15rpx;
     border-top: 1rpx solid #D9D9D9;
     border-bottom: 1rpx solid #D9D9D9;
 }
 
-.score-content-text-view {
-    display: flex;
-    flex-direction: column;
-    padding-left: 25rpx;
+.list-content {
+    padding: 0 10px 0 10rpx;
+    background-color: #fff;
+    line-height: 2.7em;
 }
 
-.score-content-text-title {
-    font-size: 16pt;
-    line-height: 160%;
+.text-left {
+    text-align: left;
+    margin-top: 3rpx;
 }
 
-.score-content-text-score {
-    font-size: 16pt;
-    line-height: 40%;
-    position: absolute;
-    right: 50rpx;
+.text-center {
+    text-align: center;
 }
 
-.score-content-text-date {
-    color: #8b8b8b;
-    margin-left: 50rpx;
+.space-left {
+    margin-left: 20rpx;
+}
+
+.space-right {
+    padding-right: 30rpx;
+}
+
+.list-title {
+    font-size: 15pt;
+    line-height: 220%;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.score-text {
+    font-size: 15pt;
+    line-height: 220%;
     letter-spacing: 1px;
 }
 
-.blank-content-icon {
-    width: 40rpx;
-    height: 40rpx;
+.list-detail {
+    font-size: 11pt;
+    color: darkgray;
+    line-height: 300%;
+}
+
+.list-icon {
+    vertical-align: middle;
+    width: 45rpx;
+    height: 45rpx;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 100rpx 0;
+    box-sizing: border-box;
+}
+
+.icon-box-title {
+    color: #aaa;
+}
+
+.score-vertical-center{
+    vertical-align: middle;
     margin-top: -40rpx;
+}
+
+.footer {
+    padding: 50rpx 0 15rpx;
 }

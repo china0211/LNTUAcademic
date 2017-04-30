@@ -1,5 +1,5 @@
 <view class="page">
-    <view class="page__bd" wx:if="true">
+    <view wx:if="true">
         <view class="list-container">
             <view class="weui-flex ">
                 <view>

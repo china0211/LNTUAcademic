@@ -1,7 +1,7 @@
 var app = getApp();
 Page({
     data: {
-        skillScores: []
+        skillScores: null
     },
     onLoad: function (options) {
         app.mta.Page.init();

@@ -1,5 +1,5 @@
 <view class="page">
-    <view class="page__bd panner-container">
+    <view class="panner-container">
         <view class="weui-panel" wx:for="{{announcements}}" wx:for-item="announcement" wx:key="announcement"
               data-announcement-detail="{{announcement}}" bindtap="viewAnnouncementDetail">
             <view class="weui-panel__bd">

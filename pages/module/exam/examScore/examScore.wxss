@@ -26,3 +26,7 @@
     padding: 100rpx 0;
     box-sizing: border-box;
 }
+
+.footer {
+    padding: 50rpx 0 15rpx;
+}
