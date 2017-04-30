@@ -1,7 +1,7 @@
 .score-view {
     margin: 30rpx 0rpx 0rpx 0rpx;
     flex-direction: column;
-    background-color:#fff;
+    background-color: #fff;
     height: 150rpx;
 }
 
@@ -9,6 +9,8 @@
     display: flex;
     align-items: center;
     padding: 20rpx 5rpx 15rpx 15rpx;
+    border-top: 1rpx solid #D9D9D9;
+    border-bottom: 1rpx solid #D9D9D9;
 }
 
 .score-content-text-view {
