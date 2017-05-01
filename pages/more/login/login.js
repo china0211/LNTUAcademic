@@ -8,10 +8,8 @@ Page({
     onLoad: function (options) {
         app.mta.Page.init();
         var that = this
-        app.getUserInfo(function (userInfo) {
-            that.setData({
-                userInfo: userInfo
-            })
+        that.setData({
+            userInfo: app.globalData.userInfo
         })
     },
     inputStuId: function (e) {

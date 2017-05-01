@@ -1,6 +1,7 @@
-//app.js
-var properties = require("/utils/configProperties.js")
-var mta = require('/common/lib/mta.js')
+var properties = require("/utils/configProperties.js");
+var mta = require('/common/lib/mta.js');
+var LNTUOEDomain = properties.LNTUOEDomain;
+var LNTUWMPOEDomain = properties.LNTUWMPOEDomain;
 App({
     onLaunch: function (options) {
         var that = this;
@@ -17,25 +18,24 @@ App({
         authorization: properties.authorization,
         wxGlobalToken: properties.wxGlobalToken,
         getOpenIdUrl: properties.getOpenIdUrl,
-        academicUrl: properties.academicUrl,
-        loginUrl: properties.loginUrl,
-        studentInfoUrl: properties.studentInfoUrl,
-        examUrl: properties.examUrl,
-        scheduleUrl: properties.scheduleUrl,
-        skillInfoUrl: properties.skillInfoUrl,
-        queryAchievementUrl: properties.queryAchievementUrl,
-        queryGradePointUrl: properties.queryGradePointUrl,
-        bindStuIdWithWeChatIdUrl: properties.bindStuIdWithWeChatIdUrl,
-        removeBoundUrl: properties.removeBoundUrl,
-        getLogsUrl: properties.getLogsUrl,
-        feedbackUrl: properties.feedbackUrl,
-        queryBindStatusUrl: properties.queryBindStatusUrl,
-        getAnnouncementUrl: properties.getAnnouncementUrl,
-        modifyPasswordUrl: properties.modifyPasswordUrl,
-        queryClassroomUrl: properties.queryClassroomUrl,
-        getTokenUrl: properties.getTokenUrl,
-        queryEducationPlanUrl: properties.queryEducationPlanUrl,
-        getStuIdByWeChatIdUrl: properties.getStuIdByWeChatIdUrl,
+        loginUrl: LNTUOEDomain + "/login",
+        studentInfoUrl: LNTUOEDomain + "/student-info",
+        examUrl: LNTUOEDomain + "/query-results-all",
+        scheduleUrl: LNTUOEDomain + "/schedule",
+        skillInfoUrl: LNTUOEDomain + "/skill-score",
+        queryAchievementUrl: LNTUWMPOEDomain + "/queryExamScores",
+        queryGradePointUrl: LNTUWMPOEDomain + "/queryGradePoint",
+        bindStuIdWithWeChatIdUrl: LNTUWMPOEDomain + "/bindStuIdWithWeChatId",
+        removeBoundUrl: LNTUWMPOEDomain + "/removeBound",
+        getLogsUrl: LNTUWMPOEDomain + "/getlogs",
+        feedbackUrl: LNTUWMPOEDomain + "/feedback",
+        queryBindStatusUrl: LNTUWMPOEDomain + "/queryBindStatus",
+        getAnnouncementUrl: LNTUWMPOEDomain + "/getAnnouncement",
+        modifyPasswordUrl: LNTUWMPOEDomain + "/modifyPassword",
+        queryClassroomUrl: LNTUWMPOEDomain + "/queryClassroom",
+        getTokenUrl: LNTUWMPOEDomain + "/getToken",
+        queryEducationPlanUrl: LNTUWMPOEDomain + "/queryEducationPlan",
+        getStuIdByWeChatIdUrl: LNTUWMPOEDomain + "/getStuIdByWeChatId",
         isBind: false,
 
         toastFailImg: properties.toastFailImg
