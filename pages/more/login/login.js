@@ -85,14 +85,14 @@ Page({
                         url: app.globalData.bindStuIdWithWeChatIdUrl,
                         data: {
                             stuId: app.globalData.stuId,
-                            weChatId: app.globalData.weChatId
+                            wechatId: app.globalData.weChatId
                         },
-                        method: 'GET',
+                        method: 'POST',
                         header: {
                             Authorization: app.globalData.wxGlobalToken
                         },
                         success: function (response) {
-                            if (response.data == "success") {
+                            if (response.data.status == "success") {
                                 toastMsg = "绑定成功";
                                 failed = false;
                                 app.globalData.isBind = true;

@@ -34,14 +34,15 @@ Page({
                 wx.request({
                     url: app.globalData.queryBindStatusUrl,
                     data: {
-                        stuId: that.data.stuId
+                        stuId: app.globalData.stuId,
+                        wechatId: app.globalData.weChatId
                     },
                     method: 'POST',
                     header: {
                         Authorization: app.globalData.wxGlobalToken
                     },
                     success: function(res) {
-                        if (res.data != null) {
+                        if (res.data.status == "success") {
                             that.setData({
                                 bindingTime: util.formatDate(new Date(res.data.bindingTime))
                             })
@@ -77,14 +78,14 @@ Page({
                         url: app.globalData.bindStuIdWithWeChatIdUrl,
                         data: {
                             stuId: app.globalData.stuId,
-                            weChatId: app.globalData.weChatId
+                            wechatId: app.globalData.weChatId
                         },
-                        method: 'GET',
+                        method: 'POST',
                         header: {
                             Authorization: app.globalData.wxGlobalToken
                         },
                         success: function(response) {
-                            if (response.data == "success") {
+                            if (response.data.status == "success") {
                                 msg = "绑定成功";
                                 isSuccessed = true;
                                 app.globalData.isBind = true;
@@ -124,14 +125,14 @@ Page({
                         url: app.globalData.removeBoundUrl,
                         data: {
                             stuId: app.globalData.stuId,
-                            weChatId: app.globalData.weChatId
+                            wechatId: app.globalData.weChatId
                         },
-                        method: 'GET',
+                        method: 'POST',
                         header: {
                             Authorization: app.globalData.wxGlobalToken
                         },
                         success: function(response) {
-                            if (response.data == "success") {
+                            if (response.data.status == "success") {
                                 msg = "已成功解除绑定";
                                 isSuccessed = true;
                                 app.redirectToLoginPage()
@@ -161,7 +162,7 @@ Page({
             content: '是否确定要切换账号',
             success: function(res) {
                 if (res.confirm) {
-                    app.redirectToLoginPage()
+                    app.redirectToLoginPage(true)
                 }
             }
         })

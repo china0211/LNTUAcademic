@@ -106,8 +106,8 @@ Page({
                         toastMsg = "请求失败，请稍后重试";
                     },
                     complete: function (res) {
+                        app.hideLoading();
                         if (failed) {
-                            app.hideLoading();
                             app.showToast(toastMsg, false);
                         } else {
                             app.currentClassroomsTitle = that.data.selecetedBuilding;

@@ -140,15 +140,15 @@ App({
         wx.request({
             url: that.globalData.getStuIdByWeChatIdUrl,
             data: {
-                weChatId: that.globalData.weChatId
+                wechatId: that.globalData.weChatId
             },
-            method: 'GET',
+            method: 'POST',
             header: {
                 Authorization: that.globalData.wxGlobalToken
             },
             success: function (resp) {
                 if (resp.data.result != null && resp.data.result != "") {
-                    that.globalData.stuId = resp.data.result;
+                    that.globalData.stuId = resp.data.result.stuId;
                     that.globalData.isBind = true;
                     that.saveStorage("isBind", true);
                     that.saveStorage("stuId", that.globalData.stuId);
@@ -260,13 +260,13 @@ App({
         })
     },
     //重定向到登录页面
-    redirectToLoginPage: function () {
-        // var duration = showToast ? 1500 : 0;
+    redirectToLoginPage: function (noDuration) {
+        var duration = noDuration ? 0 : 1500;
         setTimeout(function () {
             wx.redirectTo({
                 url: '/pages/more/login/login'
             })
-        }, 1500)
+        }, duration)
     },
     //返回前一个页面
     navigateBack: function () {
