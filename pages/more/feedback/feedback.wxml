@@ -13,7 +13,7 @@
     <view class="weui-cell">
       <view class="weui-cell__bd">
         <textarea class="weui-textarea feedback-textarea-height" bindinput="inputFeedbackContent"
-                  placeholder="请输入反馈详细信息（错误页面、重现步骤）" maxlength="500"  confirm-hold="false" />
+                  placeholder="请输入反馈详细信息（错误页面、重现步骤或者您的建议）" maxlength="500"  confirm-hold="false" />
         <view class="weui-textarea-counter">{{contentLength}}/500</view>
       </view>
     </view>
@@ -24,7 +24,7 @@
         <view class="weui-label">联系方式</view>
       </view>
       <view class="weui-cell__bd">
-        <input class="weui-input" bindinput="inputCotactInfomation" placeholder="您的联系方式（可选）" maxlength="50"  />
+        <input class="weui-input" bindinput="inputCotactInfomation" placeholder="QQ/微信/电话/邮箱" maxlength="50"  />
       </view>
     </view>
   </view>

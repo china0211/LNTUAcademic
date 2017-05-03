@@ -44,7 +44,7 @@ Page({
                     success: function(res) {
                         if (res.data.status == "success") {
                             that.setData({
-                                bindingTime: util.formatDate(new Date(res.data.bindingTime))
+                                bindingTime: util.formatDate(new Date(res.data.result.bindingTime))
                             })
                         } else {
                             app.showToast("未查询到数据，请稍后重试", false);

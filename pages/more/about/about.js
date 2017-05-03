@@ -20,7 +20,7 @@ Page({
             method: 'GET',
             success: function(res) {
                 that.setData({
-                    logs: res.data
+                    logs: res.data.result
                 })
             },
             complete: function(res) {
