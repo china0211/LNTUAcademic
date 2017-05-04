@@ -86,8 +86,8 @@ App({
     //腾讯MTA分析
     initMTA: function (options) {
         mta.App.init({
-            "appID": "500013092",
-            "eventID": "500015824",
+            "appID": "500434803",
+            "eventID": "500437610",
             "lauchOpts": options,
             "statPullDownFresh": true,
             "statShareApp": true,
