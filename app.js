@@ -269,12 +269,13 @@ App({
         }, duration)
     },
     //返回前一个页面
-    navigateBack: function () {
+    navigateBack: function (noDelay) {
+        var duration = noDelay ? 0 : 1500;
         setTimeout(function () {
             wx.navigateBack({
                 delta: 1
             })
-        }, 1500)
+        }, duration)
     },
     //保存缓存
     saveStorage: function (key, value) {
