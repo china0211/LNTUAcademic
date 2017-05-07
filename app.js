@@ -36,6 +36,7 @@ App({
         getTokenUrl: LNTUWMPOEDomain + "/getToken",
         queryEducationPlanUrl: LNTUWMPOEDomain + "/queryEducationPlan",
         getStuIdByWeChatIdUrl: LNTUWMPOEDomain + "/getStuIdByWeChatId",
+        saveStartUpRecordUrl: LNTUWMPOEDomain + "/saveStartUpRecord",
         isBind: false,
 
         toastFailImg: properties.toastFailImg
@@ -70,6 +71,9 @@ App({
                             wx.getUserInfo({
                                 success: function (resp) {
                                     that.globalData.userInfo = resp.userInfo
+                                }, complete: function (resp) {
+                                    //发送使用信息
+                                    that.saveStartUpRecord();
                                 }
                             })
                         }
@@ -211,6 +215,20 @@ App({
             that.showToast("请登录后使用", false);
             that.redirectToLoginPage();
         }
+    },
+    //保存用户使用信息
+    saveStartUpRecord: function () {
+        var that = this;
+        wx.request({
+            url: that.globalData.saveStartUpRecordUrl,
+            data: {
+                wechatId: that.globalData.weChatId,
+            },
+            method: 'POST',
+            header: {
+                Authorization: that.globalData.wxGlobalToken
+            }
+        })
     },
     //提示信息(信息内容，是否成功提示)
     showToast: function (msg, isSuccessed) {
