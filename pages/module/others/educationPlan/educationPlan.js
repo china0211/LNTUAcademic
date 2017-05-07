@@ -75,7 +75,7 @@ Page({
                     Authorization: app.globalData.wxGlobalToken,
                 },
                 success: function(res) {
-                    if (res.data.msg == "success") {
+                    if (res.data.status == "success") {
                         failed = false;
                         that.setData({
                             educationPlans: res.data.result

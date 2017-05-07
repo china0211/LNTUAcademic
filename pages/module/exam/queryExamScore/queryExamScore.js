@@ -72,7 +72,7 @@ Page({
                     username: that.data.stuId
                 },
                 success: function(res) {
-                    if (res.data.msg == "success") {
+                    if (res.data.status == "success") {
                         failed = false;
                         app.examScores = res.data.result;
                         app.navigateToPage("/pages/module/exam/examScore/examScore")
@@ -111,7 +111,7 @@ Page({
                 username: that.data.stuId
             },
             success: function(res) {
-                if (res.data.msg == "success") {
+                if (res.data.status == "success") {
                     failed = false;
                     app.showMsgModal('你当前的学分绩为:' + res.data.result)
                 } else {
