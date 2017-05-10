@@ -1,6 +1,7 @@
 var properties = require("/utils/configProperties.js");
 var mta = require('/common/lib/mta.js');
 var LNTUOEDomain = properties.LNTUOEDomain;
+var LNTUOEDomainNew = properties.LNTUOEDomainNew;
 var LNTUWMPOEDomain = properties.LNTUWMPOEDomain;
 App({
     onLaunch: function (options) {
@@ -32,12 +33,13 @@ App({
         queryBindStatusUrl: LNTUWMPOEDomain + "/queryBindStatus",
         getAnnouncementUrl: LNTUWMPOEDomain + "/getAnnouncement",
         modifyPasswordUrl: LNTUWMPOEDomain + "/modifyPassword",
-        queryClassroomUrl: LNTUWMPOEDomain + "/queryClassroom",
+        queryClassroomUrl: LNTUOEDomainNew + "/room-schedule",
         getTokenUrl: LNTUWMPOEDomain + "/getToken",
         queryEducationPlanUrl: LNTUWMPOEDomain + "/queryEducationPlan",
         getStuIdByWeChatIdUrl: LNTUWMPOEDomain + "/getStuIdByWeChatId",
         saveStartUpRecordUrl: LNTUWMPOEDomain + "/saveStartUpRecord",
         getCurrentWeekAndDayUrl: LNTUWMPOEDomain + "/getCurrentWeekAndDay",
+        
         isBind: false,
 
         toastFailImg: properties.toastFailImg

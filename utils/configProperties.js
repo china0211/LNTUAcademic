@@ -4,6 +4,7 @@ var wxGlobalToken = "";
 var authorization = "";
 var getOpenIdUrl = "";
 var LNTUOEDomain = "";
+var LNTUOEDomainNew = "";
 var LNTUWMPOEDomain = "";
 var toastFailImg = "/images/global/fail.png";
 
@@ -16,5 +17,6 @@ module.exports = {
     getOpenIdUrl: getOpenIdUrl,
     LNTUOEDomain: LNTUOEDomain,
     LNTUWMPOEDomain: LNTUWMPOEDomain,
+    LNTUOEDomainNew: LNTUOEDomainNew,
     toastFailImg: toastFailImg
 }
