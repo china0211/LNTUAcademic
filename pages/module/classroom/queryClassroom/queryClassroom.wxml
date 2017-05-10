@@ -7,7 +7,7 @@
           <view class="weui-label">当前选择</view>
         </view>
         <view class="weui-cell__bd">
-          <picker bindchange="chooseCampus" value="{{index}}" range="{{campuses}}">
+          <picker mode="selector" bindchange="chooseCampus" value="{{index}}" range="{{campuses}}" range-key="location_name">
             <view class="weui-input">{{selecetedCampus}}</view>
           </picker>
         </view>
@@ -20,7 +20,7 @@
           <view class="weui-label">当前选择</view>
         </view>
         <view class="weui-cell__bd">
-          <picker bindchange="chooseBuilding" disabled="{{!isCampusSelected}}" bindtap="validateBuilding" value="{{index}}" range="{{currentBuildings}}">
+          <picker mode="selector" bindchange="chooseBuilding" disabled="{{!isCampusSelected}}" bindtap="validateBuilding" value="{{index}}" range="{{currentBuildings}}" range-key="building_name">
             <view class="weui-input">{{selecetedBuilding}}</view>
           </picker>
         </view>
@@ -33,7 +33,7 @@
           <view class="weui-label">当前选择</view>
         </view>
         <view class="weui-cell__bd">
-          <picker bindchange="chooseWeek" value="{{index}}" range="{{weeks}}">
+          <picker mode="selector" bindchange="chooseWeek" value="{{index}}" range="{{weeks}}" range-key="week_name">
             <view class="weui-input">{{selecetedWeek}}</view>
           </picker>
         </view>
@@ -46,7 +46,7 @@
           <view class="weui-label">当前选择</view>
         </view>
         <view class="weui-cell__bd">
-          <picker bindchange="chooseDay" value="{{index}}" range="{{days}}">
+          <picker mode="selector" bindchange="chooseDay" value="{{index}}" range="{{days}}" range-key="day_name">
             <view class="weui-input">{{selecetedDay}}</view>
           </picker>
         </view>

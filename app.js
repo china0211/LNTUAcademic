@@ -37,6 +37,7 @@ App({
         queryEducationPlanUrl: LNTUWMPOEDomain + "/queryEducationPlan",
         getStuIdByWeChatIdUrl: LNTUWMPOEDomain + "/getStuIdByWeChatId",
         saveStartUpRecordUrl: LNTUWMPOEDomain + "/saveStartUpRecord",
+        getCurrentWeekAndDayUrl: LNTUWMPOEDomain + "/getCurrentWeekAndDay",
         isBind: false,
 
         toastFailImg: properties.toastFailImg
