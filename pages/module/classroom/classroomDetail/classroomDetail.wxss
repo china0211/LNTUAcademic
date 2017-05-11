@@ -1,1 +1,49 @@
-/* pages/module/classroom/classroomDetail/classroomDetail.wxss */
+.icon-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon-box-img {
+  margin: 20rpx;
+}
+
+.icon-box-title {
+  color: #aaa;
+}
+
+.badge-space {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 100rpx 0;
+  box-sizing: border-box;
+}
+
+.footer {
+  padding: 50rpx 0 15rpx;
+}
+
+.badge-green {
+  display: inline-block;
+  padding: 0.15em 0.4em;
+  min-width: 8px;
+  border-radius: 200%;
+  background-color: green;
+  color: #fff;
+  line-height: 1.2;
+  text-align: center;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.dot-distance {
+  margin-left: 40rpx;
+}

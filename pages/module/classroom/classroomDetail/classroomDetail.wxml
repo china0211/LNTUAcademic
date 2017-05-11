@@ -1,2 +1,26 @@
-<!--pages/module/classroom/classroomDetail/classroomDetail.wxml-->
-<text>pages/module/classroom/classroomDetail/classroomDetail.wxml</text>
+<view class="page">
+  <view wx:if="{{hasResult}}">
+    <view class="weui-cells">
+      <view wx:for="{{classrooms}}" wx:for-item="classroom" wx:key="classroom" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">{{classroom.name}}</view>
+        <view wx:for="{{classroom.status}}" wx:for-item="status" wx:key="status">
+          <view class="weui-badge dot-distance" wx:if="{{status == 1}}">{{index+1}}</view>
+          <view class="badge-green dot-distance" wx:else>{{index+1}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-footer footer ">
+      <view class="weui-footer__text ">
+        <text class="red">红色</text>表示已被占用 
+        <text class="green">绿色</text>表示未占用</view>
+    </view>
+  </view>
+  <view wx:else class="container ">
+    <view class="icon-box ">
+      <icon class="icon-box-img " type="warn " size="93 " color="#C9C9C9 "></icon>
+    </view>
+    <view>
+      <text class="icon-box-title ">未查询到结果</text>
+    </view>
+  </view>
+</view>

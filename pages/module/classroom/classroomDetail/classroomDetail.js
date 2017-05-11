@@ -1,16 +1,20 @@
 var app = getApp();
 Page({
   data: {
-    classrooms: null
+    classrooms: null,
+    hasResult: false
   },
   onLoad: function (options) {
     var that = this;
     wx.setNavigationBarTitle({
       title: app.currentClassroomsTitle
-    }),
-    that.setData({
-      classrooms: app.currentClassrooms
-    }),
-        app.mta.Page.init();
+    })
+    if (app.currentClassrooms != null && app.currentClassrooms != undefined) {
+      that.setData({
+        classrooms: app.currentClassrooms,
+        hasResult: true
+      })
+    }
+    app.mta.Page.init();
   }
 })
