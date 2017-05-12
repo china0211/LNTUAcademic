@@ -47,6 +47,11 @@ Page({
                                 bindingTime: util.formatDate(new Date(res.data.result.bindingTime))
                             })
                         } else {
+                            that.setData({
+                              isBind: false
+                            })
+                            app.globalData.isBind = false;
+                            app.saveStorage('isBind', false);
                             that.bindStuIdWithWeChatId();
                         }
                     },
@@ -87,6 +92,9 @@ Page({
                             if (response.data.status == "success") {
                                 msg = "绑定成功";
                                 isSuccessed = true;
+                                that.setData({
+                                  isBind: true
+                                })
                                 app.globalData.isBind = true;
                                 app.saveStorage('isBind', true);
                             } else {
@@ -99,11 +107,14 @@ Page({
                         complete: function () {
                             app.hideLoading();
                             app.showToast(msg, isSuccessed);
-                            app.navigateBack();
                         }
                     })
                 } else {
-                    app.navigateBack(true);
+                  that.setData({
+                    isBind: false
+                  })
+                  app.saveStorage("isBind",false);
+                  app.globalData.isBind = false;
                 }
             }
         })
