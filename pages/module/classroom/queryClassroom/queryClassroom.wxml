@@ -54,10 +54,7 @@
     </view>
   </view>
   <view class="weui-btn-area button-eara-distance">
-    <button type="primary" class="weui-btn" disabled="{{disabled}}" bindtap="queryClassroom" data-type="CURRENT_DATE">
-      查询今日教室信息
-    </button>
-    <button type="default" class="weui-btn" disabled="{{disabled}}" bindtap="queryClassroom" data-type="SELECTED_DATE">
+    <button type="primary" class="weui-btn" disabled="{{disabled}}" bindtap="queryClassroom">
       查询教室信息
     </button>
   </view>

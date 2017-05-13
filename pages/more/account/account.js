@@ -47,11 +47,7 @@ Page({
                                 bindingTime: util.formatDate(new Date(res.data.result.bindingTime))
                             })
                         } else {
-                            that.setData({
-                              isBind: false
-                            })
-                            app.globalData.isBind = false;
-                            app.saveStorage('isBind', false);
+                            that.modifyBindStatus(false);
                             that.bindStuIdWithWeChatId();
                         }
                     },
@@ -92,11 +88,7 @@ Page({
                             if (response.data.status == "success") {
                                 msg = "绑定成功";
                                 isSuccessed = true;
-                                that.setData({
-                                  isBind: true
-                                })
-                                app.globalData.isBind = true;
-                                app.saveStorage('isBind', true);
+                                that.modifyBindStatus(true);
                             } else {
                                 msg = "绑定失败，请稍后重试";
                             }
@@ -110,11 +102,7 @@ Page({
                         }
                     })
                 } else {
-                  that.setData({
-                    isBind: false
-                  })
-                  app.saveStorage("isBind",false);
-                  app.globalData.isBind = false;
+                  that.modifyBindStatus(false);
                 }
             }
         })
@@ -178,5 +166,14 @@ Page({
                 }
             }
         })
+    },
+    //修改绑定状态
+    modifyBindStatus: function(status){
+      var that = this;
+      that.setData({
+        isBind: status
+      })
+      app.saveStorage("isBind", status);
+      app.globalData.isBind = status;
     }
 })

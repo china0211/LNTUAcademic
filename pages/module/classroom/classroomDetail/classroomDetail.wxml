@@ -4,14 +4,14 @@
       <view wx:for="{{classrooms}}" wx:for-item="classroom" wx:key="classroom" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <view class="weui-cell__bd">{{classroom.name}}</view>
         <view wx:for="{{classroom.status}}" wx:for-item="status" wx:key="status">
-          <view class="weui-badge dot-distance" wx:if="{{status == 1}}">{{index+1}}</view>
-          <view class="badge-green dot-distance" wx:else>{{index+1}}</view>
+          <view class="custom-badge badge-red dot-distance" wx:if="{{status == 1}}">{{index+1}}</view>
+          <view class="custom-badge badge-green dot-distance" wx:else>{{index+1}}</view>
         </view>
       </view>
     </view>
     <view class="weui-footer footer ">
       <view class="weui-footer__text ">
-        <text class="red">红色</text>表示已被占用 
+        <text class="red">红色</text>表示已被占用
         <text class="green">绿色</text>表示未占用</view>
     </view>
   </view>

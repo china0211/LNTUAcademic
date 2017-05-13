@@ -4,7 +4,7 @@ Page({
     //校区
     campuses: [{ location_name: "校本部", location_id: 1 },
     { location_name: "校本部（北）", location_id: 2 },
-    { location_name: "葫芦岛校区", location_id: 3 }],
+    { location_name: "葫芦岛", location_id: 3 }],
     //校本部教学楼
     mainBuildings: [
       { building_name: "新华楼", building_id: 4 },
@@ -68,32 +68,60 @@ Page({
     isCampusSelected: false
   },
   onLoad: function (options) {
+    var that = this;
+    that.getDefaultCampus();
+    that.setWeekAndDay();
     app.mta.Page.init();
   },
+  //获取默认的校区
+  getDefaultCampus: function () {
+    var that = this;
+    var index = null;
+    wx.getStorage({
+      key: 'defaultCampus',
+      success: function (res) {
+        that.setData({
+          selecteed_location_id: res.data,
+        }),
+          index = res.data - 1;
+      },
+      complete: function (res) {
+        that.chooseLocation(index);
+      }
+    })
+  },
+  //选择校区
+  chooseLocation: function (index) {
+    var that = this;
+    if (index == 0 || index == 1 || index == 2) {
+      that.setData({
+        selecetedBuilding: "请选择教学楼",
+        selecteed_building_id: ""
+      }),
+        that.setData({
+          selecetedCampus: that.data.campuses[index].location_name,
+          selecteed_location_id: that.data.campuses[index].location_id,
+          isCampusSelected: true
+        })
+      if (index == 0) {
+        that.setData({
+          currentBuildings: that.data.mainBuildings
+        })
+      } else if (index == 1) {
+        that.setData({
+          currentBuildings: that.data.northBuildings
+        })
+      } else {
+        that.setData({
+          currentBuildings: that.data.hldBuildings
+        })
+      }
+    }
+  },
+  //选择校区
   chooseCampus: function (e) {
     var that = this;
-    that.setData({
-      selecetedBuilding: "请选择教学楼",
-      selecteed_building_id: ""
-    }),
-      that.setData({
-        selecetedCampus: that.data.campuses[e.detail.value].location_name,
-        selecteed_location_id: that.data.campuses[e.detail.value].location_id,
-        isCampusSelected: true
-      })
-    if (e.detail.value == 0) {
-      that.setData({
-        currentBuildings: that.data.mainBuildings
-      })
-    } else if (e.detail.value == 1) {
-      that.setData({
-        currentBuildings: that.data.northBuildings
-      })
-    } else {
-      that.setData({
-        currentBuildings: that.data.hldBuildings
-      })
-    }
+    that.chooseLocation(e.detail.value);
   },
   validateBuilding: function () {
     var that = this;
@@ -125,16 +153,11 @@ Page({
   //查询教室信息
   queryClassroom: function (e) {
     var that = this;
-    var quryType = "CURRENT_DATE";
-    var sendRequest = true;
 
     //校验校区和教学楼
     if (that.validateCampusAndBuilding()) {
-      //判断查询类型，查询今日自动获取时间
-      if (e.currentTarget.dataset.type == "CURRENT_DATE") {
-        //查询日期后查询教室信息
-        that.setWeekAndDay();
-      } else if (that.validateWeekAndDay()) {
+      //校验时间
+      if (that.validateWeekAndDay()) {
         that.getClssroomInfo();
       }
     }
@@ -192,11 +215,7 @@ Page({
       fail: function (res) {
       },
       complete: function (res) {
-        if (successed) {
-          that.getClssroomInfo();
-        } else {
-          app.showMsgModal("未查询到教室信息");
-        }
+
       }
     })
   },
@@ -206,6 +225,7 @@ Page({
     var toastMsg = '';
     var failed = true;
     var navigateBack = true;
+    app.saveStorage("defaultCampus", that.data.selecteed_location_id);
     app.showLoading();
     wx.request({
       url: app.globalData.queryClassroomUrl,
