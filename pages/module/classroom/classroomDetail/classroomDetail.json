@@ -3,5 +3,5 @@
   "backgroundColor": "#fff",
   "navigationBarTitleText": "",
   "enablePullDownRefresh": false,
-  "disableScroll": true
+  "disableScroll": false
 }
