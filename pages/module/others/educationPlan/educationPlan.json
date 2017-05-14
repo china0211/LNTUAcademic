@@ -3,5 +3,5 @@
     "backgroundColor": "#fff",
     "navigationBarTitleText": "教学计划",
     "enablePullDownRefresh": false,
-    "disableScroll": true
+    "disableScroll": false
 }

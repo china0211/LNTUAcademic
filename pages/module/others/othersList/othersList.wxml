@@ -21,4 +21,15 @@
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
   </view>
+  <!-- 教学评价 -->
+  <view class="weui-cells" bindtap="evaluateClass">
+    <view class="weui-cell weui-cell_access"
+               hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
+        <image src="/images/global/evaluate.png" class="list-icon"></image>
+      </view>
+      <view class="weui-cell__bd">教学评价</view>
+      
+    </view>
+  </view>
 </view>

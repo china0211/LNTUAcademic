@@ -18,7 +18,7 @@
         <button type="primary" class="weui-btn" disabled="{{disabled}}" bindtap="queryEducationPlan">查询</button>
     </view>
     <view wx:if="{{educationPlans != ''}}">
-        <view class="preview_container" wx:for="[123456]">
+        <view class="preview_container" wx:for="[123456]" wx:key="course">
             <view class="weui-form-preview content_margin">
                 <view class="weui-form-preview__hd">
                     <view class="weui-form-preview__item">
