@@ -1,8 +1,7 @@
 <view class="page">
   <!-- 教学计划 -->
   <view class="weui-cells">
-    <navigator url="/pages/module/others/educationPlan/educationPlan" class="weui-cell weui-cell_access"
-               hover-class="weui-cell_active">
+    <navigator url="/pages/module/others/educationPlan/educationPlan" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
       <view class="weui-cell__hd">
         <image src="/images/global/educationPlan.png" class="list-icon"></image>
       </view>
@@ -12,8 +11,7 @@
   </view>
   <!-- 修改密码 -->
   <view class="weui-cells">
-    <navigator url="/pages/module/others/modifyPassword/modifyPassword" class="weui-cell weui-cell_access"
-               hover-class="weui-cell_active">
+    <navigator url="/pages/module/others/modifyPassword/modifyPassword" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
       <view class="weui-cell__hd">
         <image src="/images/global/modifyPassword.png" class="list-icon"></image>
       </view>
@@ -21,15 +19,24 @@
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
   </view>
+  <!-- 作息时间 -->
+  <view class="weui-cells">
+    <navigator url="/pages/module/others/timeTable/timeTable" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
+        <image src="/images/global/time_table.png" class="list-icon"></image>
+      </view>
+      <view class="weui-cell__bd">作息时间</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+  </view>
   <!-- 教学评价 -->
   <view class="weui-cells" bindtap="evaluateClass">
-    <view class="weui-cell weui-cell_access"
-               hover-class="weui-cell_active">
+    <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
       <view class="weui-cell__hd">
         <image src="/images/global/evaluate.png" class="list-icon"></image>
       </view>
       <view class="weui-cell__bd">教学评价</view>
-      
     </view>
   </view>
+
 </view>

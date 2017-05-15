@@ -67,3 +67,11 @@ page {
     width: 50rpx;
     height: 50rpx;
 }
+
+.list-odd{
+  background-color: #ffffff;
+}
+
+.list-even{
+  background-color: #F8F8F8;
+}

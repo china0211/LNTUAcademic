@@ -1,0 +1,7 @@
+.list-content-boder {
+  border-left: 1rpx solid #e3e3e3;
+}
+
+.list-content-center {
+  text-align: center;
+}

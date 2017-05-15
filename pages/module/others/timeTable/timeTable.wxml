@@ -1,0 +1,90 @@
+<view class="page">
+  <view class="weui-cells">
+    <view class="weui-cell list-odd">
+      <text class="weui-cell__bd">内容</text>
+      <view class="weui-cell__bd list-content-boder list-content-center">
+        <text class="weui-cell__bd">春季作息时间\n</text>
+        <text class="weui-cell__bd">05/01 - 09/30</text>
+      </view>
+      <view class="weui-cell__bd list-content-boder list-content-center">
+        <text class="weui-cell__bd">秋季作息时间\n</text>
+        <text class="weui-cell__bd">10/01 - 04/30</text>
+      </view>
+    </view>
+    <view class="weui-cell list-even">
+      <text class="weui-cell__bd">第一大节</text>
+      <view class="weui-cell__bd list-content-boder list-content-center">
+        <text class="weui-cell__bd">08:00 - 08:45\n</text>
+        <text class="weui-cell__bd">08:50 - 09:35</text>
+      </view>
+      <view class="weui-cell__bd  list-content-boder list-content-center">
+        <text class="weui-cell__bd">08:00 - 08:45\n</text>
+        <text class="weui-cell__bd">08:50 - 09:35</text>
+      </view>
+    </view>
+    <view class="weui-cell list-odd">
+      <text class="weui-cell__bd">课间休息</text>
+      <text class="weui-cell__bd list-content-boder list-content-center">09:35 - 09:55\n</text>
+      <text class="weui-cell__bd list-content-boder list-content-center">09:35 - 09:55</text>
+    </view>
+    <view class="weui-cell list-even">
+      <text class="weui-cell__bd">第二大节</text>
+      <view class="weui-cell__bd  list-content-boder list-content-center">
+        <text class="weui-cell__bd">09:55 - 10:40\n</text>
+        <text class="weui-cell__bd">10:40 - 11:30</text>
+      </view>
+      <view class="weui-cell__bd  list-content-boder list-content-center">
+        <text class="weui-cell__bd">09:55 - 10:40\n</text>
+        <text class="weui-cell__bd">10:40 - 11:30</text>
+      </view>
+    </view>
+    <view class="weui-cell list-odd">
+      <text class="weui-cell__bd">午饭</text>
+      <text class="weui-cell__bd list-content-boder list-content-center">11:30 - 14:00\n</text>
+      <text class="weui-cell__bd list-content-boder list-content-center">11:30 - 13:30</text>
+    </view>
+    <view class="weui-cell list-even">
+      <text class="weui-cell__bd">第三大节</text>
+      <view class="weui-cell__bd  list-content-boder list-content-center">
+        <text class="weui-cell__bd">14:00 - 14:45\n</text>
+        <text class="weui-cell__bd">14:50 - 15:35</text>
+      </view>
+      <view class="weui-cell__bd  list-content-boder list-content-center">
+        <text class="weui-cell__bd">13:30 - 14:15\n</text>
+        <text class="weui-cell__bd">14:20 - 15:05</text>
+      </view>
+    </view>
+    <view class="weui-cell list-odd">
+      <text class="weui-cell__bd">课间休息</text>
+      <text class="weui-cell__bd list-content-boder list-content-center">15:35 - 15:55\n</text>
+      <text class="weui-cell__bd list-content-boder list-content-center">15:05 - 15:25</text>
+    </view>
+    <view class="weui-cell list-even">
+      <text class="weui-cell__bd">第四大节</text>
+      <view class="weui-cell__bd  list-content-boder list-content-center">
+        <text class="weui-cell__bd">15:55 - 16:40\n</text>
+        <text class="weui-cell__bd">16:45 - 17:30</text>
+      </view>
+      <view class="weui-cell__bd  list-content-boder list-content-center">
+        <text class="weui-cell__bd">15:25 - 16:10\n</text>
+        <text class="weui-cell__bd">16:15 - 17:00</text>
+      </view>
+    </view>
+    <view class="weui-cell list-odd">
+      <text class="weui-cell__bd">晚饭</text>
+      <text class="weui-cell__bd list-content-boder list-content-center">17:30 - 19:00\n</text>
+      <text class="weui-cell__bd list-content-boder list-content-center">17:00 - 18:30</text>
+    </view>
+    <view class="weui-cell list-even">
+      <text class="weui-cell__bd">第五大节</text>
+      <view class="weui-cell__bd  list-content-boder list-content-center">
+        <text class="weui-cell__bd">19:00 - 19:45\n</text>
+        <text class="weui-cell__bd">19:50 - 20:35</text>
+      </view>
+      <view class="weui-cell__bd  list-content-boder list-content-center">
+        <text class="weui-cell__bd">18:30 - 19:15\n</text>
+        <text class="weui-cell__bd">19:20 - 20:05</text>
+      </view>
+    </view>
+  </view>
+</view>
