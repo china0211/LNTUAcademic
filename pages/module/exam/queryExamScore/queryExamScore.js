@@ -67,14 +67,20 @@ Page({
                     stuId: that.data.stuId
                 },
                 method: 'GET',
+                // header: {
+                //     Authorization: app.globalData.wxGlobalToken,
+                //     username: that.data.stuId
+                // },
                 header: {
-                    Authorization: app.globalData.wxGlobalToken,
-                    username: that.data.stuId
+                  Authorization: app.globalData.authorization,
+                  username: app.globalData.stuId
                 },
                 success: function(res) {
-                    if (res.data.status == "success") {
+                    // if (res.data.status == "success") {
+                  if (res.data.message == "请求成功") {
                         failed = false;
-                        app.examScores = res.data.result;
+                        // app.examScores = res.data.result;
+                        app.examScores = res.data.info;
                         app.navigateToPage("/pages/module/exam/examScore/examScore")
                     } else {
                         toastMsg = "查询失败，请稍后重试";

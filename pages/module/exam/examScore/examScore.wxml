@@ -3,7 +3,7 @@
     <view class="weui-cells">
       <navigator bindtap="viewExamScoreDetail" data-examScore="{{examScore}}" wx:for="{{examScores}}" wx:for-item="examScore" wx:key="examScore" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <view class="weui-cell__bd">{{examScore.courseName}}</view>
-        <view class="weui-badge badge-space" wx:if="{{examScore.testType != '正常考试'}}">重学</view>
+        <view class="custom-weui-badge badge-space" wx:if="{{examScore.testType != '正常考试'}}">{{examScore.testType}}</view>
         <view class="weui-cell__ft weui-cell__ft_in-access" wx:if="{{examScore.passed}}">{{examScore.score}}</view>
         <view class="weui-cell__ft weui-cell__ft_in-access green" wx:else>{{examScore.score}}</view>
       </navigator>
