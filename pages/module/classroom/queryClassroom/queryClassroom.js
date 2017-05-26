@@ -192,31 +192,10 @@ Page({
   setWeekAndDay: function () {
     var that = this;
     var toastMsg = '';
-    var successed = true;
 
-    wx.request({
-      url: app.globalData.getCurrentWeekAndDayUrl,
-      data: {},
-      method: 'GET',
-      header: {
-        Authorization: app.globalData.wxGlobalToken
-      },
-      success: function (res) {
-        if (res.data.status == "success") {
-          that.setData({
-            selecteed_week: res.data.result.currentWeek,
-            selecteed_day: res.data.result.currentDay,
-            selecetedWeek: that.data.weeks[res.data.result.currentWeek - 1].week_name,
-            selecetedDay: that.data.days[res.data.result.currentDay - 1].day_name,
-          })
-          successed = true;
-        }
-      },
-      fail: function (res) {
-      },
-      complete: function (res) {
-
-      }
+    that.setData({
+      selecetedWeek: that.data.weeks[app.globalData.currentWeek - 1].week_name,
+      selecetedDay: that.data.days[app.globalData.currentDay - 1].day_name,
     })
   },
   //查询教室信息

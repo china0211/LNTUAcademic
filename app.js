@@ -42,6 +42,7 @@ App({
         saveStartUpRecordUrl: LNTUWMPOEDomain + "/saveStartUpRecord",
         getCurrentWeekAndDayUrl: LNTUWMPOEDomain + "/getCurrentWeekAndDay",
         evaluateCourseUrl: LNTUWMPOEDomain + "/evaluateCourse",
+        queryCourseScheduleUrl: LNTUOEDomain + "/schedule",
         isBind: false,
 
         toastFailImg: properties.toastFailImg

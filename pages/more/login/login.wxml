@@ -19,7 +19,7 @@
           <view class="weui-label">密码</view>
         </view>
         <view class="weui-cell__bd">
-          <input class="weui-input" type="password" maxlength="6" placeholder="密码" bindinput="inputPassword"
+          <input class="weui-input" type="password" maxlength="18" placeholder="密码" bindinput="inputPassword"
                  placeholder="请输入密码"  />
         </view>
       </view>

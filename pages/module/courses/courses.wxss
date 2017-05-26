@@ -1,1 +1,50 @@
-/* pages/module/courses/courses.wxss */
+.class-view-header {
+    height: 3%;
+}
+
+.class-week-header {
+    margin: 3px;
+    padding: 0px 10px;
+    text-align: center;
+    background-color: #EBEBEB;
+    height: 1.5em;
+    line-height: 1.5em;
+    color: #cfcfcf;
+}
+
+.class-day-header {
+    text-align: center;
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: #cfcfcf;
+}
+
+.class-view-content {
+    height: 95%;
+}
+
+.class-info-content {
+    margin-left: 5rpx;
+    margin-top: 3px;
+    margin-right: 5rpx;
+    padding: 5rpx;
+    text-align: center;
+    background-color: #EBEBEB;
+    line-height: 1em;
+}
+
+.coulumn-color-none {
+    background-color: #F8F8F8;
+    color: #F8F8F8;
+}
+
+.class-course-detail {
+    font-size: 10pt;
+    color: white;
+}
+
+.class-course-detail-view {
+    border-radius: 10rpx;
+}
