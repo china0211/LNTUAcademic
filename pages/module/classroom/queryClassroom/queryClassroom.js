@@ -194,6 +194,8 @@ Page({
     var toastMsg = '';
 
     that.setData({
+      selecteed_week: app.globalData.currentWeek,
+      selecteed_day: app.globalData.currentDay,
       selecetedWeek: that.data.weeks[app.globalData.currentWeek - 1].week_name,
       selecetedDay: that.data.days[app.globalData.currentDay - 1].day_name,
     })

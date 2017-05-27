@@ -5,28 +5,10 @@ Page({
         year: null,
         version: '0.0.1',
         versionType: '开发版',
-        logs: null
     },
     onLoad: function(options) {
         app.mta.Page.init();
         var that = this;
-        app.showLoading();
-        wx.request({
-            url: app.globalData.getLogsUrl,
-            data: {},
-            header: {
-                Authorization: app.globalData.wxGlobalToken
-            },
-            method: 'GET',
-            success: function(res) {
-                that.setData({
-                    logs: res.data.result
-                })
-            },
-            complete: function(res) {
-                app.hideLoading();
-            }
-        })
         that.setData({
             year: new Date().getFullYear()
         })
@@ -36,5 +18,9 @@ Page({
         this.setData({
             showLog: !that.data.showLog
         })
+    },
+    setClipboardData:function(e){
+      console.log(e.currentTarget.dataset.qqgroup);
+      app.setClipboardData(e.currentTarget.dataset.qqgroup);
     }
 })
