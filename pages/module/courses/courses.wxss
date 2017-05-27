@@ -26,10 +26,8 @@
 }
 
 .class-info-content {
-    margin-left: 5rpx;
-    margin-top: 3px;
-    margin-right: 5rpx;
-    padding: 5rpx;
+    margin: 5rpx;
+    padding: 3rpx;
     text-align: center;
     background-color: #EBEBEB;
     line-height: 1em;

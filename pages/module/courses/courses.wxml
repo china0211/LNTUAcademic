@@ -3,33 +3,31 @@
     <!--顶部星期信息-->
     <view>
       <view class="weui-flex">
-            <view class="class-day-header class-info-content coulumn-color-none">1</view>
-            <!--<view class="weui-flex__item"><view class="class-day-header class-info-content">1</view></view>-->
-            <view class="weui-flex__item"><view class="class-week-header">一</view></view>
-            <view class="weui-flex__item"><view class="class-week-header">二</view></view>
-            <view class="weui-flex__item"><view class="class-week-header">三</view></view>
-            <view class="weui-flex__item"><view class="class-week-header">四</view></view>
-            <view class="weui-flex__item"><view class="class-week-header">五</view></view>
-            <view class="weui-flex__item"><view class="class-week-header">六</view></view>
-            <view class="weui-flex__item"><view class="class-week-header">七</view></view>
+        <!--内容为1 保证宽度一致-->
+        <view class="class-day-header class-info-content coulumn-color-none">1</view>
+        <view class="weui-flex__item" wx:for="{{days}}" wx:key="day" wx:for-index="dayIndex" wx:for-item="day">
+          <view class="class-week-header">{{day}}</view>
         </view>
+      </view>
     </view>
 
     <!--下方课程节数-->
     <view class="class-view-content">
       <view>
         <!--节数-->
-        <view class="weui-flex" wx:for="01234" wx:key="sense" wx:for-index="senseIndex" wx:for-item="">
-             
-              <view class="class-day-header class-info-content">{{senseIndex+1}}</view>
-              <!--星期数-->
-              <view class="weui-flex__item" wx:for="0123456" wx:key="day"  wx:for-index="dayIndex" wx:for-item="">
-                <view class="class-info-content class-course-detail-view" style="background-color:{{courses[senseIndex][dayIndex].bgColor}}">
-                  <text class="class-course-detail">{{courses[dayIndex][senseIndex].displayContent}}</text>
-                </view>
-              </view>
+        <view class="weui-flex" wx:for="01234" wx:key="sense" wx:for-index="senseIndex" >
+
+          <view class="class-day-header class-info-content">{{senseIndex+1}}</view>
+          <!--星期数-->
+          <view class="weui-flex__item" wx:for="0123456" wx:key="day" wx:for-index="dayIndex" wx:for-item="">
+            <view class="class-info-content class-course-detail-view" style="background-color:{{courses[dayIndex][senseIndex].bgColor}}">
+              <text class="class-course-detail">
+                {{courses[dayIndex][senseIndex].displayContent}}
+              </text>
+            </view>
+          </view>
         </view>
-        
+
       </view>
     </view>
   </view>

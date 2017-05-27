@@ -1,6 +1,7 @@
 var app = getApp();
 Page({
   data: {
+    days:['一','二','三','四','五','六','七'],
     courses: [
       [[], [], [], [], []],
       [[], [], [], [], []],
@@ -20,7 +21,7 @@ Page({
     // 获取课程表信息
     that.getCourseData();
   },
-  
+
   // 获取课程表信息
   getCourseData: function () {
     var that = this;
@@ -78,13 +79,34 @@ Page({
         //拼接显示内容
         if (currentCourse.name != "none") {
 
-          //课程起始周数
-          currentCourse.startWeek = currentCourse.weeks.split('-')[0];
-          currentCourse.endWeek = currentCourse.weeks.split('-')[1];
+          //课程起始周数(包含单双周情况)
+          var weeks = null;
+          if (currentCourse.weeks.indexOf('单') > 0) {
+            weeks = currentCourse.weeks.split('单')[0];
+            currentCourse.weekType = '单';
+          }
+          else if (currentCourse.weeks.indexOf('双') > 0) {
+            weeks = currentCourse.weeks.split('双')[0];
+            currentCourse.weekType = '双';
+          } else {
+            weeks = currentCourse.weeks;
+            currentCourse.weekType = 'All'
+          }
+
+          currentCourse.startWeek = weeks.split('-')[0];
+          currentCourse.endWeek = weeks.split('-')[1];
 
           //处理是否处于活跃状态（周数在index.js中查询）
-          if (app.globalData.currentWeek > currentCourse.startWeek && app.globalData.currentWeek < currentCourse.endWeek) {
-            currentCourse.isActive = true;
+          if (app.globalData.currentWeek >= currentCourse.startWeek && app.globalData.currentWeek <= currentCourse.endWeek) {
+            var isAcative = false;
+            if (currentCourse.weekType == 'All') {
+              isAcative = true;
+            } else if (currentCourse.weekType == '单') {
+              isAcative = app.globalData.currentWeek % 2 == 0 ? false : true;
+            } else if (currentCourse.weekType = '双') {
+              isAcative = app.globalData.currentWeek % 2 == 0 ? true : false;
+            }
+            currentCourse.isActive = isAcative;
           } else {
             currentCourse.isActive = false;
           }
@@ -94,6 +116,11 @@ Page({
             currentCourse.name = currentCourse.name.substring(0, 5) + "..." +
               currentCourse.name.substring(currentCourse.name.length - 2, currentCourse.name.length);
           } else if (currentCourse.name.length < 6) {
+            currentCourse.name = currentCourse.name + "\n";
+          } else if (currentCourse.name.indexOf('（') > 0 && currentCourse.name.length < 8) {
+            //处理带有（）的课程名称
+            currentCourse.name = currentCourse.name.replace('（', '(');
+            currentCourse.name = currentCourse.name.replace('）', ')');
             currentCourse.name = currentCourse.name + "\n";
           }
 
@@ -119,14 +146,15 @@ Page({
           if (currentCourse.isActive) {
             currentCourse.bgColor = that.getBgColor();
           } else {
-            currentCourse.bgColor = "#EBEBEB";
+            currentCourse.bgColor = "#c7c7c7";
           }
 
         } else {
           //没课时显示空白，保证column高度一致
-          currentCourse.displayContent = '\n\n\n\n\n\n\n';
+          currentCourse.displayContent = '\n\n\n\n\n\n';
           currentCourse.bgColor = "#EBEBEB";
         }
+
         courseDataArray[i][j] = currentCourse;
       }
     }
