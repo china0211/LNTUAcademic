@@ -1,4 +1,5 @@
 var app = getApp();
+var util = require('../../../../utils/util.js');
 Page({
     data: {
         announcements: null
@@ -19,9 +20,7 @@ Page({
             success: function(res) {
                 if (res.data.status == "success") {
                     failed = false;
-                    that.setData({
-                        announcements: res.data.result
-                    })
+                    that.handlerData(res.data.result);
                 } else {
                     toastMsg = "获取教务公告失败，请稍后重试";
                 }
@@ -41,5 +40,15 @@ Page({
     viewAnnouncementDetail: function(e) {
         app.announcementDetail = e.currentTarget.dataset.announcementDetail;
         app.navigateToPage("/pages/module/announcement/announcementDetail/announcementDetail");
+    },
+    //处理数据
+    handlerData:function(annoucements){
+      var that = this;
+      for(var i = 0; i < annoucements.length; i++){
+        annoucements[i].date = util.formatDate(new Date(annoucements[i].date));
+      }
+      that.setData({
+        announcements: annoucements
+      })
     }
 })
