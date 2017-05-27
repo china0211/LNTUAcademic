@@ -25,14 +25,14 @@
           <view class="list-content list-detail text-left">{{score.date}}</view>
         </view>
         <view>
-          <view class="list-content score-text text-center  space-right score-vertical-center red" wx:if="{{score.score > 424}}">{{score.score}}</view>
+          <view class="list-content score-text text-center  space-right score-vertical-center red" wx:if="{{score.score < 425 || score.score == '未出'}}">{{score.score}}</view>
           <view class="list-content score-text text-center space-right score-vertical-center green" wx:else>
             {{score.score}}</view>
         </view>
       </view>
     </view>
     <view class="weui-footer footer">
-      <view class="weui-footer__text"><text class="red">红色</text>表示已通过，<text class="green">绿色</text>表示未通过</view>
+      <view class="weui-footer__text"><text class="red">红色</text>表示未通过，<text class="green">绿色</text>表示已通过</view>
     </view>
   </view>
   <view class="container" wx:else>
