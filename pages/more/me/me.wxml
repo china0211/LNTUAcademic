@@ -1,35 +1,35 @@
 <view class="page">
-  <!-- 绑定时显示学籍信息 -->
-  <navigator url="/pages/more/account/account">
-    <view class="user-info-view bind" wx:if="{{isBind}}">
-      <view class="user-info-content">
+
+  <view class="weui-cells">
+    <navigator url="/pages/more/account/account" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
         <image class="user-info-avatar" src="{{userInfo.avatarUrl}}"></image>
+      </view>
+      <!-- 绑定时显示学籍信息 -->
+      <view class="weui-cell__bd" wx:if="{{isBind}}">
         <view class="user-info-title ">
           <text class="user-info-name">{{stuDetail.name}}</text>
           <text class="user-info-stu">{{stuDetail.userId}}</text>
         </view>
+      </view>
+      <view class="weui-cell__bd" wx:if="{{isBind}}">
         <view class="user-info-title">
           <text class="user-info-stu">{{stuDetail.college}}</text>
           <text class="user-info-stu">{{stuDetail.major}}</text>
           <text class="user-info-stu">{{stuDetail.classInfo}}班</text>
         </view>
       </view>
-    </view>
-    <!-- 未绑定时显示微信账号信息 -->
-    <view class="user-info-view not-bind" wx:else>
-      <view class="user-info-content">
-        <image class="user-info-avatar" src="{{userInfo.avatarUrl}}"></image>
-        <view class="user-info-title ">
+      <!-- 未绑定时显示微信账号信息 -->
+      <view class="weui-cell__bd" wx:if="{{!isBind}}">
+        <view class="user-info-title">
           <text class="user-info-name">{{userInfo.nickName}}</text>
           <text class="user-info-stu">{{stuDetail.userId}}</text>
         </view>
-        <view class="wechat-account-bind-view">
-          <text class="wechat-account-bind-text">前往绑定</text>
-          <image class="wechat-account-bind-img" src="/images/global/detail.png"></image>
-        </view>
       </view>
-    </view>
-  </navigator>
+      <view class="weui-cell__ft weui-cell__ft_in-access" wx:if="{{!isBind}}">前往绑定</view>
+    </navigator>
+  </view>
+
   <!-- 反馈 -->
   <view class="weui-cells">
     <navigator url="/pages/more/feedback/feedback" class="weui-cell weui-cell_access" hover-class="weui-cell_active">

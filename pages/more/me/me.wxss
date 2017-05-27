@@ -1,63 +1,20 @@
-.user-info-view {
-    margin: 30rpx 0rpx 50rpx 0rpx;
-    flex-direction: column;
-    background-color: #fff;
-}
-
-.bind {
-    height: 160rpx;
-}
-
-.not-bind {
-    height: 140rpx;
-}
-
-.user-info-content {
-    display: flex;
-    align-items: center;
-    padding: 20rpx 5rpx 15rpx 15rpx;
-}
-
 .user-info-avatar {
-    width: 100rpx;
-    height: 100rpx;
-    border-radius: 0%;
-    padding-left: 10rpx;
+  width: 100rpx;
+  height: 100rpx;
 }
 
 .user-info-title {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding-left: 25rpx;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-left: 25rpx;
 }
 
 .user-info-name {
-    font-size: 16pt;
-    line-height: 160%;
-    letter-spacing: 1px;
+  font-size: 16pt;
 }
 
 .user-info-stu {
-    font-size: 11pt;
-    color: #8b8b8b;
-}
-
-.wechat-account-bind-view {
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    margin-left: 30%;
-}
-
-.wechat-account-bind-img {
-    width: 60rpx;
-    height: 60rpx;
-    border-radius: 0%;
-}
-
-.wechat-account-bind-text {
-    font-size: 11pt;
-    margin-top: 12rpx;
-    color: #8b8b8b;
+  font-size: 11pt;
+  color: #8b8b8b;
 }
