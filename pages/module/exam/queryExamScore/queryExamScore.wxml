@@ -16,7 +16,7 @@
   </view>
   <view class="weui-btn-area button-eara-distance">
     <button type="primary" class="weui-btn" disabled="{{disabled}}" bindtap="queryExamScore" data-type="EXAM_SCORE">查询成绩</button>
-    <button type="default" class="weui-btn" disabled="{{disabled}}" bindtap="queryGradePoint">查询绩点</button>
-    <button type="warn" class="weui-btn" disabled="{{disabled}}" bindtap="queryExamScore" data-type="NOT_PASSED">查询未通过课程</button>
+    <!--<button type="default" class="weui-btn" disabled="{{disabled}}" bindtap="queryGradePoint">查询绩点</button>-->
+    <!--<button type="warn" class="weui-btn" disabled="{{disabled}}" bindtap="queryExamScore" data-type="NOT_PASSED">查询未通过课程</button>-->
   </view>
 </view>

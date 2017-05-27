@@ -35,8 +35,7 @@ Page({
       method: 'GET',
       header: {
         Authorization: app.globalData.authorization,
-        // username: app.globalData.stuId
-        username: '1520010105'
+        username: app.globalData.stuId
       },
       success: function (res) {
         if (res.data.message == "请求成功") {

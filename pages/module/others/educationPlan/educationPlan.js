@@ -11,8 +11,10 @@ Page({
     stuId: ''
   },
   onLoad: function (options) {
+    var that = this;
     app.mta.Page.init();
     app.validateStuId();
+    that.queryEducationPlan();
   },
   onReady: function () {
     // 页面渲染完成
@@ -60,7 +62,7 @@ Page({
     var that = this;
     var selectedEducationPlanYear = that.data.selectedEducationPlanYear;
 
-    if (selectedEducationPlanYear != null && selectedEducationPlanYear != "请选择学年学期") {
+    // if (selectedEducationPlanYear != null && selectedEducationPlanYear != "请选择学年学期") {
       var toastMsg = '';
       var failed = true;
       app.showLoading('正在查询', true);
@@ -95,8 +97,8 @@ Page({
           }
         }
       })
-    } else {
-      app.showMsgModal("请选择学年学期");
-    }
+    // } else {
+    //   app.showMsgModal("请选择学年学期");
+    // }
   },
 })
