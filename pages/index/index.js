@@ -19,7 +19,13 @@ Page({
       success: function (res) {
         if (res.data.status == "success") {
           app.globalData.currentWeek = res.data.result.currentWeek;
-          app.globalData.currentDay = res.data.result.currentDay;
+          //服务器返回周日值为0，其他值为1 2 3 4 5 6
+          if(res.data.result.currentDay == 0) {
+              app.globalData.currentDay = 7;
+          }else{
+              app.globalData.currentDay = res.data.result.currentDay;
+          }
+          console.log(app.globalData.currentWeek);
         }
       },
       fail: function (res) {
