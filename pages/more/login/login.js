@@ -7,7 +7,7 @@ Page({
     },
     onLoad: function (options) {
         app.mta.Page.init();
-        var that = this
+        var that = this;
         that.setData({
             userInfo: app.globalData.userInfo
         })
@@ -64,6 +64,7 @@ Page({
                     if (failed) {
                         app.showToast(toastMsg, false);
                     }
+                    app.mta.Event.stat('login', { 'stuid': that.data.stuId })
                 }
             })
         }

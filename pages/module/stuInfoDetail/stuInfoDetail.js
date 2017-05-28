@@ -17,7 +17,7 @@ Page({
             fail: function(res) {
                 app.showToast("读取用户信息失败，请重新登录", false);
                 app.redirectToLoginPage();
-            },
+            }
         })
     }
 })
