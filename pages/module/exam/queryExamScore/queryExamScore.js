@@ -95,6 +95,10 @@ Page({
           if (failed) {
             app.showToast(toastMsg, false)
           }
+
+          //统计查询事件
+          app.mta.Event.stat('exam_score', { 'year': that.data.selectedAcademicYear });
+          app.mta.Event.stat('exam_score', { 'querytype': queryType });
         }
       })
     } else {
@@ -133,6 +137,9 @@ Page({
         if (failed) {
           app.showToast(toastMsg, false)
         }
+
+        //MTA统计事件
+        app.mta.Event.stat('exam_score', { 'querytype': 'credit' });
       }
     })
   },
@@ -149,10 +156,10 @@ Page({
     }
 
     var selectedAcademicYear = that.data.selectedAcademicYear;
-    
+
     for (var i = 0; i < allExamScoresArray.length; i++) {
       var currentExamScore = allExamScores[i];
-      
+
       //显示所选的学年学期的成绩
       if (currentExamScore.academicYear == that.data.selectedAcademicYear) {
 

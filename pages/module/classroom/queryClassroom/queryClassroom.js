@@ -240,6 +240,9 @@ Page({
           app.currentClassroomsTitle = that.data.selecetedBuilding;
           app.navigateToPage("/pages/module/classroom/classroomDetail/classroomDetail");
         }
+        //MTA统计
+        app.mta.Event.stat('classroom_plan', { 'campus': that.data.selecetedCampus });
+        app.mta.Event.stat('classroom_plan', { 'building': that.data.selecetedBuilding });
       }
     })
   }

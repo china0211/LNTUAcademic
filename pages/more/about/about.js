@@ -20,7 +20,6 @@ Page({
         })
     },
     setClipboardData:function(e){
-      console.log(e.currentTarget.dataset.qqgroup);
       app.setClipboardData(e.currentTarget.dataset.qqgroup);
     }
 })

@@ -99,6 +99,7 @@ Page({
                         complete: function () {
                             app.hideLoading();
                             app.showToast(msg, isSuccessed);
+                            app.mta.Event.stat('account', { 'operation': 'bind' });
                         }
                     })
                 } else {
@@ -147,6 +148,7 @@ Page({
                             app.hideLoading();
                             app.showToast(msg, isSuccessed);
                             app.navigateBack();
+                            app.mta.Event.stat('account', { 'operation': 'unbind' });
                         }
                     })
                 }
@@ -164,6 +166,9 @@ Page({
                 if (res.confirm) {
                     app.redirectToLoginPage(true)
                 }
+            },
+            complete:function(){
+              app.mta.Event.stat('account', { 'operation': 'switch' });
             }
         })
     },
