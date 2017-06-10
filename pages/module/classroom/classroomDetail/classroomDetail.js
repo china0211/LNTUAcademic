@@ -9,7 +9,8 @@ Page({
     wx.setNavigationBarTitle({
       title: app.currentClassroomsTitle
     })
-    if (app.currentClassrooms != null && app.currentClassrooms != undefined) {
+    if (app.currentClassrooms != null && app.currentClassrooms != undefined
+      && app.currentClassrooms.length > 0) {
       that.setData({
         classrooms: app.currentClassrooms,
         hasResult: true

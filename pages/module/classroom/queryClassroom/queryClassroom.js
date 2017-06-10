@@ -223,7 +223,9 @@ Page({
       success: function (res) {
         if (res.data != null) {
           failed = false;
-          app.currentClassrooms = res.data.results;
+          // app.currentClassrooms = res.data.results;
+          //处理数据
+          that.handleClassroomData(res.data.results, that.data.selecetedBuilding);
         }
         else {
           toastMsg = "查询失败，请稍后重试";
@@ -245,5 +247,39 @@ Page({
         app.mta.Event.stat('classroom_plan', { 'building': that.data.selecetedBuilding });
       }
     })
+  },
+  //处理数据
+  handleClassroomData: function (classroomData, buildingName) {
+    var that = this;
+    var classroomArray = [];
+
+    //将Object转换为Array
+    for (var key in classroomData) {
+      //key是属性,object[key]是值
+      var name = classroomData[key].name;
+
+      //根据教学楼名称截取教室门牌号，进行排序
+      if (name.length > 5) {
+        var roomNo = name.substring(buildingName.length, buildingName.length + 3);
+      } else {
+        //处理校本部知行楼语音教室
+        var roomNo = name.substring(2, name.length);
+      }
+
+      classroomData[key].roomNo = roomNo;
+      classroomArray.push(classroomData[key]);
+    }
+    //排序
+    classroomArray.sort(function (a, b) {
+      //如果不是数字，返回正值，排到最后
+      if (isNaN(a.roomNo)) {
+        return 1;
+      } else if (isNaN(b.roomNo)) {
+        return -1;
+      }
+      return a.roomNo - b.roomNo;
+    });
+
+    app.currentClassrooms = classroomArray;
   }
 })
