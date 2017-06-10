@@ -1,3 +1,4 @@
+//时间戳转日期
 function formatDate(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -9,6 +10,10 @@ function formatDate(date) {
 
 
   return [year, month, day].map(formatNumber).join('-')
+}
+//日期转时间戳
+function formaDataTotTimestamp(data){
+  return Date.parse(new Date(data))/1000;
 }
 
 function formatNumber(n) {
@@ -27,5 +32,6 @@ function isStuIdValid(stuId){
 
 module.exports = {
   formatDate: formatDate,
-  isStuIdValid:isStuIdValid
+  isStuIdValid:isStuIdValid,
+  formaDataTotTimestamp: formaDataTotTimestamp
 }
