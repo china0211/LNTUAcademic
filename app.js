@@ -60,7 +60,7 @@ App({
               appid: that.globalData.appid,
               secret: that.globalData.secret,
               grant_type: 'authorization_code',
-              js_code: res.code,
+              js_code: res.code
             },
             method: 'GET',
             header: {},
@@ -116,7 +116,6 @@ App({
         Authorization: that.globalData.wxGlobalToken
       },
       success: function (res) {
-        console.log(res.data.result)
         that.globalData.wxGlobalToken = res.data.result;
       },
       fail: function (res) {
