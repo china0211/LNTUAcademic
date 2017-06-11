@@ -25,7 +25,6 @@ Page({
           }else{
               app.globalData.currentDay = res.data.result.currentDay;
           }
-          console.log(app.globalData.currentWeek);
         }
       },
       fail: function (res) {
