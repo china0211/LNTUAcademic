@@ -15,6 +15,7 @@
         "pages/module/others/othersList/othersList",
         "pages/module/others/educationPlan/educationPlan",
         "pages/module/others/modifyPassword/modifyPassword",
+        "pages/module/others/serviceTel/serviceTel",
         "pages/module/others/timeTable/timeTable",
         "pages/more/login/login",
         "pages/more/me/me",
