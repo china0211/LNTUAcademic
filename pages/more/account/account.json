@@ -1,7 +1,3 @@
 {
-    "navigationBarBackgroundColor": "#fff",
-    "backgroundColor": "#fff",
-    "navigationBarTitleText": "账户管理",
-    "enablePullDownRefresh": false,
-    "disableScroll": true
+  "navigationBarTitleText": "账户管理"
 }
