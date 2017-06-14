@@ -5,7 +5,6 @@ Page({
             "常用",
             "校区综合办",
             "校区工会",
-            "校区综合办",
             "校区组织人事部",
             "校区学生处",
             "校区团工委",
@@ -23,10 +22,9 @@ Page({
             "矿业技术学院",
             "安全科学与工程学院",
             "图书馆",
-            "薛芦岛校区后勤集团",
+            "葫芦岛校区后勤集团",
             "其他"
-        ]
-        ,
+        ],
         telephones: [
             // 常用
             [
@@ -163,12 +161,12 @@ Page({
                 {name: '副院长室', tel: '0429-5310932'},
                 {name: '办公室', tel: '0429-5310933'},
                 {name: '团委', tel: '0429-5310936'},
-                {name: '学生工作部', tel: '0429-53100429-531'},
+                {name: '学生工作部', tel: '0429-5310531'},
                 {name: '学生党支部', tel: '0429-5310791'},
                 {name: '教务科', tel: '0429-5310934'},
                 {name: '学生会', tel: '0429-5310937'},
                 {name: '通信教研室', tel: '0429-2490632'},
-                {name: '应用电子教研空', tel: '0429-2492610'}
+                {name: '应用电子教研室', tel: '0429-2492610'}
             ],
             //电气与控制工程学院
             [
@@ -219,7 +217,7 @@ Page({
                 {name: '科技书库2', tel: '0429-5310389'},
                 {name: '现刊阅览室', tel: '0429-5310385'}
             ],
-            //薛芦岛校区后勤集团
+            //葫芦岛校区后勤集团
             [
                 {name: '总经理室', tel: '0429-5312309'},
                 {name: '副总经理室', tel: '0429-5310288'},
@@ -227,13 +225,13 @@ Page({
                 {name: '副总经理室', tel: '0429-5312176'},
                 {name: '办公室', tel: '0429-5310000'},
                 {name: '财务部', tel: '0429-5310299'},
-                {name: '维修服务热线', tel: '8355585'},
+                {name: '维修服务热线', tel: '0429-8355585'},
                 {name: '车票销售、电费收缴', tel: '0429-5310300'}
             ],
             //其他
             [
-                {name: '四家派出所', tel: '5410625'},
-                {name: '钓鱼台派出所', tel: '5419666'},
+                {name: '四家派出所', tel: '0429-5410625'},
+                {name: '钓鱼台派出所', tel: '0429-5419666'},
                 {name: '儒园餐厅', tel: '0429-5311450'},
                 {name: '怡园餐厅', tel: '0429-5310294'},
                 {name: '移动营业厅', tel: '13898294146'},
@@ -258,15 +256,98 @@ Page({
                 {name: '清莲公寓E3座门卫', tel: '0429-2493359'},
                 {name: '建行卡咨询', tel: '0429-5152176'}
             ]
-        ]
+        ],
+        currentTels: null,
+        searchResultVisible: false,
+        inputShowed: false,
+        inputVal: ""
     },
     onLoad: function (options) {
+        var that = this;
         app.mta.Page.init();
+        // that.inputOrgs();
     },
     viewTelDetail: function (e) {
         var that = this;
         app.currentOrg = that.data.organizations[e.currentTarget.dataset.org];
         app.currentTels = that.data.telephones[e.currentTarget.dataset.org];
         app.navigateToPage("/pages/module/others/serviceTel/serviceTelDetail/serviceTelDetail");
+    },
+    // 查询框处理事件
+    showInput: function () {
+        this.setData({
+            inputShowed: true
+        });
+    },
+    hideInput: function () {
+        this.setData({
+            inputVal: "",
+            inputShowed: false,
+            currentTels: null,
+            searchResultVisible: false
+        });
+    },
+    clearInput: function () {
+        this.setData({
+            inputVal: ""
+        });
+    },
+    //查询电话
+    inputOrgs: function (e) {
+        var that = this;
+        // 输入内容
+        var searchValue = e.detail.value;
+        // var searchValue = '自动化';
+        var tels = that.data.telephones;
+        var orgs = that.data.organizations;
+        if (searchValue.length > 0) {
+            //查询结果
+            var searchResult = [];
+            for (var i = 0; i < tels.length; i++) {
+                for (var j = 0; j < tels[i].length; j++) {
+                    //拼接组织和部门电话
+                    var telephoneDetail = new Object();
+                    telephoneDetail.name = orgs[i] + " " + tels[i][j].name;
+                    telephoneDetail.tel = tels[i][j].tel;
+                    console.log(telephoneDetail.name.indexOf(searchValue));
+                    if (telephoneDetail.name.indexOf(searchValue) > -1) {
+                        searchResult.push(telephoneDetail);
+                    }
+                }
+            }
+
+            if (searchResult.length > 0) {
+                that.setData({
+                    currentTels: searchResult,
+                    searchResultVisible: true,
+                })
+            } else {
+                that.setData({
+                    currentTels: null,
+                    searchResultVisible: true,
+                })
+            }
+        } else {
+            that.setData({
+                currentTels: null,
+                searchResultVisible: false
+            })
+        }
+    },
+    // 拨打电话
+    callTel: function (e) {
+        var that = this;
+        wx.showModal({
+            content: '是否拨打' + e.currentTarget.dataset.name
+            + "电话:\n" + e.currentTarget.dataset.tel,
+            success: function (res) {
+                if (res.confirm) {
+                    //拨打电话
+                    wx.makePhoneCall({
+                        phoneNumber: e.currentTarget.dataset.tel
+                    })
+                }
+            }
+        })
     },
 })

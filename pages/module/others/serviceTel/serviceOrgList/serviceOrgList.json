@@ -1,1 +1,7 @@
-{}
+{
+  "navigationBarBackgroundColor": "#fff",
+  "backgroundColor": "#fff",
+  "navigationBarTitleText": "服务电话",
+  "enablePullDownRefresh": false,
+  "disableScroll": false
+}

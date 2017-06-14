@@ -1,4 +1,44 @@
 <view class="page">
+    <!--搜索栏-->
+    <view class="weui-search-bar">
+        <view class="weui-search-bar__form">
+            <view class="weui-search-bar__box">
+                <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                <input type="text" class="weui-search-bar__input" placeholder="请输入要查询的内容" value="{{inputVal}}"
+                       focus="{{inputShowed}}" bindinput="inputOrgs"/>
+                <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                    <icon type="clear" size="14"></icon>
+                </view>
+            </view>
+            <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+                <icon class="weui-icon-search" type="search" size="14"></icon>
+                <view class="weui-search-bar__text">搜索</view>
+            </label>
+        </view>
+        <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+    </view>
+    <!--查询结果-->
+    <view wx:if="{{searchResultVisible}}">
+        <view class="weui-cells__title">查询结果</view>
+        <view class="weui-cells weui-cells_after-title"  wx:if="{{currentTels == null}}">
+            <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__hd">
+                    <image src="/images/global/noResultsIcon.png" class="list-icon"></image>
+                </view>
+                <view class="weui-cell__bd">未查询到结果</view>
+            </view>
+        </view>
+
+        <view class="weui-cells weui-cells_after-title" wx:if="{{currentTels != null}}">
+            <view class="weui-cell" bindtap="callTel" data-name="{{tel.name}}" data-tel="{{tel.tel}}"
+                  wx:for="{{currentTels}}" wx:for-item="tel" wx:key="tel">
+                <text class="weui-cell__bd">{{tel.name}}</text>
+                <text class="weui-cell__ft">{{tel.tel}}</text>
+            </view>
+        </view>
+    </view>
+
+    <!--组织列表-->
     <view class="weui-cells__title">葫芦岛校区</view>
     <view class="weui-cells weui-cells_after-title">
         <navigator class="weui-cell weui-cell_access" hover-class="weui-cell_active"
