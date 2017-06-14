@@ -2,8 +2,8 @@
     <view class="weui-cells">
         <view class="weui-cell" bindtap="callTel" data-name="{{tel.name}}" data-tel="{{tel.tel}}"
               wx:for="{{currentTels}}" wx:for-item="tel" wx:key="tel">
-            <text class="weui-cell__bd">{{tel.name}}</text>
-            <text class="weui-cell__ft">{{tel.tel}}</text>
+            <text  selectable="true"  class="weui-cell__bd">{{tel.name}}</text>
+            <text  selectable="true"  class="weui-cell__ft">{{tel.tel}}</text>
         </view>
     </view>
 </view>

@@ -309,7 +309,6 @@ Page({
                     var telephoneDetail = new Object();
                     telephoneDetail.name = orgs[i] + " " + tels[i][j].name;
                     telephoneDetail.tel = tels[i][j].tel;
-                    console.log(telephoneDetail.name.indexOf(searchValue));
                     if (telephoneDetail.name.indexOf(searchValue) > -1) {
                         searchResult.push(telephoneDetail);
                     }
