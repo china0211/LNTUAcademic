@@ -25,9 +25,9 @@
         "pages/more/feedback/feedback"
     ],
     "window": {
-        "navigationBarBackgroundColor": "#459ae9",
+        "navigationBarBackgroundColor": "#87cefa",
         "navigationBarTextStyle": "light",
-        "backgroundColor": "#459ae9",
+        "backgroundColor": "#87cefa",
         "backgroundTextStyle": "black",
         "navigationBarTitleText": "辽宁工程技术大学教务在线"
     },
