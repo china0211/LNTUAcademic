@@ -4,7 +4,7 @@
     <view class="weui-article__section">
       <view class="weui-article__section">
         <view class="weui-article__p">
-          <text class="announcement-content">{{announcementDetail.content}}</text>
+          <text  selectable="true"  class="announcement-content">{{announcementDetail.content}}</text>
         </view>
       </view>
       <view class="article-foot-date">{{announcementDetail.date}}</view>

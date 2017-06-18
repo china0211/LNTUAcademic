@@ -15,12 +15,12 @@
         <text class="green">绿色</text>表示未占用</view>
     </view>
   </view>
-  <view wx:else class="container ">
-    <view class="icon-box ">
-      <icon class="icon-box-img " type="warn " size="93 " color="#C9C9C9 "></icon>
+  <view wx:else class="container">
+    <view class="icon-box">
+      <image class="noResultImage" src="/images/global/noResult.png"></image>
     </view>
     <view>
-      <text class="icon-box-title ">未查询到结果</text>
+      <text class="icon-box-title">未查询到结果</text>
     </view>
   </view>
 </view>

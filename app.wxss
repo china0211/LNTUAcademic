@@ -75,3 +75,8 @@ page {
 .list-even{
   background-color: #F8F8F8;
 }
+
+.noResultImage{
+    height: 100px;
+    width: 165px;
+}

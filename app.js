@@ -319,13 +319,9 @@ App({
   setClipboardData: function (data) {
     var that = this;
     wx.setClipboardData({
-      data: 'data',
+      data: data,
       success: function (res) {
-        wx.getClipboardData({
-          success: function (res) {
-            that.showToast("已复制到剪贴板", true);
-          }
-        })
+        that.showToast("已复制到剪贴板", true);
       }
     })
   },

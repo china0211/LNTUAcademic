@@ -35,9 +35,9 @@
       <view class="weui-footer__text"><text class="red">红色</text>表示未通过，<text class="green">绿色</text>表示已通过</view>
     </view>
   </view>
-  <view class="container" wx:else>
+  <view wx:else class="container">
     <view class="icon-box">
-      <icon class="icon-box-img" type="warn" size="93" color="#C9C9C9"></icon>
+      <image class="noResultImage" src="/images/global/noResult.png"></image>
     </view>
     <view>
       <text class="icon-box-title">未查询到结果</text>
