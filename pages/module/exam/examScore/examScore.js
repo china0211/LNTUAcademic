@@ -8,7 +8,7 @@ Page({
     onLoad: function(options) {
         app.mta.Page.init();
         var that = this;
-        if (app.examScores != "NO_RESULT") {
+        if (app.examScores != "NO_RESULT" && app.examScores.length > 0) {
             that.setData({
                 hasResult: true,
                 examScores: app.examScores

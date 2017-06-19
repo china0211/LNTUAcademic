@@ -271,13 +271,13 @@ App({
     wx.hideLoading();
   },
   //页面跳转
-  navigateToPage(path) {
+  navigateToPage: function(path) {
     wx.navigateTo({
       url: path
     })
   },
   //页面重定向
-  redirectToPage(path) {
+  redirectToPage: function(path) {
     wx.redirectTo({
       url: path
     })
