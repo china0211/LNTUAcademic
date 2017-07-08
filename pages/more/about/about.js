@@ -3,18 +3,20 @@ Page({
     data: {
         showLog: false,
         year: null,
-        version: '0.0.1',
-        versionType: '开发版',
+        version: '',
+        versionType: ''
     },
     onLoad: function(options) {
         app.mta.Page.init();
         var that = this;
         that.setData({
-            year: new Date().getFullYear()
+            year: new Date().getFullYear(),
+            version:app.globalData.version,
+            versionType:app.globalData.versionType
         })
     },
     toggleLog: function() {
-        var that = this
+        var that = this;
         this.setData({
             showLog: !that.data.showLog
         })

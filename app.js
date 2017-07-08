@@ -18,7 +18,7 @@ App({
     stuDetail: null,
     authorization: properties.authorization,
     wxGlobalToken: properties.wxGlobalToken,
-    getOpenIdUrl: properties.getOpenIdUrl,
+    getOpenIdUrl: LNTUWMPOEDomain+"/getOpenId",
     loginUrl: LNTUOEDomain + "/login",
     studentInfoUrl: LNTUOEDomain + "/student-info",
     examUrl: LNTUOEDomain + "/query-results-all",
@@ -45,27 +45,28 @@ App({
     queryCourseScheduleUrl: LNTUOEDomain + "/schedule",
     isBind: false,
 
-    toastFailImg: properties.toastFailImg
+    toastFailImg: properties.toastFailImg,
+    version:properties.version
   },
-
-  //获取openid
+    
   getOpenId: function (readStorageSuccess) {
     var that = this;
     wx.login({
       success: function (res) {
         if (res.code) {
+            console.log(res.code);
           wx.request({
             url: that.globalData.getOpenIdUrl,
             data: {
-              appid: that.globalData.appid,
-              secret: that.globalData.secret,
-              grant_type: 'authorization_code',
-              js_code: res.code
+              code: res.code
             },
             method: 'GET',
-            header: {},
+            header: {
+                Authorization: that.globalData.wxGlobalToken
+            },
             success: function (res) {
-              that.globalData.weChatId = res.data.openid;
+                console.log(res);
+              that.globalData.weChatId = res.data.result;
               if (!readStorageSuccess) {
                 that.getStuIdByWeChatId();
               }
@@ -76,7 +77,7 @@ App({
             complete: function (res) {
               wx.getUserInfo({
                 success: function (resp) {
-                  that.globalData.userInfo = resp.userInfo
+                  that.globalData.userInfo = resp.userInfo;
                 }, complete: function (resp) {
                   //发送使用信息
                   that.saveStartUpRecord();
@@ -134,6 +135,7 @@ App({
       success: function (res) {
         that.globalData.stuId = res.data;
         that.getOpenId(true);
+        that.getStuDetailFromStorage();
       },
       fail: function (res) {
         that.getOpenId(false);
@@ -143,6 +145,17 @@ App({
       }
     })
   },
+    //从缓存中读取学生信息(如果本地有缓存，没有缓存的时候通过queryAllstuInfo获取)
+    getStuDetailFromStorage: function () {
+        var that = this;
+        wx.getStorage({
+            key: 'stuDetail',
+            success: function (res) {
+                that.globalData.stuDetail = res.data;
+            }
+        })
+    },
+
   //通过openID查询stuId
   getStuIdByWeChatId: function () {
     var that = this;
@@ -189,7 +202,7 @@ App({
       success: function (res) {
         if (res.data.message == "请求成功") {
           failed = false;
-          that.globalData.stuDetail = res.data.info.baseInfo
+          that.globalData.stuDetail = res.data.info.baseInfo;
           wx.setStorage({
             key: 'stuDetail',
             data: res.data.info.baseInfo,
