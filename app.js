@@ -46,7 +46,8 @@ App({
     isBind: false,
 
     toastFailImg: properties.toastFailImg,
-    version:properties.version
+    version:properties.version,
+    versionType:properties.versionType
   },
     
   getOpenId: function (readStorageSuccess) {
