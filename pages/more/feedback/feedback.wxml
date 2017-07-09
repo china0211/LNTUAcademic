@@ -29,6 +29,6 @@
     </view>
   </view>
   <view class="weui-btn-area">
-    <button class="weui-btn" type="primary" bindtap="sendFeddback">提交反馈信息</button>
+    <button class="weui-btn" type="primary" bindtap="sendFeedback">提交反馈信息</button>
   </view>
 </view>

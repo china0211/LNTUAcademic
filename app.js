@@ -55,7 +55,6 @@ App({
     wx.login({
       success: function (res) {
         if (res.code) {
-            console.log(res.code);
           wx.request({
             url: that.globalData.getOpenIdUrl,
             data: {
@@ -66,7 +65,6 @@ App({
                 Authorization: that.globalData.wxGlobalToken
             },
             success: function (res) {
-                console.log(res);
               that.globalData.weChatId = res.data.result;
               if (!readStorageSuccess) {
                 that.getStuIdByWeChatId();
@@ -81,7 +79,7 @@ App({
                   that.globalData.userInfo = resp.userInfo;
                 }, complete: function (resp) {
                   //发送使用信息
-                  that.saveStartUpRecord();
+                  that.saveStartUpRecord(resp.userInfo.nickName);
                 }
               })
             }
@@ -236,12 +234,12 @@ App({
     }
   },
   //保存用户使用信息
-  saveStartUpRecord: function () {
+  saveStartUpRecord: function (nickName) {
     var that = this;
     wx.request({
       url: that.globalData.saveStartUpRecordUrl,
       data: {
-        wechatId: that.globalData.weChatId,
+        wechatId: nickName,
       },
       method: 'POST',
       header: {
