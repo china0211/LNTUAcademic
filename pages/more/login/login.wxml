@@ -1,31 +1,31 @@
 <view class="page">
-  
 
-  <view class="page__bd">
-  <view class="schoolLogo">
-    <image class="schoolLogo-avatar" src="/images/global/school_logo.png" background-size="cover"></image>
-  </view>
-    <view class="weui-cells">
-      <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd">
-          <view class="weui-label">学号</view>
+
+    <view class="page__bd">
+        <view class="schoolLogo">
+            <image class="schoolLogo-avatar" src="/images/global/school_logo.png" background-size="cover"></image>
         </view>
-        <view class="weui-cell__bd">
-          <input class="weui-input" type="number" maxlength="10" bindinput="inputStuId" placeholder="请输入学号"  />
+        <view class="weui-cells">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">学号</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" type="number" maxlength="10" bindinput="inputStuId" placeholder="请输入学号"/>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">密码</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" type="password" maxlength="18" placeholder="密码" bindinput="inputPassword"
+                           placeholder="请输入密码"/>
+                </view>
+            </view>
         </view>
-      </view>
-      <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd">
-          <view class="weui-label">密码</view>
+        <view class="weui-btn-area">
+            <button class="weui-btn" type="primary" bindtap="login">登录</button>
         </view>
-        <view class="weui-cell__bd">
-          <input class="weui-input" type="password" maxlength="18" placeholder="密码" bindinput="inputPassword"
-                 placeholder="请输入密码"  />
-        </view>
-      </view>
     </view>
-    <view class="weui-btn-area">
-      <button class="weui-btn" type="primary" bindtap="login">登录</button>
-    </view>
-  </view>
 </view>

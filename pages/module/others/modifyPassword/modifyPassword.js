@@ -5,30 +5,30 @@ Page({
         newPassword: null,
         confirmPassword: null
     },
-    onLoad: function(options) {
+    onLoad: function (options) {
         app.mta.Page.init();
         app.validateStuId();
     },
-    onShow: function() {
+    onShow: function () {
 
     },
-    inputOriginalPassword: function(e) {
+    inputOriginalPassword: function (e) {
         this.setData({
             originalPassword: e.detail.value
         })
     },
-    inputNewPassword: function(e) {
+    inputNewPassword: function (e) {
         this.setData({
             newPassword: e.detail.value
         })
     },
-    inputConfirmPassword: function(e) {
+    inputConfirmPassword: function (e) {
         this.setData({
             confirmPassword: e.detail.value
         })
     },
     //校验密码格式
-    isPasswordFormatValid: function(password) {
+    isPasswordFormatValid: function (password) {
         var that = this;
         if (password == null || password == "" || password.length < 1 || password.length > 18) {
             return false;
@@ -37,7 +37,7 @@ Page({
         }
     },
     //校验密码是否为空
-    isPasswordFormatValid: function(password) {
+    isPasswordFormatValid: function (password) {
         var that = this;
         if (password != null && password != "") {
             return true;
@@ -46,7 +46,7 @@ Page({
         }
     },
     //校验密码
-    validatePassword: function() {
+    validatePassword: function () {
         var that = this;
         if (!that.isPasswordFormatValid(that.data.originalPassword)) {
             app.showMsgModal("原密码为空或格式不正确");
@@ -67,7 +67,7 @@ Page({
             return true;
         }
     },
-    modifyPassword: function() {
+    modifyPassword: function () {
         var that = this;
         if (that.validatePassword()) {
             var toastMsg = '';
@@ -86,7 +86,7 @@ Page({
                     Authorization: app.globalData.wxGlobalToken,
                     username: app.globalData.stuId
                 },
-                success: function(res) {
+                success: function (res) {
                     if (res.data.result == "success") {
                         failed = false;
                         navigateBack = true;
@@ -96,14 +96,14 @@ Page({
                         showToast = false;
                     }
                 },
-                fail: function(res) {
+                fail: function (res) {
                     toastMsg = "请求失败，请稍后重试";
                 },
-                complete: function(res) {
+                complete: function (res) {
                     app.hideLoading();
-                    if(showToast){
+                    if (showToast) {
                         app.showToast(toastMsg, !failed);
-                    }else{
+                    } else {
                         app.showMsgModal(toastMsg);
                     }
                     if (navigateBack) {

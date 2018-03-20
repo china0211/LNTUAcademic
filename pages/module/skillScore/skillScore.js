@@ -1,65 +1,67 @@
 var app = getApp();
 var util = require("../../../utils/util.js");
 Page({
-  data: {
-    skillScores: null
-  },
-  onLoad: function (options) {
-    app.mta.Page.init();
-    app.validateStuId();
-    var that = this;
-    var toastMsg = '';
-    var failed = true;
-    var navigateBack = true;
-    app.showLoading();
-    wx.request({
-      url: app.globalData.skillInfoUrl,
-      data: {},
-      method: 'GET',
-      header: {
-        Authorization: app.globalData.authorization,
-        username: app.globalData.stuId
-      },
-      success: function (res) {
-        if (res.data.message == "请求成功") {
-          failed = false;
-          navigateBack = false;
-          //处理等级考试数据
-          that.handleSkillScoreData(res.data.info);
-        } else {
-          toastMsg = "查询失败，请稍后重试";
-        }
-      },
-      fail: function (res) {
-        toastMsg = "请求失败，请稍后重试";
-      },
-      complete: function (res) {
-        app.hideLoading();
-        if (failed) {
-          app.showToast(toastMsg, false);
-        }
-        if (navigateBack) {
-          app.navigateBack();
-        }
-      }
-    })
-  },
-  handleSkillScoreData: function (skillScoreData) {
-    var that = this;
-    var skillScoreArray = [];
+    data: {
+        skillScores: null
+    },
+    onLoad: function (options) {
+        app.mta.Page.init();
+        app.validateStuId();
+        var that = this;
+        var toastMsg = '';
+        var failed = true;
+        var navigateBack = true;
+        app.showLoading();
+        wx.request({
+            url: app.globalData.gradeExamScoreUrl.concat(app.globalData.stuId),
+            method: 'GET',
+            header: {
+                Authorization: app.globalData.authorization,
+                username: app.globalData.stuId
+            },
+            success: function (res) {
+                if (res.data.message == "success") {
+                    failed = false;
+                    navigateBack = false;
+                    //处理等级考试数据
+                    that.setData({
+                        skillScores: res.data.result
+                    })
+                    // that.handleSkillScoreData(res.data.info);
+                } else {
+                    toastMsg = "查询失败，请稍后重试";
+                }
+            },
+            fail: function (res) {
+                toastMsg = "请求失败，请稍后重试";
+            },
+            complete: function (res) {
+                app.hideLoading();
+                if (failed) {
+                    app.showToast(toastMsg, false);
+                }
+                if (navigateBack) {
+                    app.navigateBack();
+                }
+            }
+        })
+    },
+    handleSkillScoreData: function (skillScoreData) {
+        var that = this;
+        var skillScoreArray = [];
 
-    //将Object转换为Array
-    for (var key in skillScoreData) {
-      //key是属性,object[key]是值
-      skillScoreData[key].timestamp = util.formaDataTotTimestamp(skillScoreData[key].date);
-      skillScoreArray.push(skillScoreData[key]);
+        //将Object转换为Array
+        for (var key in skillScoreData) {
+            //key是属性,object[key]是值
+            skillScoreData[key].timestamp = util.formaDataTotTimestamp(skillScoreData[key].date);
+            skillScoreArray.push(skillScoreData[key]);
+        }
+        //排序
+        skillScoreArray.sort(function (a, b) {
+            return a.timestamp - b.timestamp;
+        });
+        that.setData({
+            skillScores: skillScoreArray
+        })
     }
-    //排序
-    skillScoreArray.sort(function (a, b) {
-      return a.timestamp - b.timestamp;
-    });
-    that.setData({
-      skillScores: skillScoreArray
-    })
-  }
 })

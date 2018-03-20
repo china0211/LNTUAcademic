@@ -43,14 +43,18 @@
   vertical-align: middle;
 }
 
-.badge-green {
-  background-color: green;
+.badge-warning {
+  background-color: #FAA732;
 }
 
-.badge-red {
-  background-color: red;
+.badge-success {
+  background-color: #5BB75B;
 }
 
 .dot-distance {
-  margin-left: 40rpx;
+  margin-left: 20rpx;
+}
+
+.class-room-type{
+  color: #888888;
 }

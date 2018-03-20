@@ -36,27 +36,27 @@ Page({
     })
   },
   //获取学号
-  setStuId: function () {
-    var that = this;
-    if (util.isStuIdValid(app.globalData.stuId)) {
-      that.setData({
-        stuId: app.globalData.stuId
-      })
-    } else {
-      wx.getStorage({
-        key: 'stuId',
-        success: function (response) {
-          that.setData({
-            stuId: response.data
-          })
-        },
-        fail: function (res) {
-          app.showToast("获取用户信息失败，请重新登录", false);
-          app.redirectToLoginPage();
-        }
-      })
-    }
-  },
+  // setStuId: function () {
+  //   var that = this;
+  //   if (util.isStuIdValid(app.globalData.stuId)) {
+  //     that.setData({
+  //       stuId: app.globalData.stuId
+  //     })
+  //   } else {
+  //     wx.getStorage({
+  //       key: 'stuId',
+  //       success: function (response) {
+  //         that.setData({
+  //           stuId: response.data
+  //         })
+  //       },
+  //       fail: function (res) {
+  //         app.showToast("获取用户信息失败，请重新登录", false);
+  //         app.redirectToLoginPage();
+  //       }
+  //     })
+  //   }
+  // },
   //查询教学计划
   queryEducationPlan: function (e) {
     var that = this;
@@ -67,10 +67,9 @@ Page({
       var failed = true;
       app.showLoading('正在查询', true);
       wx.request({
-        url: app.globalData.queryEducationPlanUrl,
+        url: app.globalData.courseStudyScheduleUrl.concat(app.globalData.stuId),
         data: {
-          educationPlanYear: selectedEducationPlanYear,
-          stuId: app.globalData.stuId
+          educationPlanYear: selectedEducationPlanYear
         },
         method: 'GET',
         header: {
@@ -78,10 +77,10 @@ Page({
           username: app.globalData.stuId
         },
         success: function (res) {
-          if (res.data.message == "请求成功") {
+          if (res.data.message == "success") {
             failed = false;
             that.setData({
-              educationPlans: res.data.info
+              educationPlans: res.data.result
             })
           } else {
             toastMsg = "查询失败，请稍后重试";

@@ -6,22 +6,22 @@ Page({
         version: '',
         versionType: ''
     },
-    onLoad: function(options) {
+    onLoad: function (options) {
         app.mta.Page.init();
         var that = this;
         that.setData({
             year: new Date().getFullYear(),
-            version:app.globalData.version,
-            versionType:app.globalData.versionType
+            version: app.globalData.version,
+            versionType: app.globalData.versionType
         })
     },
-    toggleLog: function() {
+    toggleLog: function () {
         var that = this;
         this.setData({
             showLog: !that.data.showLog
         })
     },
-    setClipboardData:function(e){
-      app.setClipboardData(e.currentTarget.dataset.qqgroup);
+    setClipboardData: function (e) {
+        app.setClipboardData(e.currentTarget.dataset.qqgroup);
     }
 })

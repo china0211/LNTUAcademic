@@ -1,6 +1,6 @@
 <view class="page">
-    <view wx:if="true">
-        <view class="list-container">
+    <view wx:if="{{exams}}">
+        <view class="list-container" wx:for="{{exams}}" wx:for-item="exam" wx:key="exam">
             <view class="weui-flex ">
                 <view>
                     <view class="list-content">
@@ -10,7 +10,7 @@
                     </view>
                 </view>
                 <view class="weui-flex__item">
-                    <view class="list-content list-title text-left">软件工程</view>
+                    <view class="list-content list-title text-left">{{exam.courseName}}</view>
                 </view>
                 <view>
                     <view class="list-content list-detail text-center space-right">剩</view>
@@ -25,10 +25,11 @@
                     </view>
                 </view>
                 <view class="weui-flex__item">
-                    <view class="list-content list-detail text-left">2017年5月20日 19:00</view>
+                    <view class="list-content list-detail text-left">{{exam.examStartTime}}-{{exam.examEndTime}}</view>
                 </view>
                 <view>
-                    <view class="list-content list-title text-center left-day-up space-right">55</view>
+                    <view class="list-content list-title text-center left-day-up space-right">{{exam.remainingTime}}
+                    </view>
                 </view>
             </view>
             <view class="weui-flex">
@@ -40,7 +41,7 @@
                     </view>
                 </view>
                 <view class="weui-flex__item">
-                    <view class="list-content list-detail text-left ">尔雅101</view>
+                    <view class="list-content list-detail text-left ">{{exam.examRoom}}</view>
                 </view>
                 <view>
                     <view class="list-content list-detail text-center space-right">天</view>

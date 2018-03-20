@@ -1,87 +1,93 @@
 <view class="page">
-  <view class="header">
-    <view class="black-cover"></view>
-    <image class="banner" src="/images/main/about/banner-bg.jpg"></image>
-    <image class="logo" src="/images/global/school_logo.png"></image>
-  </view>
-  <view class="content">
-    <view class="version">
-      <view class="version-title">
-        <text class="title-name">LNTU·教务在线</text>
-        <text class="version-text">{{version}}</text>
-        <text class="version-text">{{versionType}}</text>
-      </view>
-      <view bindtap="toggleLog">
-        <text class="version-log-link" wx:if="{{!showLog}}">更新日志</text>
-        <text class="version-log-link" wx:else>简介</text>
-      </view>
+    <view class="header">
+        <view class="black-cover"></view>
+        <image class="banner" src="/images/main/about/banner-bg.jpg"></image>
+        <image class="logo" src="/images/global/school_logo.png"></image>
     </view>
-    <view class="describe" wx:if="{{!showLog}}">
-      <text class="desc-title">简介</text>
-      <view class="desc-list">
-        <text class="desc-list-item"  selectable="true">教务在线：http://60.18.131.131</text>
-        <text class="desc-list-item"  selectable="true">移动APP：https://www.lgdjwc.com</text>
-        <text class="desc-list-item">辽宁工程技术大学·教务在线 微信小程序以最方便的形式提供教务在线功能，贴合微信小程序触手可及、用完即走的特点，所有风格遵循微信设计指导；集成了教务在线的常用功能，加入了微信号和学号绑定，尽可能的提高教务在线的易用性</text>
-      </view>
-    </view>
-    <view class="describe" wx:if="{{!showLog}}">
-      <text class="desc-title">CSDN高校俱乐部</text>
-      <view class="desc-list">
-        <text class="desc-list-item">CSDN高校俱乐部是由全球最大中文IT技术社区CSDN发起的IT技术学习型组织。辽宁工程技术大学CSDN高校俱乐部依托于软件学院，以普及计算机知识，提高计算机水平，锻炼能力为目标，举办多种IT相关的线上线下交流活动，欢迎加入</text>
-        <text class="desc-list-item"></text>
-        <text class="desc-list-item" bindtap="setClipboardData" data-qqGroup="217367546" selectable="true">QQ群：217367546  (点击复制)</text>
-      </view>
-    </view>
-    <view class="log-list" wx:else>
-      <view class="describe">
-        <view class="desc-title">
-          <text class="desc-v">V0.0.2 开发版</text>
-          <text class="desc-time">2017-7-9</text>
+    <view class="content">
+        <view class="version">
+            <view class="version-title">
+                <text class="title-name">LNTU·教务在线</text>
+                <text class="version-text">{{version}}</text>
+                <text class="version-text">{{versionType}}</text>
+            </view>
+            <view bindtap="toggleLog">
+                <text class="version-log-link" wx:if="{{!showLog}}">更新日志</text>
+                <text class="version-log-link" wx:else>简介</text>
+            </view>
         </view>
-        <view>
-          <text class="desc-content">已完成功能</text>
-          <view class="desc-list">
-            <text class="desc-list-item">后勤联系方式</text>
-          </view>
-          <text class="desc-content">开发中</text>
-          <view class="desc-list">
-            <text class="desc-list-item">考试安排</text>
-            <text class="desc-list-item">教务公告</text>
-          </view>
+        <view class="describe" wx:if="{{!showLog}}">
+            <text class="desc-title">简介</text>
+            <view class="desc-list">
+                <text class="desc-list-item" selectable="true">教务在线：http://60.18.131.131</text>
+                <text class="desc-list-item" selectable="true">移动APP：https://www.lgdjwc.com</text>
+                <text class="desc-list-item">辽宁工程技术大学·教务在线
+                    微信小程序以最方便的形式提供教务在线功能，贴合微信小程序触手可及、用完即走的特点，所有风格遵循微信设计指导；集成了教务在线的常用功能，加入了微信号和学号绑定，尽可能的提高教务在线的易用性
+                </text>
+            </view>
         </view>
-      </view>
-      <view class="describe">
-        <view class="desc-title">
-          <text class="desc-v">V0.0.1 开发版</text>
-          <text class="desc-time">2017-5-27</text>
+        <view class="describe" wx:if="{{!showLog}}">
+            <text class="desc-title">CSDN高校俱乐部</text>
+            <view class="desc-list">
+                <text class="desc-list-item">
+                    CSDN高校俱乐部是由全球最大中文IT技术社区CSDN发起的IT技术学习型组织。辽宁工程技术大学CSDN高校俱乐部依托于软件学院，以普及计算机知识，提高计算机水平，锻炼能力为目标，举办多种IT相关的线上线下交流活动，欢迎加入
+                </text>
+                <text class="desc-list-item"></text>
+                <text class="desc-list-item" bindtap="setClipboardData" data-qqGroup="217367546" selectable="true">
+                    QQ群：217367546 (点击复制)
+                </text>
+            </view>
         </view>
-        <view>
-          <text class="desc-content">已完成功能</text>
-          <view class="desc-list">
-            <text class="desc-list-item">课程查询</text>
-            <text class="desc-list-item">考试成绩查询</text>
-            <text class="desc-list-item">等级考试</text>
-            <text class="desc-list-item">考试安排</text>
-            <text class="desc-list-item">学籍信息</text>
-            <text class="desc-list-item">教室查询</text>
-            <text class="desc-list-item">教务公告</text>
-            <text class="desc-list-item">教学计划</text>
-            <text class="desc-list-item">作息时间</text>
-            <text class="desc-list-item">用户反馈</text>
-          </view>
-          <text class="desc-content">开发中</text>
-          <view class="desc-list">
-            <text class="desc-list-item">考试安排</text>
-            <text class="desc-list-item">教务公告</text>
-            <text class="desc-list-item">后勤联系方式</text>
-          </view>
-        </view>
-      </view>
+        <view class="log-list" wx:else>
+            <view class="describe">
+                <view class="desc-title">
+                    <text class="desc-v">V0.0.2 开发版</text>
+                    <text class="desc-time">2017-7-9</text>
+                </view>
+                <view>
+                    <text class="desc-content">已完成功能</text>
+                    <view class="desc-list">
+                        <text class="desc-list-item">后勤联系方式</text>
+                    </view>
+                    <text class="desc-content">开发中</text>
+                    <view class="desc-list">
+                        <text class="desc-list-item">考试安排</text>
+                        <text class="desc-list-item">教务公告</text>
+                    </view>
+                </view>
+            </view>
+            <view class="describe">
+                <view class="desc-title">
+                    <text class="desc-v">V0.0.1 开发版</text>
+                    <text class="desc-time">2017-5-27</text>
+                </view>
+                <view>
+                    <text class="desc-content">已完成功能</text>
+                    <view class="desc-list">
+                        <text class="desc-list-item">课程查询</text>
+                        <text class="desc-list-item">考试成绩查询</text>
+                        <text class="desc-list-item">等级考试</text>
+                        <text class="desc-list-item">考试安排</text>
+                        <text class="desc-list-item">学籍信息</text>
+                        <text class="desc-list-item">教室查询</text>
+                        <text class="desc-list-item">教务公告</text>
+                        <text class="desc-list-item">教学计划</text>
+                        <text class="desc-list-item">作息时间</text>
+                        <text class="desc-list-item">用户反馈</text>
+                    </view>
+                    <text class="desc-content">开发中</text>
+                    <view class="desc-list">
+                        <text class="desc-list-item">考试安排</text>
+                        <text class="desc-list-item">教务公告</text>
+                        <text class="desc-list-item">后勤联系方式</text>
+                    </view>
+                </view>
+            </view>
 
+        </view>
     </view>
-  </view>
-  <view class="weui-footer footer">
-    <view class="weui-footer__text">辽宁工程技术大学 · CSDN高校俱乐部</view>
-    <view class="weui-footer__text">Copyright @ {{year}} All Rights Reserved</view>
-  </view>
+    <view class="weui-footer footer">
+        <view class="weui-footer__text">辽宁工程技术大学 · CSDN高校俱乐部</view>
+        <view class="weui-footer__text">Copyright @ {{year}} All Rights Reserved</view>
+    </view>
 </view>

@@ -34,22 +34,23 @@ Page({
             wx.request({
                 url: app.globalData.loginUrl,
                 data: {
-                    userId: that.data.stuId,
+                    weChatOpenId: app.globalData.weChatOpenId,
+                    studentNo: that.data.stuId,
                     password: that.data.password
                 },
-                method: 'GET',
+                method: 'POST',
                 header: {
                     Authorization: app.globalData.authorization
                 },
                 success: function (res) {
-                    if (res.data.message == "请求成功") {
+                    if (res.data.message == "success") {
                         failed = false;
                         //将stuId设置为全局属性
-                        app.globalData.stuId = that.data.stuId
+                        app.globalData.stuId = that.data.result.studentNo
                         app.queryAllstuInfo();
                         that.bindStuIdWithWeChatId();
                         //将数据保存到本地，方便下次使用读取
-                        app.saveStorage("stuId", that.data.stuId);
+                        app.saveStorage("stuId", that.data.result.studentNo);
                         app.globalData.isBind = true
                     } else {
                         toastMsg = "登录失败，学号或密码错误";
@@ -64,7 +65,7 @@ Page({
                     if (failed) {
                         app.showToast(toastMsg, false);
                     }
-                    app.mta.Event.stat('login', { 'stuid': that.data.stuId })
+                    app.mta.Event.stat('login', {'stuid': that.data.stuId})
                 }
             })
         }
@@ -85,8 +86,8 @@ Page({
                     wx.request({
                         url: app.globalData.bindStuIdWithWeChatIdUrl,
                         data: {
-                            stuId: app.globalData.stuId,
-                            wechatId: app.globalData.weChatId
+                            studentNo: app.globalData.stuId,
+                            weChatOpenId: app.globalData.weChatOpenId
                         },
                         method: 'POST',
                         header: {

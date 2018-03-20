@@ -8,4 +8,5 @@
 .announcement-content {
     word-break: break-all;
     text-align: justify;
+    font-size: small;
 }

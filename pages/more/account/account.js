@@ -5,7 +5,7 @@ Page({
         stuDetail: null,
         stuId: '',
         userInfo: null,
-        bindingTime: '',
+        bindTime: '',
         isBind: null
     },
     onLoad: function (options) {
@@ -28,24 +28,25 @@ Page({
             success: function (response) {
                 that.setData({
                     stuDetail: response.data,
-                    stuId: response.data.userId,
+                    stuId: response.data.studentNo,
                 })
                 //查询绑定信息
                 wx.request({
-                    url: app.globalData.queryBindStatusUrl,
+                    url: app.globalData.bindUrl,
                     data: {
                         stuId: app.globalData.stuId,
-                        wechatId: app.globalData.weChatId
+                        weChatOpenId: app.globalData.weChatOpenId
                     },
-                    method: 'POST',
+                    method: 'GET',
                     header: {
                         Authorization: app.globalData.wxGlobalToken
                     },
                     success: function (res) {
-                        if (res.data.status == "success") {
+                        if (res.data.message == "success") {
                             that.setData({
-                                bindingTime: util.formatDate(new Date(res.data.result.bindingTime))
-                            })
+                                bindTime: res.data.result.bindTime
+                            });
+                            that.modifyBindStatus(true);
                         } else {
                             that.modifyBindStatus(false);
                             that.bindStuIdWithWeChatId();
@@ -75,17 +76,17 @@ Page({
                 if (res.confirm) {
                     app.showLoading();
                     wx.request({
-                        url: app.globalData.bindStuIdWithWeChatIdUrl,
+                        url: app.globalData.bindUrl,
                         data: {
                             stuId: app.globalData.stuId,
-                            wechatId: app.globalData.weChatId
+                            weChatOpenId: app.globalData.weChatOpenId
                         },
                         method: 'POST',
                         header: {
                             Authorization: app.globalData.wxGlobalToken
                         },
                         success: function (response) {
-                            if (response.data.status == "success") {
+                            if (response.data.message == "success") {
                                 msg = "绑定成功";
                                 isSuccessed = true;
                                 that.modifyBindStatus(true);
@@ -99,11 +100,11 @@ Page({
                         complete: function () {
                             app.hideLoading();
                             app.showToast(msg, isSuccessed);
-                            app.mta.Event.stat('account', { 'operation': 'bind' });
+                            app.mta.Event.stat('account', {'operation': 'bind'});
                         }
                     })
                 } else {
-                  that.modifyBindStatus(false);
+                    that.modifyBindStatus(false);
                 }
             }
         })
@@ -123,17 +124,17 @@ Page({
                     app.globalData.isBind = false;
                     app.saveStorage("isBind", false);
                     wx.request({
-                        url: app.globalData.removeBoundUrl,
+                        url: app.globalData.unBindUrl,
                         data: {
                             stuId: app.globalData.stuId,
-                            wechatId: app.globalData.weChatId
+                            weChatOpenId: app.globalData.weChatOpenId
                         },
-                        method: 'POST',
+                        method: 'DELETE',
                         header: {
                             Authorization: app.globalData.wxGlobalToken
                         },
                         success: function (response) {
-                            if (response.data.status == "success") {
+                            if (response.data.message == "success") {
                                 msg = "已成功解除绑定";
                                 isSuccessed = true;
                                 app.redirectToLoginPage()
@@ -148,7 +149,7 @@ Page({
                             app.hideLoading();
                             app.showToast(msg, isSuccessed);
                             app.navigateBack();
-                            app.mta.Event.stat('account', { 'operation': 'unbind' });
+                            app.mta.Event.stat('account', {'operation': 'unbind'});
                         }
                     })
                 }
@@ -167,18 +168,18 @@ Page({
                     app.redirectToLoginPage(true)
                 }
             },
-            complete:function(){
-              app.mta.Event.stat('account', { 'operation': 'switch' });
+            complete: function () {
+                app.mta.Event.stat('account', {'operation': 'switch'});
             }
         })
     },
     //修改绑定状态
-    modifyBindStatus: function(status){
-      var that = this;
-      that.setData({
-        isBind: status
-      })
-      app.saveStorage("isBind", status);
-      app.globalData.isBind = status;
+    modifyBindStatus: function (status) {
+        var that = this;
+        that.setData({
+            isBind: status
+        })
+        app.saveStorage("isBind", status);
+        app.globalData.isBind = status;
     }
 })

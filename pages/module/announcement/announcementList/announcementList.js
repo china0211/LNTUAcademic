@@ -4,31 +4,34 @@ Page({
     data: {
         announcements: null
     },
-    onLoad: function(options) {
+    onLoad: function (options) {
         app.mta.Page.init();
         var that = this;
         var toastMsg = '';
         var failed = true;
         app.showLoading();
         wx.request({
-            url: app.globalData.getAnnouncementUrl,
+            url: app.globalData.announcementUrl,
             data: {},
             method: 'GET',
             header: {
                 Authorization: app.globalData.wxGlobalToken
             },
-            success: function(res) {
-                if (res.data.status == "success") {
+            success: function (res) {
+                if (res.data.message == "success") {
                     failed = false;
-                    that.handlerData(res.data.result);
+                    that.setData({
+                        announcements: res.data.result
+                    })
+                    // that.handlerData(res.data.result);
                 } else {
                     toastMsg = "获取教务公告失败，请稍后重试";
                 }
             },
-            fail: function(res) {
+            fail: function (res) {
                 toastMsg = "请求失败，请稍后重试";
             },
-            complete: function(res) {
+            complete: function (res) {
                 app.hideLoading();
                 if (failed) {
                     app.showToast(toastMsg, false);
@@ -37,18 +40,18 @@ Page({
             }
         })
     },
-    viewAnnouncementDetail: function(e) {
+    viewAnnouncementDetail: function (e) {
         app.announcementDetail = e.currentTarget.dataset.announcementDetail;
         app.navigateToPage("/pages/module/announcement/announcementDetail/announcementDetail");
     },
     //处理数据
-    handlerData:function(annoucements){
-      var that = this;
-      for(var i = 0; i < annoucements.length; i++){
-        annoucements[i].date = util.formatDate(new Date(annoucements[i].date));
-      }
-      that.setData({
-        announcements: annoucements
-      })
+    handlerData: function (annoucements) {
+        var that = this;
+        for (var i = 0; i < annoucements.length; i++) {
+            annoucements[i].date = annoucements[i].date;
+        }
+        that.setData({
+            announcements: annoucements
+        })
     }
 })

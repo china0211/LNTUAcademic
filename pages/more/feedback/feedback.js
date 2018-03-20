@@ -100,7 +100,7 @@ Page({
                         Authorization: app.globalData.wxGlobalToken
                     },
                     success: function (res) {
-                        if (res.data == "success") {
+                        if (res.data.message == "success") {
                             feedbackSuccess = true;
                             msg = "反馈成功";
                         } else {
@@ -130,11 +130,11 @@ Page({
             body += '\r\n >' + that.data.comments;
             body += '\r\n\r\n**用户信息**';
             body += '\r\n>微信昵称：' + app.globalData.userInfo.nickName;
-            body += '\r\n>OpenID：' + app.globalData.weChatId;
+            body += '\r\n>OpenID：' + app.globalData.weChatOpenId;
             //当用户登录时反馈内容中包含姓名学号，否则不包含
             if (app.globalData.stuDetail) {
                 body += '\r\n>姓名：' + app.globalData.stuDetail.name;
-                body += '\r\n>学号：' + app.globalData.stuDetail.userId;
+                body += '\r\n>学号：' + app.globalData.stuDetail.studentNo;
             }
             body += '\r\n>联系方式：' + that.data.contactInfomation;
             body += '\r\n\r\n**设备信息**';

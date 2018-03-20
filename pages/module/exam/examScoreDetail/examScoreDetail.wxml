@@ -1,60 +1,60 @@
 <view class="page">
-  <view class="weui-cells">
-    <view class="weui-cell">
-      <view class="weui-cell__bd">课程名称</view>
-      <view class="weui-cell__ft">{{examScoreDetail.courseName}}</view>
+    <view class="weui-cells">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">课程名称</view>
+            <view class="weui-cell__ft">{{examScoreDetail.courseName}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">学年学期</view>
+            <view class="weui-cell__ft">{{examScoreDetail.academicYear}}{{examScoreDetail.academicSeason}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">总成绩</view>
+            <view class="weui-cell__ft">{{examScoreDetail.sumScore}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">平时成绩</view>
+            <view class="weui-cell__ft">{{examScoreDetail.usualScore}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">期中/实践成绩</view>
+            <view class="weui-cell__ft">{{examScoreDetail.midTermScore}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">期末成绩</view>
+            <view class="weui-cell__ft">{{examScoreDetail.endTermScore}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">学分</view>
+            <view class="weui-cell__ft">{{examScoreDetail.credits}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">考试类型</view>
+            <view class="weui-cell__ft">{{examScoreDetail.examType}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">考核方式</view>
+            <view class="weui-cell__ft">{{examScoreDetail.evaluationMode}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">课程号</view>
+            <view class="weui-cell__ft">{{examScoreDetail.courseNo}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">课序号</view>
+            <view class="weui-cell__ft">{{examScoreDetail.courseIndex}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">选课属性</view>
+            <view class="weui-cell__ft">{{examScoreDetail.courseType}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">是否缓考</view>
+            <view class="weui-cell__ft">{{examScoreDetail.delayExam}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">备注</view>
+            <view class="weui-cell__ft">{{examScoreDetail.comment}}</view>
+        </view>
     </view>
-    <view class="weui-cell">
-      <view class="weui-cell__bd">学年学期</view>
-      <view class="weui-cell__ft">{{examScoreDetail.academicYear}}</view>
-    </view>
-    <view class="weui-cell">
-      <view class="weui-cell__bd">总成绩</view>
-      <view class="weui-cell__ft">{{examScoreDetail.score}}</view>
-    </view>
-    <view class="weui-cell">
-      <view class="weui-cell__bd">平时成绩</view>
-      <view class="weui-cell__ft">{{examScoreDetail.scoreH}}</view>
-    </view>
-    <view class="weui-cell">
-      <view class="weui-cell__bd">实践成绩</view>
-      <view class="weui-cell__ft">{{examScoreDetail.scoreM}}</view>
-    </view>
-    <view class="weui-cell">
-      <view class="weui-cell__bd">期末成绩</view>
-      <view class="weui-cell__ft">{{examScoreDetail.scoreF}}</view>
-    </view>
-    <view class="weui-cell">
-      <view class="weui-cell__bd">学分</view>
-      <view class="weui-cell__ft">{{examScoreDetail.credits}}</view>
-    </view>
-    <view class="weui-cell">
-      <view class="weui-cell__bd">考试类型</view>
-      <view class="weui-cell__ft">{{examScoreDetail.testType}}</view>
-    </view>
-    <view class="weui-cell">
-      <view class="weui-cell__bd">考核方式</view>
-      <view class="weui-cell__ft">{{examScoreDetail.assessmentType}}</view>
-    </view>
-    <view class="weui-cell">
-      <view class="weui-cell__bd">课程号</view>
-      <view class="weui-cell__ft">{{examScoreDetail.courseNo}}</view>
-    </view>
-    <view class="weui-cell">
-      <view class="weui-cell__bd">课序号</view>
-      <view class="weui-cell__ft">{{examScoreDetail.lessonNumber}}</view>
-    </view>
-    <view class="weui-cell">
-      <view class="weui-cell__bd">选课属性</view>
-      <view class="weui-cell__ft">{{examScoreDetail.classAttribute}}</view>
-    </view>
-    <view class="weui-cell">
-      <view class="weui-cell__bd">是否缓考</view>
-      <view class="weui-cell__ft">{{examScoreDetail.delayBool}}</view>
-    </view>
-    <view class="weui-cell">
-      <view class="weui-cell__bd">备注</view>
-      <view class="weui-cell__ft">{{examScoreDetail.note}}</view>
-    </view>
-  </view>
 </view>

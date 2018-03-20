@@ -3,7 +3,7 @@ Page({
     data: {
         announcementDetail: ''
     },
-    onLoad: function(options) {
+    onLoad: function (options) {
         app.mta.Page.init()
         var that = this;
         this.setData({
