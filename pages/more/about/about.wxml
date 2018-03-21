@@ -19,26 +19,30 @@
         <view class="describe" wx:if="{{!showLog}}">
             <text class="desc-title">简介</text>
             <view class="desc-list">
-                <text class="desc-list-item" selectable="true">教务在线：http://60.18.131.131</text>
-                <text class="desc-list-item" selectable="true">移动APP：https://www.lgdjwc.com</text>
-                <text class="desc-list-item">辽宁工程技术大学·教务在线
-                    微信小程序以最方便的形式提供教务在线功能，贴合微信小程序触手可及、用完即走的特点，所有风格遵循微信设计指导；集成了教务在线的常用功能，加入了微信号和学号绑定，尽可能的提高教务在线的易用性
-                </text>
-            </view>
-        </view>
-        <view class="describe" wx:if="{{!showLog}}">
-            <text class="desc-title">CSDN高校俱乐部</text>
-            <view class="desc-list">
-                <text class="desc-list-item">
-                    CSDN高校俱乐部是由全球最大中文IT技术社区CSDN发起的IT技术学习型组织。辽宁工程技术大学CSDN高校俱乐部依托于软件学院，以普及计算机知识，提高计算机水平，锻炼能力为目标，举办多种IT相关的线上线下交流活动，欢迎加入
-                </text>
-                <text class="desc-list-item"></text>
-                <text class="desc-list-item" bindtap="setClipboardData" data-qqGroup="217367546" selectable="true">
-                    QQ群：217367546 (点击复制)
-                </text>
+                <text class="desc-list-item">辽宁工程技术大学·教务在线</text>
+                <text class="desc-list-item">个人学习项目，也是本人的毕业设计，2017年4月开始开发，目的是让大家能方便的使用教务在线，目前只有本科生可用</text>
+                <text class="desc-list-item">所有数据均来自教务在线，对敏感信息均加密保存</text>
+                <text class="desc-list-item">如有问题或任何好的建议，请在反馈里提交</text>
+                <text class="desc-list-item">才疏学浅，只能做到这个程度了，希望大家别嫌弃🐶</text>
             </view>
         </view>
         <view class="log-list" wx:else>
+            <view class="describe">
+                <view class="desc-title">
+                    <text class="desc-v">V0.0.3 开发版</text>
+                    <text class="desc-time">2018-3-21</text>
+                </view>
+                <view>
+                    <text class="desc-content">已完成功能</text>
+                    <view class="desc-list">
+                        <text class="desc-list-item">小程序接口重构</text>
+                    </view>
+                    <text class="desc-content">开发中</text>
+                    <view class="desc-list">
+                        <text class="desc-list-item">服务端重构</text>
+                    </view>
+                </view>
+            </view>
             <view class="describe">
                 <view class="desc-title">
                     <text class="desc-v">V0.0.2 开发版</text>
@@ -87,7 +91,7 @@
         </view>
     </view>
     <view class="weui-footer footer">
-        <view class="weui-footer__text">辽宁工程技术大学 · CSDN高校俱乐部</view>
+        <view class="weui-footer__text">HelloWood</view>
         <view class="weui-footer__text">Copyright @ {{year}} All Rights Reserved</view>
     </view>
 </view>

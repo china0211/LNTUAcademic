@@ -4,7 +4,7 @@ var wxGlobalToken = "";
 var authorization = "";
 var ServerURL = "";
 var toastFailImg = "/images/global/fail.png";
-var version = "0.0.2";
+var version = "0.0.3";
 var versionType = "开发版";
 
 module.exports = {
