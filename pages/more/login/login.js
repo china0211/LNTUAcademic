@@ -1,7 +1,7 @@
 var app = getApp();
 Page({
     data: {
-        stuId: '',
+        studentNo: '',
         userInfo: '',
         password: ''
     },
@@ -14,7 +14,7 @@ Page({
     },
     inputStuId: function (e) {
         this.setData({
-            stuId: e.detail.value
+            studentNo: e.detail.value
         })
     },
     inputPassword: function (e) {
@@ -35,7 +35,7 @@ Page({
                 url: app.globalData.loginUrl,
                 data: {
                     weChatOpenId: app.globalData.weChatOpenId,
-                    studentNo: that.data.stuId,
+                    studentNo: that.data.studentNo,
                     password: that.data.password
                 },
                 method: 'POST',
@@ -46,11 +46,11 @@ Page({
                     if (res.data.message == "success") {
                         failed = false;
                         //将stuId设置为全局属性
-                        app.globalData.stuId = that.data.result.studentNo
+                        app.globalData.studentNo = that.data.result.studentNo
                         app.queryAllstuInfo();
                         that.bindStuIdWithWeChatId();
                         //将数据保存到本地，方便下次使用读取
-                        app.saveStorage("stuId", that.data.result.studentNo);
+                        app.saveStorage("studentNo", that.data.result.studentNo);
                         app.globalData.isBind = true
                     } else {
                         toastMsg = "登录失败，学号或密码错误";
@@ -65,7 +65,7 @@ Page({
                     if (failed) {
                         app.showToast(toastMsg, false);
                     }
-                    app.mta.Event.stat('login', {'stuid': that.data.stuId})
+                    app.mta.Event.stat('login', {'studentNo': that.data.studentNo})
                 }
             })
         }
@@ -86,7 +86,7 @@ Page({
                     wx.request({
                         url: app.globalData.bindStuIdWithWeChatIdUrl,
                         data: {
-                            studentNo: app.globalData.stuId,
+                            studentNo: app.globalData.studentNo,
                             weChatOpenId: app.globalData.weChatOpenId
                         },
                         method: 'POST',
@@ -129,7 +129,7 @@ Page({
             method: 'GET',
             header: {
                 Authorization: app.globalData.authorization,
-                username: app.globalData.stuId
+                username: app.globalData.studentNo
             },
             success: function (res) {
                 if (res.data.message == "请求成功") {
@@ -160,8 +160,8 @@ Page({
     //校验输入信息
     validateInput: function () {
         var that = this;
-        if (that.data.stuId != "" && that.data.password != "") {
-            if (that.data.stuId.length == 10) {
+        if (that.data.studentNo != "" && that.data.password != "") {
+            if (that.data.studentNo.length == 10) {
                 if (that.data.password.length > 0 && that.data.password.length < 19) {
                     return true;
                 } else {

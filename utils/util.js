@@ -13,7 +13,7 @@ function formatDate(date) {
 }
 
 //日期转时间戳
-function formaDataTotTimestamp(data) {
+function formatDataToTimestamp(data) {
     return Date.parse(new Date(data)) / 1000;
 }
 
@@ -22,8 +22,8 @@ function formatNumber(n) {
     return n[1] ? n : '0' + n
 }
 
-function isStuIdValid(stuId) {
-    if (stuId != null && stuId != '') {
+function isStudentNoValid(studentNo) {
+    if (studentNo != null && studentNo != '') {
         return true;
     }
     else {
@@ -33,6 +33,6 @@ function isStuIdValid(stuId) {
 
 module.exports = {
     formatDate: formatDate,
-    isStuIdValid: isStuIdValid,
-    formaDataTotTimestamp: formaDataTotTimestamp
+    isStudentNoValid: isStudentNoValid,
+    formatDataToTimestamp: formatDataToTimestamp
 }

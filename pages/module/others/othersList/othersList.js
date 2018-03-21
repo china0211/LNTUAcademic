@@ -18,7 +18,7 @@ Page({
                     wx.request({
                         url: app.globalData.evaluateCourseUrl,
                         data: {
-                            stuId: app.globalData.stuId
+                            studentNo: app.globalData.studentNo
                         },
                         method: 'GET',
                         header: {

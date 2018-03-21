@@ -11,7 +11,7 @@ App({
         appid: properties.appid,
         secret: properties.secret,
         userInfo: null,
-        stuId: '',
+        studentNo: '',
         weChatOpenId: '',
         stuDetail: null,
         authorization: properties.authorization,
@@ -123,9 +123,9 @@ App({
     getStuId: function () {
         var that = this;
         wx.getStorage({
-            key: 'stuId',
+            key: 'studentNo',
             success: function (res) {
-                that.globalData.stuId = res.data;
+                that.globalData.studentNo = res.data;
                 that.getOpenId(true);
                 that.getStuDetailFromStorage();
             },
@@ -162,10 +162,10 @@ App({
             },
             success: function (resp) {
                 if (resp.data.message == "success") {
-                    that.globalData.stuId = resp.data.result.studentNo;
+                    that.globalData.studentNo = resp.data.result.studentNo;
                     that.globalData.isBind = true;
                     that.saveStorage("isBind", true);
-                    that.saveStorage("stuId", that.globalData.stuId);
+                    that.saveStorage("studentNo", that.globalData.studentNo);
                     that.queryAllstuInfo();
                 } else {
                     that.navigateToPage("/pages/more/login/login");
@@ -185,11 +185,11 @@ App({
         var failed = true;
         var that = this;
         wx.request({
-            url: that.globalData.studentInfoUrl.concat(that.globalData.stuId),
+            url: that.globalData.studentInfoUrl.concat(that.globalData.studentNo),
             method: 'GET',
             header: {
                 Authorization: that.globalData.authorization,
-                username: that.globalData.stuId
+                username: that.globalData.studentNo
             },
             success: function (res) {
                 if (res.data.message == "success") {
@@ -221,7 +221,7 @@ App({
     //校验用户信息是否有效
     validateStuId: function () {
         var that = this;
-        if (that.globalData.stuId == null || that.globalData.stuId == "") {
+        if (that.globalData.studentNo == null || that.globalData.studentNo == "") {
             that.showToast("请登录后使用", false);
             // that.redirectToLoginPage();
         }

@@ -29,12 +29,12 @@ Page({
         var navigateBack = true;
         app.showLoading();
         wx.request({
-            url: app.globalData.courseScheduleUrl.concat(app.globalData.stuId),
+            url: app.globalData.courseScheduleUrl.concat(app.globalData.studentNo),
             data: {},
             method: 'GET',
             header: {
                 Authorization: app.globalData.authorization,
-                username: app.globalData.stuId
+                username: app.globalData.studentNo
             },
             success: function (res) {
                 if (res.data.message == "success") {

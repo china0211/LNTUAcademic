@@ -77,14 +77,14 @@ Page({
             wx.request({
                 url: app.globalData.modifyPasswordUrl,
                 data: {
-                    stuId: app.globalData.stuId,
+                    studentNo: app.globalData.studentNo,
                     originalPassword: that.data.originalPassword,
                     newPassword: that.data.newPassword,
                 },
                 method: 'GET',
                 header: {
                     Authorization: app.globalData.wxGlobalToken,
-                    username: app.globalData.stuId
+                    username: app.globalData.studentNo
                 },
                 success: function (res) {
                     if (res.data.result == "success") {

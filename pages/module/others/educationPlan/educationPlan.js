@@ -8,7 +8,7 @@ Page({
     ],
     selectedEducationPlanYear: '请选择学年学期',
     educationPlans: '',
-    stuId: ''
+    studentNo: ''
   },
   onLoad: function (options) {
     var that = this;
@@ -38,16 +38,16 @@ Page({
   //获取学号
   // setStuId: function () {
   //   var that = this;
-  //   if (util.isStuIdValid(app.globalData.stuId)) {
+  //   if (util.isStudentNoValid(app.globalData.studentNo)) {
   //     that.setData({
-  //       stuId: app.globalData.stuId
+  //       studentNo: app.globalData.studentNo
   //     })
   //   } else {
   //     wx.getStorage({
-  //       key: 'stuId',
+  //       key: 'studentNo',
   //       success: function (response) {
   //         that.setData({
-  //           stuId: response.data
+  //           studentNo: response.data
   //         })
   //       },
   //       fail: function (res) {
@@ -67,14 +67,14 @@ Page({
       var failed = true;
       app.showLoading('正在查询', true);
       wx.request({
-        url: app.globalData.courseStudyScheduleUrl.concat(app.globalData.stuId),
+        url: app.globalData.courseStudyScheduleUrl.concat(app.globalData.studentNo),
         data: {
           educationPlanYear: selectedEducationPlanYear
         },
         method: 'GET',
         header: {
           Authorization: app.globalData.authorization,
-          username: app.globalData.stuId
+          username: app.globalData.studentNo
         },
         success: function (res) {
           if (res.data.message == "success") {

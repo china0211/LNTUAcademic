@@ -3,7 +3,7 @@ var util = require('../../../utils/util.js');
 Page({
     data: {
         stuDetail: null,
-        stuId: '',
+        studentNo: '',
         userInfo: null,
         bindTime: '',
         isBind: null
@@ -28,13 +28,13 @@ Page({
             success: function (response) {
                 that.setData({
                     stuDetail: response.data,
-                    stuId: response.data.studentNo,
+                    studentNo: response.data.studentNo,
                 })
                 //查询绑定信息
                 wx.request({
                     url: app.globalData.bindUrl,
                     data: {
-                        stuId: app.globalData.stuId,
+                        studentNo: app.globalData.studentNo,
                         weChatOpenId: app.globalData.weChatOpenId
                     },
                     method: 'GET',
@@ -78,7 +78,7 @@ Page({
                     wx.request({
                         url: app.globalData.bindUrl,
                         data: {
-                            stuId: app.globalData.stuId,
+                            studentNo: app.globalData.studentNo,
                             weChatOpenId: app.globalData.weChatOpenId
                         },
                         method: 'POST',
@@ -126,7 +126,7 @@ Page({
                     wx.request({
                         url: app.globalData.unBindUrl,
                         data: {
-                            stuId: app.globalData.stuId,
+                            studentNo: app.globalData.studentNo,
                             weChatOpenId: app.globalData.weChatOpenId
                         },
                         method: 'DELETE',

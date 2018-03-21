@@ -13,11 +13,11 @@ Page({
         var navigateBack = true;
         app.showLoading();
         wx.request({
-            url: app.globalData.gradeExamScoreUrl.concat(app.globalData.stuId),
+            url: app.globalData.gradeExamScoreUrl.concat(app.globalData.studentNo),
             method: 'GET',
             header: {
                 Authorization: app.globalData.authorization,
-                username: app.globalData.stuId
+                username: app.globalData.studentNo
             },
             success: function (res) {
                 if (res.data.message == "success") {
@@ -53,7 +53,7 @@ Page({
         //将Object转换为Array
         for (var key in skillScoreData) {
             //key是属性,object[key]是值
-            skillScoreData[key].timestamp = util.formaDataTotTimestamp(skillScoreData[key].date);
+            skillScoreData[key].timestamp = util.formatDataToTimestamp(skillScoreData[key].date);
             skillScoreArray.push(skillScoreData[key]);
         }
         //排序

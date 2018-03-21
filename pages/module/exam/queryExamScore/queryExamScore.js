@@ -2,7 +2,7 @@ var app = getApp();
 var util = require("../../../../utils/util.js");
 Page({
     data: {
-        stuId: app.globalData.stuId,
+        studentNo: app.globalData.studentNo,
         academicYears: ['2014秋', '2015春', '2015秋', '2016春', '2016秋', '2017春', '2017秋'],
         selectedYearAndSeason: '请选择学年学期'
     },
@@ -22,16 +22,16 @@ Page({
     //获取学号
     // setStuId: function () {
     //   var that = this;
-    //   if (util.isStuIdValid(app.globalData.stuId)) {
+    //   if (util.isStudentNoValid(app.globalData.studentNo)) {
     //     that.setData({
-    //       stuId: app.globalData.stuId
+    //       studentNo: app.globalData.studentNo
     //     })
     //   } else {
     //     wx.getStorage({
-    //       key: 'stuId',
+    //       key: 'studentNo',
     //       success: function (response) {
     //         that.setData({
-    //           stuId: response.data
+    //           studentNo: response.data
     //         })
     //       },
     //       fail: function (res) {
@@ -58,7 +58,7 @@ Page({
             var failed = true;
             app.showLoading('正在查询', true);
             wx.request({
-                url: app.globalData.examUrl.concat(app.globalData.stuId),
+                url: app.globalData.examUrl.concat(app.globalData.studentNo),
                 data: {
                     yearAndSeason: yearAndSeason,
                     queryType: queryType
@@ -66,7 +66,7 @@ Page({
                 method: 'GET',
                 header: {
                     Authorization: app.globalData.wxGlobalToken,
-                    username: that.data.stuId
+                    username: that.data.studentNo
                 },
                 success: function (res) {
                     if (res.data.message == "success") {
@@ -106,12 +106,12 @@ Page({
         wx.request({
             url: app.globalData.gradePointUrl,
             data: {
-                stuId: that.data.stuId
+                studentNo: that.data.studentNo
             },
             method: 'GET',
             header: {
                 Authorization: app.globalData.wxGlobalToken,
-                username: that.data.stuId
+                username: that.data.studentNo
             },
             success: function (res) {
                 if (res.data.message == "success") {
