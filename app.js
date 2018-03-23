@@ -178,14 +178,9 @@ App({
             success: function (resp) {
                 if (resp.data.message == "success") {
                     that.globalData.studentNo = resp.data.result.studentNo;
-                    that.globalData.parsing = false;
-                    that.globalData.isBind = true;
-                    that.saveStorage("parsing", false);
-                    that.saveStorage("studentNo", that.globalData.studentNo);
-                    that.saveStorage("isBind", true);
                     that.getStudentInfo();
                 } else {
-                    that.navigateToPage("/pages/more/login/login");
+                    that.redirectToLoginPage();
                 }
             },
             fail: function (resp) {
@@ -212,14 +207,12 @@ App({
                     if (res.data.message == "success") {
                         failed = false;
                         that.globalData.stuDetail = res.data.result;
-                        wx.setStorage({
-                            key: 'stuDetail',
-                            data: res.data.result,
-                            fail: function (res) {
-                                failed = true;
-                                toastMsg = "保存用户信息失败";
-                            }
-                        })
+                        that.globalData.parsing = false;
+                        that.globalData.isBind = true;
+                        that.saveStorage("studentNo", that.globalData.studentNo);
+                        that.saveStorage("parsing", false);
+                        that.saveStorage("isBind", true);
+                        that.saveStorage("stuDetail", res.data.result);
                     } else {
                         toastMsg = "获取用户信息失败，请重新登录";
                     }

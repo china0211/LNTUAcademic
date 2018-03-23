@@ -53,11 +53,10 @@ Page({
                 success: function (res) {
                     toastMsg = "";
                     if (res.data.message == "success") {
-                        failed = false;
                         //将studentNo设置为全局属性
                         app.globalData.studentNo = that.data.studentNo;
                         if (res.data.code == 200) {
-                            toastMsg = "登陆成功";
+                            failed = false;
                             app.getStudentInfo();
                         } else {
                             toastMsg = "首次登陆，需要较长时间从教务在线获取数据，请2-5分钟后重新打开";
@@ -73,22 +72,26 @@ Page({
                 complete: function () {
                     app.hideLoading();
                     app.showMsgModal(toastMsg);
-                    wx.showModal({
-                        title: '提示',
-                        content: toastMsg,
-                        showCancel: false,
-                        success: function (res) {
-                            if (res.confirm) {
-                                // 退出
-                                if (quit) {
-                                    app.saveStorage("parsing", true);
-                                    app.close();
-                                } else if (!failed) {
-                                    app.redirectToPage("/pages/index/index");
+                    if (quit || failed) {
+                        wx.showModal({
+                            title: '提示',
+                            content: toastMsg,
+                            showCancel: false,
+                            success: function (res) {
+                                if (res.confirm) {
+                                    // 退出
+                                    if (quit) {
+                                        app.saveStorage("parsing", true);
+                                        app.close();
+                                    }
                                 }
                             }
-                        }
-                    });
+                        });
+                    } else {
+                        wx.reLaunch({
+                            url: '/pages/index/index'
+                        });
+                    }
                     app.mta.Event.stat('login', {'studentNo': that.data.studentNo})
                 }
             })

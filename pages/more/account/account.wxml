@@ -18,11 +18,8 @@
         </view>
     </view>
     <view class="weui-btn-area">
-        <button type="primary" disabled="{{disabled}}" bindtap="bindStuIdWithWeChatId" class="weui-btn"
-                wx:if="{{!isBind}}">立即绑定
-        </button>
         <button type="default" disabled="{{disabled}}" bindtap="switchAccount" class="weui-btn">切换账号</button>
-        <button type="warn" disabled="{{disabled}}" bindtap="unboundAccount" class="weui-btn" wx:if="{{isBind}}">解除绑定
+        <button type="warn" disabled="{{disabled}}" bindtap="unboundAccount" class="weui-btn" wx:if="{{isBind}}">删除账号
         </button>
     </view>
 </view>
