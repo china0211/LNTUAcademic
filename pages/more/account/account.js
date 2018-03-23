@@ -43,9 +43,6 @@ Page({
                     },
                     success: function (res) {
                         if (res.data.message == "success") {
-                            that.setData({
-                                bindTime: res.data.result.bindTime
-                            });
                             that.modifyBindStatus(true);
                         } else {
                             that.modifyBindStatus(false);
@@ -55,7 +52,7 @@ Page({
                     fail: function (res) {
                         app.showToast("请求失败，请稍后重试", false);
                         app.navigateBack();
-                    },
+                    }
                 })
             },
             fail: function (response) {
@@ -68,7 +65,7 @@ Page({
     bindStuIdWithWeChatId: function () {
         var that = this;
         var msg = "";
-        var isSuccessed = false;
+        var success = false;
         wx.showModal({
             title: '绑定微信账号',
             content: '是否将学号和该微信账号绑定，若已有其他绑定关系将会被解除',
@@ -79,16 +76,17 @@ Page({
                         url: app.globalData.bindUrl,
                         data: {
                             studentNo: app.globalData.studentNo,
-                            weChatOpenId: app.globalData.weChatOpenId
+                            weChatOpenId: app.globalData.weChatOpenId,
+                            nickName: app.globalData.userInfo.nickName
                         },
                         method: 'POST',
                         header: {
                             Authorization: app.globalData.wxGlobalToken
                         },
                         success: function (response) {
-                            if (response.data.message == "success") {
+                            if (response.data.result == "true") {
                                 msg = "绑定成功";
-                                isSuccessed = true;
+                                success = true;
                                 that.modifyBindStatus(true);
                             } else {
                                 msg = "绑定失败，请稍后重试";
@@ -99,7 +97,7 @@ Page({
                         },
                         complete: function () {
                             app.hideLoading();
-                            app.showToast(msg, isSuccessed);
+                            app.showToast(msg, success);
                             app.mta.Event.stat('account', {'operation': 'bind'});
                         }
                     })
@@ -113,7 +111,7 @@ Page({
     unboundAccount: function () {
         var that = this;
         var msg = "";
-        var isSuccessed = false;
+        var success = false;
         wx.showModal({
             title: '解除绑定',
             content: '是否确定要将该微信账号和学号解除绑定',
@@ -134,10 +132,10 @@ Page({
                             Authorization: app.globalData.wxGlobalToken
                         },
                         success: function (response) {
-                            if (response.data.message == "success") {
+                            if (response.data.result == "true") {
                                 msg = "已成功解除绑定";
-                                isSuccessed = true;
-                                app.redirectToLoginPage()
+                                success = true;
+                                // app.redirectToLoginPage()
                             } else {
                                 msg = "解除绑定失败，请稍后重试";
                             }
@@ -147,7 +145,7 @@ Page({
                         },
                         complete: function () {
                             app.hideLoading();
-                            app.showToast(msg, isSuccessed);
+                            app.showToast(msg, success);
                             app.navigateBack();
                             app.mta.Event.stat('account', {'operation': 'unbind'});
                         }
@@ -159,7 +157,7 @@ Page({
     switchAccount: function () {
         var that = this;
         var msg = "";
-        var isSuccessed = false;
+        var success = false;
         wx.showModal({
             title: '切换账号',
             content: '是否确定要切换账号',

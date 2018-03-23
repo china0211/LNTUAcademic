@@ -4,10 +4,13 @@ var ServerURL = properties.ServerURL;
 App({
     onLaunch: function (options) {
         var that = this;
-        that.getStuId();
+        that.validateInParse();
+        that.getStudentNo();
         that.initMTA(options);
     },
     globalData: {
+        quit: false,
+        parsing: false,
         appid: properties.appid,
         secret: properties.secret,
         userInfo: null,
@@ -25,14 +28,14 @@ App({
         examUrl: ServerURL + "/examScore/",
         gradePointUrl: ServerURL + "/gradePoint",
         bindUrl: ServerURL + "/bind",
-        unBindUrl: ServerURL + "/unBind",
+        unBindUrl: ServerURL + "/bind",
         feedbackUrl: ServerURL + "/feedback",
         announcementUrl: ServerURL + "/announcement",
         modifyPasswordUrl: ServerURL + "/modifyPassword",
         classroomOccupyUrl: ServerURL + "/classroomOccupy",
         getTokenUrl: ServerURL + "/getToken",
         courseStudyScheduleUrl: ServerURL + "/courseStudySchedule/",
-        getStuIdByWeChatIdUrl: ServerURL + "/getStuIdByWeChatId",
+        getStudentNoUrl: ServerURL + "/studentNo",
         saveStartUpRecordUrl: ServerURL + "/saveStartUpRecord",
         getCurrentWeekAndDayUrl: ServerURL + "/currentWeekAndDay",
         evaluateCourseUrl: ServerURL + "/evaluateCourse",
@@ -51,7 +54,7 @@ App({
                     wx.request({
                         url: that.globalData.getOpenIdUrl,
                         data: {
-                            code: res.code
+                            sessionCode: res.code
                         },
                         method: 'GET',
                         header: {
@@ -59,8 +62,9 @@ App({
                         },
                         success: function (res) {
                             that.globalData.weChatOpenId = res.data.result;
+                            that.saveStorage("weChatOpenId", that.globalData.weChatOpenId);
                             if (!readStorageSuccess) {
-                                that.getStuIdByWeChatId();
+                                that.getStudentNoByOpenId();
                             }
                         },
                         fail: function (res) {
@@ -71,8 +75,6 @@ App({
                                 success: function (resp) {
                                     that.globalData.userInfo = resp.userInfo;
                                 }, complete: function (resp) {
-                                    //发送使用信息
-                                    that.saveStartUpRecord(resp.userInfo.nickName);
                                 }
                             })
                         }
@@ -119,15 +121,28 @@ App({
             }
         })
     },
+    validateInParse: function () {
+        var that = this;
+        wx.getStorage({
+            key: 'parsing',
+            success: function (res) {
+                that.globalData.parsing = res.data;
+            },
+            fail: function (res) {
+            },
+            complete: function (res) {
+            }
+        })
+    },
     //获取学号
-    getStuId: function () {
+    getStudentNo: function () {
         var that = this;
         wx.getStorage({
             key: 'studentNo',
             success: function (res) {
                 that.globalData.studentNo = res.data;
                 that.getOpenId(true);
-                that.getStuDetailFromStorage();
+                that.getStudentInfoFromStorage();
             },
             fail: function (res) {
                 that.getOpenId(false);
@@ -137,8 +152,8 @@ App({
             }
         })
     },
-    //从缓存中读取学生信息(如果本地有缓存，没有缓存的时候通过queryAllstuInfo获取)
-    getStuDetailFromStorage: function () {
+    //从缓存中读取学生信息(如果本地有缓存，没有缓存的时候通过getStudentInfo获取)
+    getStudentInfoFromStorage: function () {
         var that = this;
         wx.getStorage({
             key: 'stuDetail',
@@ -148,11 +163,11 @@ App({
         })
     },
 
-    //通过openID查询stuId
-    getStuIdByWeChatId: function () {
+    //通过openID查询 studentNo
+    getStudentNoByOpenId: function () {
         var that = this;
         wx.request({
-            url: that.globalData.getStuIdByWeChatIdUrl,
+            url: that.globalData.getStudentNoUrl,
             data: {
                 weChatOpenId: that.globalData.weChatOpenId
             },
@@ -163,10 +178,12 @@ App({
             success: function (resp) {
                 if (resp.data.message == "success") {
                     that.globalData.studentNo = resp.data.result.studentNo;
+                    that.globalData.parsing = false;
                     that.globalData.isBind = true;
-                    that.saveStorage("isBind", true);
+                    that.saveStorage("parsing", false);
                     that.saveStorage("studentNo", that.globalData.studentNo);
-                    that.queryAllstuInfo();
+                    that.saveStorage("isBind", true);
+                    that.getStudentInfo();
                 } else {
                     that.navigateToPage("/pages/more/login/login");
                 }
@@ -180,43 +197,46 @@ App({
         })
     },
     // 查询
-    queryAllstuInfo: function () {
+    getStudentInfo: function () {
         var toastMsg = '';
         var failed = true;
         var that = this;
-        wx.request({
-            url: that.globalData.studentInfoUrl.concat(that.globalData.studentNo),
-            method: 'GET',
-            header: {
-                Authorization: that.globalData.authorization,
-                username: that.globalData.studentNo
-            },
-            success: function (res) {
-                if (res.data.message == "success") {
-                    failed = false;
-                    that.globalData.stuDetail = res.data.result;
-                    wx.setStorage({
-                        key: 'stuDetail',
-                        data: res.data.result,
-                        fail: function (res) {
-                            failed = true;
-                            toastMsg = "保存用户信息失败";
-                        }
-                    })
-                } else {
-                    toastMsg = "获取用户信息失败，请重新登录";
+        if (that.globalData.studentNo != undefined) {
+            wx.request({
+                url: that.globalData.studentInfoUrl.concat(that.globalData.studentNo),
+                method: 'GET',
+                header: {
+                    Authorization: that.globalData.authorization
+                },
+                success: function (res) {
+                    if (res.data.message == "success") {
+                        failed = false;
+                        that.globalData.stuDetail = res.data.result;
+                        wx.setStorage({
+                            key: 'stuDetail',
+                            data: res.data.result,
+                            fail: function (res) {
+                                failed = true;
+                                toastMsg = "保存用户信息失败";
+                            }
+                        })
+                    } else {
+                        toastMsg = "获取用户信息失败，请重新登录";
+                    }
+                },
+                fail: function (res) {
+                    toastMsg = "获取用户信息失败，请稍后重试";
+                },
+                complete: function (res) {
+                    if (failed) {
+                        that.showToast(toastMsg, !failed);
+                        that.redirectToLoginPage("/pages/more/login/login");
+                    }
                 }
-            },
-            fail: function (res) {
-                toastMsg = "获取用户信息失败，请稍后重试";
-            },
-            complete: function (res) {
-                if (failed) {
-                    that.showToast(toastMsg, !failed);
-                    that.navigateToPage("/pages/more/login/login");
-                }
-            }
-        })
+            })
+        } else {
+            that.redirectToLoginPage("/pages/more/login/login");
+        }
     },
     //校验用户信息是否有效
     validateStuId: function () {
@@ -226,24 +246,10 @@ App({
             // that.redirectToLoginPage();
         }
     },
-    //保存用户使用信息
-    saveStartUpRecord: function (nickName) {
-        var that = this;
-        wx.request({
-            url: that.globalData.saveStartUpRecordUrl,
-            data: {
-                weChatOpenId: nickName,
-            },
-            method: 'POST',
-            header: {
-                Authorization: that.globalData.wxGlobalToken
-            }
-        })
-    },
     //提示信息(信息内容，是否成功提示)
-    showToast: function (msg, isSuccessed) {
+    showToast: function (msg, success) {
         var that = this;
-        if (isSuccessed) {
+        if (success) {
             wx.showToast({
                 title: msg,
                 duration: 1500
@@ -338,5 +344,11 @@ App({
                 return res.data;
             }
         })
+    },
+    close: function () {
+        this.globalData.quit = true;
+        wx.reLaunch({
+            url: '/pages/index/index'
+        })
     }
-})
+});

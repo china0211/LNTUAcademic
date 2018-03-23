@@ -4,6 +4,11 @@ Page({
     onLoad: function () {
         var that = this;
         app.mta.Page.init();
+        if (app.globalData.quit) {
+            wx.navigateBack({
+                delta: 1
+            })
+        }
         that.getCurrentWeekAndDay();
     },
     //获取当前学年学期 周数和星期

@@ -16,10 +16,6 @@
             <view class="weui-cell__bd">微信号</view>
             <view class="weui-cell__ft">{{userInfo.nickName}}</view>
         </view>
-        <view class="weui-cell" wx:if="{{isBind}}">
-            <view class="weui-cell__bd">绑定时间</view>
-            <view class="weui-cell__ft">{{bindTime}}</view>
-        </view>
     </view>
     <view class="weui-btn-area">
         <button type="primary" disabled="{{disabled}}" bindtap="bindStuIdWithWeChatId" class="weui-btn"
