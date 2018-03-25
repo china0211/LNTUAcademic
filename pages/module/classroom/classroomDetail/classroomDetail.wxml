@@ -3,11 +3,13 @@
         <view class="weui-cells">
             <view wx:for="{{classrooms}}" wx:for-item="classroom" wx:key="classroom" class="weui-cell weui-cell_access"
                   hover-class="weui-cell_active">
+                <view class="weui-cell__bd">{{classroom.classroomName}}</view>
                 <view class="weui-cell__bd">
-                    {{classroom.classroomName}}
-                    <text class="class-room-type">({{classroom.type}}</text>
-                    <text class="class-room-type">{{classroom.capacity}})</text>
+                    <view class="tag tag-warn tag-plain">{{classroom.type}}</view>
+                    <view class="tag tag-primary tag-plain dot-distance">{{classroom.capacity}}</view>
                 </view>
+                <!--<view class="tag tag-warn tag-plain type-distance">{{classroom.type}}</view>-->
+                <!--<view class="tag tag-primary tag-plain capacity-distance">{{classroom.capacity}}</view>-->
                 <view class="custom-badge badge-success dot-distance" wx:if="{{!classroom.first}}">1</view>
                 <view class="custom-badge badge-warning dot-distance" wx:if="{{classroom.first}}">1</view>
 
@@ -26,7 +28,7 @@
         </view>
         <view class="weui-footer footer ">
             <view class="weui-footer__text ">
-                <text class="red">红色</text>
+                <text class="orange">橙色</text>
                 表示已被占用
                 <text class="green">绿色</text>
                 表示未占用

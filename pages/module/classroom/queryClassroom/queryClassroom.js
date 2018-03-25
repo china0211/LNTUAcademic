@@ -56,38 +56,42 @@ Page({
             {day_name: "星期六", day_id: 6},
             {day_name: "星期日", day_id: 7}],
 
-        selecetedCampus: "请选择校区",
-        selecteed_location_id: '',
-        selecetedBuilding: "请选择教学楼",
-        selecteed_building_id: '',
-        selecetedWeek: "请选择周(可选)",
-        selecteed_week: '',
-        selecetedDay: "请选择星期(可选)",
-        selecteed_day: '',
+        selectCampus: "请选择校区",
+        select_location_id: '',
+        selectBuilding: "请选择教学楼",
+        select_building_id: '',
+        selectWeek: "请选择周(可选)",
+        select_week: '',
+        selectDay: "请选择星期(可选)",
+        select_day: '',
         currentBuildings: "请选择校区",
-        isCampusSelected: false
+        isCampusSelect: false
     },
     onLoad: function (options) {
         var that = this;
-        that.getDefaultCampus();
-        that.getDefaultBuilding();
         that.setWeekAndDay();
+        that.getDefaultCampus();
         app.mta.Page.init();
     },
     //获取默认的校区(上次选择)
     getDefaultCampus: function () {
         var that = this;
         var campusIndex = null;
+        var fail = true;
         wx.getStorage({
             key: 'defaultCampus',
             success: function (res) {
                 that.setData({
-                    selecteed_location_id: res.data,
-                }),
-                    campusIndex = res.data - 1;
+                    select_location_id: res.data
+                })
+                campusIndex = res.data - 1;
+                fail = false;
+                that.getDefaultBuilding();
             },
             complete: function (res) {
-                that.chooseLocation(campusIndex);
+                if (!fail) {
+                    that.chooseLocation(campusIndex);
+                }
             }
         })
     },
@@ -95,16 +99,20 @@ Page({
     getDefaultBuilding: function () {
         var that = this;
         var buildingIndex = null;
+        var fail = true;
         wx.getStorage({
             key: 'defaultBuilding',
             success: function (res) {
                 that.setData({
-                    selecteed_building_id: res.data,
-                }),
-                    buildingIndex = res.data;
+                    select_building_id: res.data
+                })
+                fail = false;
+                buildingIndex = res.data;
             },
             complete: function (res) {
-                that.chooseCurrentBuilding(buildingIndex);
+                if (!fail) {
+                    that.chooseCurrentBuilding(buildingIndex);
+                }
             }
         })
     },
@@ -112,15 +120,15 @@ Page({
     chooseLocation: function (index) {
         var that = this;
         if (index == 0 || index == 1 || index == 2) {
+            // that.setData({
+            //     selectBuilding: "请选择教学楼",
+            //     select_building_id: ""
+            // })
             that.setData({
-                selecetedBuilding: "请选择教学楼",
-                selecteed_building_id: ""
-            }),
-                that.setData({
-                    selecetedCampus: that.data.campuses[index].location_name,
-                    selecteed_location_id: that.data.campuses[index].location_id,
-                    isCampusSelected: true
-                })
+                selectCampus: that.data.campuses[index].location_name,
+                select_location_id: that.data.campuses[index].location_id,
+                isCampusSelect: true
+            })
             if (index == 0) {
                 that.setData({
                     currentBuildings: that.data.mainBuildings
@@ -134,19 +142,23 @@ Page({
                     currentBuildings: that.data.hldBuildings
                 })
             }
+            // 默认选中第一个教学楼
+            that.setData({
+                selectBuilding: that.data.currentBuildings[0].building_name,
+                select_building_id: that.data.currentBuildings[0].building_id
+            })
         }
     },
     //选择教学楼
     chooseCurrentBuilding: function (buildingIndex) {
         var that = this;
-
         //将Object转换为Array
         for (var key in that.data.currentBuildings) {
             //key是属性,object[key]是值
             if (that.data.currentBuildings[key].building_id == buildingIndex) {
                 that.setData({
-                    selecetedBuilding: that.data.currentBuildings[key].building_name,
-                    selecteed_building_id: that.data.currentBuildings[key].building_id
+                    selectBuilding: that.data.currentBuildings[key].building_name,
+                    select_building_id: that.data.currentBuildings[key].building_id
                 })
             }
         }
@@ -159,7 +171,7 @@ Page({
     },
     validateBuilding: function () {
         var that = this;
-        if (that.data.selecetedCampus == "请选择校区") {
+        if (that.data.selectCampus == "请选择校区") {
             app.showMsgModal("请先选择校区");
         }
     },
@@ -168,22 +180,22 @@ Page({
         var that = this;
         var index = e.detail.value;
         that.setData({
-            selecetedBuilding: that.data.currentBuildings[index].building_name,
-            selecteed_building_id: that.data.currentBuildings[index].building_id
+            selectBuilding: that.data.currentBuildings[index].building_name,
+            select_building_id: that.data.currentBuildings[index].building_id
         })
     },
     chooseWeek: function (e) {
         var that = this;
         that.setData({
-            selecetedWeek: that.data.weeks[e.detail.value].week_name,
-            selecteed_week: that.data.weeks[e.detail.value].week_id,
+            selectWeek: that.data.weeks[e.detail.value].week_name,
+            select_week: that.data.weeks[e.detail.value].week_id
         })
     },
     chooseDay: function (e) {
         var that = this;
         that.setData({
-            selecetedDay: that.data.days[e.detail.value].day_name,
-            selecteed_day: that.data.days[e.detail.value].day_id,
+            selectDay: that.data.days[e.detail.value].day_name,
+            select_day: that.data.days[e.detail.value].day_id
         })
     },
     //查询教室信息
@@ -201,10 +213,10 @@ Page({
     //校验校区和教学楼选择
     validateCampusAndBuilding: function () {
         var that = this;
-        if (that.data.selecetedCampus == "请选择校区") {
+        if (that.data.selectCampus == "请选择校区") {
             app.showMsgModal("请选择校区");
             return false;
-        } else if (that.data.selecetedBuilding == "请选择教学楼") {
+        } else if (that.data.selectBuilding == "请选择教学楼") {
             app.showMsgModal("请选择教学楼");
             return false;
         } else {
@@ -214,10 +226,10 @@ Page({
     //校验校区和教学楼选择
     validateWeekAndDay: function () {
         var that = this;
-        if (that.data.selecetedWeek == "请选择周(可选)") {
+        if (that.data.selectWeek == "请选择周(可选)") {
             app.showMsgModal("请选择周");
             return false;
-        } else if (that.data.selecetedDay == "请选择星期(可选)") {
+        } else if (that.data.selectDay == "请选择星期(可选)") {
             app.showMsgModal("请选择星期");
             return false;
         } else {
@@ -230,10 +242,10 @@ Page({
         var toastMsg = '';
 
         that.setData({
-            selecteed_week: app.globalData.currentWeek,
-            selecteed_day: app.globalData.currentDay,
-            selecetedWeek: that.data.weeks[app.globalData.currentWeek - 1].week_name,
-            selecetedDay: that.data.days[app.globalData.currentDay - 1].day_name,
+            select_week: app.globalData.currentWeek,
+            select_day: app.globalData.currentDay,
+            selectWeek: that.data.weeks[app.globalData.currentWeek - 1].week_name,
+            selectDay: that.data.days[app.globalData.currentDay - 1].day_name
         })
     },
     //查询教室信息
@@ -241,15 +253,15 @@ Page({
         var that = this;
         var toastMsg = '';
         var failed = true;
-        app.saveStorage("defaultCampus", that.data.selecteed_location_id);
-        app.saveStorage("defaultBuilding", that.data.selecteed_building_id);
+        app.saveStorage("defaultCampus", that.data.select_location_id);
+        app.saveStorage("defaultBuilding", that.data.select_building_id);
         app.showLoading();
         wx.request({
             url: app.globalData.classroomOccupyUrl,
             data: {
-                buildingNo: that.data.selecteed_building_id,
-                week: that.data.selecteed_week,
-                day: that.data.selecteed_day
+                buildingNo: that.data.select_building_id,
+                week: that.data.select_week,
+                day: that.data.select_day
             },
             method: 'GET',
             header: {
@@ -260,7 +272,6 @@ Page({
                     failed = false;
                     //处理数据
                     app.currentClassrooms = res.data.result;
-                    // that.handleClassroomData(res.data.result, that.data.selecetedBuilding);
                 }
                 else {
                     toastMsg = "查询失败，请稍后重试";
@@ -274,47 +285,13 @@ Page({
                 if (failed) {
                     app.showToast(toastMsg, false);
                 } else {
-                    app.currentClassroomsTitle = that.data.selecetedBuilding;
+                    app.currentClassroomsTitle = that.data.selectBuilding;
                     app.navigateToPage("/pages/module/classroom/classroomDetail/classroomDetail");
                 }
                 //MTA统计
-                app.mta.Event.stat('classroom_plan', {'campus': that.data.selecetedCampus});
-                app.mta.Event.stat('classroom_plan', {'building': that.data.selecetedBuilding});
+                app.mta.Event.stat('classroom_plan', {'campus': that.data.selectCampus});
+                app.mta.Event.stat('classroom_plan', {'building': that.data.selectBuilding});
             }
         })
-    },
-    //处理数据
-    handleClassroomData: function (classroomData, buildingName) {
-        var that = this;
-        var classroomArray = [];
-
-        //将Object转换为Array
-        for (var key in classroomData) {
-            //key是属性,object[key]是值
-            var name = classroomData[key].name;
-
-            //根据教学楼名称截取教室门牌号，进行排序
-            if (name.length > 5) {
-                var roomNo = name.substring(buildingName.length, buildingName.length + 3);
-            } else {
-                //处理校本部知行楼语音教室
-                var roomNo = name.substring(2, name.length);
-            }
-
-            classroomData[key].roomNo = roomNo;
-            classroomArray.push(classroomData[key]);
-        }
-        //排序
-        classroomArray.sort(function (a, b) {
-            //如果不是数字，返回正值，排到最后
-            if (isNaN(a.roomNo)) {
-                return 1;
-            } else if (isNaN(b.roomNo)) {
-                return -1;
-            }
-            return a.roomNo - b.roomNo;
-        });
-
-        app.currentClassrooms = classroomArray;
     }
-})
+});

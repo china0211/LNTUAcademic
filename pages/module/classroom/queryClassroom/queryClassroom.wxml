@@ -9,7 +9,7 @@
                 <view class="weui-cell__bd">
                     <picker mode="selector" bindchange="chooseCampus" value="{{index}}" range="{{campuses}}"
                             range-key="location_name">
-                        <view class="weui-input">{{selecetedCampus}}</view>
+                        <view class="weui-input">{{selectCampus}}</view>
                     </picker>
                 </view>
             </view>
@@ -21,10 +21,10 @@
                     <view class="weui-label">当前选择</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <picker mode="selector" bindchange="chooseBuilding" disabled="{{!isCampusSelected}}"
+                    <picker mode="selector" bindchange="chooseBuilding" disabled="{{!isCampusSelect}}"
                             bindtap="validateBuilding" value="{{index}}" range="{{currentBuildings}}"
                             range-key="building_name">
-                        <view class="weui-input">{{selecetedBuilding}}</view>
+                        <view class="weui-input">{{selectBuilding}}</view>
                     </picker>
                 </view>
             </view>
@@ -38,7 +38,7 @@
                 <view class="weui-cell__bd">
                     <picker mode="selector" bindchange="chooseWeek" value="{{index}}" range="{{weeks}}"
                             range-key="week_name">
-                        <view class="weui-input">{{selecetedWeek}}</view>
+                        <view class="weui-input">{{selectWeek}}</view>
                     </picker>
                 </view>
             </view>
@@ -52,7 +52,7 @@
                 <view class="weui-cell__bd">
                     <picker mode="selector" bindchange="chooseDay" value="{{index}}" range="{{days}}"
                             range-key="day_name">
-                        <view class="weui-input">{{selecetedDay}}</view>
+                        <view class="weui-input">{{selectDay}}</view>
                     </picker>
                 </view>
             </view>

@@ -52,7 +52,7 @@
 }
 
 .dot-distance {
-  margin-left: 20rpx;
+  margin-left: 15rpx;
 }
 
 .class-room-type{
