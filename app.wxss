@@ -169,3 +169,11 @@ page {
 .tag-disabled::after {
     border-color: #ccc
 }
+
+.preview_container {
+    background-color: #fff;
+}
+
+.preview_content_margin {
+    margin: 30rpx;
+}
