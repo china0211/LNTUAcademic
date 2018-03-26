@@ -1,4 +1,6 @@
+<import src="/pages/templates/template.wxml"/>
 <view class="page">
+    <template is="loadmore" data="{{loading}}"/>
     <view wx:if="{{educationPlans}}">
         <view class="weui-cells">
             <view bindtap="viewEducationPlanDetail" data-examScore="{{course}}" wx:for="{{educationPlans}}"
@@ -9,12 +11,5 @@
             </view>
         </view>
     </view>
-    <view wx:else class="container">
-        <view class="icon-box">
-            <image class="noResultImage" src="/images/global/noResult.png"></image>
-        </view>
-        <view>
-            <text class="icon-box-title">未查询到结果</text>
-        </view>
-    </view>
+    <template is="no-data" data="{{noData}}"/>
 </view>

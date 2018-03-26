@@ -19,7 +19,6 @@ Page({
             method: 'GET',
             header: {
                 Authorization: app.globalData.authorization,
-                username: app.globalData.studentNo
             },
             success: function (res) {
                 if (res.data.message == "success") {

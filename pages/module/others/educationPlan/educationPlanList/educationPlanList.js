@@ -1,4 +1,5 @@
 var app = getApp();
+var util = require("../../../../../utils/util.js");
 Page({
     data: {
         educationPlanYears: ["第一学年秋季学期", "第一学年春季学期",
@@ -8,12 +9,13 @@ Page({
         ],
         selectedEducationPlanYear: '请选择学年学期',
         educationPlans: '',
-        studentNo: ''
+        studentNo: '',
+        loading: true,
+        noData: false
     },
     onLoad: function (options) {
         var that = this;
         app.mta.Page.init();
-        app.validateStuId();
         that.queryEducationPlan();
     },
     onReady: function () {
@@ -51,16 +53,25 @@ Page({
             },
             method: 'GET',
             header: {
-                Authorization: app.globalData.authorization,
-                username: app.globalData.studentNo
+                Authorization: app.globalData.authorization
             },
             success: function (res) {
                 if (res.data.message == "success") {
                     failed = false;
-                    that.setData({
-                        educationPlans: res.data.result
-                    })
+                    if(util.isEmpty(res.data.result)) {
+                        that.setData({
+                            noData: true
+                        })
+                    }else{
+                        that.setData({
+                            noData: false,
+                            educationPlans: res.data.result
+                        })
+                    }
                 } else {
+                    that.setData({
+                        noData: true
+                    });
                     toastMsg = "查询失败，请稍后重试";
                 }
             },
@@ -68,6 +79,9 @@ Page({
                 toastMsg = "请求失败，请稍后重试";
             },
             complete: function (res) {
+                that.setData({
+                    loading: false
+                });
                 app.hideLoading();
                 if (failed) {
                     app.showToast(toastMsg, false)
