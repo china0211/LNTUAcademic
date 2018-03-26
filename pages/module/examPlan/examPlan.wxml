@@ -1,4 +1,6 @@
+<import src="/pages/templates/template.wxml"/>
 <view class="page">
+    <template is="loadmore" data="{{loading}}"/>
     <view wx:if="{{exams}}">
         <view class="preview_container" wx:for="{{exams}}" wx:key="exam" wx:for-item="exam">
             <view class="weui-form-preview preview_content_margin">
@@ -24,12 +26,5 @@
             </view>
         </view>
     </view>
-    <view wx:else class="container">
-        <view class="icon-box">
-            <image class="noResultImage" src="/images/global/noResult.png"></image>
-        </view>
-        <view>
-            <text class="icon-box-title">未查询到结果</text>
-        </view>
-    </view>
+    <template is="no-data" data="{{noData}}"/>
 </view>
