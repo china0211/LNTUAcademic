@@ -22,9 +22,7 @@ Page({
                 if (res.data.message == "success") {
                     failed = false;
                     navigateBack = false;
-                    that.setData({
-                        exams: res.data.result
-                    })
+                    that.handlerData(res.data.result);
                 } else {
                     toastMsg = "查询失败，请稍后重试";
                 }
@@ -54,5 +52,25 @@ Page({
     },
     onUnload: function () {
         // 页面关闭
+    },
+    handlerData: function (examData) {
+        var that = this;
+        if (examData != undefined) {
+            for (var i = 0; i < examData.length; i++) {
+                if (examData[i].remainDays == 999) {
+                    examData[i].remainDays = "已结束";
+                    examData[i].color = "gray";
+                } else if (examData[i].remainDays >= 0 && examData[i].remainDays <= 3) {
+                    examData[i].color = "red";
+                } else if (examData[i].remainDays > 3 && examData[i].remainDays <= 7) {
+                    examData[i].color = "orange";
+                } else {
+                    examData[i].color = "green";
+                }
+            }
+            that.setData({
+                exams: examData
+            })
+        }
     }
-})
+});

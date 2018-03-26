@@ -1,50 +1,25 @@
 <view class="page">
     <view wx:if="{{exams}}">
-        <view class="list-container" wx:for="{{exams}}" wx:for-item="exam" wx:key="exam">
-            <view class="weui-flex ">
-                <view>
-                    <view class="list-content">
-                        <view class="weui-cell__hd space-left">
-                            <image src="/images/main/module/course.png" class="list-icon"></image>
+        <view class="preview_container" wx:for="{{exams}}" wx:key="exam" wx:for-item="exam">
+            <view class="weui-form-preview preview_content_margin">
+                <view class="weui-form-preview__hd">
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label {{exam.color}}">{{exam.courseName}}</view>
+                        <view class="weui-form-preview__value_in-hd {{exam.color}} ">
+                            {{exam.remainDays}}
+                            <text wx:if="{{exam.remainDays != '已结束'}}">天</text>
                         </view>
                     </view>
                 </view>
-                <view class="weui-flex__item">
-                    <view class="list-content list-title text-left">{{exam.courseName}}</view>
-                </view>
-                <view>
-                    <view class="list-content list-detail text-center space-right">剩</view>
-                </view>
-            </view>
-            <view class="weui-flex">
-                <view>
-                    <view class="list-content">
-                        <view class="weui-cell__hd space-left">
-                            <image src="/images/global/time_color.png" class="list-icon"></image>
-                        </view>
+                <view class="weui-form-preview__bd">
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">考试时间</view>
+                        <view class="weui-form-preview__value">{{exam.examStartTime}}-{{exam.examEndTime}}</view>
                     </view>
-                </view>
-                <view class="weui-flex__item">
-                    <view class="list-content list-detail text-left">{{exam.examStartTime}}-{{exam.examEndTime}}</view>
-                </view>
-                <view>
-                    <view class="list-content list-title text-center left-day-up space-right">{{exam.remainingTime}}
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">考试地点</view>
+                        <view class="weui-form-preview__value">{{exam.examRoom}}</view>
                     </view>
-                </view>
-            </view>
-            <view class="weui-flex">
-                <view>
-                    <view class="list-content">
-                        <view class="weui-cell__hd space-left">
-                            <image src="/images/global/location.png" class="list-icon"></image>
-                        </view>
-                    </view>
-                </view>
-                <view class="weui-flex__item">
-                    <view class="list-content list-detail text-left ">{{exam.examRoom}}</view>
-                </view>
-                <view>
-                    <view class="list-content list-detail text-center space-right">天</view>
                 </view>
             </view>
         </view>
