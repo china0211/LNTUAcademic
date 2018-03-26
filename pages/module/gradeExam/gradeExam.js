@@ -2,7 +2,9 @@ var app = getApp();
 var util = require("../../../utils/util.js");
 Page({
     data: {
-        gradeExams: null
+        gradeExams: null,
+        loading: true,
+        noData: false
     },
     onLoad: function (options) {
         app.mta.Page.init();
@@ -23,9 +25,21 @@ Page({
                 if (res.data.message == "success") {
                     failed = false;
                     navigateBack = false;
-                    //处理等级考试数据
-                    that.handlerData(res.data.result);
+                    if(util.isEmpty(res.data.result)) {
+                        that.setData({
+                            noData: true
+                        })
+                    }else{
+                        //处理等级考试数据
+                        that.handlerData(res.data.result);
+                        that.setData({
+                            noData: false
+                        })
+                    }
                 } else {
+                    that.setData({
+                        noData: true
+                    });
                     toastMsg = "查询失败，请稍后重试";
                 }
             },
@@ -33,6 +47,9 @@ Page({
                 toastMsg = "请求失败，请稍后重试";
             },
             complete: function (res) {
+                that.setData({
+                    loading: false
+                });
                 app.hideLoading();
                 if (failed) {
                     app.showToast(toastMsg, false);
