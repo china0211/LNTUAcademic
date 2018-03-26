@@ -31,8 +31,17 @@ function isStudentNoValid(studentNo) {
     }
 }
 
+function isEmpty(data) {
+    if (data == undefined || data == null || data.length == 0) {
+        return true;
+    }else {
+        return false;
+    }
+}
+
 module.exports = {
     formatDate: formatDate,
     isStudentNoValid: isStudentNoValid,
-    formatDataToTimestamp: formatDataToTimestamp
+    formatDataToTimestamp: formatDataToTimestamp,
+    isEmpty: isEmpty,
 }
