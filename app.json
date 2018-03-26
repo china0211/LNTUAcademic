@@ -5,7 +5,7 @@
         "pages/module/exam/queryExamScore/queryExamScore",
         "pages/module/exam/examScore/examScore",
         "pages/module/exam/examScoreDetail/examScoreDetail",
-        "pages/module/skillScore/skillScore",
+        "pages/module/gradeExam/gradeExam",
         "pages/module/examPlan/examPlan",
         "pages/module/stuInfoDetail/stuInfoDetail",
         "pages/module/classroom/queryClassroom/queryClassroom",

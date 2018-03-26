@@ -14,9 +14,9 @@
                     <text class="module-function-title">考试成绩</text>
                 </view>
             </navigator>
-            <navigator url="/pages/module/skillScore/skillScore">
+            <navigator url="/pages/module/gradeExam/gradeExam">
                 <view class="module-function-box">
-                    <image class="module-function-icon" src="/images/main/module/skillScore.png"></image>
+                    <image class="module-function-icon" src="/images/main/module/gradeExam.png"></image>
                     <text class="module-function-title">等级考试</text>
                 </view>
             </navigator>
