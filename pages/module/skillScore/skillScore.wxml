@@ -1,12 +1,11 @@
 <view class="page">
-    <view wx:if="{{skillScores}}">
-        <view class="preview_container" wx:for="{{skillScores}}" wx:key="skillScore" wx:for-item="exam">
+    <view wx:if="{{gradeExams}}">
+        <view class="preview_container" wx:for="{{gradeExams}}" wx:key="exam" wx:for-item="exam">
             <view class="weui-form-preview preview_content_margin">
                 <view class="weui-form-preview__hd">
                     <view class="weui-form-preview__item">
-                        <view class="weui-form-preview__label">{{exam.examName}}</view>
-                        <view class="weui-form-preview__value_in-hd green" wx:if="{{score.score < 425 || score.score == '未出'}}">{{exam.score}}</view>
-                        <view class="weui-form-preview__value_in-hd red" wx:else>{{exam.score}}</view>
+                        <view class="weui-form-preview__label {{exam.color}}">{{exam.examName}}</view>
+                        <view class="weui-form-preview__value_in-hd {{exam.color}}">{{exam.score}}</view>
                     </view>
                 </view>
 
@@ -29,7 +28,7 @@
         <view class="weui-footer footer">
             <view class="weui-footer__text">
                 <text class="red">红色</text>
-                表示未通过或未出，
+                表示未通过，
                 <text class="green">绿色</text>
                 表示已通过
             </view>

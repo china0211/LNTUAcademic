@@ -2,7 +2,7 @@ var app = getApp();
 var util = require("../../../utils/util.js");
 Page({
     data: {
-        skillScores: null
+        gradeExams: null
     },
     onLoad: function (options) {
         app.mta.Page.init();
@@ -24,10 +24,7 @@ Page({
                     failed = false;
                     navigateBack = false;
                     //处理等级考试数据
-                    that.setData({
-                        skillScores: res.data.result
-                    })
-                    // that.handleSkillScoreData(res.data.info);
+                    that.handlerData(res.data.result);
                 } else {
                     toastMsg = "查询失败，请稍后重试";
                 }
@@ -46,22 +43,21 @@ Page({
             }
         })
     },
-    handleSkillScoreData: function (skillScoreData) {
+    handlerData: function (gradeExams) {
         var that = this;
-        var skillScoreArray = [];
-
-        //将Object转换为Array
-        for (var key in skillScoreData) {
-            //key是属性,object[key]是值
-            skillScoreData[key].timestamp = util.formatDataToTimestamp(skillScoreData[key].date);
-            skillScoreArray.push(skillScoreData[key]);
+        if (gradeExams != undefined) {
+            for (var i = 0; i < gradeExams.length; i++) {
+                if (gradeExams[i].score == "未出") {
+                    gradeExams[i].color = "gray";
+                } else if (gradeExams[i].score < 425) {
+                    gradeExams[i].color = "red";
+                } else {
+                    gradeExams[i].color = "green";
+                }
+            }
+            that.setData({
+                gradeExams: gradeExams
+            })
         }
-        //排序
-        skillScoreArray.sort(function (a, b) {
-            return a.timestamp - b.timestamp;
-        });
-        that.setData({
-            skillScores: skillScoreArray
-        })
     }
 })
