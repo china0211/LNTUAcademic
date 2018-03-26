@@ -1,0 +1,40 @@
+<view class="page">
+    <view class="weui-cells">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">课程名称</view>
+            <view class="weui-cell__ft">{{course.courseName}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">学年学期</view>
+            <view class="weui-cell__ft">第{{course.academicYear}}学年 {{course.academicSeason}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">课程编号</view>
+            <view class="weui-cell__ft">{{course.courseNo}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">学分</view>
+            <view class="weui-cell__ft">{{course.credits}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">总学时</view>
+            <view class="weui-cell__ft">{{course.courseHour}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">考核方式</view>
+            <view class="weui-cell__ft">{{course.evaluationMode}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">课程类别</view>
+            <view class="weui-cell__ft">{{course.courseCategory}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">所属分组</view>
+            <view class="weui-cell__ft">{{course.courseGroup}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">选课要求</view>
+            <view class="weui-cell__ft">{{course.selectionRequirement}}</view>
+        </view>
+    </view>
+</view>
