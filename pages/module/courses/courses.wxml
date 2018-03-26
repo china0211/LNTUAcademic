@@ -1,5 +1,7 @@
+<import src="/pages/templates/template.wxml"/>
 <view class="page">
-    <view class="page-section">
+    <template is="loadmore" data="{{loading}}"/>
+    <view class="page-section" wx:if="{{courseSchedule}}">
         <!--顶部星期信息-->
         <view>
             <view class="weui-flex">
@@ -32,4 +34,5 @@
             </view>
         </view>
     </view>
+    <template is="no-data" data="{{noData}}"/>
 </view>

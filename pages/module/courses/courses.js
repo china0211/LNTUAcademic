@@ -1,6 +1,9 @@
 var app = getApp();
+var util = require("../../../utils/util.js");
 Page({
     data: {
+        loading: true,
+        noData: false,
         days: ['一', '二', '三', '四', '五', '六', '七'],
         courseSchedule: [
             [[], [], [], [], []],
@@ -15,8 +18,6 @@ Page({
     onLoad: function (options) {
         var that = this;
         app.mta.Page.init();
-        app.validateStuId();
-
         // 获取课程表信息
         that.getCourseData();
     },
@@ -33,8 +34,7 @@ Page({
             data: {},
             method: 'GET',
             header: {
-                Authorization: app.globalData.authorization,
-                username: app.globalData.studentNo
+                Authorization: app.globalData.authorization
             },
             success: function (res) {
                 if (res.data.message == "success") {
@@ -45,8 +45,20 @@ Page({
                     // });
                     // app.saveStorage("courseSchedule", res.data.result);
                     //处理课程数据
-                    that.handleCourseData(res.data.result);
+                    if(util.isEmpty(res.data.result)) {
+                        that.setData({
+                            noData: true
+                        })
+                    }else{
+                        that.handleCourseData(res.data.result);
+                        that.setData({
+                            noData: false
+                        })
+                    }
                 } else {
+                    that.setData({
+                        noData: true
+                    });
                     toastMsg = "查询失败，请稍后重试";
                 }
             },
@@ -54,6 +66,9 @@ Page({
                 toastMsg = "请求失败，请稍后重试";
             },
             complete: function (res) {
+                that.setData({
+                    loading: false
+                });
                 app.hideLoading();
                 if (failed) {
                     app.showToast(toastMsg, false);
