@@ -1,4 +1,6 @@
+<import src="/pages/templates/template.wxml"/>
 <view class="page">
+    <template is="loadmore" data="{{loading}}"/>
     <view class="panner-container">
         <view class="weui-panel" wx:for="{{announcements}}" wx:for-item="announcement" wx:key="announcement"
               data-announcement-detail="{{announcement}}" bindtap="viewAnnouncementDetail">
@@ -13,4 +15,5 @@
             </view>
         </view>
     </view>
+    <template is="no-data" data="{{noData}}"/>
 </view>

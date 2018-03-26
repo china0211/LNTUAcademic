@@ -2,7 +2,9 @@ var app = getApp();
 var util = require('../../../../utils/util.js');
 Page({
     data: {
-        announcements: null
+        announcements: null,
+        loading: true,
+        noData: false
     },
     onLoad: function (options) {
         app.mta.Page.init();
@@ -20,11 +22,20 @@ Page({
             success: function (res) {
                 if (res.data.message == "success") {
                     failed = false;
-                    that.setData({
-                        announcements: res.data.result
-                    })
-                    // that.handlerData(res.data.result);
+                    if(util.isEmpty(res.data.result)) {
+                        that.setData({
+                            noData: true
+                        })
+                    }else{
+                        that.setData({
+                            announcements: res.data.result,
+                            noData: false
+                        })
+                    }
                 } else {
+                    that.setData({
+                        noData: true
+                    });
                     toastMsg = "获取教务公告失败，请稍后重试";
                 }
             },
@@ -32,6 +43,9 @@ Page({
                 toastMsg = "请求失败，请稍后重试";
             },
             complete: function (res) {
+                that.setData({
+                    loading: false
+                });
                 app.hideLoading();
                 if (failed) {
                     app.showToast(toastMsg, false);
@@ -43,15 +57,5 @@ Page({
     viewAnnouncementDetail: function (e) {
         app.announcementDetail = e.currentTarget.dataset.announcementDetail;
         app.navigateToPage("/pages/module/announcement/announcementDetail/announcementDetail");
-    },
-    //处理数据
-    handlerData: function (annoucements) {
-        var that = this;
-        for (var i = 0; i < annoucements.length; i++) {
-            annoucements[i].date = annoucements[i].date;
-        }
-        that.setData({
-            announcements: annoucements
-        })
     }
 })
