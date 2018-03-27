@@ -1,5 +1,6 @@
+<import src="/pages/templates/template.wxml"/>
 <view class="page">
-    <view class="filter-flex">
+    <view>
         <view class="filter-tab">
             <text bindtap="setFilterPanel" data-filterIndex="1" class="{{showFilterIndex==1?'active':''}}">{{currentFilterText}}</text>
         </view>
@@ -21,6 +22,7 @@
         </view>
         <view class="filter-shadow" wx:if="{{showFilter}}" bindtap="hideFilter"></view>
     </view>
+    <template is="loadmore" data="{{loading}}"/>
     <view wx:if="{{examScores}}">
         <view class="weui-cells">
             <view bindtap="viewExamScoreDetail" data-examScore="{{examScore}}" wx:for="{{examScores}}"
@@ -45,12 +47,5 @@
             </view>
         </view>
     </view>
-    <view wx:else class="container">
-        <view class="icon-box">
-            <image class="noResultImage" src="/images/global/noResult.png"></image>
-        </view>
-        <view>
-            <text class="icon-box-title">未查询到结果</text>
-        </view>
-    </view>
+    <template is="no-data" data="{{noData}}"/>
 </view>

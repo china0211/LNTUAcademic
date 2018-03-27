@@ -1,9 +1,8 @@
 var app = getApp();
+var util = require('../../../../utils/util.js');
 Page({
     data: {
-        studentNo: app.globalData.studentNo,
         queryType: '',
-        academicYears: ['2014秋', '2015春', '2015秋', '2016春', '2016秋', '2017春', '2017秋'],
         yearAndSeason: '请选择学年学期',
         currentFilterText: '请选择学年学期',
         filterData: [],  //筛选条件数据
@@ -12,7 +11,9 @@ Page({
         filterIndex: 0,  //一级分类索引
         filterId: null,  //一级分类id
         subFilterIndex: 0, //二级分类索引
-        subFilterId: null //二级分类id
+        subFilterId: null, //二级分类id
+        loading: true,
+        noData: false
     },
     onLoad: function (options) {
         this.fetchFilterData();
@@ -79,16 +80,25 @@ Page({
                 },
                 method: 'GET',
                 header: {
-                    Authorization: app.globalData.wxGlobalToken,
-                    username: that.data.studentNo
+                    Authorization: app.globalData.wxGlobalToken
                 },
                 success: function (res) {
                     if (res.data.message == "success") {
                         failed = false;
-                        that.setData({
-                            examScores: res.data.result
-                        })
+                        if (util.isEmpty(res.data.result)) {
+                            that.setData({
+                                noData: true
+                            })
+                        } else {
+                            that.setData({
+                                examScores: res.data.result,
+                                noData: false
+                            })
+                        }
                     } else {
+                        that.setData({
+                            noData: true
+                        });
                         toastMsg = "查询失败，请稍后重试";
                     }
                 },
@@ -96,6 +106,9 @@ Page({
                     toastMsg = "请求失败，请稍后重试";
                 },
                 complete: function (res) {
+                    that.setData({
+                        loading: false
+                    });
                     app.hideLoading();
                     if (failed) {
                         app.showToast(toastMsg, false)
@@ -145,6 +158,7 @@ Page({
         })
     },
     setFilterPanel: function (e) { //展开筛选面板
+
         var showFilterIndex = e.currentTarget.dataset.filterindex;
         if (this.data.showFilterIndex == showFilterIndex) {
             this.setData({
@@ -213,5 +227,8 @@ Page({
     viewExamScoreDetail: function (e) {
         app.currentExamScore = e.currentTarget.dataset.examscore;
         app.navigateToPage("/pages/module/exam/examScoreDetail/examScoreDetail")
+    },
+    preventTouchMove: function() {
+        console.log("move")
     }
 });
