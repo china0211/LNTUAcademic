@@ -9,8 +9,6 @@ Page({
     onLoad: function (options) {
         app.mta.Page.init();
         app.validateStuId();
-        // var that = this;
-        // that.setStuId()
     },
     //选择学年学期
     chooseAcademicYear: function (e) {
@@ -19,28 +17,6 @@ Page({
             selectedYearAndSeason: that.data.academicYears[e.detail.value]
         })
     },
-    //获取学号
-    // setStuId: function () {
-    //   var that = this;
-    //   if (util.isStudentNoValid(app.globalData.studentNo)) {
-    //     that.setData({
-    //       studentNo: app.globalData.studentNo
-    //     })
-    //   } else {
-    //     wx.getStorage({
-    //       key: 'studentNo',
-    //       success: function (response) {
-    //         that.setData({
-    //           studentNo: response.data
-    //         })
-    //       },
-    //       fail: function (res) {
-    //         app.showToast("获取用户信息失败，请重新登录", false);
-    //         app.redirectToLoginPage();
-    //       }
-    //     })
-    //   }
-    // },
     //查询成绩
     queryExamScore: function (e) {
         var that = this;
@@ -73,7 +49,6 @@ Page({
                         failed = false;
                         //处理数据，显示所选学年成绩
                         app.examScores = res.data.result;
-                        // app.examScores = that.handlerData(res.data.info);
                         app.navigateToPage("/pages/module/exam/examScore/examScore")
                     } else {
                         toastMsg = "查询失败，请稍后重试";
@@ -134,36 +109,5 @@ Page({
                 app.mta.Event.stat('exam_score', {'querytype': 'credit'});
             }
         })
-    },
-    handlerData: function (allExamScores) {
-
-        var that = this;
-        var selectedExamScore = [];
-        var allExamScoresArray = [];
-
-        //将Object转换为Array
-        for (var key in allExamScores) {
-            //key是属性,object[key]是值
-            allExamScoresArray.push(allExamScores[key]);
-        }
-
-        var selectedYearAndSeason = that.data.selectedYearAndSeason;
-
-        for (var i = 0; i < allExamScoresArray.length; i++) {
-            var currentExamScore = allExamScores[i];
-
-            //显示所选的学年学期的成绩
-            if (currentExamScore.yearAndSeason == that.data.selectedYearAndSeason) {
-
-                //判断是否通过
-                if (currentExamScore.score < 60 || currentExamScore.score == "不合格") {
-                    currentExamScore.isPassed = false;
-                } else {
-                    currentExamScore.isPassed = true;
-                }
-                selectedExamScore.push(currentExamScore);
-            }
-        }
-        return selectedExamScore;
     }
 })
