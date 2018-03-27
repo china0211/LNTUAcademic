@@ -2,7 +2,6 @@
     "pages": [
         "pages/index/index",
         "pages/module/courses/courses",
-        "pages/module/exam/queryExamScore/queryExamScore",
         "pages/module/exam/examScore/examScore",
         "pages/module/exam/examScoreDetail/examScoreDetail",
         "pages/module/gradeExam/gradeExam",

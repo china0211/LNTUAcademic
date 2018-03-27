@@ -26,7 +26,7 @@ App({
         courseScheduleUrl: ServerURL + "/courseSchedule/",
         gradeExamScoreUrl: ServerURL + "/gradeExamScore/",
         examUrl: ServerURL + "/examScore/",
-        gradePointUrl: ServerURL + "/gradePoint",
+        gradePointUrl: ServerURL + "/gradePoint/",
         bindUrl: ServerURL + "/bind",
         unBindUrl: ServerURL + "/bind",
         feedbackUrl: ServerURL + "/feedback",
