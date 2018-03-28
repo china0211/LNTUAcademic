@@ -20,55 +20,89 @@ Page({
         app.mta.Page.init();
     },
     fetchFilterData: function () {
+        var filterData = [];
+
+        var startYear = Number("20".concat(app.globalData.studentNo.substr(0, 2)));
+        var endYear = app.globalData.currentYear;
+        var yearDiff = endYear - startYear;
+        var academicYearSubFilterData = [];
+        var academicSubFilterId = 11;
+        // 添加学年学期筛选时间
+        for (var i = 0; i < yearDiff; i++) {
+            var currentYearSpring = new Object();
+            currentYearSpring.id = academicSubFilterId++;
+            currentYearSpring.title = startYear + i + "春";
+            academicYearSubFilterData.push(currentYearSpring);
+
+            var currentYearFull = new Object();
+            currentYearFull.id = academicSubFilterId++;
+            currentYearFull.title = startYear + i + "秋";
+            academicYearSubFilterData.push(currentYearFull);
+        }
+        // 移除首年秋季学期
+        if (academicYearSubFilterData.length > 0) {
+            academicYearSubFilterData.splice(0, 1);
+        }
+
+        // 当前月份大于2月时添加本学年春季学期
+        if (app.globalData.currentMonth > 2) {
+            var currentYearSpring = new Object();
+            currentYearSpring.id = academicSubFilterId++;
+            currentYearSpring.title = app.globalData.currentYear + "春";
+            academicYearSubFilterData.push(currentYearSpring);
+        }
+        // 当前月份大于8月时添加本学年春季学期
+        if (app.globalData.currentMonth > 8) {
+            var currentYearFull = new Object();
+            currentYearFull.id = academicSubFilterId;
+            currentYearFull.title = app.globalData.currentYear + "秋";
+            academicYearSubFilterData.push(currentYearFull);
+        }
+
+        var academicYear = new Object();
+        academicYear.id = 1;
+        academicYear.title = "学年学期";
+        academicYear.subFilterData = academicYearSubFilterData;
+        console.log(academicYearSubFilterData);
+
+        // 其他子菜单
+        var notPassed = new Object();
+        notPassed.id = 21;
+        notPassed.title = "未通过课程";
+
+        var gradePoint = new Object();
+        gradePoint.id = 22;
+        gradePoint.title = "学分绩";
+
+        var othersSubFilterData = [];
+        othersSubFilterData.push(notPassed);
+        othersSubFilterData.push(gradePoint);
+
+        var others = new Object();
+        others.id = 2;
+        others.title = "其他";
+        others.subFilterData = othersSubFilterData;
+
+        filterData.push(academicYear);
+        filterData.push(others);
+
         this.setData({
-            filterData: [
-                {
-                    "id": 1,
-                    "title": "学年学期",
-                    "subFilterData": [
-                        {
-                            "id": 11,
-                            "title": "2015秋"
-                        },
-                        {
-                            "id": 12,
-                            "title": "2016春"
-                        },
-                        {
-                            "id": 13,
-                            "title": "2016秋"
-                        },
-                        {
-                            "id": 14,
-                            "title": "2017春"
-                        },
-                        {
-                            "id": 15,
-                            "title": "2017秋"
-                        }
-                    ]
-                },
-                {
-                    "id": 2,
-                    "title": "其他",
-                    "subFilterData": [
-                        {
-                            "id": 21,
-                            "title": "未通过课程"
-                        },
-                        {
-                            "id": 22,
-                            "title": "学分绩"
-                        }
-                    ]
-                }
-            ]
-        })
+            filterData: filterData,
+            queryType: 'EXAM_SCORE',
+            currentFilterText: academicYearSubFilterData[academicYearSubFilterData.length - 1].title,
+            yearAndSeason: academicYearSubFilterData[academicYearSubFilterData.length - 1].title
+        });
+
+        this.queryExamScore();
     },
     //查询成绩
     queryExamScore: function () {
         var that = this;
         if (that.data.yearAndSeason != null && that.data.yearAndSeason != "请选择学年学期") {
+            that.setData({
+                examScores: null,
+                noData: true
+            });
             var toastMsg = '';
             var failed = true;
             app.showLoading('正在查询', true);
@@ -157,7 +191,8 @@ Page({
             }
         })
     },
-    setFilterPanel: function (e) { //展开筛选面板
+    //展开筛选面板
+    setFilterPanel: function (e) {
 
         var showFilterIndex = e.currentTarget.dataset.filterindex;
         if (this.data.showFilterIndex == showFilterIndex) {
@@ -172,7 +207,8 @@ Page({
             })
         }
     },
-    setFilterData: function (e) { //分类一级索引
+    //分类一级索引
+    setFilterData: function (e) {
         var that = this;
         var dataSet = e.currentTarget.dataset;
         this.setData({
@@ -181,7 +217,8 @@ Page({
             subFilterIndex: that.data.filterIndex == dataSet.filterindex ? that.data.subFilterIndex : 0
         });
     },
-    setSubFilterIndex: function (e) { //分类二级索引
+    //分类二级索引
+    setSubFilterIndex: function (e) {
         var that = this;
         var dataSet = e.currentTarget.dataset;
         var queryExamScore = true;
@@ -217,7 +254,8 @@ Page({
             that.queryGradePoint();
         }
     },
-    hideFilter: function () { //关闭筛选面板
+    //关闭筛选面板
+    hideFilter: function () {
         this.setData({
             showFilter: false,
             showFilterIndex: null
@@ -228,7 +266,7 @@ Page({
         app.currentExamScore = e.currentTarget.dataset.examscore;
         app.navigateToPage("/pages/module/exam/examScoreDetail/examScoreDetail")
     },
-    preventTouchMove: function() {
+    preventTouchMove: function () {
         console.log("move")
     }
 });

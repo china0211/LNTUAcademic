@@ -14,16 +14,18 @@ Page({
     //获取当前学年学期 周数和星期
     getCurrentWeekAndDay: function () {
         wx.request({
-            url: app.globalData.getCurrentWeekAndDayUrl,
+            url: app.globalData.getCurrentTimeInfoUrl,
             data: {},
             method: 'GET',
             header: {
                 Authorization: app.globalData.wxGlobalToken
             },
             success: function (res) {
+                console.log(res);
                 if (res.data.message == "success") {
                     app.globalData.currentYear = res.data.result.currentYear;
                     app.globalData.currentSeason = res.data.result.currentSeason;
+                    app.globalData.currentMonth = res.data.result.currentMonth;
                     app.globalData.currentWeek = res.data.result.currentWeek;
                     app.globalData.currentDay = res.data.result.currentDay;
                 }

@@ -37,7 +37,7 @@ App({
         courseStudyScheduleUrl: ServerURL + "/courseStudySchedule/",
         getStudentNoUrl: ServerURL + "/studentNo",
         saveStartUpRecordUrl: ServerURL + "/saveStartUpRecord",
-        getCurrentWeekAndDayUrl: ServerURL + "/currentWeekAndDay",
+        getCurrentTimeInfoUrl: ServerURL + "/currentTimeInfo",
         evaluateCourseUrl: ServerURL + "/evaluateCourse",
         isBind: false,
 
