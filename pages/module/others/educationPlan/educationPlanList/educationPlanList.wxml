@@ -1,5 +1,28 @@
 <import src="/pages/templates/template.wxml"/>
 <view class="page">
+    <view>
+        <view class="filter-tab">
+            <text bindtap="setFilterPanel" data-filterIndex="1" class="{{showFilterIndex==1?'active':''}}">{{currentFilterText}}</text>
+        </view>
+        <view class="filter-content" wx:if="{{showFilter}}">
+            <view class="filter-panel" wx:if="{{showFilterIndex==1}}">
+                <view class="filter-panel-left">
+                    <view wx:for="{{filterData}}" wx:key="{{item.id}}" bindtap="setFilterData"
+                          data-filterIndex="{{index}}" data-filterId="{{item.id}}"
+                          class="{{filterIndex==index?'active':''}}">{{item.title}}
+                    </view>
+                </view>
+                <view class="filter-panel-right">
+                    <view wx:for="{{filterData[filterIndex].subFilterData}}" wx:key="{{item.id}}"
+                          bindtap="setSubFilterIndex" data-subFilterIndex="{{index}}" data-subFilterId="{{item.id}}"
+                          data-subFilterValue="{{item.value}}"
+                          class="{{subFilterIndex==index?'active':''}}">{{item.title}}
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="filter-shadow" wx:if="{{showFilter}}" bindtap="hideFilter"></view>
+    </view>
     <template is="loadmore" data="{{loading}}"/>
     <view wx:if="{{educationPlans}}">
         <view class="weui-cells">
