@@ -31,7 +31,7 @@ Page({
         showFilter: false,
         showFilterIndex: null,
         campusIndex: 0,
-        campusId: null,
+        campusId: 4,
         buildingIndex: 0,
         buildingId: null,
         weekAndDayIndex: 0,
@@ -68,6 +68,11 @@ Page({
             complete: function (res) {
                 if (!fail) {
                     that.getClassroomInfo();
+                } else {
+                    that.setData({
+                        loading: false,
+                        noData: true
+                    });
                 }
             }
         })
