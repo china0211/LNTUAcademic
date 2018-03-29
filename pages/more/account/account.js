@@ -36,7 +36,7 @@ Page({
                         },
                         method: 'DELETE',
                         header: {
-                            Authorization: app.globalData.wxGlobalToken
+                            Authorization: app.globalData.authorization
                         },
                         success: function (response) {
                             if (response.data.result) {

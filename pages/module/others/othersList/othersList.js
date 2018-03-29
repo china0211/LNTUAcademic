@@ -22,7 +22,7 @@ Page({
                         },
                         method: 'GET',
                         header: {
-                            Authorization: app.globalData.wxGlobalToken,
+                            Authorization: app.globalData.authorization,
                         },
                         success: function (resp) {
                             if (resp.data.result == "success") {

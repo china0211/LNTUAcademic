@@ -83,7 +83,7 @@ Page({
                 },
                 method: 'GET',
                 header: {
-                    Authorization: app.globalData.wxGlobalToken,
+                    Authorization: app.globalData.authorization,
                     username: app.globalData.studentNo
                 },
                 success: function (res) {

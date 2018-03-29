@@ -11,14 +11,13 @@ App({
     globalData: {
         quit: false,
         parsing: false,
-        appid: properties.appid,
-        secret: properties.secret,
         userInfo: null,
         studentNo: '',
         weChatOpenId: '',
         stuDetail: null,
         authorization: properties.authorization,
-        wxGlobalToken: properties.wxGlobalToken,
+        appID: properties.appID,
+        eventID: properties.eventID,
         getOpenIdUrl: ServerURL + "/getOpenId",
         loginUrl: ServerURL + "/login",
         studentInfoUrl: ServerURL + "/student/",
@@ -58,7 +57,7 @@ App({
                         },
                         method: 'GET',
                         header: {
-                            Authorization: that.globalData.wxGlobalToken
+                            Authorization: that.globalData.authorization
                         },
                         success: function (res) {
                             that.globalData.weChatOpenId = res.data.result;
@@ -90,9 +89,10 @@ App({
     },
     //腾讯MTA分析
     initMTA: function (options) {
+        var that = this;
         mta.App.init({
-            "appID": "500434803",
-            "eventID": "500437610",
+            "appID": that.globalData.appID,
+            "eventID": that.globalData.eventID,
             "lauchOpts": options,
             "statPullDownFresh": true,
             "statShareApp": true,
@@ -108,10 +108,10 @@ App({
             data: {},
             method: 'GET',
             header: {
-                Authorization: that.globalData.wxGlobalToken
+                Authorization: that.globalData.authorization
             },
             success: function (res) {
-                that.globalData.wxGlobalToken = res.data.result;
+                that.globalData.authorization = res.data.result;
             },
             fail: function (res) {
                 that.showMsgModal("获取应用信息失败，请稍后再试")
@@ -173,7 +173,7 @@ App({
             },
             method: 'GET',
             header: {
-                Authorization: that.globalData.wxGlobalToken
+                Authorization: that.globalData.authorization
             },
             success: function (resp) {
                 if (resp.data.message == "success") {

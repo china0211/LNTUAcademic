@@ -114,7 +114,7 @@ Page({
                 },
                 method: 'GET',
                 header: {
-                    Authorization: app.globalData.wxGlobalToken
+                    Authorization: app.globalData.authorization
                 },
                 success: function (res) {
                     if (res.data.message == "success") {
@@ -167,7 +167,7 @@ Page({
             url: app.globalData.gradePointUrl.concat(app.globalData.studentNo),
             method: 'GET',
             header: {
-                Authorization: app.globalData.wxGlobalToken
+                Authorization: app.globalData.authorization
             },
             success: function (res) {
                 if (res.data.message == "success") {

@@ -17,7 +17,7 @@ Page({
             data: {},
             method: 'GET',
             header: {
-                Authorization: app.globalData.wxGlobalToken
+                Authorization: app.globalData.authorization
             },
             success: function (res) {
                 if (res.data.message == "success") {
