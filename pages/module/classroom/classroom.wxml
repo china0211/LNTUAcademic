@@ -1,3 +1,4 @@
+<import src="/pages/templates/template.wxml"/>
 <view class="page">
     <view>
         <view class="filter-tab">
@@ -39,6 +40,7 @@
         </view>
         <view class="filter-shadow" wx:if="{{showFilter}}" bindtap="hideFilter"></view>
     </view>
+    <template is="loadmore" data="{{loading}}"/>
     <view wx:if="{{classrooms}}">
         <view class="weui-cells">
             <view wx:for="{{classrooms}}" wx:for-item="classroom" wx:key="classroom" class="weui-cell weui-cell_access"
@@ -48,8 +50,7 @@
                     <view class="tag tag-warn tag-plain">{{classroom.type}}</view>
                     <view class="tag tag-primary tag-plain dot-distance">{{classroom.capacity}}</view>
                 </view>
-                <!--<view class="tag tag-warn tag-plain type-distance">{{classroom.type}}</view>-->
-                <!--<view class="tag tag-primary tag-plain capacity-distance">{{classroom.capacity}}</view>-->
+
                 <view class="custom-badge badge-success dot-distance" wx:if="{{!classroom.first}}">1</view>
                 <view class="custom-badge badge-warning dot-distance" wx:if="{{classroom.first}}">1</view>
 
@@ -75,12 +76,5 @@
             </view>
         </view>
     </view>
-    <view wx:else class="container">
-        <view class="icon-box">
-            <image class="noResultImage" src="/images/global/noResult.png"></image>
-        </view>
-        <view>
-            <text class="icon-box-title">未查询到结果</text>
-        </view>
-    </view>
+    <template is="no-data" data="{{noData}}"/>
 </view>

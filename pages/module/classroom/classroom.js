@@ -1,4 +1,5 @@
 var app = getApp();
+var util = require('../../../utils/util.js');
 Page({
     data: {
         classrooms: null,
@@ -36,7 +37,9 @@ Page({
         weekAndDayIndex: 0,
         weekAndDayId: 1,
         subWeekAndDayIndex: 0,
-        subWeekAndDayId: 1
+        subWeekAndDayId: 1,
+        loading: true,
+        noData: false
     },
     onLoad: function (options) {
         var that = this;
@@ -115,6 +118,11 @@ Page({
         if (!that.validateCampusAndBuilding() || !that.validateWeekAndDay()) {
             return false;
         }
+        that.setData({
+            loading: true,
+            noData: false,
+            classrooms: null
+        });
 
         var toastMsg = '';
         var failed = true;
@@ -135,11 +143,21 @@ Page({
             success: function (res) {
                 if (res.data.message == "success") {
                     failed = false;
-                    that.setData({
-                        classrooms: res.data.result
-                    });
+                    if (util.isEmpty(res.data.result)) {
+                        that.setData({
+                            noData: true
+                        })
+                    } else {
+                        that.setData({
+                            classrooms: res.data.result,
+                            noData: false
+                        })
+                    }
                 }
                 else {
+                    that.setData({
+                        noData: true
+                    });
                     toastMsg = "查询失败，请稍后重试";
                 }
             },
@@ -147,6 +165,9 @@ Page({
                 toastMsg = "请求失败，请稍后重试";
             },
             complete: function (res) {
+                that.setData({
+                    loading: false
+                });
                 app.hideLoading();
                 if (failed) {
                     app.showToast(toastMsg, false);
