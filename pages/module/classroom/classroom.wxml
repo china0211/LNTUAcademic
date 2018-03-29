@@ -1,5 +1,45 @@
 <view class="page">
-    <view wx:if="{{hasResult}}">
+    <view>
+        <view class="filter-tab">
+            <text bindtap="setFilterPanel" data-filterpanelindex="1"
+                  class="{{showFilterIndex==1?'active':''}}">{{currentBuilding}}</text>
+            <text bindtap="setFilterPanel" data-filterpanelindex="2"
+                  class="{{showFilterIndex==2?'active':''}}">{{currentTime}}</text>
+        </view>
+        <view class="filter-content" wx:if="{{showFilter}}">
+            <view class="filter-panel" wx:if="{{showFilterIndex==1}}">
+                <view class="filter-panel-left">
+                    <view wx:for="{{filterData.campus}}" wx:key="{{item.id}}" bindtap="setCampusIndex"
+                          data-campusindex="{{index}}" data-campusid="{{item.id}}"
+                          class="{{campusIndex==index?'active':''}}">{{item.title}}
+                    </view>
+                </view>
+                <view class="filter-panel-right">
+                    <view wx:for="{{filterData.campus[campusIndex].subFilterData}}" wx:key="{{item.id}}"
+                          bindtap="setBuildingIndex" data-buildingindex="{{index}}" data-buildingid="{{item.id}}"
+                          class="{{buildingIndex==index?'active':''}}">{{item.title}}
+                    </view>
+                </view>
+            </view>
+            <view class="filter-panel" wx:if="{{showFilterIndex==2}}">
+                <view class="filter-panel-left">
+                    <view wx:for="{{filterData.weekAndDay}}" wx:key="{{item.id}}" bindtap="setWeekAndDayIndex"
+                          data-weekanddayindex="{{index}}" data-weekanddayid="{{item.id}}"
+                          class="{{weekAndDayIndex==index?'active':''}}">{{item.title}}
+                    </view>
+                </view>
+                <view class="filter-panel-right">
+                    <view wx:for="{{filterData.weekAndDay[weekAndDayIndex].subFilterData}}" wx:key="{{item.id}}"
+                          bindtap="setSubWeekAndDayIndex" data-subweekanddayindex="{{index}}"
+                          data-subweekanddayid="{{item.id}}" class="{{subWeekAndDayIndex==index?'active':''}}">
+                        {{item.title}}
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="filter-shadow" wx:if="{{showFilter}}" bindtap="hideFilter"></view>
+    </view>
+    <view wx:if="{{classrooms}}">
         <view class="weui-cells">
             <view wx:for="{{classrooms}}" wx:for-item="classroom" wx:key="classroom" class="weui-cell weui-cell_access"
                   hover-class="weui-cell_active">

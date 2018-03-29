@@ -16,3 +16,4 @@ jsconfig.json
 .idea/workspace.xml
 .idea/LNTUAcademic.iml
 .idea/modules.xml
+utils/configProperties.js
