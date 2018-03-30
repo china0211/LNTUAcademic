@@ -50,6 +50,7 @@ Page({
             url: accessory.accessoryUrl,
             success: function (res) {
                 if (res.statusCode === 200) {
+
                     var accessories = that.data.accessories;
                     for (var i = 0; i < that.data.accessories.length; i++) {
                         if (i === index) {
@@ -61,25 +62,25 @@ Page({
                         accessories: accessories
                     });
 
-                    var filePath = res.tempFilePath;
-
-                    if (accessory.type == "doc" || accessory.type == "xls" ||
-                        accessory.type == "ppt" || accessory.type == "pdf") {
-                        wx.openDocument({
-                            filePath: filePath
-                        });
-                    } else if (accessory.type == "pic") {
-                        console.log(filePath);
-                        wx.previewImage({
-                            current: accessory.accessoryUrl,
-                            urls: [accessory.accessoryUrl]
-                        })
-                    }
-
+                    var tempFilePath = res.tempFilePath;
+                    var savedFilePath = tempFilePath;
                     wx.saveFile({
-                        tempFilePath: filePath,
+                        tempFilePath: tempFilePath,
                         success: function (res) {
-                            var savedFilePath = res.savedFilePath;
+                            savedFilePath = res.savedFilePath
+                        },
+                        complete: function (res) {
+                            if (accessory.type == "doc" || accessory.type == "xls" ||
+                                accessory.type == "ppt" || accessory.type == "pdf") {
+                                wx.openDocument({
+                                    filePath: savedFilePath
+                                });
+                            } else if (accessory.type == "pic") {
+                                wx.previewImage({
+                                    current: savedFilePath,
+                                    urls: [savedFilePath]
+                                })
+                            }
                         }
                     });
                 }

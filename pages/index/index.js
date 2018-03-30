@@ -21,7 +21,6 @@ Page({
                 Authorization: app.globalData.authorization
             },
             success: function (res) {
-                console.log(res);
                 if (res.data.message == "success") {
                     app.globalData.currentYear = res.data.result.currentYear;
                     app.globalData.currentSeason = res.data.result.currentSeason;

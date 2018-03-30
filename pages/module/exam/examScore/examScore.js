@@ -63,7 +63,6 @@ Page({
         academicYear.id = 1;
         academicYear.title = "学年学期";
         academicYear.subFilterData = academicYearSubFilterData;
-        console.log(academicYearSubFilterData);
 
         // 其他子菜单
         var notPassed = new Object();
