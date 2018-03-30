@@ -70,6 +70,7 @@ page {
     vertical-align: middle;
     width: 50rpx;
     height: 50rpx;
+    margin-right: 15rpx;
 }
 
 .list-odd{

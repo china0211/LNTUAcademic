@@ -260,7 +260,7 @@ App({
         wx.showLoading({
             title: title || '加载中',
             mask: ifShowMask || true,
-            duration: 10000
+            duration: 30000
         })
     },
     //显示错误提醒信息

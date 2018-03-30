@@ -10,3 +10,7 @@
     text-align: justify;
     font-size: small;
 }
+
+.accessory-title{
+    font-size: xx-small;
+}

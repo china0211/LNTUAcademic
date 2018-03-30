@@ -4,11 +4,23 @@
         <view class="weui-article__section">
             <view class="weui-article__section">
                 <view class="weui-article__p">
-                    <!--<text  selectable="true"  class="announcement-content">{{announcementDetail.htmlContent}}</text>-->
                     <rich-text class="announcement-content" nodes="{{announcementDetail.htmlContent}}"></rich-text>
                 </view>
             </view>
-            <!--<view class="article-foot-date">{{announcementDetail.deliverDate}}</view>-->
+        </view>
+    </view>
+    <view>
+        <view class="weui-cells" wx:for="{{accessories}}" wx:for-item="accessory" wx:key="accessory">
+            <view class="weui-cell weui-cell_access" hover-class="weui-cell_active"
+                  data-accessory="{{accessory}}" data-index="{{index}}" bindtap="downloadAccessory">
+                <view class="weui-cell__hd">
+                    <image src="/images/main/file/{{accessory.type}}.png" class="list-icon"></image>
+                </view>
+                <view class="weui-cell__bd accessory-title">{{accessory.accessoryName}}</view>
+                <view class="weui-cell__ft">
+                    <icon type="{{accessory.statusIcon}}" size="15"></icon>
+                </view>
+            </view>
         </view>
     </view>
 </view>
