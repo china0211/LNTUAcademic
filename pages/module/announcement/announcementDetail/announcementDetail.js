@@ -45,49 +45,54 @@ Page({
         var that = this;
         var accessory = e.currentTarget.dataset.accessory;
         var index = e.currentTarget.dataset.index;
-        app.showLoading("下载中...");
-        wx.downloadFile({
-            url: accessory.accessoryUrl,
-            success: function (res) {
-                if (res.statusCode === 200) {
-
-                    var accessories = that.data.accessories;
-                    for (var i = 0; i < that.data.accessories.length; i++) {
-                        if (i === index) {
-                            accessories[index].statusIcon = "success";
-                            accessories[index].process = 100;
-                        }
-                    }
-                    that.setData({
-                        accessories: accessories
-                    });
-
-                    var tempFilePath = res.tempFilePath;
-                    var savedFilePath = tempFilePath;
-                    wx.saveFile({
-                        tempFilePath: tempFilePath,
-                        success: function (res) {
-                            savedFilePath = res.savedFilePath
-                        },
-                        complete: function (res) {
-                            if (accessory.type == "doc" || accessory.type == "xls" ||
-                                accessory.type == "ppt" || accessory.type == "pdf") {
-                                wx.openDocument({
-                                    filePath: savedFilePath
+        if (util.isEmpty(accessory.savedFilePath)) {
+            app.showLoading("下载中...");
+            wx.downloadFile({
+                url: accessory.accessoryUrl,
+                success: function (res) {
+                    if (res.statusCode === 200) {
+                        var accessories = that.data.accessories;
+                        var savedFilePath = res.tempFilePath;
+                        wx.saveFile({
+                            tempFilePath: savedFilePath,
+                            success: function (res) {
+                                savedFilePath = res.savedFilePath
+                            },
+                            complete: function (res) {
+                                for (var i = 0; i < that.data.accessories.length; i++) {
+                                    if (i === index) {
+                                        accessory.statusIcon = "success";
+                                        accessory.savedFilePath = savedFilePath;
+                                        accessories[index] = accessory;
+                                    }
+                                }
+                                that.setData({
+                                    accessories: accessories
                                 });
-                            } else if (accessory.type == "pic") {
-                                wx.previewImage({
-                                    current: savedFilePath,
-                                    urls: [savedFilePath]
-                                })
+                                that.viewFile(accessory);
                             }
-                        }
-                    });
+                        });
+                    }
+                },
+                complete: function (res) {
+                    app.hideLoading();
                 }
-            },
-            complete: function (res) {
-                app.hideLoading();
-            }
-        });
+            });
+        } else {
+            that.viewFile(accessory);
+        }
+    },
+    viewFile: function (accessory) {
+        if (accessory.type == "doc" || accessory.type == "xls" ||
+            accessory.type == "ppt" || accessory.type == "pdf") {
+            wx.openDocument({
+                filePath: accessory.savedFilePath
+            });
+        } else if (accessory.type == "pic") {
+            wx.previewImage({
+                current: accessory.savedFilePath,
+                urls: [accessory.savedFilePath]
+            })
+        }
     }
 });

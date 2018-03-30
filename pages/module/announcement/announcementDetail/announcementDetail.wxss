@@ -12,5 +12,5 @@
 }
 
 .accessory-title{
-    font-size: xx-small;
+    font-size: x-small;
 }
