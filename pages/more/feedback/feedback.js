@@ -1,4 +1,6 @@
 var app = getApp();
+var util = require('../../../utils/util.js');
+
 Page({
     data: {
         commentLength: 0,
@@ -17,7 +19,8 @@ Page({
         weChatLanguage: '',
         feedbackTitle: '',
         feedbackBody: '',
-        files: []
+        files: [],
+        feedbackId: ''
     },
     onLoad: function (options) {
         var that = this;
@@ -134,8 +137,13 @@ Page({
                 },
                 success: function (res) {
                     if (res.data.message == "success") {
-                        feedbackSuccess = true;
+                        that.setData({
+                            feedbackId: res.data.result.id
+                        });
                         msg = "反馈成功";
+                        if (that.uploadFile()) {
+                            feedbackSuccess = true;
+                        }
                     } else {
                         msg = "反馈失败，请稍后重试";
                     }
@@ -152,5 +160,28 @@ Page({
                 }
             });
         }
+    },
+    uploadFile: function () {
+        var that = this;
+        if (!util.isEmpty(that.data.files)) {
+            for (var i = 0; i < that.data.files.length; i++) {
+                wx.uploadFile({
+                    url: app.globalData.feedbackUploadUrl,
+                    header: {
+                        Authorization: app.globalData.authorization
+                    },
+                    filePath: that.data.files[i],
+                    name: 'file',
+                    formData: {
+                        'feedbackId': that.data.feedbackId,
+                        'originFileName': that.data.files[i]
+                    },
+                    success: function (res) {
+                        console.log(res);
+                    }
+                });
+            }
+        }
+        return true;
     }
 });

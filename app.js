@@ -29,6 +29,7 @@ App({
         bindUrl: ServerURL + "/bind",
         unBindUrl: ServerURL + "/bind",
         feedbackUrl: ServerURL + "/feedback",
+        feedbackUploadUrl: ServerURL + "/feedback/upload",
         announcementUrl: ServerURL + "/announcement",
         modifyPasswordUrl: ServerURL + "/modifyPassword",
         classroomOccupyUrl: ServerURL + "/classroomOccupy",
