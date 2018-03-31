@@ -14,7 +14,7 @@
             <view class="weui-cell__bd">
         <textarea class="weui-textarea feedback-textarea-height" bindinput="inputFeedbackContent"
                   placeholder="请输入反馈详细信息（错误页面、重现步骤或者您的建议）" maxlength="500" confirm-hold="false"/>
-                <view class="weui-textarea-counter">{{contentLength}}/500</view>
+                <view class="weui-textarea-counter">{{commentLength}}/500</view>
             </view>
         </view>
     </view>
@@ -25,6 +25,30 @@
             </view>
             <view class="weui-cell__bd">
                 <input class="weui-input" bindinput="inputCotactInfomation" placeholder="QQ/微信/电话/邮箱" maxlength="50"/>
+            </view>
+        </view>
+    </view>
+    <view class="weui-cells">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">
+                <view class="weui-uploader">
+                    <view class="weui-uploader__hd">
+                        <view class="weui-uploader__title">上传图片</view>
+                        <view class="weui-uploader__info">{{files.length}}/2</view>
+                    </view>
+                    <view class="weui-uploader__bd">
+                        <view class="weui-uploader__files" id="uploaderFiles">
+                            <block wx:for="{{files}}" wx:key="*this">
+                                <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                                    <image class="weui-uploader__img" src="{{item}}" mode="aspectFill"/>
+                                </view>
+                            </block>
+                        </view>
+                        <view class="weui-uploader__input-box">
+                            <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                        </view>
+                    </view>
+                </view>
             </view>
         </view>
     </view>

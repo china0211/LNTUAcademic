@@ -1,28 +1,29 @@
 var app = getApp();
 Page({
     data: {
-        contentLength: 0,
+        commentLength: 0,
         // 反馈信息
         title: '',
-        comments: '',
-        contactInfomation: '',
+        comment: '',
+        contactInformation: '',
         // 手机信息
         phoneModel: '',
         windowWidth: '',
         windowHeight: '',
-        wechatVersion: '',
+        weChatVersion: '',
         system: '',
         sdkVersion: '',
         networkType: '',
-        language: '',
+        weChatLanguage: '',
         feedbackTitle: '',
-        feedbackBody: ''
+        feedbackBody: '',
+        files: []
     },
     onLoad: function (options) {
         var that = this;
-        app.mta.Page.init();
         that.getNetwork();
         that.getSystemInfo();
+        app.mta.Page.init();
     },
     inputFeedbackTitle: function (e) {
         this.setData({
@@ -31,13 +32,13 @@ Page({
     },
     inputFeedbackContent: function (e) {
         this.setData({
-            comments: e.detail.value,
-            contentLength: e.detail.value.length
+            comment: e.detail.value,
+            commentLength: e.detail.value.length
         })
     },
     inputCotactInfomation: function (e) {
         this.setData({
-            contactInfomation: e.detail.value
+            contactInformation: e.detail.value
         })
     },
     // 获取手机信息
@@ -49,12 +50,11 @@ Page({
                     phoneModel: res.model,
                     windowWidth: res.windowWidth,
                     windowHeight: res.windowHeight,
-                    wechatVersion: res.version,
+                    weChatVersion: res.version,
                     system: res.system,
-                    language: res.language,
+                    weChatLanguage: res.language,
                     sdkVersion: res.SDKVersion
                 });
-
             }
         })
     },
@@ -64,7 +64,7 @@ Page({
             success: function (resp) {
                 that.setData({
                     networkType: resp.networkType
-                })
+                });
                 that.getSystemInfo();
             }
         });
@@ -74,86 +74,83 @@ Page({
         var result = false;
         if (this.data.title == null || this.data.title.trim() == "") {
             app.showMsgModal("请输入反馈标题");
-        } else if (this.data.comments == null || this.data.comments.trim() == "") {
+        } else if (this.data.comment == null || this.data.comment.trim() == "") {
             app.showMsgModal("请输入反馈信息");
         } else {
             result = true;
         }
         return result;
     },
+    chooseImage: function (e) {
+        var that = this;
+        wx.chooseImage({
+            sizeType: ['original', 'compressed'],
+            sourceType: ['album', 'camera'],
+            success: function (res) {
+                that.setData({
+                    files: that.data.files.concat(res.tempFilePaths)
+                });
+            }
+        })
+    },
+    previewImage: function (e) {
+        wx.previewImage({
+            current: e.currentTarget.id,
+            urls: this.data.files
+        })
+    },
     // 反馈
     sendFeedback: function () {
         var that = this;
+        var msg = "";
+        var feedbackSuccess = false;
+        app.showLoading("正在反馈");
         if (that.validateData()) {
-            var msg = "";
-            var feedbackSuccess = false;
-            app.showLoading("正在反馈");
-            if (that.handleData()) {
-                wx.request({
-                    url: app.globalData.feedbackUrl,
-                    data: {
-                        title: that.data.feedbackTitle,
-                        body: that.data.feedbackBody
-                    },
-                    method: 'POST',
-                    header: {
-                        Authorization: app.globalData.authorization
-                    },
-                    success: function (res) {
-                        if (res.data.message == "success") {
-                            feedbackSuccess = true;
-                            msg = "反馈成功";
-                        } else {
-                            msg = "反馈失败，请稍后重试";
-                        }
-                    },
-                    fail: function (res) {
-                        msg = "请求失败，请稍后重试";
-                    },
-                    complete: function (res) {
-                        app.hideLoading();
-                        app.showToast(msg, feedbackSuccess);
-                        if (feedbackSuccess) {
-                            app.navigateBack();
-                        }
+            wx.request({
+                url: app.globalData.feedbackUrl,
+                method: 'POST',
+                header: {
+                    Authorization: app.globalData.authorization
+                },
+                data: {
+                    title: that.data.title,
+                    comment: that.data.comment,
+                    studentNo: app.globalData.studentNo,
+                    studentId: app.globalData.stuDetail.id,
+                    studentName: app.globalData.stuDetail.name,
+                    weChatNickname: app.globalData.userInfo.nickName,
+                    weChatOpenId: app.globalData.weChatOpenId,
+                    contactInformation: that.data.contactInformation,
+                    phoneModel: that.data.phoneModel,
+                    windowHeight: that.data.windowHeight,
+                    windowWidth: that.data.windowWidth,
+                    system: that.data.system,
+                    weChatVersion: that.data.weChatVersion,
+                    weChatLanguage: that.data.weChatLanguage,
+                    sdkVersion: that.data.sdkVersion,
+                    networkType: that.data.networkType,
+                    miniProgramVersion: app.globalData.version,
+                    miniProgramType: app.globalData.versionType
+                },
+                success: function (res) {
+                    if (res.data.message == "success") {
+                        feedbackSuccess = true;
+                        msg = "反馈成功";
+                    } else {
+                        msg = "反馈失败，请稍后重试";
                     }
-                })
-            }
-        }
-    },
-    //处理反馈数据
-    handleData: function () {
-        try {
-            var that = this;
-            var title = '\"' + app.globalData.userInfo.nickName + '\"\t' + that.data.title;
-            var body = '**反馈内容**';
-            body += '\r\n >' + that.data.comments;
-            body += '\r\n\r\n**用户信息**';
-            body += '\r\n>微信昵称：' + app.globalData.userInfo.nickName;
-            body += '\r\n>OpenID：' + app.globalData.weChatOpenId;
-            //当用户登录时反馈内容中包含姓名学号，否则不包含
-            if (app.globalData.stuDetail) {
-                body += '\r\n>姓名：' + app.globalData.stuDetail.name;
-                body += '\r\n>学号：' + app.globalData.stuDetail.studentNo;
-            }
-            body += '\r\n>联系方式：' + that.data.contactInfomation;
-            body += '\r\n\r\n**设备信息**';
-            body += '\r\n>手机型号：' + that.data.phoneModel;
-            body += '（' + that.data.windowHeight + ' x ' + that.data.windowWidth + '）';
-            body += '\r\n>系统类型：' + that.data.system;
-            body += '\r\n>微信版本：' + that.data.wechatVersion;
-            body += '\r\n>微信语言：' + that.data.language;
-            body += '\r\n>SDK版本：' + that.data.sdkVersion;
-            body += '\r\n>网络类型：' + that.data.networkType;
-            body += '\r\n>小程序版本：' + app.globalData.version + '-' + app.globalData.versionType;
-            that.setData({
-                feedbackTitle: title,
-                feedbackBody: body
+                },
+                fail: function (res) {
+                    msg = "请求失败，请稍后重试";
+                },
+                complete: function (res) {
+                    app.hideLoading();
+                    app.showToast(msg, feedbackSuccess);
+                    if (feedbackSuccess) {
+                        app.navigateBack();
+                    }
+                }
             });
-            return true;
-        }
-        catch (e) {
-            return false;
         }
     }
-})
+});
