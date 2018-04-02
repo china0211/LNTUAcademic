@@ -1,12 +1,13 @@
 <import src="/pages/templates/template.wxml"/>
 <view class="page">
     <template is="loadmore" data="{{loading}}"/>
-    <view class="page-section" wx:if="{{courseSchedule}}">
+    <template is="no-data" data="{{noData}}"/>
+    <view class="page-section" wx:if="{{!noData}}">
         <!--顶部星期信息-->
         <view>
             <view class="weui-flex">
                 <!--内容为1 保证宽度一致-->
-                <view class="class-day-header class-info-content coulumn-color-none">1</view>
+                <view class="class-day-header class-info-content column-color-none">1</view>
                 <view class="weui-flex__item" wx:for="{{days}}" wx:key="day" wx:for-index="dayIndex" wx:for-item="day">
                     <view class="class-week-header">{{day}}</view>
                 </view>
@@ -15,24 +16,21 @@
 
         <!--下方课程节数-->
         <view class="class-view-content">
-            <view>
-                <!--节数-->
-                <view class="weui-flex" wx:for="01234" wx:key="section" wx:for-index="sectionIndex">
+            <!--节数-->
+            <view class="weui-flex" wx:for="01234" wx:key="section" wx:for-index="sectionIndex">
 
-                    <view class="class-day-header class-info-content">{{sectionIndex+1}}</view>
-                    <!--星期数-->
-                    <view class="weui-flex__item" wx:for="0123456" wx:key="day" wx:for-index="dayIndex"
-                          wx:for-item="courses">
-                        <view class="class-info-content class-course-detail-view"
-                              style="background-color:{{courseSchedule[dayIndex][sectionIndex].bgColor}}">
-                            <text class="class-course-detail">
-                                {{courseSchedule[dayIndex][sectionIndex].displayContent}}
-                            </text>
-                        </view>
+                <view class="class-day-header class-info-content">{{sectionIndex+1}}</view>
+                <!--星期数-->
+                <view class="weui-flex__item" wx:for="0123456" wx:key="day" wx:for-index="dayIndex"
+                      wx:for-item="courses">
+                    <view class="class-info-content class-course-detail-view"
+                          style="background-color:{{courseSchedule[dayIndex][sectionIndex].bgColor}}">
+                        <text class="class-course-detail">
+                            {{courseSchedule[dayIndex][sectionIndex].displayContent}}
+                        </text>
                     </view>
                 </view>
             </view>
         </view>
     </view>
-    <template is="no-data" data="{{noData}}"/>
 </view>

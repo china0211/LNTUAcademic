@@ -17,9 +17,9 @@ Page({
     },
     onLoad: function (options) {
         var that = this;
-        app.mta.Page.init();
         // 获取课程表信息
         that.getCourseData();
+        app.mta.Page.init();
     },
 
     // 获取课程表信息
@@ -51,9 +51,6 @@ Page({
                         })
                     }else{
                         that.handleCourseData(res.data.result);
-                        that.setData({
-                            noData: false
-                        })
                     }
                 } else {
                     that.setData({
@@ -66,10 +63,6 @@ Page({
                 toastMsg = "请求失败，请稍后重试";
             },
             complete: function (res) {
-                that.setData({
-                    loading: false
-                });
-                app.hideLoading();
                 if (failed) {
                     app.showToast(toastMsg, false);
                 }
@@ -154,8 +147,11 @@ Page({
         }
 
         that.setData({
-            courses: courseDataArray
-        })
+            courses: courseDataArray,
+            loading: false,
+            noData: false
+        });
+        app.hideLoading();
     },
 
     //为课程添加随机背景色

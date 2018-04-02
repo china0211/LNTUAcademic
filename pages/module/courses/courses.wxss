@@ -26,14 +26,14 @@
 }
 
 .class-info-content {
-    margin: 5rpx;
-    padding: 3rpx;
+    margin: 3rpx;
+    padding: 2rpx;
     text-align: center;
     background-color: #EBEBEB;
     line-height: 1em;
 }
 
-.coulumn-color-none {
+.column-color-none {
     background-color: #F8F8F8;
     color: #F8F8F8;
 }
@@ -41,6 +41,7 @@
 .class-course-detail {
     font-size: 8pt;
     color: white;
+    line-height: 1em;
 }
 
 .class-course-detail-view {
