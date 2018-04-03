@@ -159,6 +159,7 @@ App({
             key: 'studentDetail',
             success: function (res) {
                 that.globalData.studentDetail = res.data;
+                that.globalData.isBind = true;
             }
         })
     },
