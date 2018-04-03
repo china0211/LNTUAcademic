@@ -107,8 +107,8 @@ Page({
         var that = this;
         var msg = "";
         var feedbackSuccess = false;
-        app.showLoading("正在反馈");
         if (that.validateData()) {
+            app.showLoading("正在反馈");
             wx.request({
                 url: app.globalData.feedbackUrl,
                 method: 'POST',
