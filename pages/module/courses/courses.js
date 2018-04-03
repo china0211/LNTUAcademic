@@ -59,6 +59,9 @@ Page({
                 toastMsg = "请求失败，请稍后重试";
             },
             complete: function (res) {
+                that.setData({
+                    loading: false
+                });
                 if (failed) {
                     app.showToast(toastMsg, false);
                 }
@@ -161,43 +164,26 @@ Page({
 
     getCourseDataFromStorage: function () {
         var that = this;
-        var now = util.formatDataToTimestamp(new Date());
         wx.getStorage({
-            key: 'courseScheduleDate',
+            key: 'courseSchedule',
             success: function (res) {
-                if (util.isEmpty(res.data) || (now - util.formatDataToTimestamp(res.data) > 604800)) {
+                if (util.isEmpty(res.data) || app.globalData.currentDay == 1) {
                     that.setData({
                         noData: true
                     });
                     that.getCourseData();
                 } else {
-                    wx.getStorage({
-                        key: 'courseSchedule',
-                        success: function (res) {
-                            if (util.isEmpty(res.data)) {
-                                that.setData({
-                                    noData: true
-                                })
-                            } else {
-                                that.setData({
-                                    noData: false,
-                                    courseSchedule: res.data
-                                })
-                            }
-                        },
-                        fail: function (res) {
-                            that.getCourseData();
-                        },
-                        complete: function (res) {
-                            that.setData({
-                                loading: false
-                            });
-                        }
-                    });
+                    that.setData({
+                        noData: false,
+                        loading: false,
+                        courseSchedule: res.data
+                    })
                 }
             },
             fail: function (res) {
                 that.getCourseData();
+            },
+            complete: function (res) {
             }
         });
     }
