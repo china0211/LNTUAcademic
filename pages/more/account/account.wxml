@@ -6,11 +6,11 @@
     <view class="weui-cells">
         <view class="weui-cell">
             <view class="weui-cell__bd">姓名</view>
-            <view class="weui-cell__ft">{{stuDetail.name}}</view>
+            <view class="weui-cell__ft">{{studentDetail.name}}</view>
         </view>
         <view class="weui-cell">
             <view class="weui-cell__bd">学号</view>
-            <view class="weui-cell__ft">{{stuDetail.studentNo}}</view>
+            <view class="weui-cell__ft">{{studentDetail.studentNo}}</view>
         </view>
         <view class="weui-cell">
             <view class="weui-cell__bd">微信号</view>

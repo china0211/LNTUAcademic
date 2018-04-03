@@ -2,7 +2,7 @@ var app = getApp();
 var util = require("../../../utils/util.js");
 Page({
     data: {
-        stuDetail: null,
+        studentDetail: null,
         loading: true,
         noData: false
     },
@@ -10,7 +10,7 @@ Page({
         app.mta.Page.init();
         var that = this;
         wx.getStorage({
-            key: 'stuDetail',
+            key: 'studentDetail',
             success: function (res) {
                 if (util.isEmpty(res.data)) {
                     that.setData({
@@ -19,7 +19,7 @@ Page({
                 } else {
                     that.setData({
                         noData: false,
-                        stuDetail: res.data
+                        studentDetail: res.data
                     })
                 }
             },

@@ -13,7 +13,7 @@ App({
         userInfo: null,
         studentNo: '',
         weChatOpenId: '',
-        stuDetail: null,
+        studentDetail: null,
         authorization: properties.authorization,
         appID: properties.appID,
         eventID: properties.eventID,
@@ -156,9 +156,9 @@ App({
     getStudentInfoFromStorage: function () {
         var that = this;
         wx.getStorage({
-            key: 'stuDetail',
+            key: 'studentDetail',
             success: function (res) {
-                that.globalData.stuDetail = res.data;
+                that.globalData.studentDetail = res.data;
             }
         })
     },
@@ -206,13 +206,13 @@ App({
                 success: function (res) {
                     if (res.data.message == "success") {
                         failed = false;
-                        that.globalData.stuDetail = res.data.result;
+                        that.globalData.studentDetail = res.data.result;
                         that.globalData.parsing = false;
                         that.globalData.isBind = true;
                         that.saveStorage("studentNo", that.globalData.studentNo);
                         that.saveStorage("parsing", false);
                         that.saveStorage("isBind", true);
-                        that.saveStorage("stuDetail", res.data.result);
+                        that.saveStorage("studentDetail", res.data.result);
                     } else {
                         toastMsg = "获取用户信息失败，请重新登录";
                     }

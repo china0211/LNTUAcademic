@@ -1,7 +1,7 @@
 var app = getApp();
 Page({
     data: {
-        stuDetail: null,
+        studentDetail: null,
         userInfo: null,
         isBind: false
     },
@@ -17,10 +17,10 @@ Page({
 
         //读取本地保存的用户信息
         wx.getStorage({
-            key: 'stuDetail',
+            key: 'studentDetail',
             success: function (res) {
                 that.setData({
-                    stuDetail: res.data,
+                    studentDetail: res.data,
                 })
             }
         }),

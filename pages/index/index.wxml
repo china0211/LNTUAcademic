@@ -28,7 +28,7 @@
             </navigator>
         </view>
         <view class="module-functions-row">
-            <navigator url="/pages/module/stuInfoDetail/stuInfoDetail">
+            <navigator url="/pages/module/studentDetail/studentDetail">
                 <view class="module-function-box">
                     <image class="module-function-icon" src="/images/main/module/personalInfo.png"></image>
                     <text class="module-function-title">学籍信息</text>

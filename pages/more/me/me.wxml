@@ -8,22 +8,22 @@
             <!-- 绑定时显示学籍信息 -->
             <view class="weui-cell__bd" wx:if="{{isBind}}">
                 <view class="user-info-title ">
-                    <text class="user-info-name">{{stuDetail.name}}</text>
-                    <text class="user-info-stu">{{stuDetail.studentNo}}</text>
+                    <text class="user-info-name">{{studentDetail.name}}</text>
+                    <text class="user-info-stu">{{studentDetail.studentNo}}</text>
                 </view>
             </view>
             <view class="weui-cell__bd" wx:if="{{isBind}}">
                 <view class="user-info-title">
-                    <text class="user-info-stu">{{stuDetail.college}}</text>
-                    <text class="user-info-stu">{{stuDetail.major}}</text>
-                    <text class="user-info-stu">{{stuDetail.classInfo}}班</text>
+                    <text class="user-info-stu">{{studentDetail.college}}</text>
+                    <text class="user-info-stu">{{studentDetail.major}}</text>
+                    <text class="user-info-stu">{{studentDetail.classInfo}}班</text>
                 </view>
             </view>
             <!-- 未绑定时显示微信账号信息 -->
             <view class="weui-cell__bd" wx:if="{{!isBind}}">
                 <view class="user-info-title">
                     <text class="user-info-name">{{userInfo.nickName}}</text>
-                    <text class="user-info-stu">{{stuDetail.studentNo}}</text>
+                    <text class="user-info-stu">{{studentDetail.studentNo}}</text>
                 </view>
             </view>
             <view class="weui-cell__ft weui-cell__ft_in-access" wx:if="{{!isBind}}">前往绑定</view>

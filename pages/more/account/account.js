@@ -2,7 +2,7 @@ var app = getApp();
 var util = require('../../../utils/util.js');
 Page({
     data: {
-        stuDetail: null,
+        studentDetail: null,
         studentNo: '',
         userInfo: null,
         isBind: null
@@ -12,7 +12,7 @@ Page({
         var that = this;
         that.setData({
             userInfo: app.globalData.userInfo,
-            stuDetail: app.globalData.stuDetail,
+            studentDetail: app.globalData.studentDetail,
             studentNo: app.globalData.studentNo,
             isBind: app.globalData.isBind
         })
