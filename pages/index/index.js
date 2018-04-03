@@ -7,7 +7,8 @@ Page({
         if (app.globalData.quit) {
             wx.navigateBack({
                 delta: 1
-            })
+            });
+            app.globalData.quit = false;
         }
         that.getCurrentWeekAndDay();
     },
