@@ -8,7 +8,6 @@ Page({
         password: ''
     },
     onLoad: function (options) {
-        app.mta.Page.init();
         var that = this;
         if (app.globalData.parsing) {
             that.setData({
@@ -18,7 +17,8 @@ Page({
         }
         that.setData({
             userInfo: app.globalData.userInfo
-        })
+        });
+        app.mta.Page.init();
     },
     inputStuId: function (e) {
         this.setData({
@@ -71,7 +71,6 @@ Page({
                 },
                 complete: function () {
                     app.hideLoading();
-                    app.showMsgModal(toastMsg);
                     if (quit || failed) {
                         wx.showModal({
                             title: '提示',
