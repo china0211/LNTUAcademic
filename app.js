@@ -6,6 +6,8 @@ App({
         that.validateInParse();
         that.getStudentNo();
         that.initMTA(options);
+        // options 用于退出重新进入后初始化 MTA
+        that.globalData.options = options;
     },
     globalData: {
         quit: false,
@@ -224,7 +226,7 @@ App({
                 complete: function (res) {
                     if (failed) {
                         that.showToast(toastMsg, !failed);
-                        that.redirectToLoginPage("/pages/more/login/login");
+                        that.redirectToLoginPage();
                     }
                 }
             })
