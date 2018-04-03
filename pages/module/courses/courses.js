@@ -18,7 +18,7 @@ Page({
     onLoad: function (options) {
         var that = this;
         // 获取课程表信息
-        that.getCourseData();
+        that.getCourseDataFromStorage();
         app.mta.Page.init();
     },
 
@@ -40,16 +40,12 @@ Page({
                 if (res.data.message == "success") {
                     failed = false;
                     navigateBack = false;
-                    // that.setData({
-                    //     courseSchedule: res.data.result
-                    // });
-                    // app.saveStorage("courseSchedule", res.data.result);
                     //处理课程数据
-                    if(util.isEmpty(res.data.result)) {
+                    if (util.isEmpty(res.data.result)) {
                         that.setData({
                             noData: true
                         })
-                    }else{
+                    } else {
                         that.handleCourseData(res.data.result);
                     }
                 } else {
@@ -76,12 +72,10 @@ Page({
     //处理课程数据
     handleCourseData: function (courseSchedule) {
         var that = this;
-        var courseDataArray = that.data.courses;
 
         for (var i = 0; i < 7; i++) {//星期
             for (var j = 0; j < 5; j++) {//节数
                 var currentCourse = courseSchedule[i][j];
-
                 //拼接显示内容
                 if (currentCourse.courseName != null) {
 
@@ -145,13 +139,13 @@ Page({
                 });
             }
         }
-
         that.setData({
-            courses: courseDataArray,
             loading: false,
             noData: false
         });
         app.hideLoading();
+        app.saveStorage("courseSchedule", that.data.courseSchedule);
+        app.saveStorage("courseScheduleDate", util.formatDate(new Date()));
     },
 
     //为课程添加随机背景色
@@ -163,5 +157,48 @@ Page({
         //产生0-10之间的随机数
         var index = Math.floor(Math.random() * 10);
         return colors[index];
+    },
+
+    getCourseDataFromStorage: function () {
+        var that = this;
+        var now = util.formatDataToTimestamp(new Date());
+        wx.getStorage({
+            key: 'courseScheduleDate',
+            success: function (res) {
+                if (util.isEmpty(res.data) || (now - util.formatDataToTimestamp(res.data) > 604800)) {
+                    that.setData({
+                        noData: true
+                    });
+                    that.getCourseData();
+                } else {
+                    wx.getStorage({
+                        key: 'courseSchedule',
+                        success: function (res) {
+                            if (util.isEmpty(res.data)) {
+                                that.setData({
+                                    noData: true
+                                })
+                            } else {
+                                that.setData({
+                                    noData: false,
+                                    courseSchedule: res.data
+                                })
+                            }
+                        },
+                        fail: function (res) {
+                            that.getCourseData();
+                        },
+                        complete: function (res) {
+                            that.setData({
+                                loading: false
+                            });
+                        }
+                    });
+                }
+            },
+            fail: function (res) {
+                that.getCourseData();
+            }
+        });
     }
-})
+});
