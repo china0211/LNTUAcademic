@@ -18,7 +18,7 @@ Page({
     onLoad: function (options) {
         var that = this;
         that.fetchFilterData();
-        that.queryEducationPlan();
+        that.getEducationPlanFromStorage();
         app.mta.Page.init();
     },
     onReady: function () {
@@ -33,11 +33,32 @@ Page({
     onUnload: function () {
         // 页面关闭
     },
+    getEducationPlanFromStorage: function () {
+        var that = this;
+        var educationPlanStorage = "educationPlan:" + that.data.yearAndSeason;
+        wx.getStorage({
+            key: educationPlanStorage,
+            success: function (res) {
+                that.setData({
+                    noData: false,
+                    loading: false,
+                    educationPlans: res.data
+                })
+            },
+            fail: function (res) {
+                that.queryEducationPlan();
+            },
+            complete: function (res) {
+            }
+        });
+    },
     //查询教学计划
-    queryEducationPlan: function (e) {
+    queryEducationPlan: function () {
         var that = this;
         var toastMsg = '';
         var failed = true;
+        var educationPlanStorage = "educationPlan:" + that.data.yearAndSeason;
+
         app.showLoading('正在查询', true);
         wx.request({
             url: app.globalData.courseStudyScheduleUrl.concat(app.globalData.studentNo),
@@ -59,7 +80,8 @@ Page({
                         that.setData({
                             noData: false,
                             educationPlans: res.data.result
-                        })
+                        });
+                        app.saveStorage(educationPlanStorage, that.data.educationPlans);
                     }
                 } else {
                     that.setData({
@@ -141,8 +163,6 @@ Page({
             currentFilterText: currentFilterText,
             yearAndSeason: yearAndSeason
         });
-
-        this.queryEducationPlan();
     },
     //展开筛选面板
     setFilterPanel: function (e) {
@@ -187,7 +207,7 @@ Page({
 
         that.hideFilter();
         // 查询成绩或绩点
-        that.queryEducationPlan();
+        that.getEducationPlanFromStorage();
     },
     //关闭筛选面板
     hideFilter: function () {
