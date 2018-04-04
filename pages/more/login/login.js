@@ -99,9 +99,11 @@ Page({
     //校验输入信息
     validateInput: function () {
         var that = this;
+        var studentNoRegex = /^[1,2][0-9]{9}$/;
+        var passwordRegex = /^[0-9A-Za-z]{1,19}$/;
         if (that.data.studentNo != "" && that.data.password != "") {
-            if (that.data.studentNo.length == 10) {
-                if (that.data.password.length > 0 && that.data.password.length < 19) {
+            if (studentNoRegex.test(that.data.studentNo)) {
+                if (passwordRegex.test(that.data.password)) {
                     return true;
                 } else {
                     app.showToast("密码格式错误", false);
