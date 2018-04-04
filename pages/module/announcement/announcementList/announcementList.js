@@ -8,13 +8,35 @@ Page({
     },
     onLoad: function (options) {
         app.mta.Page.init();
+        this.getAnnouncementFromStorage();
+    },
+    getAnnouncementFromStorage: function () {
+        var that = this;
+        wx.getStorage({
+            key: 'announcementDetail',
+            success: function (res) {
+                that.data.maxAnnouncementId = res.data.maxAnnouncementId;
+                that.data.announcements = res.data.announcements;
+            },
+            fail: function (res) {
+                that.data.maxAnnouncementId = 0;
+                that.data.announcements = [];
+            },
+            complete: function (res) {
+                that.getAnnouncement();
+            }
+        });
+    },
+    getAnnouncement: function () {
         var that = this;
         var toastMsg = '';
         var failed = true;
         app.showLoading();
         wx.request({
             url: app.globalData.announcementUrl,
-            data: {},
+            data: {
+                maxAnnouncementId: that.data.maxAnnouncementId
+            },
             method: 'GET',
             header: {
                 Authorization: app.globalData.authorization
@@ -22,15 +44,27 @@ Page({
             success: function (res) {
                 if (res.data.message == "success") {
                     failed = false;
-                    if(util.isEmpty(res.data.result)) {
+                    if (util.isEmpty(res.data.result)) {
                         that.setData({
                             noData: true
                         })
-                    }else{
+                    } else {
+                        var announcements = that.data.announcements;
+
+                        for (var i = res.data.result.length; i > 0; i--) {
+                            console.log(res.data.result[i - 1]);
+                            announcements.splice(0, 0, res.data.result[i - 1]);
+                        }
+                        // 当数组长度超过10时截断，防止数据过长无法set
+                        announcements = announcements.splice(0, 10);
                         that.setData({
-                            announcements: res.data.result,
+                            announcements: announcements,
                             noData: false
-                        })
+                        });
+                        var announcementDetail = {};
+                        announcementDetail.maxAnnouncementId = that.data.announcements[0].id;
+                        announcementDetail.announcements = that.data.announcements;
+                        app.saveStorage("announcementDetail", announcementDetail);
                     }
                 } else {
                     that.setData({
@@ -58,4 +92,4 @@ Page({
         app.announcementDetail = e.currentTarget.dataset.announcementDetail;
         app.navigateToPage("/pages/module/announcement/announcementDetail/announcementDetail");
     }
-})
+});
