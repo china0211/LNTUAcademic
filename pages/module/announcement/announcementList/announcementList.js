@@ -52,7 +52,6 @@ Page({
                         var announcements = that.data.announcements;
 
                         for (var i = res.data.result.length; i > 0; i--) {
-                            console.log(res.data.result[i - 1]);
                             announcements.splice(0, 0, res.data.result[i - 1]);
                         }
                         // 当数组长度超过10时截断，防止数据过长无法set

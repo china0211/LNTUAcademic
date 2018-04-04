@@ -177,7 +177,6 @@ Page({
                         'originFileName': that.data.files[i]
                     },
                     success: function (res) {
-                        console.log(res);
                     }
                 });
             }

@@ -316,11 +316,7 @@ App({
     },
     //清除缓存
     clearStorage: function () {
-        try {
-            wx.clearStorageSync()
-        } catch (e) {
-            console.log("清除缓存失败")
-        }
+        wx.clearStorageSync();
     },
     //保存内容到剪贴板
     setClipboardData: function (data) {

@@ -292,6 +292,5 @@ Page({
         app.navigateToPage("/pages/module/exam/examScoreDetail/examScoreDetail")
     },
     preventTouchMove: function () {
-        console.log("move")
     }
 });
