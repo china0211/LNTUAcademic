@@ -306,7 +306,7 @@ Page({
             for (var i = 0; i < tels.length; i++) {
                 for (var j = 0; j < tels[i].length; j++) {
                     //拼接组织和部门电话
-                    var telephoneDetail = new Object();
+                    var telephoneDetail = {};
                     telephoneDetail.name = orgs[i] + " " + tels[i][j].name;
                     telephoneDetail.tel = tels[i][j].tel;
                     if (telephoneDetail.name.indexOf(searchValue) > -1) {

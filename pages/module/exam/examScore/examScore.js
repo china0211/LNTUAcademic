@@ -6,6 +6,7 @@ Page({
         yearAndSeason: '请选择学年学期',
         currentFilterText: '请选择学年学期',
         filterData: [],  //筛选条件数据
+        academicYearSubFilterData: [],
         showFilter: false, //是否显示下拉筛选
         showFilterIndex: null, //显示哪个筛选类目
         filterIndex: 0,  //一级分类索引
@@ -17,6 +18,7 @@ Page({
     },
     onLoad: function (options) {
         this.fetchFilterData();
+        this.getExamScoreFromStorage();
         app.mta.Page.init();
     },
     fetchFilterData: function () {
@@ -29,12 +31,12 @@ Page({
         var academicSubFilterId = 11;
         // 添加学年学期筛选时间
         for (var i = 0; i < yearDiff; i++) {
-            var currentYearSpring = new Object();
+            var currentYearSpring = {};
             currentYearSpring.id = academicSubFilterId++;
             currentYearSpring.title = startYear + i + "春";
             academicYearSubFilterData.push(currentYearSpring);
 
-            var currentYearFull = new Object();
+            var currentYearFull = {};
             currentYearFull.id = academicSubFilterId++;
             currentYearFull.title = startYear + i + "秋";
             academicYearSubFilterData.push(currentYearFull);
@@ -44,32 +46,32 @@ Page({
             academicYearSubFilterData.splice(0, 1);
         }
 
-        // 当前月份大于2月时添加本学年春季学期
-        if (app.globalData.currentMonth > 2) {
-            var currentYearSpring = new Object();
+        // 当前月份大于3月时添加本学年春季学期
+        if (app.globalData.currentMonth > 3) {
+            var currentYearSpring = {};
             currentYearSpring.id = academicSubFilterId++;
             currentYearSpring.title = app.globalData.currentYear + "春";
             academicYearSubFilterData.push(currentYearSpring);
         }
-        // 当前月份大于8月时添加本学年春季学期
-        if (app.globalData.currentMonth > 8) {
-            var currentYearFull = new Object();
+        // 当前月份大于9月时添加本学年秋季学期
+        if (app.globalData.currentMonth > 9) {
+            var currentYearFull = {};
             currentYearFull.id = academicSubFilterId;
             currentYearFull.title = app.globalData.currentYear + "秋";
             academicYearSubFilterData.push(currentYearFull);
         }
 
-        var academicYear = new Object();
+        var academicYear = {};
         academicYear.id = 1;
         academicYear.title = "学年学期";
         academicYear.subFilterData = academicYearSubFilterData;
 
         // 其他子菜单
-        var notPassed = new Object();
+        var notPassed = {};
         notPassed.id = 21;
         notPassed.title = "未通过课程";
 
-        var gradePoint = new Object();
+        var gradePoint = {};
         gradePoint.id = 22;
         gradePoint.title = "学分绩";
 
@@ -77,7 +79,7 @@ Page({
         othersSubFilterData.push(notPassed);
         othersSubFilterData.push(gradePoint);
 
-        var others = new Object();
+        var others = {};
         others.id = 2;
         others.title = "其他";
         others.subFilterData = othersSubFilterData;
@@ -88,15 +90,35 @@ Page({
         this.setData({
             filterData: filterData,
             queryType: 'EXAM_SCORE',
+            academicYearSubFilterData: academicYearSubFilterData,
             currentFilterText: academicYearSubFilterData[academicYearSubFilterData.length - 1].title,
             yearAndSeason: academicYearSubFilterData[academicYearSubFilterData.length - 1].title
         });
-
-        this.queryExamScore();
+    },
+    getExamScoreFromStorage: function () {
+        var that = this;
+        var examScoreStorage = "examScore:" + that.data.yearAndSeason + that.data.queryType;
+        wx.getStorage({
+            key: examScoreStorage,
+            success: function (res) {
+                that.setData({
+                    noData: false,
+                    loading: false,
+                    examScores: res.data
+                })
+            },
+            fail: function (res) {
+                that.queryExamScore();
+            },
+            complete: function (res) {
+            }
+        });
     },
     //查询成绩
     queryExamScore: function () {
         var that = this;
+        var examScoreStorage = "examScore:" + that.data.yearAndSeason + that.data.queryType;
+
         if (that.data.yearAndSeason != null && that.data.yearAndSeason != "请选择学年学期") {
             that.setData({
                 examScores: null,
@@ -126,7 +148,11 @@ Page({
                             that.setData({
                                 examScores: res.data.result,
                                 noData: false
-                            })
+                            });
+                            // 当前学期不保存缓存
+                            if (that.data.year != that.data.academicYearSubFilterData[that.data.academicYearSubFilterData.length - 1]) {
+                                app.saveStorage(examScoreStorage, that.data.examScores);
+                            }
                         }
                     } else {
                         that.setData({
@@ -248,7 +274,7 @@ Page({
         that.hideFilter();
         // 查询成绩或绩点
         if (queryExamScore) {
-            that.queryExamScore();
+            that.getExamScoreFromStorage();
         } else {
             that.queryGradePoint();
         }
