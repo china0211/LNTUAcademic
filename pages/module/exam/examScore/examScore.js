@@ -73,7 +73,7 @@ Page({
 
         var gradePoint = {};
         gradePoint.id = 22;
-        gradePoint.title = "学分绩";
+        gradePoint.title = "平均学分绩";
 
         var othersSubFilterData = [];
         othersSubFilterData.push(notPassed);
@@ -197,7 +197,7 @@ Page({
             success: function (res) {
                 if (res.data.message == "success") {
                     failed = false;
-                    app.showMsgModal('你当前的学分绩为:' + res.data.result)
+                    app.showMsgModal('你当前的平均学分绩为:' + res.data.result.gradePoint);
                 } else {
                     toastMsg = "查询失败，请稍后重试";
                 }
