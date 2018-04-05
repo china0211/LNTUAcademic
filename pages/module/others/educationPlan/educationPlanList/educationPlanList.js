@@ -61,7 +61,7 @@ Page({
 
         app.showLoading('正在查询', true);
         wx.request({
-            url: app.globalData.courseStudyScheduleUrl.concat(app.globalData.studentNo),
+            url: app.globalData.educationPlanUrl.concat(app.globalData.studentNo),
             data: {
                 yearAndSeason: that.data.yearAndSeason
             },

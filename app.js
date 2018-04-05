@@ -35,7 +35,7 @@ App({
         modifyPasswordUrl: properties.modifyPasswordUrl,
         classroomOccupyUrl: properties.classroomOccupyUrl,
         getTokenUrl: properties.getTokenUrl,
-        courseStudyScheduleUrl: properties.courseStudyScheduleUrl,
+        educationPlanUrl: properties.educationPlanUrl,
         getStudentNoUrl: properties.getStudentNoUrl,
         saveStartUpRecordUrl: properties.saveStartUpRecordUrl,
         getCurrentTimeInfoUrl: properties.getCurrentTimeInfoUrl,
