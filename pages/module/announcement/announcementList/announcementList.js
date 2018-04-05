@@ -44,7 +44,7 @@ Page({
             success: function (res) {
                 if (res.data.message == "success") {
                     failed = false;
-                    if (util.isEmpty(res.data.result)) {
+                    if (util.isEmpty(that.data.announcements) && util.isEmpty(res.data.result)) {
                         that.setData({
                             noData: true
                         })
