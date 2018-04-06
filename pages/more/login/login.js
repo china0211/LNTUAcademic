@@ -41,14 +41,15 @@ Page({
             app.showLoading("正在登陆");
             wx.request({
                 url: app.globalData.loginUrl,
-                data: {
-                    studentNo: that.data.studentNo,
-                    password: that.data.password,
-                    weChatOpenId: app.globalData.weChatOpenId
-                },
                 method: 'POST',
                 header: {
                     Authorization: app.globalData.authorization
+                },
+                data: {
+                    studentNo: that.data.studentNo,
+                    password: that.data.password,
+                    weChatOpenId: app.globalData.weChatOpenId,
+                    nickName: app.globalData.userInfo.nickName
                 },
                 success: function (res) {
                     toastMsg = "";
