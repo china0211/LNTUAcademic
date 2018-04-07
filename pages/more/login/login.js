@@ -31,9 +31,10 @@ Page({
         })
     },
 
-    login: function () {
+    login: function (e) {
         var that = this;
         var isValid = that.validateInput();
+        var formId = e.detail.formId;
         var toastMsg = '';
         var failed = true;
         var quit = false;
@@ -49,7 +50,8 @@ Page({
                     studentNo: that.data.studentNo,
                     password: that.data.password,
                     weChatOpenId: app.globalData.weChatOpenId,
-                    nickName: app.globalData.userInfo.nickName
+                    nickName: app.globalData.userInfo.nickName,
+                    formId: formId
                 },
                 success: function (res) {
                     toastMsg = "";
@@ -60,7 +62,7 @@ Page({
                             failed = false;
                             app.getStudentInfo();
                         } else {
-                            toastMsg = "首次登陆，需要较长时间从教务在线获取数据，请2-5分钟后重新打开";
+                            toastMsg = "从教务在线获取数据完成后将发送通知，请耐心等待5-10分钟后再打开，确认后将退出";
                             app.saveStorage("parsing", true);
                             // 退出
                             quit = true;
