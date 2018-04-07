@@ -9,7 +9,9 @@ Page({
     },
     onLoad: function (options) {
         var that = this;
-        if (app.globalData.parsing) {
+        if (options != undefined && !options.parseSuccess) {
+            app.saveStorage("parsing", false);
+        } else if (app.globalData.parsing) {
             that.setData({
                 loginButtonText: '服务端获取数据中...',
                 loginButtonDisable: true
@@ -76,7 +78,7 @@ Page({
                     app.hideLoading();
                     if (quit || failed) {
                         wx.showModal({
-                            title: '提示',
+                            title: '操作完成',
                             content: toastMsg,
                             showCancel: false,
                             success: function (res) {

@@ -1,9 +1,13 @@
 var app = getApp();
 Page({
     data: {},
-    onLoad: function () {
+    onLoad: function (options) {
         var that = this;
-        if (app.globalData.quit) {
+        // 从通知入口进入应用
+        if (options != undefined && options.parseSuccess) {
+            app.saveStorage("parsing", false);
+            app.onLaunch(app.globalData.options);
+        } else if (app.globalData.quit) {
             wx.navigateBack({
                 delta: 1
             });
