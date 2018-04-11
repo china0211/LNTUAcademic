@@ -15,11 +15,11 @@ Page({
         wx.getStorage({
             key: 'announcementDetail',
             success: function (res) {
-                that.data.maxAnnouncementId = res.data.maxAnnouncementId;
+                that.data.lastDeliverDate = util.formatDataToTimestamp(res.data.lastDeliverDate);
                 that.data.announcements = res.data.announcements;
             },
             fail: function (res) {
-                that.data.maxAnnouncementId = 0;
+                that.data.lastDeliverDate = 0;
                 that.data.announcements = [];
             },
             complete: function (res) {
@@ -35,7 +35,7 @@ Page({
         wx.request({
             url: app.globalData.announcementUrl,
             data: {
-                maxAnnouncementId: that.data.maxAnnouncementId
+                lastDeliverDate: that.data.lastDeliverDate
             },
             method: 'GET',
             header: {
@@ -61,7 +61,7 @@ Page({
                             noData: false
                         });
                         var announcementDetail = {};
-                        announcementDetail.maxAnnouncementId = that.data.announcements[0].id;
+                        announcementDetail.lastDeliverDate = that.data.announcements[0].deliverDate;
                         announcementDetail.announcements = that.data.announcements;
                         app.saveStorage("announcementDetail", announcementDetail);
                     }

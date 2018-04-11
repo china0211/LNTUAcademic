@@ -1,47 +1,38 @@
 //时间戳转日期
 function formatDate(date) {
-    var year = date.getFullYear()
-    var month = date.getMonth() + 1
-    var day = date.getDate()
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
 
-    var hour = date.getHours()
-    var minute = date.getMinutes()
+    var hour = date.getHours();
+    var minute = date.getMinutes();
     var second = date.getSeconds();
 
 
     return [year, month, day].map(formatNumber).join('-')
 }
 
-//日期转时间戳
+//日期转时间戳 毫秒
 function formatDataToTimestamp(data) {
-    return Date.parse(new Date(data)) / 1000;
+    return Date.parse(new Date(data));
 }
 
 function formatNumber(n) {
-    n = n.toString()
+    n = n.toString();
     return n[1] ? n : '0' + n
 }
 
 function isStudentNoValid(studentNo) {
-    if (studentNo != null && studentNo != '') {
-        return true;
-    }
-    else {
-        return false;
-    }
+    return studentNo != null && studentNo !== '';
 }
 
 function isEmpty(data) {
-    if (data == undefined || data == null || data.length == 0) {
-        return true;
-    }else {
-        return false;
-    }
+    return data === undefined || data == null || data.length === 0;
 }
 
 module.exports = {
     formatDate: formatDate,
     isStudentNoValid: isStudentNoValid,
     formatDataToTimestamp: formatDataToTimestamp,
-    isEmpty: isEmpty,
-}
+    isEmpty: isEmpty
+};
