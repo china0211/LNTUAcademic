@@ -1,5 +1,6 @@
 var properties = require("/utils/configProperties.js");
 var mta = require('/common/lib/mta.js');
+var util = require("utils/util.js");
 App({
     onLaunch: function (options) {
         var that = this;
@@ -41,7 +42,7 @@ App({
         getCurrentTimeInfoUrl: properties.getCurrentTimeInfoUrl,
         evaluateCourseUrl: properties.evaluateCourseUrl,
         isBind: false,
-
+        grantType: properties.grantType,
         toastFailImg: properties.toastFailImg,
         version: properties.version,
         versionType: properties.versionType
@@ -66,6 +67,8 @@ App({
                             that.saveStorage("weChatOpenId", that.globalData.weChatOpenId);
                             if (!readStorageSuccess) {
                                 that.getStudentNoByOpenId();
+                            } else {
+                                that.getToken();
                             }
                         },
                         fail: function (res) {
@@ -103,25 +106,34 @@ App({
         this.mta = mta;
     },
     // 获取TOKEN
-    getToken: function () {
+    getToken: function (needGetStudentInfo) {
         var that = this;
-        wx.request({
-            url: that.globalData.getTokenUrl,
-            data: {},
-            method: 'GET',
-            header: {
-                Authorization: that.globalData.authorization
-            },
-            success: function (res) {
-                that.globalData.authorization = res.data.result;
-            },
-            fail: function (res) {
-                that.showMsgModal("获取应用信息失败，请稍后再试")
-            },
-            complete: function (res) {
-                // complete
-            }
-        })
+        if (!util.isEmpty(that.globalData.studentNo) && !util.isEmpty(that.globalData.weChatOpenId)) {
+            wx.request({
+                url: that.globalData.getTokenUrl,
+                method: 'POST',
+                header: {
+                    Authorization: util.encodeAuthorization(that.globalData.studentNo, that.globalData.weChatOpenId),
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: {
+                    grant_type: that.globalData.grantType,
+                    username: that.globalData.studentNo,
+                    password: that.globalData.weChatOpenId
+                },
+                success: function (res) {
+                    that.globalData.authorization = "Bearer " + res.data.value;
+                },
+                fail: function (res) {
+                    that.showMsgModal("获取应用信息失败，请稍后再试")
+                },
+                complete: function (res) {
+                    if (needGetStudentInfo) {
+                        that.getStudentInfo();
+                    }
+                }
+            });
+        }
     },
     validateInParse: function () {
         var that = this;
@@ -150,7 +162,6 @@ App({
                 that.getOpenId(false);
             },
             complete: function (res) {
-
             }
         })
     },
@@ -181,7 +192,7 @@ App({
             success: function (resp) {
                 if (resp.data.message == "success") {
                     that.globalData.studentNo = resp.data.result.studentNo;
-                    that.getStudentInfo();
+                    that.getToken(true);
                 } else {
                     that.redirectToLoginPage();
                 }
@@ -190,7 +201,6 @@ App({
                 that.showMsgModal("获取绑定信息失败，请稍后再试")
             },
             complete: function (resp) {
-                // complete
             }
         })
     },

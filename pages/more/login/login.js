@@ -63,13 +63,15 @@ Page({
                         app.globalData.studentNo = that.data.studentNo;
                         if (res.data.code == 200) {
                             failed = false;
-                            app.getStudentInfo();
-                        } else {
+                            app.getToken(true);
+                        } else if (res.data.code == 202) {
                             toastMsg = "从教务在线获取数据完成后将发送通知，请耐心等待5-10分钟后再打开，确认后将退出";
                             app.saveStorage("parsing", true);
                             // 退出
                             quit = true;
                         }
+                    }else{
+                        toastMsg = res.data.message;
                     }
                 },
                 fail: function () {

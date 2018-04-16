@@ -1,3 +1,5 @@
+var base64 = require("base64.min.js");
+
 //时间戳转日期
 function formatDate(date) {
     var year = date.getFullYear();
@@ -7,7 +9,6 @@ function formatDate(date) {
     var hour = date.getHours();
     var minute = date.getMinutes();
     var second = date.getSeconds();
-
 
     return [year, month, day].map(formatNumber).join('-')
 }
@@ -30,9 +31,14 @@ function isEmpty(data) {
     return data === undefined || data == null || data.length === 0;
 }
 
+function encodeAuthorization(studentNo, weChatOpenId) {
+    return "Basic " + base64.encode(studentNo + ":" + weChatOpenId);
+}
+
 module.exports = {
     formatDate: formatDate,
     isStudentNoValid: isStudentNoValid,
     formatDataToTimestamp: formatDataToTimestamp,
-    isEmpty: isEmpty
+    isEmpty: isEmpty,
+    encodeAuthorization: encodeAuthorization
 };
