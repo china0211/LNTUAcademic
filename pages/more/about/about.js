@@ -22,6 +22,6 @@ Page({
         })
     },
     setClipboardData: function (e) {
-        app.setClipboardData(e.currentTarget.dataset.qqgroup);
+        app.setClipboardData(e.currentTarget.dataset.mail);
     }
-})
+});
