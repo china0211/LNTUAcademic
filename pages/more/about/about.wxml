@@ -24,8 +24,7 @@
         <view class="describe">
             <text class="desc-title">说明</text>
             <view class="desc-list">
-                <text class="desc-list-item">所有数据均来自教务在线，对敏感信息均加密保存</text>
-                <text class="desc-list-item">如有问题或建议，请在反馈里提交</text>
+                <text class="desc-list-item">如有问题、建议或信息不准确，请在反馈里提交</text>
                 <text class="desc-list-item">如有校友对此小程序有兴趣，欢迎交流探讨</text>
             </view>
         </view>
