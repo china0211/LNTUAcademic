@@ -5,9 +5,7 @@ Page({
     data: {
         commentLength: 0,
         // 反馈信息
-        title: '',
         comment: '',
-        contactInformation: '',
         // 手机信息
         phoneModel: '',
         windowWidth: '',
@@ -17,7 +15,6 @@ Page({
         sdkVersion: '',
         networkType: '',
         weChatLanguage: '',
-        feedbackTitle: '',
         feedbackBody: '',
         files: [],
         feedbackId: ''
@@ -28,20 +25,10 @@ Page({
         that.getSystemInfo();
         app.mta.Page.init();
     },
-    inputFeedbackTitle: function (e) {
-        this.setData({
-            title: e.detail.value
-        })
-    },
     inputFeedbackContent: function (e) {
         this.setData({
             comment: e.detail.value,
             commentLength: e.detail.value.length
-        })
-    },
-    inputCotactInfomation: function (e) {
-        this.setData({
-            contactInformation: e.detail.value
         })
     },
     // 获取手机信息
@@ -75,9 +62,7 @@ Page({
     //校验数据
     validateData: function () {
         var result = false;
-        if (this.data.title == null || this.data.title.trim() == "") {
-            app.showMsgModal("请输入反馈标题");
-        } else if (this.data.comment == null || this.data.comment.trim() == "") {
+        if (this.data.comment == null || this.data.comment.trim() == "") {
             app.showMsgModal("请输入反馈信息");
         } else {
             result = true;
@@ -116,14 +101,12 @@ Page({
                     Authorization: app.globalData.authorization
                 },
                 data: {
-                    title: that.data.title,
                     comment: that.data.comment,
                     studentNo: app.globalData.studentNo,
                     studentId: app.globalData.studentDetail.id,
                     studentName: app.globalData.studentDetail.name,
                     weChatNickname: app.globalData.userInfo.nickName,
                     weChatOpenId: app.globalData.weChatOpenId,
-                    contactInformation: that.data.contactInformation,
                     phoneModel: that.data.phoneModel,
                     windowHeight: that.data.windowHeight,
                     windowWidth: that.data.windowWidth,
