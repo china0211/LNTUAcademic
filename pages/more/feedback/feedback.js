@@ -11,7 +11,7 @@ Page({
         windowWidth: '',
         windowHeight: '',
         weChatVersion: '',
-        system: '',
+        systemInfo: '',
         sdkVersion: '',
         networkType: '',
         weChatLanguage: '',
@@ -41,7 +41,7 @@ Page({
                     windowWidth: res.windowWidth,
                     windowHeight: res.windowHeight,
                     weChatVersion: res.version,
-                    system: res.system,
+                    systemInfo: res.system,
                     weChatLanguage: res.language,
                     sdkVersion: res.SDKVersion
                 });
@@ -110,7 +110,7 @@ Page({
                     phoneModel: that.data.phoneModel,
                     windowHeight: that.data.windowHeight,
                     windowWidth: that.data.windowWidth,
-                    system: that.data.system,
+                    systemInfo: that.data.systemInfo,
                     weChatVersion: that.data.weChatVersion,
                     weChatLanguage: that.data.weChatLanguage,
                     sdkVersion: that.data.sdkVersion,
