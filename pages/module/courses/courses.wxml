@@ -18,13 +18,14 @@
         <view class="class-view-content">
             <!--节数-->
             <view class="weui-flex" wx:for="01234" wx:key="section" wx:for-index="sectionIndex">
-
-                <view class="class-day-header class-info-content">{{sectionIndex+1}}</view>
+                <view class="class-day-header class-info-content  monospace-font">{{sectionIndex+1}}</view>
                 <!--星期数-->
                 <view class="weui-flex__item" wx:for="0123456" wx:key="day" wx:for-index="dayIndex"
                       wx:for-item="course">
                     <view class="class-info-content class-course-detail-view"
-                          style="background-color:{{courseSchedule[dayIndex][sectionIndex].bgColor}}">
+                          style="background-color:{{courseSchedule[dayIndex][sectionIndex].bgColor}}"
+                          data-originContent="{{courseSchedule[dayIndex][sectionIndex].originContent}}"
+                          bindtap="viewCourseDetail">
                         <text class="class-course-detail">
                             {{courseSchedule[dayIndex][sectionIndex].displayContent}}
                         </text>

@@ -89,16 +89,19 @@ Page({
                             active = true;
                         } else if (currentCourse.classType == 1) {
                             active = app.globalData.currentWeek % 2 == 0 ? false : true;
+                            currentCourse.endWeek = currentCourse.endWeek + "单";
                         } else if (currentCourse.classType = 2) {
                             active = app.globalData.currentWeek % 2 == 0 ? true : false;
+                            currentCourse.endWeek = currentCourse.endWeek + "双";
                         }
                         currentCourse.active = active;
                     } else {
                         currentCourse.active = false;
                     }
 
-                    // 处理课程显示名称（名称长度超过9位截断，中间部分用...代替，少于6位在末尾多加换行，显示三行，保证column高度一致）
-                    if (currentCourse.courseName.length > 9) {
+                    // 处理课程显示名称（名称长度超过8位截断，中间部分用...代替，少于6位在末尾多加换行，显示三行，保证column高度一致）
+                    currentCourse.originCourseName = currentCourse.courseName;
+                    if (currentCourse.courseName.length > 8) {
                         currentCourse.courseName = currentCourse.courseName.substring(0, 5) + "..." +
                             currentCourse.courseName.substring(currentCourse.courseName.length - 2, currentCourse.courseName.length);
                     } else if (currentCourse.courseName.length < 5) {
@@ -106,22 +109,24 @@ Page({
                     }
 
                     // 处理教师名称（长度超过3位截断，中间部分用...代替，长度固定为3位，显示一行）
+                    currentCourse.originTeacher = currentCourse.teacher;
                     if (currentCourse.teacher.length > 3) {
                         currentCourse.teacher = currentCourse.teacher.substring(0, 1) + "..." +
                             currentCourse.teacher.substring(currentCourse.teacher.length - 1, currentCourse.teacher.length);
                     }
 
                     // 处理教学地点显示（长度超过6位截断，中间部分用...代替，保留后三位，少于三位换行，长度固定为6位，显示两行）
+                    currentCourse.originClassroom = currentCourse.classroom;
                     if (currentCourse.classroom.length > 6) {
                         currentCourse.classroom = currentCourse.classroom.substring(0, 2) + "..." +
                             currentCourse.classroom.substring(currentCourse.classroom.length - 3, currentCourse.classroom.length);
-                    }
-                    else if (currentCourse.classroom.length < 4) {
+                    } else if (currentCourse.classroom.length < 4) {
                         currentCourse.classroom = "\n" + currentCourse.classroom;
                     }
 
                     //拼接显示内容
                     currentCourse.displayContent = currentCourse.courseName + "\n" + currentCourse.startWeek + "-" + currentCourse.endWeek + "\n" + currentCourse.teacher + "\n" + currentCourse.classroom + "\n";
+                    currentCourse.originContent = currentCourse.originCourseName + "\n" + currentCourse.startWeek + "-" + currentCourse.endWeek + "\n" + currentCourse.originTeacher + "\n" + currentCourse.originClassroom;
 
                     //添加背景色
                     if (currentCourse.active) {
@@ -186,5 +191,11 @@ Page({
             complete: function (res) {
             }
         });
+    },
+    viewCourseDetail: function (e) {
+        var originContent = e.currentTarget.dataset.origincontent;
+        if (!util.isEmpty(originContent)) {
+            app.showMsgModal(originContent);
+        }
     }
 });
