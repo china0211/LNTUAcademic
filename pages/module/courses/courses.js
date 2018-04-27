@@ -5,6 +5,8 @@ Page({
         loading: true,
         noData: false,
         days: ['一', '二', '三', '四', '五', '六', '七'],
+        originCourseSchedule: null,
+        selectWeek: 1,
         courseSchedule: [
             [[], [], [], [], []],
             [[], [], [], [], []],
@@ -13,12 +15,21 @@ Page({
             [[], [], [], [], []],
             [[], [], [], [], []],
             [[], [], [], [], []]
-        ]
+        ],
+        currentFilterText: '请选择周',
+        filterData: [],  //筛选条件数据
+        showFilter: false, //是否显示下拉筛选
+        showFilterIndex: null, //显示哪个筛选类目
+        filterIndex: 0,  //一级分类索引
+        filterId: null  //一级分类id
     },
     onLoad: function (options) {
         var that = this;
-        // 获取课程表信息
-        that.getCourseDataFromStorage();
+        that.setData({
+            selectWeek: app.globalData.currentWeek
+        });
+        that.fetchFilterData();
+        that.getCourseDataFromStorage(that.data.selectWeek);
         app.mta.Page.init();
     },
 
@@ -46,7 +57,11 @@ Page({
                             noData: true
                         })
                     } else {
-                        that.handleCourseData(res.data.result);
+                        that.handleCourseData(res.data.result, that.data.selectWeek);
+                        that.setData({
+                            originCourseSchedule: res.data.result
+                        });
+                        app.saveStorage("originCourseSchedule", res.data.result);
                     }
                 } else {
                     that.setData({
@@ -73,26 +88,25 @@ Page({
     },
 
     //处理课程数据
-    handleCourseData: function (courseSchedule) {
+    handleCourseData: function (courseSchedule, selectWeek) {
         var that = this;
-
         for (var i = 0; i < 7; i++) {//星期
             for (var j = 0; j < 5; j++) {//节数
                 var currentCourse = courseSchedule[i][j];
                 //拼接显示内容
                 if (currentCourse.courseName != null) {
-
                     //处理是否处于活跃状态（周数在index.js中查询）
-                    if (app.globalData.currentWeek >= currentCourse.startWeek && app.globalData.currentWeek <= currentCourse.endWeek) {
+                    if (selectWeek >= currentCourse.startWeek && selectWeek <= currentCourse.endWeek) {
                         var active = false;
+                        currentCourse.displayEndWeek = currentCourse.endWeek;
                         if (currentCourse.classType == 0) {
                             active = true;
                         } else if (currentCourse.classType == 1) {
-                            active = app.globalData.currentWeek % 2 == 0 ? false : true;
-                            currentCourse.endWeek = currentCourse.endWeek + "单";
+                            active = selectWeek % 2 == 0 ? false : true;
+                            currentCourse.displayEndWeek = currentCourse.displayEndWeek + "单";
                         } else if (currentCourse.classType = 2) {
-                            active = app.globalData.currentWeek % 2 == 0 ? true : false;
-                            currentCourse.endWeek = currentCourse.endWeek + "双";
+                            active = selectWeek % 2 == 0 ? true : false;
+                            currentCourse.displayEndWeek = currentCourse.displayEndWeek + "双";
                         }
                         currentCourse.active = active;
                     } else {
@@ -100,33 +114,40 @@ Page({
                     }
 
                     // 处理课程显示名称（名称长度超过8位截断，中间部分用...代替，少于6位在末尾多加换行，显示三行，保证column高度一致）
-                    currentCourse.originCourseName = currentCourse.courseName;
-                    if (currentCourse.courseName.length > 8) {
-                        currentCourse.courseName = currentCourse.courseName.substring(0, 5) + "..." +
-                            currentCourse.courseName.substring(currentCourse.courseName.length - 2, currentCourse.courseName.length);
-                    } else if (currentCourse.courseName.length < 5) {
-                        currentCourse.courseName = currentCourse.courseName + "\n";
+                    currentCourse.disPlayCourseName = currentCourse.courseName;
+                    if (currentCourse.disPlayCourseName.length > 8) {
+                        currentCourse.disPlayCourseName = currentCourse.disPlayCourseName.substring(0, 5) + "..." +
+                            currentCourse.disPlayCourseName.substring(currentCourse.disPlayCourseName.length - 2,
+                                currentCourse.disPlayCourseName.length);
+                    } else if (currentCourse.disPlayCourseName.length < 5) {
+                        currentCourse.disPlayCourseName = currentCourse.disPlayCourseName + "\n";
                     }
 
                     // 处理教师名称（长度超过3位截断，中间部分用...代替，长度固定为3位，显示一行）
-                    currentCourse.originTeacher = currentCourse.teacher;
-                    if (currentCourse.teacher.length > 3) {
-                        currentCourse.teacher = currentCourse.teacher.substring(0, 1) + "..." +
-                            currentCourse.teacher.substring(currentCourse.teacher.length - 1, currentCourse.teacher.length);
+                    currentCourse.displayTeacher = currentCourse.teacher;
+                    if (currentCourse.displayTeacher.length > 3) {
+                        currentCourse.displayTeacher = currentCourse.displayTeacher.substring(0, 1) + "..." +
+                            currentCourse.displayTeacher.substring(currentCourse.displayTeacher.length - 1,
+                                currentCourse.displayTeacher.length);
                     }
 
                     // 处理教学地点显示（长度超过6位截断，中间部分用...代替，保留后三位，少于三位换行，长度固定为6位，显示两行）
-                    currentCourse.originClassroom = currentCourse.classroom;
-                    if (currentCourse.classroom.length > 6) {
-                        currentCourse.classroom = currentCourse.classroom.substring(0, 2) + "..." +
-                            currentCourse.classroom.substring(currentCourse.classroom.length - 3, currentCourse.classroom.length);
-                    } else if (currentCourse.classroom.length < 4) {
-                        currentCourse.classroom = "\n" + currentCourse.classroom;
+                    currentCourse.displayClassroom = currentCourse.classroom;
+                    if (currentCourse.displayClassroom.length > 6) {
+                        currentCourse.displayClassroom = currentCourse.displayClassroom.substring(0, 2) + "..." +
+                            currentCourse.displayClassroom.substring(currentCourse.displayClassroom.length - 3,
+                                currentCourse.displayClassroom.length);
+                    } else if (currentCourse.displayClassroom.length < 4) {
+                        currentCourse.displayClassroom = "\n" + currentCourse.displayClassroom;
                     }
 
                     //拼接显示内容
-                    currentCourse.displayContent = currentCourse.courseName + "\n" + currentCourse.startWeek + "-" + currentCourse.endWeek + "\n" + currentCourse.teacher + "\n" + currentCourse.classroom + "\n";
-                    currentCourse.originContent = currentCourse.originCourseName + "\n" + currentCourse.startWeek + "-" + currentCourse.endWeek + "\n" + currentCourse.originTeacher + "\n" + currentCourse.originClassroom;
+                    currentCourse.displayContent = currentCourse.disPlayCourseName + "\n" + currentCourse.startWeek +
+                        "-" + currentCourse.displayEndWeek + "\n" + currentCourse.displayTeacher + "\n" +
+                        currentCourse.displayClassroom + "\n";
+
+                    currentCourse.originContent = currentCourse.courseName + "\n" + currentCourse.startWeek +
+                        "-" + currentCourse.endWeek + "\n" + currentCourse.teacher + "\n" + currentCourse.classroom;
 
                     //添加背景色
                     if (currentCourse.active) {
@@ -152,8 +173,7 @@ Page({
             noData: false
         });
         app.hideLoading();
-        app.saveStorage("courseSchedule", that.data.courseSchedule);
-        app.saveStorage("courseScheduleDate", util.formatDate(new Date()));
+        app.saveStorage("courseSchedule" + selectWeek, that.data.courseSchedule);
     },
 
     //为课程添加随机背景色
@@ -167,10 +187,10 @@ Page({
         return colors[index];
     },
 
-    getCourseDataFromStorage: function () {
+    getCourseDataFromStorage: function (selectWeek) {
         var that = this;
         wx.getStorage({
-            key: 'courseSchedule',
+            key: 'courseSchedule' + selectWeek,
             success: function (res) {
                 if (util.isEmpty(res.data) || app.globalData.currentDay == 1) {
                     that.setData({
@@ -182,7 +202,7 @@ Page({
                         noData: false,
                         loading: false,
                         courseSchedule: res.data
-                    })
+                    });
                 }
             },
             fail: function (res) {
@@ -191,11 +211,89 @@ Page({
             complete: function (res) {
             }
         });
+
     },
     viewCourseDetail: function (e) {
         var originContent = e.currentTarget.dataset.origincontent;
         if (!util.isEmpty(originContent)) {
             app.showMsgModal(originContent);
         }
+    },
+    fetchFilterData: function () {
+        var that = this;
+        var filterData = [];
+        var currentFilterText = "第" + app.globalData.currentWeek + "周";
+
+        for (var i = 1; i <= 20; i++) {
+            var week = {};
+            week.id = i;
+            week.title = "第" + i + "周";
+            filterData.push(week);
+        }
+
+        that.setData({
+            filterIndex: app.globalData.currentWeek - 1,
+            filterId: app.globalData.currentWeek,
+            filterData: filterData,
+            currentFilterText: currentFilterText
+        });
+    },
+    //展开筛选面板
+    setFilterPanel: function (e) {
+        var that = this;
+        if (util.isEmpty(that.data.originCourseSchedule)) {
+            wx.getStorage({
+                key: 'originCourseSchedule',
+                success: function (res) {
+                    if (util.isEmpty(res.data)) {
+                        that.setData({
+                            noData: true
+                        });
+                        that.getCourseData();
+                    } else {
+                        that.setData({
+                            originCourseSchedule: res.data
+                        });
+                    }
+                },
+                fail: function (res) {
+                    that.getCourseData();
+                },
+                complete: function (res) {
+                }
+            });
+        }
+
+        var showFilterIndex = e.currentTarget.dataset.filterindex;
+        if (that.data.showFilterIndex == showFilterIndex) {
+            that.setData({
+                showFilter: false,
+                showFilterIndex: null
+            })
+        } else {
+            that.setData({
+                showFilter: true,
+                showFilterIndex: showFilterIndex
+            })
+        }
+    },
+    //分类一级索引
+    setFilterData: function (e) {
+        var that = this;
+        var dataSet = e.currentTarget.dataset;
+        this.setData({
+            filterIndex: dataSet.filterindex,
+            filterId: dataSet.filterid,
+            currentFilterText: that.data.filterData[dataSet.filterindex].title
+        });
+        that.handleCourseData(that.data.originCourseSchedule, that.data.filterId);
+        that.hideFilter();
+    },
+    //关闭筛选面板
+    hideFilter: function () {
+        this.setData({
+            showFilter: false,
+            showFilterIndex: null
+        })
     }
 });
