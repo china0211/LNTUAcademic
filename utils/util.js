@@ -35,10 +35,40 @@ function encodeAuthorization(studentNo, weChatOpenId) {
     return "Basic " + base64.encode(studentNo + ":" + weChatOpenId);
 }
 
+function getCharBinary(str) {
+    var i = 0;
+    var result = "";
+    while (true) {
+        var temp = str.charCodeAt(i++);
+        if (temp) {
+            result += temp.toString(2);
+        } else {
+            break;
+        }
+    }
+    return result;
+}
+
+function getBinarySum(str) {
+    var i = 0;
+    var result = 0;
+    while (true) {
+        var num = Number(str.charCodeAt(i++));
+        if (num) {
+            result += num;
+        } else {
+            break;
+        }
+    }
+    return result;
+}
+
 module.exports = {
     formatDate: formatDate,
     isStudentNoValid: isStudentNoValid,
     formatDataToTimestamp: formatDataToTimestamp,
     isEmpty: isEmpty,
-    encodeAuthorization: encodeAuthorization
+    encodeAuthorization: encodeAuthorization,
+    getCharBinary: getCharBinary,
+    getBinarySum: getBinarySum
 };

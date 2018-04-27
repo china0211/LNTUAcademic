@@ -5,6 +5,7 @@ Page({
         loading: true,
         noData: false,
         days: ['一', '二', '三', '四', '五', '六', '七'],
+        colors: ['#66CCCC', '#FF99CC', '#FFCC99', '#FF8866', '#99CC66', '#FFB760', '#FF6666', '#FF9966'],
         originCourseSchedule: null,
         selectWeek: 1,
         courseSchedule: [
@@ -151,7 +152,7 @@ Page({
 
                     //添加背景色
                     if (currentCourse.active) {
-                        currentCourse.bgColor = that.getBgColor();
+                        currentCourse.bgColor = that.getBgColor(currentCourse.courseName);
                     } else {
                         currentCourse.bgColor = "#c7c7c7";
                     }
@@ -177,14 +178,10 @@ Page({
     },
 
     //为课程添加随机背景色
-    getBgColor: function () {
+    getBgColor: function (courseName) {
         var that = this;
-        var colors = ['#66CCCC', '#FF99CC', '#FF99CC', '#FFCC99', '#FF6666',
-            '#99CC66', '#99CC33', '#66CCCC', '#FF6666', '#FF9966', '#FF6600'];
-
-        //产生0-10之间的随机数
-        var index = Math.floor(Math.random() * 10);
-        return colors[index];
+        var index = util.getBinarySum(util.getCharBinary(courseName)) % 8;
+        return that.data.colors[index];
     },
 
     getCourseDataFromStorage: function (selectWeek) {
@@ -224,10 +221,17 @@ Page({
         var filterData = [];
         var currentFilterText = "第" + app.globalData.currentWeek + "周";
 
-        for (var i = 1; i <= 20; i++) {
+        for (var i = app.globalData.currentWeek; i <= 20; i++) {
             var week = {};
             week.id = i;
             week.title = "第" + i + "周";
+            filterData.push(week);
+        }
+
+        for (var j = 1; j < app.globalData.currentWeek; j++) {
+            var week = {};
+            week.id = j;
+            week.title = "第" + j + "周";
             filterData.push(week);
         }
 
