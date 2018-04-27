@@ -236,7 +236,6 @@ Page({
         }
 
         that.setData({
-            filterIndex: app.globalData.currentWeek - 1,
             filterId: app.globalData.currentWeek,
             filterData: filterData,
             currentFilterText: currentFilterText
