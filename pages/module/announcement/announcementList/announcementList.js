@@ -15,12 +15,16 @@ Page({
         wx.getStorage({
             key: 'announcementDetail',
             success: function (res) {
-                that.data.lastDeliverDate = util.formatDataToTimestamp(res.data.lastDeliverDate);
-                that.data.announcements = res.data.announcements;
+                that.setData({
+                    lastDeliverDate: res.data.lastDeliverDate,
+                    announcements: res.data.announcements
+                });
             },
             fail: function (res) {
-                that.data.lastDeliverDate = 0;
-                that.data.announcements = [];
+                that.setData({
+                    lastDeliverDate: 0,
+                    announcements: []
+                });
             },
             complete: function (res) {
                 that.getAnnouncement();
@@ -61,7 +65,7 @@ Page({
                             noData: false
                         });
                         var announcementDetail = {};
-                        announcementDetail.lastDeliverDate = that.data.announcements[0].deliverDate;
+                        announcementDetail.lastDeliverDate = util.formatDataToTimestamp(that.data.announcements[0].deliverDate);
                         announcementDetail.announcements = that.data.announcements;
                         app.saveStorage("announcementDetail", announcementDetail);
                     }
