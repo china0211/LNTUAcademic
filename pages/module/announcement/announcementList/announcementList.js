@@ -27,6 +27,7 @@ Page({
                 });
             },
             complete: function (res) {
+                app.getSystemInfo();
                 that.getAnnouncement();
             }
         });
@@ -65,7 +66,7 @@ Page({
                             noData: false
                         });
                         var announcementDetail = {};
-                        announcementDetail.lastDeliverDate = util.formatDataToTimestamp(that.data.announcements[0].deliverDate);
+                        announcementDetail.lastDeliverDate = util.formatDataToTimestamp(that.data.announcements[0].deliverDate, app.globalData.systemInfo);
                         announcementDetail.announcements = that.data.announcements;
                         app.saveStorage("announcementDetail", announcementDetail);
                     }

@@ -352,5 +352,20 @@ App({
         wx.reLaunch({
             url: '/pages/index/index'
         })
+    },
+    // 获取手机信息
+    getSystemInfo: function () {
+        var that = this;
+        wx.getSystemInfo({
+            success: function (res) {
+                that.globalData.phoneModel = res.model;
+                that.globalData.windowWidth = res.windowWidth;
+                that.globalData.windowHeight = res.windowHeight;
+                that.globalData.weChatVersion = res.version;
+                that.globalData.systemInfo = res.system;
+                that.globalData.weChatLanguage = res.language;
+                that.globalData.sdkVersion = res.SDKVersion
+            }
+        })
     }
 });

@@ -14,8 +14,10 @@ function formatDate(date) {
 }
 
 //日期转时间戳 毫秒
-function formatDataToTimestamp(data) {
-    data = data.replace(/-/g, '/');
+function formatDataToTimestamp(data, systemInfo) {
+    if (!isEmpty(systemInfo) && systemInfo.indexOf("iOS") > -1) {
+        data = data.replace(/-/g, '/');
+    }
     return Date.parse(new Date(data));
 }
 

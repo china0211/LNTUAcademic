@@ -22,30 +22,13 @@ Page({
     onLoad: function (options) {
         var that = this;
         that.getNetwork();
-        that.getSystemInfo();
+        app.getSystemInfo();
         app.mta.Page.init();
     },
     inputFeedbackContent: function (e) {
         this.setData({
             comment: e.detail.value,
             commentLength: e.detail.value.length
-        })
-    },
-    // 获取手机信息
-    getSystemInfo: function () {
-        var that = this;
-        wx.getSystemInfo({
-            success: function (res) {
-                that.setData({
-                    phoneModel: res.model,
-                    windowWidth: res.windowWidth,
-                    windowHeight: res.windowHeight,
-                    weChatVersion: res.version,
-                    systemInfo: res.system,
-                    weChatLanguage: res.language,
-                    sdkVersion: res.SDKVersion
-                });
-            }
         })
     },
     getNetwork: function () {
@@ -55,7 +38,6 @@ Page({
                 that.setData({
                     networkType: resp.networkType
                 });
-                that.getSystemInfo();
             }
         });
     },
@@ -107,13 +89,13 @@ Page({
                     studentName: app.globalData.studentDetail.name,
                     weChatNickname: app.globalData.userInfo.nickName,
                     weChatOpenId: app.globalData.weChatOpenId,
-                    phoneModel: that.data.phoneModel,
-                    windowHeight: that.data.windowHeight,
-                    windowWidth: that.data.windowWidth,
-                    systemInfo: that.data.systemInfo,
-                    weChatVersion: that.data.weChatVersion,
-                    weChatLanguage: that.data.weChatLanguage,
-                    sdkVersion: that.data.sdkVersion,
+                    phoneModel: app.globalData.phoneModel,
+                    windowHeight: app.globalData.windowHeight,
+                    windowWidth: app.globalData.windowWidth,
+                    systemInfo: app.globalData.systemInfo,
+                    weChatVersion: app.globalData.weChatVersion,
+                    weChatLanguage: app.globalData.weChatLanguage,
+                    sdkVersion: app.globalData.sdkVersion,
                     networkType: that.data.networkType,
                     miniProgramVersion: app.globalData.version,
                     miniProgramType: app.globalData.versionType
