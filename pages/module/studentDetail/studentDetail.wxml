@@ -6,135 +6,135 @@
             <image src="{{studentDetail.headImg}}" class="head-pic"></image>
         </view>
         <view class="weui-cells">
-            <view class="weui-cell list-odd">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">姓名</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.name}}</text>
             </view>
-            <view class="weui-cell list-even">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">英文名字</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.englishName}}</text>
             </view>
-            <view class="weui-cell list-odd">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">性别</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.gender}}</text>
             </view>
-            <view class="weui-cell list-even">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">院系</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.college}}</text>
             </view>
-            <view class="weui-cell list-odd">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">专业</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.major}}</text>
             </view>
-            <view class="weui-cell list-even">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">班级</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.classInfo}}</text>
             </view>
-            <view class="weui-cell list-odd">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">学号</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.studentNo}}</text>
             </view>
-            <view class="weui-cell list-even">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">联系电话</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.telephone}}</text>
             </view>
-            <view class="weui-cell list-odd">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">电子邮箱</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.email}}</text>
             </view>
-            <view class="weui-cell list-even">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">出生日期</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.birthday}}</text>
             </view>
-            <view class="weui-cell list-odd">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">民族</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.nation}}</text>
             </view>
-            <view class="weui-cell list-even">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">家庭住址</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.homeAddress}}</text>
             </view>
-            <view class="weui-cell list-odd">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">邮政编码</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.postCode}}</text>
             </view>
-            <view class="weui-cell list-even">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">国籍</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.nationality}}</text>
             </view>
-            <view class="weui-cell list-odd">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">籍贯</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.nativePlace}}</text>
             </view>
-            <view class="weui-cell list-even">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">证件类型</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.idType}}</text>
             </view>
-            <view class="weui-cell list-odd">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">证件号码</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.idNo}}</text>
             </view>
-            <view class="weui-cell list-even">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">政治面貌</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.politicalAffiliation}}</text>
             </view>
-            <view class="weui-cell list-odd">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">考区</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.entranceExamArea}}</text>
             </view>
-            <view class="weui-cell list-even">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">学生来源</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.sourceOfStudent}}</text>
             </view>
-            <view class="weui-cell list-odd">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">高考总分</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.entranceExamScore}}</text>
             </view>
-            <view class="weui-cell list-even">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">毕业院校</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.graduateSchool}}</text>
             </view>
-            <view class="weui-cell list-odd">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">外语语种</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.foreignLanguage}}</text>
             </view>
-            <view class="weui-cell list-even">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">入学准考证号</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.entranceExamNo}}</text>
             </view>
-            <view class="weui-cell list-odd">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">入学录取证号</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.admissionNo}}</text>
             </view>
-            <view class="weui-cell list-even">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">入学方式</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.admissionType}}</text>
             </view>
-            <view class="weui-cell list-odd">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">入学日期</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.admissionDate}}</text>
             </view>
-            <view class="weui-cell list-even">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">学籍表号</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.studentStatusTableNo}}</text>
             </view>
-            <view class="weui-cell list-odd">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">培养方式</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.educationType}}</text>
             </view>
-            <view class="weui-cell list-even">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">毕业日期</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.graduationDate}}</text>
             </view>
-            <view class="weui-cell list-odd">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">毕业去向</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.graduateWhereAbouts}}</text>
             </view>
-            <view class="weui-cell list-even">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">乘车区间</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.travelRange}}</text>
             </view>
-            <view class="weui-cell list-odd">
+            <view class="weui-cell">
                 <text selectable="true" class="weui-cell__bd">备注</text>
                 <text selectable="true" class="weui-cell__ft">{{studentDetail.comment}}</text>
             </view>
