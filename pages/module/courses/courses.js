@@ -97,9 +97,9 @@ Page({
                 //拼接显示内容
                 if (currentCourse.courseName != null) {
                     //处理是否处于活跃状态（周数在index.js中查询）
+                    currentCourse.displayEndWeek = currentCourse.endWeek;
                     if (selectWeek >= currentCourse.startWeek && selectWeek <= currentCourse.endWeek) {
                         var active = false;
-                        currentCourse.displayEndWeek = currentCourse.endWeek;
                         if (currentCourse.classType == 0) {
                             active = true;
                         } else if (currentCourse.classType == 1) {
