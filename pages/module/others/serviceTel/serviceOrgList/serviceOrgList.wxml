@@ -1,6 +1,7 @@
+<import src="/pages/templates/template.wxml"/>
 <view class="page">
     <!--搜索栏-->
-    <view class="weui-search-bar">
+    <view class="weui-search-bar" wx:if="{{!noData}}">
         <view class="weui-search-bar__form">
             <view class="weui-search-bar__box">
                 <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
@@ -17,6 +18,7 @@
         </view>
         <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
     </view>
+    <template is="loadmore" data="{{loading}}"/>
     <!--查询结果-->
     <view wx:if="{{searchResultVisible}}">
         <view class="weui-cells__title">查询结果</view>
@@ -30,22 +32,24 @@
         </view>
 
         <view class="weui-cells weui-cells_after-title" wx:if="{{currentTels != null}}">
-            <view class="weui-cell" bindtap="callTel" data-name="{{tel.name}}" data-tel="{{tel.tel}}"
-                  wx:for="{{currentTels}}" wx:for-item="tel" wx:key="tel">
-                <text selectable="true" class="weui-cell__bd">{{tel.name}}</text>
-                <text selectable="true" class="weui-cell__ft">{{tel.tel}}</text>
+            <view class="weui-cell" bindtap="callTel" data-name="{{serviceTelephone.name}}"
+                  data-telephone="{{serviceTelephone.telephone}}"
+                  wx:for="{{currentTels}}" wx:for-item="serviceTelephone" wx:key="serviceTelephone">
+                <text selectable="true" class="weui-cell__bd">{{serviceTelephone.name}}</text>
+                <text selectable="true" class="weui-cell__ft">{{serviceTelephone.telephone}}</text>
             </view>
         </view>
     </view>
-
+    <template is="no-data" data="{{noData}}"/>
     <!--组织列表-->
-    <view class="weui-cells__title">葫芦岛校区</view>
-    <view class="weui-cells weui-cells_after-title">
-        <navigator class="weui-cell weui-cell_access" hover-class="weui-cell_active"
-                   bindtap="viewTelDetail" data-org="{{index}}"
-                   wx:for="{{organizations}}" wx:for-item="organization" wx:key="organization">
-            <view class="weui-cell__bd">{{organization}}</view>
+    <view class="weui-cells__title" wx:if="{{!noData}}">葫芦岛校区</view>
+    <view class="weui-cells weui-cells_after-title" wx:if="{{!noData}}">
+        <view class="weui-cell weui-cell_access" hover-class="weui-cell_active"
+              bindtap="viewTelDetail" data-organizationName="{{organization.name}}"
+              data-serviceTelephoneList="{{organization.serviceTelephoneList}}"
+              wx:for="{{organizationServiceTelephone}}" wx:for-item="organization" wx:key="organization">
+            <view class="weui-cell__bd">{{organization.name}}</view>
             <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-        </navigator>
+        </view>
     </view>
 </view>

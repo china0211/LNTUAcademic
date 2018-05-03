@@ -41,6 +41,7 @@ App({
         saveStartUpRecordUrl: properties.saveStartUpRecordUrl,
         getCurrentTimeInfoUrl: properties.getCurrentTimeInfoUrl,
         evaluateCourseUrl: properties.evaluateCourseUrl,
+        organizationServiceTelephoneUrl: properties.organizationServiceTelephoneUrl,
         isBind: false,
         grantType: properties.grantType,
         toastFailImg: properties.toastFailImg,

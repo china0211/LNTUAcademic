@@ -8,7 +8,6 @@ Page({
     },
     onLoad: function (options) {
         app.mta.Page.init();
-        app.validateStuId();
         var that = this;
         var toastMsg = '';
         var failed = true;
