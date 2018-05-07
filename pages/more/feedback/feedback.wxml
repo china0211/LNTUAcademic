@@ -35,4 +35,7 @@
     <view class="weui-btn-area">
         <button class="weui-btn" type="primary" bindtap="sendFeedback">提交反馈信息</button>
     </view>
+    <view class="weui-btn-area">
+        <button class="weui-btn" open-type="contact">进入客服会话</button>
+    </view>
 </view>
