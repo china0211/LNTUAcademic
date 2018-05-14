@@ -2,7 +2,7 @@ var app = getApp();
 var util = require("../../../utils/util.js");
 Page({
     data: {
-        loginButtonText: '登录',
+        loginButtonText: '授权并登录',
         loginButtonDisable: false,
         studentNo: '',
         userInfo: '',
@@ -70,7 +70,7 @@ Page({
                             // 退出
                             quit = true;
                         }
-                    }else{
+                    } else {
                         toastMsg = res.data.message;
                     }
                 },
@@ -107,36 +107,23 @@ Page({
     //校验输入信息
     validateData: function () {
         var that = this;
-
-        if (util.isEmpty(app.globalData.userInfo)) {
-            wx.showModal({
-                title: '请授权访问用户信息',
-                content: '请点击右上角，选择关于小程序，再次点击右上角打开设置，授权使用用户信息，该信息仅用于页面展示，授权完成后重新打开小程序',
-                success: function (res) {
-                    if (res.confirm) {
-                        app.close();
-                    }
-                }
-            });
-        } else {
-            var studentNoRegex = /^[1,2][0-9]{9}$/;
-            var passwordRegex = /^[0-9A-Za-z]{1,19}$/;
-            if (that.data.studentNo != "" && that.data.password != "") {
-                if (studentNoRegex.test(that.data.studentNo)) {
-                    if (passwordRegex.test(that.data.password)) {
-                        return true;
-                    } else {
-                        app.showToast("密码格式错误", false);
-                        return false;
-                    }
+        var studentNoRegex = /^[1,2][0-9]{9}$/;
+        var passwordRegex = /^[0-9A-Za-z]{1,19}$/;
+        if (that.data.studentNo != "" && that.data.password != "") {
+            if (studentNoRegex.test(that.data.studentNo)) {
+                if (passwordRegex.test(that.data.password)) {
+                    return true;
                 } else {
-                    app.showToast("学号格式错误", false);
+                    app.showToast("密码格式错误", false);
                     return false;
                 }
             } else {
-                app.showToast("请输入学号密码", false);
+                app.showToast("学号格式错误", false);
                 return false;
             }
+        } else {
+            app.showToast("请输入学号密码", false);
+            return false;
         }
     }
 });
