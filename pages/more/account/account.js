@@ -80,5 +80,9 @@ Page({
                 app.mta.Event.stat('account', {'operation': 'switch'});
             }
         })
+    },
+    clearCache: function () {
+        app.clearStorage();
+        app.close();
     }
 });

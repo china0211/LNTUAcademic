@@ -89,17 +89,6 @@ App({
                 that.showMsgModal("获取授权信息失败，请稍后再试")
             },
             complete: function (res) {
-                if (util.isEmpty(that.globalData.userInfo)) {
-                    wx.showModal({
-                        title: '请授权后使用',
-                        content: '信息仅用于展示头像',
-                        success: function (res) {
-                        },
-                        complete: function () {
-                            that.redirectToLoginPage(true);
-                        }
-                    });
-                }
             }
         })
     },

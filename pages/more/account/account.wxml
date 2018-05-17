@@ -18,8 +18,9 @@
         </view>
     </view>
     <view class="weui-btn-area">
-        <button type="default" disabled="{{disabled}}" bindtap="switchAccount" class="weui-btn">切换账号</button>
+        <button type="primary" disabled="{{disabled}}" bindtap="switchAccount" class="weui-btn">切换账号</button>
         <button type="warn" disabled="{{disabled}}" bindtap="unboundAccount" class="weui-btn" wx:if="{{isBind}}">删除账号
         </button>
+        <button type="default" bindtap="clearCache" class="weui-btn">清除缓存</button>
     </view>
 </view>
