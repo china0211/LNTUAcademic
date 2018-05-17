@@ -2,11 +2,13 @@ var app = getApp();
 var util = require("../../../utils/util.js");
 Page({
     data: {
-        loginButtonText: '授权并登录',
+        loginButtonText: '登录',
         loginButtonDisable: false,
-        studentNo: '',
-        userInfo: '',
-        password: ''
+        authorization: false,
+        hasUserInfo: false,
+        studentNo: null,
+        userInfo: null,
+        password: null
     },
     onLoad: function (options) {
         var that = this;
@@ -18,12 +20,22 @@ Page({
                 loginButtonDisable: true
             })
         }
-        that.setData({
-            userInfo: app.globalData.userInfo
-        });
+        if (!util.isEmpty(app.globalData.userInfo)) {
+            that.setData({
+                userInfo: app.globalData.userInfo,
+                authorization: true
+            });
+        }
         app.mta.Page.init();
     },
+    authorizationUserInfo: function () {
+        var that = this;
+        that.setData({
+            authorization: true
+        })
+    },
     inputStuId: function (e) {
+        this.getUserInfo();
         this.setData({
             studentNo: e.detail.value
         })
@@ -33,9 +45,24 @@ Page({
             password: e.detail.value
         })
     },
-
+    getUserInfo: function () {
+        var that = this;
+        if (util.isEmpty(that.data.userInfo)) {
+            wx.getUserInfo({
+                success: function (resp) {
+                    if (!util.isEmpty(resp.userInfo)) {
+                        that.setData({
+                            userInfo: resp.userInfo
+                        });
+                        app.globalData.userInfo = resp.userInfo;
+                    }
+                }
+            });
+        }
+    },
     login: function (e) {
         var that = this;
+        that.getUserInfo();
         var isValid = that.validateData();
         var formId = e.detail.formId;
         var toastMsg = '';
@@ -107,6 +134,12 @@ Page({
     //校验输入信息
     validateData: function () {
         var that = this;
+        that.getUserInfo();
+        if (util.isEmpty(that.data.userInfo)) {
+            app.showMsgModal("请授权后使用;授权请点击右上角-关于-右上角-设置，打开使用我的用户信息");
+            return false;
+        }
+
         var studentNoRegex = /^[1,2][0-9]{9}$/;
         var passwordRegex = /^[0-9A-Za-z]{1,19}$/;
         if (that.data.studentNo != "" && that.data.password != "") {

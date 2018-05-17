@@ -8,7 +8,7 @@ Page({
         inputShowed: false,
         inputVal: "",
         loading: true,
-        noData: false
+        noData: true
     },
     onLoad: function (options) {
         var that = this;

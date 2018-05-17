@@ -4,7 +4,7 @@
             <view class="schoolLogo">
                 <image class="schoolLogo-avatar" src="/images/global/school_logo.png" background-size="cover"></image>
             </view>
-            <view class="weui-cells">
+            <view class="weui-cells"  wx:if="{{authorization}}">
                 <view class="weui-cell weui-cell_input">
                     <view class="weui-cell__hd">
                         <view class="weui-label">学号</view>
@@ -14,7 +14,7 @@
                                placeholder="请输入学号"/>
                     </view>
                 </view>
-                <view class="weui-cell weui-cell_input">
+                <view class="weui-cell weui-cell_input" wx:if="{{authorization}}">
                     <view class="weui-cell__hd">
                         <view class="weui-label">密码</view>
                     </view>
@@ -26,8 +26,12 @@
                 </view>
             </view>
             <view class="weui-btn-area">
-                <button class="weui-btn" disabled="{{loginButtonDisable}}"
-                        open-type="getUserInfo" formType="submit" type="primary">
+                <button class="weui-btn" open-type="getUserInfo" wx:if="{{!authorization}}" type="primary"
+                        bindtap="authorizationUserInfo">
+                    授权使用
+                </button>
+                <button class="weui-btn" disabled="{{loginButtonDisable}}" wx:if="{{authorization}}" formType="submit"
+                        type="primary">
                     {{loginButtonText}}
                 </button>
             </view>
